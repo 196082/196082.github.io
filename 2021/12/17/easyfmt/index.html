@@ -205,7 +205,7 @@
 <h2 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h2><p>可以看到程序是进入CheckIn函数，跟随机数比较，但是这里rand()%5的大小为0~4，所以直接爆破就好。然后爆破成功之后会进入到格式化字符串漏洞，但是程序会直接exit结束。</p>
 <h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>通过爆破进入格式化字符串漏洞，修改exit的got表到0x400982位置(可以重复利用格式化字符串)，泄漏出libc的基地址，修改printf函数的got表地址为system地址。</p>
 <p>重点是需要重复利用格式化字符串漏洞，所以修改了exit的got表后面直接泄漏和修改就好了。</p>
-<p>需要注意的是<a href="https://cv196082.gitee.io/2021/09/17/study-pwn1/%E5%9C%A8%E6%88%91%E7%9A%84%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E9%87%8C%E9%9D%A2%E8%AF%B4%E4%BA%86got%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80%E6%98%AF%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84%EF%BC%8C%E5%9B%A0%E4%B8%BAexit%E6%98%AF%E6%9C%80%E5%90%8E%E6%89%8D%E6%89%A7%E8%A1%8C%E6%89%80%E4%BB%A5exit%E7%9A%84got%E8%A1%A8%E5%AD%98%E7%9A%84%E4%B8%8D%E6%98%AF%E4%BB%96%E7%9A%84%E7%9C%9F%E6%98%AF%E5%9C%B0%E5%9D%80">https://cv196082.gitee.io/2021/09/17/study-pwn1/在我的这篇文章里面说了got表的地址是怎么来的，因为exit是最后才执行所以exit的got表存的不是他的真是地址</a></p>
+<p>需要注意的是<a href="https://cv196082.gitee.io/2021/09/17/study-pwn1/">https://cv196082.gitee.io/2021/09/17/study-pwn1/</a> 在我的这篇文章里面说了got表的地址是怎么来的，因为exit是最后才执行所以exit的got表存的不是他的真是地址</p>
 <p><img src="/images/image-20211217153232572.png" alt="image-20211217153232572"></p>
 <p>存放的是这个，所以我们直接修改低两位就可以了。</p>
 <p>在就是修改printf的地址为system地址的时候只需要覆盖后面三个字节也可以了。</p>
