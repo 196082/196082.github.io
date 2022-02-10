@@ -217,7 +217,7 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="TLS的简单介绍"><a href="#TLS的简单介绍" class="headerlink" title="TLS的简单介绍"></a>TLS的简单介绍</h2><p>我这里就不详细说明TLS的实现了，因为太复杂了(我没看懂)。具体实现过程可以参考<a class="link"   target="_blank" rel="noopener" href="https://dere.press/2020/10/18/glibc-tls/%E3%80%82" >https://dere.press/2020/10/18/glibc-tls/。<i class="fas fa-external-link-alt"></i></a></p>
+            <h2 id="TLS的简单介绍"><a href="#TLS的简单介绍" class="headerlink" title="TLS的简单介绍"></a>TLS的简单介绍</h2><p>我这里就不详细说明TLS的实现了，因为太复杂了(我没看懂)。具体实现过程可以参考<a class="link"   target="_blank" rel="noopener" href="https://dere.press/2020/10/18/glibc-tls/" >https://dere.press/2020/10/18/glibc-tls/<i class="fas fa-external-link-alt"></i></a></p>
 <p>对于TLS其实是线程局部存储 (TLS) 是一种存储持续期（storage duration），对象的存储是在线程开始时分配，线程结束时回收，每个线程有该对象自己的实例。</p>
 <p>对于TLS的变量是每一个线程所独有的，维护canary的TCB结构的也就是tls。他会在每一个线程申请自己的空间，并且在验证时也是拿自己线程所在的作比较，我们可以通过canary的实现来观察TCB结构体的位置。</p>
 <p><img src="/images/image-20220204150152003.png" alt="image-20220204150152003"></p>
@@ -264,6 +264,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/02/10/GKCTF-2020-domo/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">GKCTF_2020_domo</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
