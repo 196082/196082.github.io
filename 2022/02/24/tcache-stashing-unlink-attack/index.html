@@ -266,7 +266,7 @@
 <p>首先，这里直放入了五个chunk到tcache</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</span><br><span class="line">    t1 = <span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">    <span class="built_in">free</span>(t1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>然后后面是类似的方茹两个chunk到smallbin，然后改变bk指针到我们的fake chunk，最后calloc我们的s1即可实现</p>
+<p>然后后面是类似的放入两个chunk到smallbin，然后改变bk指针到我们的fake chunk，最后calloc我们的s1即可实现</p>
 <p><img src="/images/image-20220224171340793.png" alt="image-20220224171340793"></p>
 <p>这个时候我们的利用危害性相对来说就比较大了，但是我们可以结合起来第一个漏洞来一起使用，也就是同时修改指定地址的值，并且在另一个地方创建fake chunk</p>
 <h2 id="tcache-stashing-unlink-attack-1"><a href="#tcache-stashing-unlink-attack-1" class="headerlink" title="tcache stashing unlink attack++"></a>tcache stashing unlink attack++</h2><p>其实利用方式也很简单，就是我们修改fake chunk的bk指针就行，这里就不细说，把poc贴出来就行了(要恰饭了)</p>
