@@ -22,7 +22,8 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -144,6 +145,60 @@
                 
                     <div class="home-content-container fade-in-down-animation">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/12/14/MT-CTF/">
+                        MT-CTF2021复现
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        比赛当天给我哥过生日去了，没时间打比赛，下来复现比赛发现三道pwn题的难度都不是很难，除了最后一道，还没想到预期解，只能跟着wp做一遍非预期解
+babyrop预备知识栈迁移
+流程分析程序的流程比较简单，首先存在一个字节的溢出，可以查看canary。然...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Dec 14 2021 16:20:00 GMT+0800">2021-12-14</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/pwn/">pwn</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/12/14/MT-CTF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
         
             <li class="home-article-item">
 
@@ -401,7 +456,12 @@
                     
                         <li>
                             
-                            <a href="/tags/%E6%A0%88%E6%BA%A2%E5%87%BA-vsyscall/">栈溢出|vsyscall</a>&nbsp;
+                            <a href="/tags/%E6%A0%88%E6%BA%A2%E5%87%BA/">栈溢出</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/vsyscall/">vsyscall</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -559,7 +619,12 @@
                     
                         <li>
                             
-                            <a href="/tags/%E5%A0%86%E6%BA%A2%E5%87%BA-%E7%AF%A1%E6%94%B9GOT%E8%A1%A8/">堆溢出|篡改GOT表</a>&nbsp;
+                            <a href="/tags/%E5%A0%86%E6%BA%A2%E5%87%BA/">堆溢出</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AF%A1%E6%94%B9GOT%E8%A1%A8/">篡改GOT表</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -612,7 +677,12 @@ https://skysec.top/2020/06/22/CVE-2019-10795-undefsafe-Prototype-Pollution-Vulne
                     
                         <li>
                             
-                            <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/">代码审计|原型链污染</a>&nbsp;
+                            <a href="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/">原型链污染</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -621,58 +691,6 @@ https://skysec.top/2020/06/22/CVE-2019-10795-undefsafe-Prototype-Pollution-Vulne
     </div>
 
     <a href="/2021/11/22/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84-notes/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/11/16/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E7%8E%84%E6%AD%A6%E7%BB%84-SSRFMe/">
-                        网鼎杯_2020_玄武组_SSRFMe
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        题目源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758&lt;?phpfuncti...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Nov 16 2021 11:23:11 GMT+0800">2021-11-16</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/web-buuctf/">web-buuctf</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ssrf-redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">ssrf|redis主从复制</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/11/16/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E7%8E%84%E6%AD%A6%E7%BB%84-SSRFMe/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -709,7 +727,7 @@ https://skysec.top/2020/06/22/CVE-2019-10795-undefsafe-Prototype-Pollution-Vulne
         <div class="copyright-info info-item">
             &copy;
             
-              <span>2020</span>&nbsp;-&nbsp;
+              <span>2021</span>&nbsp;-&nbsp;
             
             2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
@@ -760,6 +778,15 @@ https://skysec.top/2020/06/22/CVE-2019-10795-undefsafe-Prototype-Pollution-Vulne
         </li>
 
         <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
         
 
         

@@ -22,7 +22,8 @@
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -144,6 +145,70 @@
                 
                     <div class="home-content-container fade-in-down-animation">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/10/19/Recho/">
+                        Recho
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        检查保护与分析
+64位只开了栈不可执行
+分析流程1234567891011121314151617181920int __cdecl main(int argc, const char **argv, const char **envp)&#123;...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Oct 19 2021 15:36:28 GMT+0800">2021-10-19</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/stack-overflow/">stack-overflow</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/ROP/">ROP</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/GOP%E8%A1%A8%E7%AF%A1%E6%94%B9/">GOP表篡改</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/10/19/Recho/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
         
             <li class="home-article-item">
 
@@ -414,7 +479,22 @@ index.php
                     
                         <li>
                             
-                            <a href="/tags/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-php%E5%86%85%E7%BD%AE%E7%B1%BBSoapClint-call-user-func-CRLF-Injection%E6%BC%8F%E6%B4%9E/">session反序列化| php内置类SoapClint| call_user_func| CRLF Injection漏洞</a>&nbsp;
+                            <a href="/tags/session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">session反序列化</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/php%E5%86%85%E7%BD%AE%E7%B1%BBSoapClint/">php内置类SoapClint</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/call-user-func/">call_user_func</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/CRLF-Injection%E6%BC%8F%E6%B4%9E/">CRLF Injection漏洞</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -522,7 +602,12 @@ index.php
                     
                         <li>
                             
-                            <a href="/tags/ROP-stack-overflow/">ROP| stack overflow</a>&nbsp;
+                            <a href="/tags/ROP/">ROP</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/stack-overflow/">stack overflow</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -576,7 +661,12 @@ index.php
                     
                         <li>
                             
-                            <a href="/tags/upload-pop%E9%93%BE/">upload| pop链</a>&nbsp;
+                            <a href="/tags/pop%E9%93%BE/">pop链</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/upload/">upload</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -645,58 +735,6 @@ index.php
 
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/09/23/web-command-execution/">
-                        web_command_execution
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        1234567;     前面的执行完执行后面的|     管道符，上一条命令的输出，作为下一条命令的参数（显示后面的执行结果）         ||    当前面的执行出错时（为假）执行后面的&amp;     将任务置于后台执行&amp;&amp...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Sep 23 2021 14:51:40 GMT+0800">2021-09-23</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/web/">web</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/09/23/web-command-execution/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
     </ul>
 
     <div class="home-paginator">
@@ -729,7 +767,7 @@ index.php
         <div class="copyright-info info-item">
             &copy;
             
-              <span>2020</span>&nbsp;-&nbsp;
+              <span>2021</span>&nbsp;-&nbsp;
             
             2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
@@ -780,6 +818,15 @@ index.php
         </li>
 
         <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
         
 
         
