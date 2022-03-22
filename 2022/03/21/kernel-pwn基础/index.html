@@ -187,7 +187,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/kernel-pwn/">kernel pwn</a>&nbsp;
+                        <a href="/tags/kernel-UAF/">kernel UAF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/kernel-ROP/">kernel ROP</a>&nbsp;
                     </li>
                 
             </ul>
@@ -315,7 +319,7 @@
 <p>这里是wiki上的payload片段，但是我有点不明白的是这里为什么要把mov rdi, rax; call rdx;的地址放到rcx里，并且这里不应该使用call rdx，如果是使用了call的话就会导致在结束是ret回来的地址就是gadget后面紧随的地址了，这也就导致swapgs以及后续rop chain无法执行，所以这里应该用jmp来代替(我也是在动态调试中发现的)。</p>
 <p>其次</p>
 <p><img src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220321220914739.png" alt="image-20220321220914739"></p>
-<p>这里可以看到是可以泄漏出core_ioctl的地址的，我以我们可以不是用/tmp/kallsyms来获取地址。</p>
+<p>这里可以看到是可以泄漏出core_ioctl的地址的，所以我们可以不是用/tmp/kallsyms来获取地址。</p>
 <p>raw_vmlinux_base的由来：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tcdy@arch-linux ~/Downloads/study_kernel % objdump -h <span class="built_in">test</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Sections:</span><br><span class="line">Idx Name          Size      VMA               LMA               File off  Algn</span><br><span class="line">  0 .text         00c0325d  ffffffff81000000  0000000001000000  00200000  2**12</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br></pre></td></tr></table></figure>
 
@@ -331,6 +335,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/22/kernel-pwn%E5%9F%BA%E7%A1%80-1/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">kernel pwn基础[1]</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
