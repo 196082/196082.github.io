@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -219,10 +219,20 @@
 
         <div class="article-content markdown-body">
             <p>以前以为非栈上的格式化字符串应该跟栈上的差不多所以就没怎么去了解，可以说是完全没学非栈上的格式化字符串。</p>
-<h4 id="n"><a href="#n" class="headerlink" title="%n"></a>%n</h4><p><img src="/images/image-20220102000339791.png" alt="image-20220102000339791"></p>
+<h4 id="n"><a href="#n" class="headerlink" title="%n"></a>%n</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102000339791.png"
+                      alt="image-20220102000339791"
+                ></p>
 <p>在上图的红色框中存在一条链假定为p1-&gt;p2-&gt;p3-&gt;p4，我们都知道在gdb中第一列为地址，第二列为值，而第三列则是指针所指向的值。而%n实际上就是修改其第三列，就跟<code>scanf(&quot;%d&quot;,&amp;n);</code>同理。</p>
 <p>所以最终的效果就是我们使用%n修改值修改的是p3。下面回到题目。</p>
-<h3 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h3><p><img src="/images/image-20220102000835128.png" alt="image-20220102000835128"></p>
+<h3 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102000835128.png"
+                      alt="image-20220102000835128"
+                ></p>
 <p>几乎什么都没开，重要的是没开nx保护，可以直接写shellcode。这次程序的代码有点长就不放上来了，存在这样一个函数sub_804869D，看起来很复杂还很长，我也不知道是什么看了wp发现是一个base64_decode。</p>
 <h2 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub_8048B76</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">size_t</span> v0; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *v1; <span class="comment">// eax</span></span><br><span class="line"></span><br><span class="line">  v0 = <span class="built_in">strlen</span>(s);</span><br><span class="line">  v1 = sub_804869D(s, v0, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">snprintf</span>(byte_804A8A0, <span class="number">0x800</span>u, <span class="string">&quot;%s&quot;</span>, v1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -233,15 +243,45 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.text:08048B76 sub_8048B76     proc near               ; CODE XREF: sub_8048BD4+6↓p</span><br><span class="line">.text:08048B76 ; __unwind &#123;</span><br><span class="line">.text:08048B76                 push    ebp</span><br><span class="line">.text:08048B77                 mov     ebp, esp</span><br><span class="line">.text:08048B79                 sub     esp, 18h</span><br><span class="line">.text:08048B7C                 mov     dword ptr [esp], offset s ; s</span><br><span class="line">.text:08048B83                 call    _strlen</span><br><span class="line">.text:08048B88                 mov     dword ptr [esp+8], 0</span><br><span class="line">.text:08048B90                 mov     [esp+4], eax</span><br><span class="line">.text:08048B94                 mov     dword ptr [esp], offset s</span><br><span class="line">.text:08048B9B                 call    sub_804869D</span><br><span class="line">.text:08048BA0                 mov     [esp+0Ch], eax</span><br><span class="line">.text:08048BA4                 mov     dword ptr [esp+8], offset format ; &quot;%s&quot;</span><br><span class="line">.text:08048BAC                 mov     dword ptr [esp+4], 800h ; maxlen</span><br><span class="line">.text:08048BB4                 mov     dword ptr [esp], offset byte_804A8A0 ; s</span><br><span class="line">.text:08048BBB                 call    _snprintf</span><br><span class="line">.text:08048BC0                 push    offset sub_8048BD1</span><br><span class="line">.text:08048BC5                 push    offset sub_8048B32</span><br><span class="line">.text:08048BCA                 push    0</span><br><span class="line">.text:08048BCC                 lea     esp, [esp+4]</span><br><span class="line">.text:08048BD0                 retn</span><br></pre></td></tr></table></figure>
 
 <p>下面几行会将sub_8048B32推进栈里，然后下面还有个lea正好吧esp改变过去了，所以是一定会去执行sub_8048B32这个函数的。</p>
-<h5 id="在执行完sub-8048B32会发生什么？"><a href="#在执行完sub-8048B32会发生什么？" class="headerlink" title="在执行完sub_8048B32会发生什么？"></a>在执行完sub_8048B32会发生什么？</h5><p><img src="/images/image-20220102002157237.png" alt="image-20220102002157237"></p>
-<p><img src="/images/image-20220102002207649.png" alt="image-20220102002207649"></p>
-<p><img src="/images/image-20220102002215980.png" alt="image-20220102002215980"></p>
+<h5 id="在执行完sub-8048B32会发生什么？"><a href="#在执行完sub-8048B32会发生什么？" class="headerlink" title="在执行完sub_8048B32会发生什么？"></a>在执行完sub_8048B32会发生什么？</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102002157237.png"
+                      alt="image-20220102002157237"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102002207649.png"
+                      alt="image-20220102002207649"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102002215980.png"
+                      alt="image-20220102002215980"
+                ></p>
 <p>可以看到程序是利用了类似于ROP的思想进行的。</p>
-<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p><img src="/images/image-20220102002547923.png" alt="image-20220102002547923"></p>
+<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102002547923.png"
+                      alt="image-20220102002547923"
+                ></p>
 <p>发现疑似可利用的地方，马上调试程序</p>
-<p><img src="/images/image-20220102002730704.png" alt="image-20220102002730704"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102002730704.png"
+                      alt="image-20220102002730704"
+                ></p>
 <p> 这就是刚刚找的东西，但是直接利用肯定不行。所以我们要构造出来p1-&gt;p2-&gt;p3的结构</p>
-<p><img src="/images/image-20220102002849166.png" alt="image-20220102002849166"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220102002849166.png"
+                      alt="image-20220102002849166"
+                ></p>
 <p>很容易可以看到ebp存在这样一条链子，0xffffce08也存在，我们若是让0xffffce08的值等于0xffffce0c那我们岂不是就构成了这样一条链子？</p>
 <p><code>0xffffce08-&gt;0xffffce0c-&gt;0x8048bdf</code>这时候修改0x8048bdf到shellcode的地址就可以了。</p>
 <p>已知ebp为%4$，再结合文章开头所说的，那么我们就可以通过%4$修改%12$的值为%13$，然后利用%12$修改%13$的值为我们的shellcode。</p>
@@ -549,6 +589,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

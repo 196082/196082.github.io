@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -187,7 +187,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/house%E7%B3%BB%E5%88%97/">house系列</a>&nbsp;
+                        <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
                     </li>
                 
                     <li>
@@ -249,22 +249,52 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (l = GL(dl_ns)[ns]._ns_loaded, i = <span class="number">0</span>; l != <span class="literal">NULL</span>; l = l-&gt;l_next)</span><br><span class="line">    <span class="comment">/* Do not handle ld.so in secondary namespaces.  */</span></span><br><span class="line">    <span class="keyword">if</span> (l == l-&gt;l_real)</span><br><span class="line">    &#123;</span><br><span class="line">        assert (i &lt; nloaded);</span><br><span class="line"></span><br><span class="line">        maps[i] = l;</span><br><span class="line">        l-&gt;l_idx = i;</span><br><span class="line">        ++i;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Bump l_direct_opencount of all objects so that they</span></span><br><span class="line"><span class="comment">		   are not dlclose()ed from underneath us.  */</span></span><br><span class="line">        ++l-&gt;l_direct_opencount;</span><br><span class="line">    &#125;</span><br><span class="line">assert (ns != LM_ID_BASE || i == nloaded);</span><br><span class="line">assert (ns == LM_ID_BASE || i == nloaded || i == nloaded - <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
 <p>这里的maps需要的是4个元素，所以我们劫持第三个l-&gt;next到我们伪造的结构当中即可，并且可以绕过下面两个assert</p>
-<p><img src="/images/image-20220307134013740.png" alt="image-20220307134013740"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220307134013740.png"
+                      alt="image-20220307134013740"
+                ></p>
 <p>所以我们利用distance求出偏移然后修改掉&amp;_rtld_global-0x1e048的地址到我们伪造的结构体就行，另外在这一代码当中存在一个if判断，需要绕过这一if判断</p>
-<p><img src="/images/image-20220307134759927.png" alt="image-20220307134759927"></p>
-<p><img src="/images/image-20220307134820512.png" alt="image-20220307134820512"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220307134759927.png"
+                      alt="image-20220307134759927"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220307134820512.png"
+                      alt="image-20220307134820512"
+                ></p>
 <p>所以我们只需要在fake+0x28=fake就可</p>
 <p>现在的目标就是进行伪造，能够顺利的执行到最后</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (l-&gt;l_init_called)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Make sure nothing happens if we are called twice.  */</span></span><br><span class="line">    l-&gt;l_init_called = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Is there a destructor function?  */</span></span><br><span class="line">    <span class="keyword">if</span> (l-&gt;l_info[DT_FINI_ARRAY] != <span class="literal">NULL</span></span><br><span class="line">        || l-&gt;l_info[DT_FINI] != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* When debugging print a message first.  */</span></span><br><span class="line">        <span class="keyword">if</span> (__builtin_expect (GLRO(dl_debug_mask)</span><br><span class="line">                              &amp; DL_DEBUG_IMPCALLS, <span class="number">0</span>))</span><br><span class="line">            _dl_debug_printf (<span class="string">&quot;\ncalling fini: %s [%lu]\n\n&quot;</span>,</span><br><span class="line">                              DSO_FILENAME (l-&gt;l_name),</span><br><span class="line">                              ns);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* First see whether an array is given.  */</span></span><br><span class="line">        <span class="keyword">if</span> (l-&gt;l_info[DT_FINI_ARRAY] != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ElfW(Addr) *<span class="built_in">array</span> =</span><br><span class="line">                (ElfW(Addr) *) (l-&gt;l_addr</span><br><span class="line">                                + l-&gt;l_info[DT_FINI_ARRAY]-&gt;d_un.d_ptr);</span><br><span class="line">            <span class="keyword">unsigned</span> <span class="keyword">int</span> i = (l-&gt;l_info[DT_FINI_ARRAYSZ]-&gt;d_un.d_val</span><br><span class="line">                              / <span class="keyword">sizeof</span> (ElfW(Addr)));</span><br><span class="line">            <span class="keyword">while</span> (i-- &gt; <span class="number">0</span>)</span><br><span class="line">                ((<span class="keyword">fini_t</span>) <span class="built_in">array</span>[i]) ();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到这里存在的是三个if判断</p>
-<p><img src="/images/image-20220307135557831.png" alt="image-20220307135557831"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220307135557831.png"
+                      alt="image-20220307135557831"
+                ></p>
 <p>首先是l_init_called可以看到他们之间的距离为0x314然后地址上的值为0x1c，所以只需要fake+0x314=0x1c即可绕过。(在glibc2.31当中的距离为0x31c，上面没注意使用的是glibc2.27下面改用2.31)</p>
 <p>随后就是下面两个if语句，fake-&gt;l_info[26]和fake-&gt;l_info[28]!=NULL即可绕过，然后可以看到下面这两个其实直接控制了，array和i的值，所以我们需要利用好这两个。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ElfW(Addr) *<span class="built_in">array</span> =</span><br><span class="line">			    (ElfW(Addr) *) (l-&gt;l_addr</span><br><span class="line">					    + l-&gt;l_info[DT_FINI_ARRAY]-&gt;d_un.d_ptr);</span><br><span class="line">			  <span class="keyword">unsigned</span> <span class="keyword">int</span> i = (l-&gt;l_info[DT_FINI_ARRAYSZ]-&gt;d_un.d_val</span><br><span class="line">					    / <span class="keyword">sizeof</span> (ElfW(Addr)));</span><br><span class="line">------</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	DT_FINI_ARRAY	26		<span class="comment">/* Array with addresses of fini fct */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	DT_FINI_ARRAYSZ	28		<span class="comment">/* Size in bytes of DT_FINI_ARRAY */</span></span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/image-20220307171529724.png" alt="image-20220307171529724"></p>
-<p><img src="/images/image-20220307171150261.png" alt="image-20220307171150261"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220307171529724.png"
+                      alt="image-20220307171529724"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220307171150261.png"
+                      alt="image-20220307171150261"
+                ></p>
 <p>查看info的结构体，这里的伪造方式我直接引用我参考的博客来写</p>
 <p>在fake+0x110处写入fake+0x40，然后在fake+0x48写入fake+0x58然后在fake+0x58写入shell</p>
 <p>在fake+0x120出写入fake+0x48，在fake+0x50处写入8</p>
@@ -594,6 +624,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

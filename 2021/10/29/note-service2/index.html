@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -218,7 +218,12 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h2><p><img src="/images/image-20211029205958213.png" alt="image-20211029205958213"></p>
+            <h2 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211029205958213.png"
+                      alt="image-20211029205958213"
+                ></p>
 <p>开启了canary和pie但是没有开启nx，所以堆栈可以执行</p>
 <h2 id="程序执行流程分析"><a href="#程序执行流程分析" class="headerlink" title="程序执行流程分析"></a>程序执行流程分析</h2><p>一道经典的菜单题目，具体流程可以看题目我在这里只放上有漏洞的代码</p>
 <p>有四个选项，一是增加note，二和三都还没完成，第四就是删掉note</p>
@@ -229,7 +234,12 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rax = 59</span><br><span class="line">rdi = &#x27;/bin/sh&#x27;</span><br><span class="line">rsi = 0</span><br><span class="line">rdx = 0</span><br><span class="line">syscall</span><br></pre></td></tr></table></figure>
 
 <p>这肯定是超过了8字节，所以需要创建多个chunk然后连接起来，通过jmp连接，当我们malloc一个大小为8的chunk的时候他的结构其实是这样</p>
-<p><img src="/images/image-20211029220854272.png" alt="image-20211029220854272"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211029220854272.png"
+                      alt="image-20211029220854272"
+                ></p>
 <p>这样一个chunk里面只有fd的位置是我可以控制的，并且在我们可以控制的最后一个字节会被改写成0，所以我们实际可以控制的只有7个字节在构造的时候需要jmp的距离为bk+prev_size+size+1的大小。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000000B1E                 jmp     short loc_B42</span><br><span class="line">.text:0000000000000B20 ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0000000000000B20</span><br><span class="line">.text:0000000000000B20 loc_B20:                                ; CODE XREF: sub_AC3+49↑j</span><br><span class="line">.text:0000000000000B20                 mov     eax, [rbp+var_C]</span><br><span class="line">.text:0000000000000B23                 movsxd  rdx, eax</span><br><span class="line">.text:0000000000000B26                 mov     rax, [rbp+var_18]</span><br><span class="line">.text:0000000000000B2A                 add     rdx, rax</span><br><span class="line">.text:0000000000000B2D                 movzx   eax, [rbp+buf]</span><br><span class="line">.text:0000000000000B31                 mov     [rdx], al</span><br><span class="line">.text:0000000000000B33                 add     [rbp+var_C], 1</span><br><span class="line">.text:0000000000000B37</span><br><span class="line">.text:0000000000000B37 loc_B37:                                ; CODE XREF: sub_AC3+2A↑j</span><br><span class="line">.text:0000000000000B37                 mov     eax, [rbp+var_1C]</span><br><span class="line">.text:0000000000000B3A                 sub     eax, 1</span><br><span class="line">.text:0000000000000B3D                 cmp     eax, [rbp+var_C]</span><br><span class="line">.text:0000000000000B40                 jg      short loc_AEF</span><br><span class="line">.text:0000000000000B42</span><br><span class="line">.text:0000000000000B42 loc_B42:  </span><br></pre></td></tr></table></figure>
 
@@ -555,6 +565,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

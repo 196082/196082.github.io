@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -218,9 +218,19 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h2><p><img src="/images/image-20211021150915647.png" alt="image-20211021150915647"></p>
+            <h2 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211021150915647.png"
+                      alt="image-20211021150915647"
+                ></p>
 <p>三十二位，开启了Canary</p>
-<p><img src="/images/image-20211021151034031.png" alt="image-20211021151034031"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211021151034031.png"
+                      alt="image-20211021151034031"
+                ></p>
 <p>执行结果是这样，猜测可能有格式化字符串</p>
 <h2 id="执行流程分析"><a href="#执行流程分析" class="headerlink" title="执行流程分析"></a>执行流程分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> s[<span class="number">64</span>]; <span class="comment">// [esp+1Ch] [ebp-84h] BYREF</span></span><br><span class="line">  <span class="keyword">char</span> v5[<span class="number">64</span>]; <span class="comment">// [esp+5Ch] [ebp-44h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v6; <span class="comment">// [esp+9Ch] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  v6 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Please tell me your name... &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !getnline(v5, <span class="number">64</span>) )</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Don&#x27;t ignore me ;( &quot;</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(s, <span class="string">&quot;Nice to meet you, %s :)\n&quot;</span>, v5);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -228,9 +238,19 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">size_t</span> __cdecl <span class="title">getnline</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> *v3; <span class="comment">// [esp+1Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  fgets(s, n, <span class="built_in">stdin</span>);</span><br><span class="line">  v3 = <span class="built_in">strchr</span>(s, <span class="number">10</span>);</span><br><span class="line">  <span class="keyword">if</span> ( v3 )</span><br><span class="line">    *v3 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">strlen</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>整体流程就是输入一段字符，然后把字符复制给s然后打印出s，s那里存在明显的格式化字符串漏洞，输入<code>aaaaaa_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p</code></p>
-<p><img src="/images/image-20211021152526603.png" alt="image-20211021152526603"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211021152526603.png"
+                      alt="image-20211021152526603"
+                ></p>
 <p>上面是栈内的情况    </p>
-<p><img src="/images/image-20211021152633176.png" alt="image-20211021152633176"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211021152633176.png"
+                      alt="image-20211021152633176"
+                ></p>
 <p>打印的结果，可以看到偏移量是12。而且在getnline函数里面的strlen的调用方式和system一模一样，所以篡改strlen的got表地址到system就可以直接执行了。但是目前还有一个问题就是程序是只存在一处漏洞，并且执行完了就没了，然后思路就断了，看了wp知道：</p>
 <p><strong>main在执行之前会调用.init段的代码和.init_array段的函数数组的每一个指针，在main执行结束后会调用，.fini段代码和.fini_array段的函数数组的每一个指针</strong></p>
 <h3 id="函数利用过程"><a href="#函数利用过程" class="headerlink" title="函数利用过程"></a>函数利用过程</h3><p>首先修改strlen的got表为system的plt表，那么调用strlen的时候就是就调用了system，然后修改.fini_array的段指针到main函数，然后就等main执行完之后就会重新进入main在调用getnline的时候输入/bin/sh就可以调用到system(‘/bin/sh’)了，就getshell了。</p>
@@ -564,6 +584,8 @@ r.interactive()
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -222,13 +222,33 @@
         
 
         <div class="article-content markdown-body">
-            <p><img src="/images/image-20210921134006428.png" alt="image-20210921134006428"></p>
+            <p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210921134006428.png"
+                      alt="image-20210921134006428"
+                ></p>
 <p>发现思路并不清晰，就开始扫他丫的东方明珠塔。</p>
-<p><img src="/images/image-20210921134145780.png" alt="image-20210921134145780"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210921134145780.png"
+                      alt="image-20210921134145780"
+                ></p>
 <p>扫了仨文件出来，访问之后发现dir显示的应该是某个空目录。</p>
-<p><img src="/images/image-20210921134313668.png" alt="image-20210921134313668"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210921134313668.png"
+                      alt="image-20210921134313668"
+                ></p>
 <p>然后看看index的数据包，发现hash那里很长很想md5的结果，拿去py看了一下确实是32位，就尝试?pass=fa25e…上面那个。</p>
-<p><img src="/images/image-20210921134447306.png" alt="image-20210921134447306"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210921134447306.png"
+                      alt="image-20210921134447306"
+                ></p>
 <p>跳转到这个页面，然后我在浏览器试了很久都打不开，结果是我傻逼了，继续用burpsuite。出来让我包含文件，读取了所有文件没找到flag但是dir.php的内容其实是 print_r(scandir(‘/tmp’))。然后这里就开始打算些session条件竞争了。</p>
 <p>但是这个题目的预期解是利用php程序崩溃不删除临时文件然后拿到flag。</p>
 <p><strong><code>php://filter/string.strip_tags</code></strong></p>
@@ -546,6 +566,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

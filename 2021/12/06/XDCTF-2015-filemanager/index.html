@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -238,22 +238,72 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$result</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$req</span>[<span class="string">&#x27;newname&#x27;</span>] = basename(<span class="variable">$req</span>[<span class="string">&#x27;newname&#x27;</span>]);</span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;update `file` set `filename`=&#x27;<span class="subst">&#123;$req[&#x27;newname&#x27;]&#125;</span>&#x27;, `oldname`=&#x27;<span class="subst">&#123;$result[&#x27;filename&#x27;]&#125;</span>&#x27; where `fid`=<span class="subst">&#123;$result[&#x27;fid&#x27;]&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="variable">$re</span> = <span class="variable">$db</span>-&gt;query(<span class="string">&quot;update `file` set `filename`=&#x27;<span class="subst">&#123;$req[&#x27;newname&#x27;]&#125;</span>&#x27;, `oldname`=&#x27;<span class="subst">&#123;$result[&#x27;filename&#x27;]&#125;</span>&#x27; where `fid`=<span class="subst">&#123;$result[&#x27;fid&#x27;]&#125;</span>&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$re</span>) &#123;</span><br><span class="line">        print_r(<span class="variable">$db</span>-&gt;error);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$oldname</span> = UPLOAD_DIR . <span class="variable">$result</span>[<span class="string">&quot;filename&quot;</span>] . <span class="variable">$result</span>[<span class="string">&quot;extension&quot;</span>];</span><br><span class="line">    <span class="variable">$newname</span> = UPLOAD_DIR . <span class="variable">$req</span>[<span class="string">&quot;newname&quot;</span>] . <span class="variable">$result</span>[<span class="string">&quot;extension&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (file_exists(<span class="variable">$oldname</span>)) &#123;</span><br><span class="line">        rename(<span class="variable">$oldname</span>, <span class="variable">$newname</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$url</span> = <span class="string">&quot;/&quot;</span> . <span class="variable">$newname</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Your file is rename, url:</span></span><br><span class="line"><span class="string">                &lt;a href=\&quot;<span class="subst">&#123;$url&#125;</span>\&quot; target=&#x27;_blank&#x27;&gt;<span class="subst">&#123;$url&#125;</span>&lt;/a&gt;&lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;a href=\&quot;/\&quot;&gt;go back&lt;/a&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里对于oldname没有检查和处理，并且在下面是直接修改文件名字。描述起来比较费劲，就直接上图吧。</p>
-<p><img src="/images/image-20211206170604425.png" alt="image-20211206170604425"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206170604425.png"
+                      alt="image-20211206170604425"
+                ></p>
 <p>构造一个文件名为<code>&#39;,extension=&#39;&#39;,filename=&#39;wow.gif.gif</code>的文件上传，两个gif是用第二个去逃避那个extension字段</p>
-<p><img src="/images/image-20211206170748384.png" alt="image-20211206170748384"></p>
-<p><img src="/images/image-20211206170813726.png" alt="image-20211206170813726"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206170748384.png"
+                      alt="image-20211206170748384"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206170813726.png"
+                      alt="image-20211206170813726"
+                ></p>
 <p>数据库和upload文件夹的结果就是这样</p>
 <p>现在去rename一个</p>
-<p><img src="/images/image-20211206170908617.png" alt="image-20211206170908617"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206170908617.png"
+                      alt="image-20211206170908617"
+                ></p>
 <p>在rename里面的sql语句就是这样，那此时的extension就被置空了</p>
-<p><img src="/images/image-20211206170958771.png" alt="image-20211206170958771"></p>
-<p><img src="/images/image-20211206171016993.png" alt="image-20211206171016993"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206170958771.png"
+                      alt="image-20211206170958771"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206171016993.png"
+                      alt="image-20211206171016993"
+                ></p>
 <p>这时候上传一个一句话wow.gif</p>
-<p><img src="/images/image-20211206171125649.png" alt="image-20211206171125649"></p>
-<p><img src="/images/image-20211206171143484.png" alt="image-20211206171143484"></p>
-<p><img src="/images/image-20211206171209937.png" alt="image-20211206171209937"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206171125649.png"
+                      alt="image-20211206171125649"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206171143484.png"
+                      alt="image-20211206171143484"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206171209937.png"
+                      alt="image-20211206171209937"
+                ></p>
 <p>现在数据储存的就是这样两个，下一步直接rename，修改木马尾缀</p>
-<p><img src="/images/image-20211206171343183.png" alt="image-20211206171343183"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206171343183.png"
+                      alt="image-20211206171343183"
+                ></p>
 <p>此时就是将oldname修改到newname了，用蚁剑连接就好了</p>
 
         </div>
@@ -556,6 +606,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

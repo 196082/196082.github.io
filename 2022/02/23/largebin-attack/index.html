@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -219,7 +219,12 @@
 
         <div class="article-content markdown-body">
             <p>关于largebin的原理这里就只给一张图吧，也是在网上找的(我懒得画)。</p>
-<p><img src="/images/20190516131203-242dd8f2-7799-1.png" alt="20190516131203-242dd8f2-7799-1"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/20190516131203-242dd8f2-7799-1.png"
+                      alt="20190516131203-242dd8f2-7799-1"
+                ></p>
 <p>largebin一直是容易被忽略的利用方式(可能只是我这样吧)，在此之前我一直觉得largebin不会出现直到最近的比赛怎么全是这玩意，所以又下来学习了一遍。</p>
 <h2 id="Glibc2-23到Glibc2-27下的largebin-attack"><a href="#Glibc2-23到Glibc2-27下的largebin-attack" class="headerlink" title="Glibc2.23到Glibc2.27下的largebin attack"></a>Glibc2.23到Glibc2.27下的largebin attack</h2><p>其实Glibc2.27和Glibc2.23的利用方式都差不多，只不过在2.27里增加了tcache机制，所以想实现largebin attack要么占满tcache，或则大于tcache范围。</p>
 <p>下面源码是当unsorted bin 当作的chunk进入large bin的过程</p>
@@ -590,6 +595,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

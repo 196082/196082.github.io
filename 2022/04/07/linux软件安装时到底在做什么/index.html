@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -228,14 +228,34 @@
 <p>首先需要说明的是windows和linux其实都是存在依赖问题的，比如我以前在windows虚拟机里面运行ida的时候就会出现依赖问题，不过网上都有现成的包直接安装就好。虽然按理来说linux也存在依赖的包，但是为什么linux的依赖问题会比windows更加经常发生呢？</p>
 <p>举个例子：现在运行一个程序需要依赖a-1，我使用windows找到了这个依赖的安装包，实际上这个安装包安装下来的是a-1,a-2,,,,a-30。但是纯纯的linux只会帮你安装a-1，下一次遇到需要a-12的时候，windows不会报错但是linux又需要安装另外版本的依赖了。</p>
 <p>上面的看过了之后就大概对linux的依赖问题有一定了解了，那么为了更好的了解依赖问题我们首先需要知道</p>
-<h2 id="安装一个包的过程"><a href="#安装一个包的过程" class="headerlink" title="安装一个包的过程"></a>安装一个包的过程</h2><p><img src="/images/image-20220407105433893.png" alt="image-20220407105433893"></p>
+<h2 id="安装一个包的过程"><a href="#安装一个包的过程" class="headerlink" title="安装一个包的过程"></a>安装一个包的过程</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105433893.png"
+                      alt="image-20220407105433893"
+                ></p>
 <p>首先可以看到linux和window的不同，linux的安装包是真的非常单纯的压缩整合到一起，最后由包管理器将不同功能的文件放到不同目录。</p>
 <p>在上面这张图里面我们需要重点关注的data.tar.xz</p>
-<p><img src="/images/image-20220407105631804.png" alt="image-20220407105631804"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105631804.png"
+                      alt="image-20220407105631804"
+                ></p>
 <p>查看其内部可以发现就是一个usr目录</p>
-<p><img src="/images/image-20220407105659439.png" alt="image-20220407105659439"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105659439.png"
+                      alt="image-20220407105659439"
+                ></p>
 <p>这里就是我们熟悉的desktop，也就是桌面图标</p>
-<p><img src="/images/image-20220407105758879.png" alt="image-20220407105758879"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105758879.png"
+                      alt="image-20220407105758879"
+                ></p>
 <p>可以看到bin目录是一个链接符号</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcdy@archlinux /mnt/5F2601400CC8834D/save/usr/bin % ls -l typora </span><br><span class="line">lrwxrwxrwx 1 root root 22 Apr  7 10:51 typora -&gt; ../share/typora/Typora</span><br></pre></td></tr></table></figure>
 
@@ -244,7 +264,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tcdy@archlinux ..5F2601400CC8834D/save/usr/share/typora % ldd Typora </span><br><span class="line">	linux-vdso.so.1 (0x00007ffe581fd000)</span><br><span class="line">	libffmpeg.so =&gt; /mnt/5F2601400CC8834D/save/usr/share/typora/./libffmpeg.so (0x00007fefa6baa000)</span><br><span class="line">	libdl.so.2 =&gt; /usr/lib/libdl.so.2 (0x00007fefa6b7e000)</span><br><span class="line">	libpthread.so.0 =&gt; /usr/lib/libpthread.so.0 (0x00007fefa6b79000)</span><br><span class="line">	libgobject-2.0.so.0 =&gt; /usr/lib/libgobject-2.0.so.0 (0x00007fefa6b1a000)</span><br><span class="line">	libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0x00007fefa69dc000)</span><br><span class="line">	libxshmfence.so.1 =&gt; /usr/lib/libxshmfence.so.1 (0x00007fefa69d7000)</span><br><span class="line">	libgio-2.0.so.0 =&gt; /usr/lib/libgio-2.0.so.0 (0x00007fefa6807000)</span><br><span class="line">	libnss3.so =&gt; /usr/lib/libnss3.so (0x00007fefa66d4000)</span><br><span class="line">	libnssutil3.so =&gt; /usr/lib/libnssutil3.so (0x00007fefa66a1000)</span><br><span class="line">	libsmime3.so =&gt; /usr/lib/libsmime3.so (0x00007fefa6678000)</span><br><span class="line">	libnspr4.so =&gt; /usr/lib/libnspr4.so (0x00007fefa6636000)</span><br><span class="line">	libatk-1.0.so.0 =&gt; /usr/lib/libatk-1.0.so.0 (0x00007fefa660c000)</span><br><span class="line">	libatk-bridge-2.0.so.0 =&gt; /usr/lib/libatk-bridge-2.0.so.0 (0x00007fefa65d4000)</span><br><span class="line">	libdbus-1.so.3 =&gt; /usr/lib/libdbus-1.so.3 (0x00007fefa6581000)</span><br><span class="line">	......</span><br></pre></td></tr></table></figure>
 
 <p>可以看到这里甚至于有依赖就在当前目录寻找了</p>
-<p><img src="/images/image-20220407110347849.png" alt="image-20220407110347849"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407110347849.png"
+                      alt="image-20220407110347849"
+                ></p>
 <p>可以看到这里的文件其实也就包含了上面所需要的一部分依赖，其实这也是很多windows程序的思路，如果程序存在很多不常见到的依赖就会把依赖和程序捆绑起来进行安装。</p>
 <p>其实到这里大家都大概知道了包管理器在安装程序时到底是干了什么，其实就是将不同功能的程序放进了不同目录。</p>
 <h2 id="AUR-PKGBUILD的编写"><a href="#AUR-PKGBUILD的编写" class="headerlink" title="AUR-PKGBUILD的编写"></a>AUR-PKGBUILD的编写</h2><p>一样拿typora举例</p>
@@ -564,6 +589,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

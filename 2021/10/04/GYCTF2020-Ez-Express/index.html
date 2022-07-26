@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -226,7 +226,12 @@
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="原型链污染"><a href="#原型链污染" class="headerlink" title="原型链污染"></a>原型链污染</h3><p>js的考点主要还是原型链污染，这里的merge函数也就是危险函数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isObject = <span class="function"><span class="params">obj</span> =&gt;</span> obj &amp;&amp; obj.constructor &amp;&amp; obj.constructor === <span class="built_in">Object</span>;</span><br><span class="line"><span class="comment">// 上面就是检验参数obj是否是个对象</span></span><br><span class="line"><span class="keyword">const</span> merge = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> attr <span class="keyword">in</span> b) &#123;</span><br><span class="line">    <span class="keyword">if</span> (isObject(a[attr]) &amp;&amp; isObject(b[attr])) &#123;</span><br><span class="line">      merge(a[attr], b[attr]);<span class="comment">// 要是b和a的attr属性是一个对象的话就会进行递归</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      a[attr] = b[attr];<span class="comment">// 将对象b的属性赋值给a</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 所以根据上面，可以看出来原型对象__proto__会进入递归赋值，然而js的对象寻找属性的规则就是，要是对象本身找不到这个属性就会跟着__proto__链找，直到__proto__为NULL，所以当我们有可控参数的时候就可以让，Object()的__proto__赋上我们想要的键值。</span></span><br><span class="line"><span class="keyword">const</span> clone = <span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> merge(&#123;&#125;, a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这就是一个闭包</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h3><p><img src="/images/image-20211004141653179.png" alt="image-20211004141653179"></p>
+<h3 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211004141653179.png"
+                      alt="image-20211004141653179"
+                ></p>
 <p>可以看到提示有admin用户</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">&#x27;/action&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (req.session.user.user != <span class="string">&quot;ADMIN&quot;</span>) &#123; res.end(<span class="string">&quot;&lt;script&gt;alert(&#x27;ADMIN is asked&#x27;);history.go(-1);&lt;/script&gt;&quot;</span>) &#125;</span><br><span class="line">  req.session.user.data = clone(req.body);</span><br><span class="line">  res.end(<span class="string">&quot;&lt;script&gt;alert(&#x27;success&#x27;);history.go(-1);&lt;/script&gt;&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -545,6 +550,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

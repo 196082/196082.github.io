@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -267,7 +267,12 @@
 
 <p>__bin_chunk函数的作用是将 chunk 插入到 bin 链表中。首先合并 chunk 前后的空闲 chunk、设置 binmap 和 chunk 标志位，最后将 chunk 插入到对应的 bin 链表中。</p>
 <p>然后在musl当中的堆管理为了减少内存的使用会直接将libc和程序当中的空闲的内存当作堆内存，而glibc的堆地址一般都是位于内存中的动态内存区域。</p>
-<h2 id="XCTF-2020-PWN-musl"><a href="#XCTF-2020-PWN-musl" class="headerlink" title="XCTF_2020_PWN_musl"></a>XCTF_2020_PWN_musl</h2><p><img src="/images/image-20220427153926579.png" alt="image-20220427153926579"></p>
+<h2 id="XCTF-2020-PWN-musl"><a href="#XCTF-2020-PWN-musl" class="headerlink" title="XCTF_2020_PWN_musl"></a>XCTF_2020_PWN_musl</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220427153926579.png"
+                      alt="image-20220427153926579"
+                ></p>
 <p>可以看到这里确实是直接在libc和process上面有堆的地址。</p>
 <h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>就是很经典的菜单题，并且在create函数里面有一处只能运行一次的0x50的溢出，而且题目只有一处使用exit退出程序，然后show函数也只有一次。</p>
 <h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>其实利用思路就很简单了，存在溢出，unbin又有如此大的安全隐患，所以就是通过溢出修改掉next指针和prev指针从而实现任意地址写，造成FSOP</p>
@@ -590,6 +595,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

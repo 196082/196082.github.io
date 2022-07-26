@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -289,23 +289,53 @@
 <h3 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h3><p>首先生成UAF的chunk</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create(<span class="number">0x38</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x38</span>, <span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x28</span>)</span><br><span class="line">create(<span class="number">0x38</span>, <span class="string">b&#x27;b&#x27;</span> * <span class="number">0x38</span>, <span class="number">0x38</span>, <span class="string">b&#x27;b&#x27;</span> * <span class="number">0x38</span>)</span><br><span class="line">delete(<span class="number">0x38</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x38</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/image-20220510102335264.png" alt="image-20220510102335264"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510102335264.png"
+                      alt="image-20220510102335264"
+                ></p>
 <p>可以看到其实已经是造成了UAF了</p>
 <p>这个时候我们如果在free的chunk这里生成一个管理堆块即可泄漏出堆地址，但是上面提到了musl在free后不会直接该表avail的值，而是等avail用完了才会根据freed修改avail。</p>
-<p><img src="/images/image-20220510103046917.png" alt="image-20220510103046917"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510103046917.png"
+                      alt="image-20220510103046917"
+                ></p>
 <p>可以看到当前的meta，题目的show函数也是会创建chunk然后free掉的，所以修改掉即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    find(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x28</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/image-20220510103350652.png" alt="image-20220510103350652"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510103350652.png"
+                      alt="image-20220510103350652"
+                ></p>
 <p>那么下一次申请的管理堆块就会是我们上面的内容堆块</p>
 <p>我发现如果单纯的按照上面的操作会出现后面生成的管理堆会覆盖掉以前的管理堆导致破坏了UAF，所以我在前面新增了一段代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create(<span class="number">0x38</span>, <span class="string">b&#x27;d&#x27;</span> * <span class="number">0x38</span>, <span class="number">0x38</span>, <span class="string">b&#x27;d&#x27;</span> * <span class="number">0x38</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">    find(<span class="number">0x28</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x28</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/image-20220510105155095.png" alt="image-20220510105155095"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510105155095.png"
+                      alt="image-20220510105155095"
+                ></p>
 <p>从而达到这种效果，使我们造成UAF的管理堆块在group的最后，避免覆盖</p>
-<p><img src="/images/image-20220510105526734.png" alt="image-20220510105526734"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510105526734.png"
+                      alt="image-20220510105526734"
+                ></p>
 <p>接着进行上面的步骤即可实现这一效果</p>
-<p><img src="/images/image-20220510110419373.png" alt="image-20220510110419373"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510110419373.png"
+                      alt="image-20220510110419373"
+                ></p>
 <p>紧接着泄漏地址</p>
 <p>根据上面描述的，我们最终利用的其实是dequeue当中的任意地址写，但是在进入这个函数之前会检测secrt值，所以我们还需要泄漏一次，这次泄漏的思路和上面差不多，这里可以通过show函数修改掉我们最开始管理堆块即可进行泄漏。</p>
 <p>到这里已经泄漏完所有的东西了，下一步就是伪造IO_FILE进行FSOP来getshell了</p>
@@ -319,7 +349,12 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">meta</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">meta</span> *<span class="title">prev</span>, *<span class="title">next</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">group</span> *<span class="title">mem</span>;</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">int</span> avail_mask, freed_mask;</span><br><span class="line">	<span class="keyword">uintptr_t</span> last_idx:<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">uintptr_t</span> freeable:<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">uintptr_t</span> sizeclass:<span class="number">6</span>;</span><br><span class="line">	<span class="keyword">uintptr_t</span> maplen:<span class="number">8</span>*<span class="keyword">sizeof</span>(<span class="keyword">uintptr_t</span>)<span class="number">-12</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>首先看if判断的第一个内容，我们先看一下在exp当中构造的meta的最后是什么形式表现的</p>
-<p><img src="/images/image-20220510154833852.png" alt="image-20220510154833852"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220510154833852.png"
+                      alt="image-20220510154833852"
+                ></p>
 <p>可以看到这里的avail_mask和freed_mask的或值是2等号左半边的值即为3，再看last_idx那么有半边也为3了，就轻松绕过了。再看后面的那个函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">okay_to_free</span><span class="params">(struct meta *g)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sc = g-&gt;sizeclass;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!g-&gt;freeable) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// always free individual mmaps not suitable for reuse</span></span><br><span class="line">	<span class="keyword">if</span> (sc &gt;= <span class="number">48</span> || get_stride(g) &lt; UNIT*size_classes[sc])</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// always free groups allocated inside another group&#x27;s slot</span></span><br><span class="line">	<span class="comment">// since recreating them should not be expensive and they</span></span><br><span class="line">	<span class="comment">// might be blocking freeing of a much larger group.</span></span><br><span class="line">	<span class="keyword">if</span> (!g-&gt;maplen) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// if there is another non-full group, free this one to</span></span><br><span class="line">	<span class="comment">// consolidate future allocations, reduce fragmentation.</span></span><br><span class="line">	<span class="keyword">if</span> (g-&gt;next != g) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// free any group in a size class that&#x27;s not bouncing</span></span><br><span class="line">	<span class="keyword">if</span> (!is_bouncing(sc)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">size_t</span> cnt = g-&gt;last_idx+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">size_t</span> usage = ctx.usage_by_class[sc];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// if usage is high enough that a larger count should be</span></span><br><span class="line">	<span class="comment">// used, free the low-count group so a new one will be made.</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="number">9</span>*cnt &lt;= usage &amp;&amp; cnt &lt; <span class="number">20</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// otherwise, keep the last group in a bouncing class.</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -632,6 +667,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

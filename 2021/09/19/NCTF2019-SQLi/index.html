@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -223,15 +223,30 @@
 
         <div class="article-content markdown-body">
             <h2 id="收集信息"><a href="#收集信息" class="headerlink" title="收集信息"></a>收集信息</h2><p>看了一下浏览器开发者工具没什么提示什么的</p>
-<p><img src="/images/image-20210919124457654.png" alt="image-20210919124457654"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919124457654.png"
+                      alt="image-20210919124457654"
+                ></p>
 <p>那就直接上dirsearch</p>
-<p><img src="/images/image-20210919124551518.png" alt="image-20210919124551518"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919124551518.png"
+                      alt="image-20210919124551518"
+                ></p>
 <p>看见robots.txt直接进，里面提示有hint.txt然后查看</p>
 <p>内容是</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$black_list</span> = <span class="string">&quot;/limit|by|substr|mid|,|admin|benchmark|like|or|char|union|substring|select|greatest|%00|\&#x27;|=| |in|&lt;|&gt;|-|\.|\(\)|#|and|if|database|users|where|table|concat|insert|join|having|sleep/i&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> <span class="variable">$_POST</span>[<span class="string">&#x27;passwd&#x27;</span>] === admin<span class="string">&#x27;s password,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Then you will get the flag;</span></span><br></pre></td></tr></table></figure>
 
 <p>这下就很明了了，他*的把贼多东西都禁用了。</p>
-<p><img src="/images/image-20210919124825227.png" alt="image-20210919124825227">可以看到是php5.2.16。这下好办了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210919124825227.png"
+                      alt="image-20210919124825227"
+                >可以看到是php5.2.16。这下好办了。</p>
 <h2 id="构造payload"><a href="#构造payload" class="headerlink" title="构造payload"></a>构造payload</h2><p>因为他已经给了我们sql语句了，那我们直接开始构造</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;&#x27;</span> <span class="keyword">and</span> passwd<span class="operator">=</span><span class="string">&#x27;&#x27;</span></span><br><span class="line">闭合引号</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;\&#x27;</span> <span class="keyword">and</span> passwd<span class="operator">=</span><span class="string">&#x27;%00&#x27;</span></span><br><span class="line">因为是php5<span class="number">.2</span><span class="number">.16</span>的缘故可以用<span class="number">00</span>截断，这样使引号闭合了，再就是用什么方式攻击呢？其实我也不知道，我看了一下wp知道了用regexp正则攻击</span><br></pre></td></tr></table></figure>
 
@@ -543,6 +558,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

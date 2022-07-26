@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -232,25 +232,65 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">&#x27;lib.php&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;html&gt;</span></span><br><span class="line"><span class="string">&lt;meta charset=&quot;utf-8&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;title&gt;update&lt;/title&gt;</span></span><br><span class="line"><span class="string">&lt;h2&gt;这是一个未完成的页面，上线时建议删除本页面&lt;/h2&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]!=<span class="number">1</span>)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;你还没有登陆呢！&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$users</span>=<span class="keyword">new</span> User();</span><br><span class="line"><span class="variable">$users</span>-&gt;update();</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]===<span class="number">1</span>)&#123;</span><br><span class="line">	<span class="keyword">require_once</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>经过审计可以很轻易的发现漏洞点在update.php</p>
-<p><img src="/images/image-20210925002254738.png" alt="image-20210925002254738"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925002254738.png"
+                      alt="image-20210925002254738"
+                ></p>
 <p>即便是上面if语句成立也会执行下面的内容</p>
-<p><img src="/images/image-20210925002329063.png" alt="image-20210925002329063"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925002329063.png"
+                      alt="image-20210925002329063"
+                ></p>
 <p>然后存在反序列化漏洞，开始看见下面存在file_get_contents觉得可以直接获取flag但是是我想多了，上面有个safe函数过滤了flag关键字。</p>
-<p><img src="/images/image-20210925002503416.png" alt="image-20210925002503416"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925002503416.png"
+                      alt="image-20210925002503416"
+                ></p>
 <p>只要我的session文件login为1就可以拿到flag，再看lib.php那里修改了session</p>
-<p><img src="/images/image-20210925002549245.png" alt="image-20210925002549245"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925002549245.png"
+                      alt="image-20210925002549245"
+                ></p>
 <p>User的login函数会修改$_SESSION[‘login’]=1,但是一定要this-&gt;id存在，所以必定要执行这个sql语句</p>
-<p><img src="/images/image-20210925002702884.png" alt="image-20210925002702884"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925002702884.png"
+                      alt="image-20210925002702884"
+                ></p>
 <p>里面只需要this-&gt;token为admin就可以返回id所以只需要最下面的$_SESSION[‘token’]=$this-&gt;name执行了，后续直接随便登录就行。</p>
 <h4 id="构造pop链"><a href="#构造pop链" class="headerlink" title="构造pop链"></a>构造pop链</h4><p>由上面可知我们最后需要执行的是dbCtrl-&gt;login()</p>
 <p>往上看有一个很显眼的</p>
-<p><img src="/images/image-20210925003101147.png" alt="image-20210925003101147"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925003101147.png"
+                      alt="image-20210925003101147"
+                ></p>
 <p>看得到这里有一个很刺眼的login，所以在倒数第二步应该是他了(这些赋值的注释是我在做题过程中自己写的一些笔记)</p>
 <p>然后就是找到调用__call的地方</p>
 <p>在User类里面的__toString函数里面存在可以达到目的的调用方式</p>
-<p><img src="/images/image-20210925003323548.png" alt="image-20210925003323548"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925003323548.png"
+                      alt="image-20210925003323548"
+                ></p>
 <p>最后在哪调用__toString也很简单了</p>
-<p><img src="/images/image-20210925003354482.png" alt="image-20210925003354482"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210925003354482.png"
+                      alt="image-20210925003354482"
+                ></p>
 <p>这里有一个很明显的echo，所以整条链子都清楚了。</p>
 <p>UpdateHelper-&gt;__destruct==&gt;User-&gt;__toString==&gt;Info-&gt;__call==&gt;dbCtrl-&gt;login</p>
 <h4 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h4><p>给出exp</p>
@@ -560,6 +600,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

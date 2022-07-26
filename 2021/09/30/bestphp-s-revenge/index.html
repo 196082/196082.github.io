@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -243,17 +243,37 @@
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>这道题需要的知识点很多</p>
 <h3 id="SoapClient内置类"><a href="#SoapClient内置类" class="headerlink" title="SoapClient内置类"></a>SoapClient内置类</h3><p><strong>SOAP是webService三要素（SOAP、WSDL(WebServicesDescriptionLanguage)、UDDI(UniversalDescriptionDiscovery andIntegration)）之一：WSDL 用来描述如何访问具体的接口， UDDI用来管理，分发，查询webService ，SOAP（简单对象访问协议）是连接或Web服务或客户端和Web服务之间的接口。其采用HTTP作为底层通讯协议，XML作为数据传送的格式。</strong><br><strong>SoapClient类可以创建soap数据报文，与wsdl接口进行交互。</strong></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/153065#h2-1" >https://www.anquanke.com/post/id/153065#h2-1<i class="fas fa-external-link-alt"></i></a></p>
-<p><img src="/images/image-20210930220638994.png" alt="image-20210930220638994"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930220638994.png"
+                      alt="image-20210930220638994"
+                ></p>
 <p>第一个wsdl就是是否开启wsdl后面数组就是请求的一些参数。</p>
 <p>跟去其他wp可以看出来__call方法是可以进行请求达到ssrf的。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其实我本身还不怎么知道这个东西，下去看一下，不过多介绍</span><br></pre></td></tr></table></figure>
 
 <h3 id="CRLF-Injection漏洞"><a href="#CRLF-Injection漏洞" class="headerlink" title="CRLF Injection漏洞"></a>CRLF Injection漏洞</h3><p>CRLF就是指的是’\r\n’，在http协议就是根据两个连续的CRLF来分辨header和body的，在这个题当中可以控制user_agent进而控制cookie就行</p>
-<p><img src="/images/image-20210930221238483.png" alt="image-20210930221238483"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930221238483.png"
+                      alt="image-20210930221238483"
+                ></p>
 <h3 id="call-user-func冷知识"><a href="#call-user-func冷知识" class="headerlink" title="call_user_func冷知识"></a>call_user_func冷知识</h3><p>总所周知</p>
-<p><img src="/images/image-20210930221354276.png" alt="image-20210930221354276"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930221354276.png"
+                      alt="image-20210930221354276"
+                ></p>
 <p>前面是回调函数，后面是参数。但是还有个冷知识就是</p>
-<p><img src="/images/image-20210930221440112.png" alt="image-20210930221440112"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930221440112.png"
+                      alt="image-20210930221440112"
+                ></p>
 <p>在下面，可以调用类当中的方法。</p>
 <h3 id="session反序列化"><a href="#session反序列化" class="headerlink" title="session反序列化"></a>session反序列化</h3><p>session反序列化不陌生，也就是key|反序列化的value，但是也会有其他的保存形式，也是因为用了不同的引擎反序列化的结果</p>
 <p>当 <strong>session.serialize_handler=php</strong> 时，session文件内容为： <code>name|s:6:&quot;196082&quot;;</code></p>
@@ -276,15 +296,35 @@
 <p>得到payload</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O%3A10%3A%22SoapClient%22%3A5%3A%7Bs%3A3%3A%22uri%22%3Bs%3A16%3A%22http%3A%2F%2F127.0.0.1%22%3Bs%3A8%3A%22location%22%3Bs%3A25%3A%22http%3A%2F%2F127.0.0.1%2Fflag.php%22%3Bs%3A15%3A%22_stream_context%22%3Bi%3A0%3Bs%3A11%3A%22_user_agent%22%3Bs%3A48%3A%22zzz%0D%0ACookie%3APHPSESSID%3Dna228cb7qlhrv6tjgb9k45v5e4%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/image-20210930231316945.png" alt="image-20210930231316945"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930231316945.png"
+                      alt="image-20210930231316945"
+                ></p>
 <p>将f复制成session_start然后POST传参然后覆盖掉php.ini的配置项，让序列化的引擎是php_serialize</p>
-<p><img src="/images/image-20210930231328887.png" alt="image-20210930231328887"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930231328887.png"
+                      alt="image-20210930231328887"
+                ></p>
 <p>返回的数据表示我们写入成功了</p>
 <p>下面就是利用extract进行赋值，让$b=call_user_func这样就行成了array(reset($_SESSION),’welcome_to_the_lctf2018’)，因为并不存在welcome_to_the_lctf2018方法所以直接调用了call</p>
-<p><img src="/images/image-20210930231343631.png" alt="image-20210930231343631"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930231343631.png"
+                      alt="image-20210930231343631"
+                ></p>
 <p><strong>接下来注意上面的call_user_func的图片，其他wp都是说调用了SoapClient类当中的方法，但是我实在想不通，因为即便是上面这串payload被反序列化原本的内置类里面的参数也不受影响(我在这里卡了很久，不知到为什么其他师傅wp说调用了类的方法)，注意那里的题目中的reset函数，他是将指针指向数组第一个元素，这里也就是我们序列化的那串字符串，所以实际上这里调用的是反序列化得到的对象的方法，进行的ssrf</strong></p>
 <p>然后直接在页面刷新</p>
-<p><img src="/images/image-20210930231437352.png" alt="image-20210930231437352"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210930231437352.png"
+                      alt="image-20210930231437352"
+                ></p>
 <p>获得flag</p>
 <p>总结，题目质量很高，涵盖了许多知识点，只不过我太菜了，就得地方卡了好久，下去还要好好看看相关内容。</p>
 <p>参考文章:<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/NPFS/p/14335370.html" >https://www.cnblogs.com/NPFS/p/14335370.html<i class="fas fa-external-link-alt"></i></a></p>
@@ -589,6 +629,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

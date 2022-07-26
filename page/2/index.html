@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -145,6 +145,64 @@
                 
                     <div class="home-content-container fade-in-down-animation">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/03/24/kernel-pwn%E5%9F%BA%E7%A1%80-2/">
+                        kernel pwn基础[2]
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        2018 0CTF Finals Baby Kernel这次题目的附件只有驱动和文件系统没有bzImage
+12tcdy@arch-linux ..study_kernel/2018_0CTFFinalsBabyKernel % strings ba...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Mar 24 2022 14:47:50 GMT+0800">2022-03-24</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Double-Fetch/">Double Fetch</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB/">侧信道攻击</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/03/24/kernel-pwn%E5%9F%BA%E7%A1%80-2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
         
             <li class="home-article-item">
 
@@ -307,7 +365,7 @@ house of corrosion在large bin attack和tcache stashing un...
                     
                         <li>
                             
-                            <a href="/tags/house%E7%B3%BB%E5%88%97/">house系列</a>&nbsp;
+                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -420,7 +478,7 @@ G...
                     
                         <li>
                             
-                            <a href="/tags/house%E7%B3%BB%E5%88%97/">house系列</a>&nbsp;
+                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
                         </li>
                     
                         <li>
@@ -484,7 +542,7 @@ house of force这个堆利用的方式是控制top chunk，把top chunk跑到任
                     
                         <li>
                             
-                            <a href="/tags/house%E7%B3%BB%E5%88%97/">house系列</a>&nbsp;
+                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
                         </li>
                     
                         <li>
@@ -616,7 +674,7 @@ ida恢复跳表首先看到main函数存在这样一句...
                     
                         <li>
                             | 
-                            <a href="/tags/house%E7%B3%BB%E5%88%97/">house系列</a>&nbsp;
+                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -679,61 +737,6 @@ ida恢复跳表首先看到main函数存在这样一句...
     </div>
 
     <a href="/2022/02/24/tcache-stashing-unlink-attack/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/02/23/largebin-attack/">
-                        largebin attack
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        关于largebin的原理这里就只给一张图吧，也是在网上找的(我懒得画)。
-
-largebin一直是容易被忽略的利用方式(可能只是我这样吧)，在此之前我一直觉得largebin不会出现直到最近的比赛怎么全是这玩意，所以又下来学习了一遍。
-Glibc2...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Feb 23 2022 13:35:47 GMT+0800">2022-02-23</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/pwn/">pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/largebin-attack/">largebin attack</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/02/23/largebin-attack/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -906,6 +909,8 @@ Glibc2...
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">

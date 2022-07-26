@@ -21,7 +21,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/batman.jpeg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -234,9 +234,19 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">~/download/study_kernel/core cat ./init -n                                     </span><br><span class="line">     1	<span class="comment">#!/bin/sh</span></span><br><span class="line">     2	 </span><br><span class="line">     3	mount -t proc none /proc</span><br><span class="line">     4	mount -t sysfs none /sys</span><br><span class="line">     5	mount -t devtmpfs devtmpfs /dev</span><br><span class="line">     6	chown root:root flag</span><br><span class="line">     7	chmod 400 flag</span><br><span class="line">     8	<span class="built_in">exec</span> 0&lt;/dev/console</span><br><span class="line">     9	<span class="built_in">exec</span> 1&gt;/dev/console</span><br><span class="line">    10	<span class="built_in">exec</span> 2&gt;/dev/console</span><br><span class="line">    11	</span><br><span class="line">    12	insmod /lib/modules/4.4.72/babydriver.ko</span><br><span class="line">    13	chmod 777 /dev/babydev</span><br><span class="line">    14	<span class="built_in">echo</span> -e <span class="string">&quot;\nBoot took <span class="subst">$(cut -d&#x27; &#x27; -f1 /proc/uptime)</span> seconds\n&quot;</span></span><br><span class="line">    15	setsid cttyhack setuidgid 1000 sh</span><br><span class="line">    16	</span><br><span class="line">    17	umount /proc</span><br><span class="line">    18	umount /sys</span><br><span class="line">    19	poweroff -d 0  -f</span><br><span class="line">    20</span><br></pre></td></tr></table></figure>
 
 <p>可以看到在12行的时候加入一个驱动文件，一般这就是漏洞LKM。拿到驱动文件开始分析</p>
-<h3 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h3><p><img src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220316171315785.png" alt="image-20220316171315785"></p>
+<h3 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220316171315785.png"
+                      alt="image-20220316171315785"
+                ></p>
 <p>首先可以看到除了堆栈不可执行其余保护都是没开的</p>
-<p><img src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220316171214341.png" alt="image-20220316171214341"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220316171214341.png"
+                      alt="image-20220316171214341"
+                ></p>
 <p>首先在ida可以看到这一结构体</p>
 <p>再看babyioctl函数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">babyioctl</span><span class="params">(file *filp, <span class="keyword">unsigned</span> <span class="keyword">int</span> command, <span class="keyword">unsigned</span> __int64 arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">size_t</span> v3; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">size_t</span> v4; <span class="comment">// rbx</span></span><br><span class="line"></span><br><span class="line">  _fentry__(filp, command, arg);</span><br><span class="line">  v4 = v3;</span><br><span class="line">  <span class="keyword">if</span> ( command == <span class="number">0x10001</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    kfree(babydev_struct.device_buf);</span><br><span class="line">    babydev_struct.device_buf = _kmalloc(v4, <span class="number">0x24000C0</span>LL);</span><br><span class="line">    babydev_struct.device_buf_len = v4;</span><br><span class="line">    printk(<span class="string">&quot;alloc done\n&quot;</span>, <span class="number">0x24000C0</span>LL);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    printk(&amp;unk_2EB, v3);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -280,7 +290,12 @@
 
 <p>可以看到第9行里面，系统将/proc/kallsyms放到了/tmp目录，然后又将kptr_restrict和dmesg_restrict设置为1，就不能通过/proc/kallsyms查看函数地址，以及用dmesg来查看kernel信息了。</p>
 <p>随后看一下驱动文件的保护：</p>
-<p><img src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220321214610640.png" alt="image-20220321214610640"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220321214610640.png"
+                      alt="image-20220321214610640"
+                ></p>
 <p>(这篇文章居然跟着我换个系统，哈哈哈哈哈！)</p>
 <h3 id="分析驱动"><a href="#分析驱动" class="headerlink" title="分析驱动"></a>分析驱动</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 <span class="title">init_module</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  core_proc = proc_create(<span class="string">&quot;core&quot;</span>, <span class="number">438LL</span>, <span class="number">0LL</span>, &amp;core_fops);</span><br><span class="line">  printk(<span class="string">&quot;\x016core: created /proc/core entry\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -318,7 +333,12 @@
 
 <p>这里是wiki上的payload片段，但是我有点不明白的是这里为什么要把mov rdi, rax; call rdx;的地址放到rcx里，并且这里不应该使用call rdx，如果是使用了call的话就会导致在结束是ret回来的地址就是gadget后面紧随的地址了，这也就导致swapgs以及后续rop chain无法执行，所以这里应该用jmp来代替(我也是在动态调试中发现的)。</p>
 <p>其次</p>
-<p><img src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220321220914739.png" alt="image-20220321220914739"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/kernel-pwn%E5%9F%BA%E7%A1%80/image-20220321220914739.png"
+                      alt="image-20220321220914739"
+                ></p>
 <p>这里可以看到是可以泄漏出core_ioctl的地址的，所以我们可以不是用/tmp/kallsyms来获取地址。</p>
 <p>raw_vmlinux_base的由来：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tcdy@arch-linux ~/Downloads/study_kernel % objdump -h <span class="built_in">test</span> </span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Sections:</span><br><span class="line">Idx Name          Size      VMA               LMA               File off  Algn</span><br><span class="line">  0 .text         00c0325d  ffffffff81000000  0000000001000000  00200000  2**12</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br></pre></td></tr></table></figure>
@@ -629,6 +649,8 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts">
