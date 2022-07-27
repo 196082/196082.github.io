@@ -224,7 +224,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://bbs.pediy.com/upload/attach/202206/954038_MGRU4MR7M833PU4.jpg"
+                     data-src="/images/llvm.jpg"
                       alt="在这里插入图片描述"
                 ></p>
 <p>首先我们的源代码会被clang编译器编译成一种中间代码——IR，它连接这编译器的前端和后端，IR的设计很大程度体现着LLVM插件化、模块化的设计哲学，LLVM的各种pass其实都是作用在LLVM IR上的。同时IR也是一个编译器组件接口。通常情况下，设计一门新的编程语言只需要完成能够生成LLVM IR的编译器前端即可，然后就可以轻松使用LLVM的各种编译优化、JIT支持、目标代码生成等功能。</p>
