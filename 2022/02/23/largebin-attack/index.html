@@ -537,11 +537,80 @@
 
     
         <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Glibc2-23%E5%88%B0Glibc2-27%E4%B8%8B%E7%9A%84largebin-attack"><span class="nav-text">Glibc2.23到Glibc2.27下的largebin attack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glibc2-29%E4%B8%8B%E7%9A%84largebin-attack"><span class="nav-text">Glibc2.29下的largebin attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#unsorted-bin-attack"><span class="nav-text">unsorted bin attack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glibc2-31%E4%B8%8B%E7%9A%84largebin-attack"><span class="nav-text">Glibc2.31下的largebin attack</span></a></li></ol>
-    </div>
-</div>
+            .post-toc-wrap {
+  width: 100%;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+
+  .post-toc {
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 2px 12px 10px;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      > ol {
+        padding-left: 0;
+      }
+
+      a {
+        transition-property: all;
+        transition();
+      }
+    }
+
+
+    .nav-item {
+      line-height: 1.8;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+
+    .nav {
+      .nav-child {
+        display: hexo-config('toc.expand_all') ? block : none;
+      }
+
+      .active > .nav-child {
+        display: block;
+      }
+
+      .active-current > .nav-child {
+        display: block;
+
+        > .nav-item {
+          display: block;
+        }
+      }
+
+
+      .nav-number, .nav-text {
+        color: var(--default-text-color);
+      }
+
+      .active > a {
+        .nav-number, .nav-text {
+          color: var(--primary-color);
+        }
+      }
+
+      .active-current > a {
+        .nav-number, .nav-text {
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+
         </aside>
     
 

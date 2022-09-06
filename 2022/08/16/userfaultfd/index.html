@@ -523,11 +523,80 @@
 
     
         <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3"><span class="nav-text">简单理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="nav-text">相关知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E8%B0%83%E5%BA%A6%E4%B8%8E%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-text">页调度与延迟加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#userfaultfd"><span class="nav-text">userfaultfd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%8F%8F%E8%BF%B0%E7%AC%A6uffd"><span class="nav-text">Step 1: 创建一个描述符uffd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEP-2-%E7%94%A8ioctl%E7%9A%84UFFDIO-REGISTER%E9%80%89%E9%A1%B9%E6%B3%A8%E5%86%8C%E7%9B%91%E8%A7%86%E5%8C%BA%E5%9F%9F"><span class="nav-text">STEP 2. 用ioctl的UFFDIO_REGISTER选项注册监视区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEP-3-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%A4%84%E7%90%86%E4%B8%93%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%BD%AE%E8%AF%A2%E5%92%8C%E5%A4%84%E7%90%86%E2%80%9Duser-fault%E2%80%9D%E4%BA%8B%E4%BB%B6"><span class="nav-text">STEP 3. 创建一个处理专用的线程轮询和处理”user-fault”事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9AQWB2021-notebook"><span class="nav-text">例题：QWB2021-notebook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp"><span class="nav-text">综上，得出exp</span></a></li></ol></li></ol>
-    </div>
-</div>
+            .post-toc-wrap {
+  width: 100%;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+
+  .post-toc {
+
+    ol {
+      list-style: none;
+      margin: 0;
+      padding: 0 2px 12px 10px;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      > ol {
+        padding-left: 0;
+      }
+
+      a {
+        transition-property: all;
+        transition();
+      }
+    }
+
+
+    .nav-item {
+      line-height: 1.8;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+
+    .nav {
+      .nav-child {
+        display: hexo-config('toc.expand_all') ? block : none;
+      }
+
+      .active > .nav-child {
+        display: block;
+      }
+
+      .active-current > .nav-child {
+        display: block;
+
+        > .nav-item {
+          display: block;
+        }
+      }
+
+
+      .nav-number, .nav-text {
+        color: var(--default-text-color);
+      }
+
+      .active > a {
+        .nav-number, .nav-text {
+          color: var(--primary-color);
+        }
+      }
+
+      .active-current > a {
+        .nav-number, .nav-text {
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+
         </aside>
     
 
