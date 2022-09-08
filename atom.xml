@@ -92,13 +92,13 @@
     <category term="kernel-pwn" scheme="https://cv196082.gitee.io/categories/kernel-pwn/"/>
     
     
+    <category term="pt_regs" scheme="https://cv196082.gitee.io/tags/pt-regs/"/>
+    
     <category term="modify_ldt" scheme="https://cv196082.gitee.io/tags/modify-ldt/"/>
     
     <category term="seq_operations" scheme="https://cv196082.gitee.io/tags/seq-operations/"/>
     
     <category term="bypass kpti" scheme="https://cv196082.gitee.io/tags/bypass-kpti/"/>
-    
-    <category term="pt_regs" scheme="https://cv196082.gitee.io/tags/pt-regs/"/>
     
   </entry>
   
