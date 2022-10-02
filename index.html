@@ -151,6 +151,65 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/10/02/Linux-kernel-4-20-BPF-%E6%95%B4%E6%95%B0%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/">
+                        Linux kernel 4.20 BPF 整数溢出漏洞
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        题目会放在:https://github.com/196082/196082
+漏洞分析kernel中的bpf模块主要用于用户态定义数据包过滤方法，如常见的抓包工具都基于此实现，并且用户态的Seccomp功能也与此功能相似。
+整数溢出该漏洞存在于BPF...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Oct 02 2022 14:51:24 GMT+0800">2022-10-02</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/bpf/">bpf</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E5%A0%86%E5%96%B7%E5%B0%84/">堆喷射</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/10/02/Linux-kernel-4-20-BPF-%E6%95%B4%E6%95%B0%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/09/22/ciscn-cactus%E5%A4%8D%E7%8E%B0/">
                         ciscn cactus复现
                     </a>
@@ -692,59 +751,6 @@ house of apple2利用条件：
     </div>
 
     <a href="/2022/08/05/house-of-apple2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/08/04/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90-2/">
-                        kernel pwn内存任意读写提升权限[2]
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        这次的例题是solid_core，题目的整体和前面那一道stringipc几乎一样
-12345678910111213141516171819202122case 0x77617369:    if ( copy_from_user(&amp;v27...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Aug 04 2022 15:50:55 GMT+0800">2022-08-04</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/HijackPrctl/">HijackPrctl</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/08/04/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90-2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
