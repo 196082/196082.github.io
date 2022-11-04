@@ -145,198 +145,273 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">linux软件安装时到底在做什么?</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-04-07 10:22:57
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%90%9E%E6%9C%BA/">搞机</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/deb/">deb</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/aur/">aur</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <p>除了CTF外我其实还是一个特别喜欢搞linux的一个垃圾，在2020年11月份左右我将电脑系统换到了kali并且因为当时不会装双系统把windows搞没了，不过用过一段时间发现linux的操作逻辑更加的符合我。</p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>linux的依赖问题一直是被人诟病的，尤其是debian系的(arch系我感觉几乎没遇到过依赖问题)，在进行安装的总是会出来这个套那个，导致我以前使用ubuntu时安装一个程序可能得花上一下午的时间，而且几乎全部时间都在解决依赖问题。</p>
+<p>那么问题来了，<strong>依赖到底是什么？</strong></p>
+<p>首先需要说明的是windows和linux其实都是存在依赖问题的，比如我以前在windows虚拟机里面运行ida的时候就会出现依赖问题，不过网上都有现成的包直接安装就好。虽然按理来说linux也存在依赖的包，但是为什么linux的依赖问题会比windows更加经常发生呢？</p>
+<p>举个例子：现在运行一个程序需要依赖a-1，我使用windows找到了这个依赖的安装包，实际上这个安装包安装下来的是a-1,a-2,,,,a-30。但是纯纯的linux只会帮你安装a-1，下一次遇到需要a-12的时候，windows不会报错但是linux又需要安装另外版本的依赖了。</p>
+<p>上面的看过了之后就大概对linux的依赖问题有一定了解了，那么为了更好的了解依赖问题我们首先需要知道</p>
+<h2 id="安装一个包的过程"><a href="#安装一个包的过程" class="headerlink" title="安装一个包的过程"></a>安装一个包的过程</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105433893.png"
+                      alt="image-20220407105433893"
+                ></p>
+<p>首先可以看到linux和window的不同，linux的安装包是真的非常单纯的压缩整合到一起，最后由包管理器将不同功能的文件放到不同目录。</p>
+<p>在上面这张图里面我们需要重点关注的data.tar.xz</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105631804.png"
+                      alt="image-20220407105631804"
+                ></p>
+<p>查看其内部可以发现就是一个usr目录</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105659439.png"
+                      alt="image-20220407105659439"
+                ></p>
+<p>这里就是我们熟悉的desktop，也就是桌面图标</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407105758879.png"
+                      alt="image-20220407105758879"
+                ></p>
+<p>可以看到bin目录是一个链接符号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcdy@archlinux /mnt/5F2601400CC8834D/save/usr/bin % ls -l typora </span><br><span class="line">lrwxrwxrwx 1 root root 22 Apr  7 10:51 typora -&gt; ../share/typora/Typora</span><br></pre></td></tr></table></figure>
+
+<p>可以看到就是链接到了一个可执行文件，当我们双击文件就可以打开typora了。</p>
+<p>找到可执行程序之后只需要使用ldd即可查看需要的依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tcdy@archlinux ..5F2601400CC8834D/save/usr/share/typora % ldd Typora </span><br><span class="line">	linux-vdso.so.1 (0x00007ffe581fd000)</span><br><span class="line">	libffmpeg.so =&gt; /mnt/5F2601400CC8834D/save/usr/share/typora/./libffmpeg.so (0x00007fefa6baa000)</span><br><span class="line">	libdl.so.2 =&gt; /usr/lib/libdl.so.2 (0x00007fefa6b7e000)</span><br><span class="line">	libpthread.so.0 =&gt; /usr/lib/libpthread.so.0 (0x00007fefa6b79000)</span><br><span class="line">	libgobject-2.0.so.0 =&gt; /usr/lib/libgobject-2.0.so.0 (0x00007fefa6b1a000)</span><br><span class="line">	libglib-2.0.so.0 =&gt; /usr/lib/libglib-2.0.so.0 (0x00007fefa69dc000)</span><br><span class="line">	libxshmfence.so.1 =&gt; /usr/lib/libxshmfence.so.1 (0x00007fefa69d7000)</span><br><span class="line">	libgio-2.0.so.0 =&gt; /usr/lib/libgio-2.0.so.0 (0x00007fefa6807000)</span><br><span class="line">	libnss3.so =&gt; /usr/lib/libnss3.so (0x00007fefa66d4000)</span><br><span class="line">	libnssutil3.so =&gt; /usr/lib/libnssutil3.so (0x00007fefa66a1000)</span><br><span class="line">	libsmime3.so =&gt; /usr/lib/libsmime3.so (0x00007fefa6678000)</span><br><span class="line">	libnspr4.so =&gt; /usr/lib/libnspr4.so (0x00007fefa6636000)</span><br><span class="line">	libatk-1.0.so.0 =&gt; /usr/lib/libatk-1.0.so.0 (0x00007fefa660c000)</span><br><span class="line">	libatk-bridge-2.0.so.0 =&gt; /usr/lib/libatk-bridge-2.0.so.0 (0x00007fefa65d4000)</span><br><span class="line">	libdbus-1.so.3 =&gt; /usr/lib/libdbus-1.so.3 (0x00007fefa6581000)</span><br><span class="line">	......</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这里甚至于有依赖就在当前目录寻找了</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220407110347849.png"
+                      alt="image-20220407110347849"
+                ></p>
+<p>可以看到这里的文件其实也就包含了上面所需要的一部分依赖，其实这也是很多windows程序的思路，如果程序存在很多不常见到的依赖就会把依赖和程序捆绑起来进行安装。</p>
+<p>其实到这里大家都大概知道了包管理器在安装程序时到底是干了什么，其实就是将不同功能的程序放进了不同目录。</p>
+<h2 id="AUR-PKGBUILD的编写"><a href="#AUR-PKGBUILD的编写" class="headerlink" title="AUR-PKGBUILD的编写"></a>AUR-PKGBUILD的编写</h2><p>一样拿typora举例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Maintainer: Jonas Bögle &lt;aur@iwr.sh&gt;</span></span><br><span class="line"><span class="comment"># Contributor: Jonathan Duck &lt;duckbrain30@gmail.com&gt;</span></span><br><span class="line"></span><br><span class="line">_pkgname=typora</span><br><span class="line">pkgname=<span class="string">&quot;<span class="variable">$_pkgname</span>-free&quot;</span></span><br><span class="line">pkgver=0.11.18</span><br><span class="line">pkgrel=2</span><br><span class="line">pkgdesc=<span class="string">&quot;A minimal markdown editor and reader.&quot;</span></span><br><span class="line">arch=(<span class="string">&#x27;x86_64&#x27;</span>)</span><br><span class="line">filename=<span class="string">&quot;typora_<span class="variable">$&#123;pkgver&#125;</span>_amd64.deb&quot;</span></span><br><span class="line">license=(<span class="string">&#x27;custom:&quot;Copyright (c) 2015 Abner Lee All Rights Reserved.&quot;&#x27;</span>)</span><br><span class="line">url=<span class="string">&quot;https://typora.io/&quot;</span></span><br><span class="line">depends=(<span class="string">&#x27;gtk3&#x27;</span> <span class="string">&#x27;libxss&#x27;</span>)</span><br><span class="line">optdepends=(</span><br><span class="line">	<span class="string">&#x27;noto-fonts-emoji: Or some other emoji font to see emojis&#x27;</span></span><br><span class="line">	<span class="string">&#x27;pandoc: Import/export for extra file formats&#x27;</span>)</span><br><span class="line">provides=(<span class="string">&quot;<span class="variable">$_pkgname</span>&quot;</span>)</span><br><span class="line">conflicts=(<span class="string">&quot;<span class="variable">$_pkgname</span>&quot;</span>)</span><br><span class="line"><span class="built_in">source</span>=(<span class="string">&quot;https://typora.io/linux/<span class="variable">$filename</span>&quot;</span>)</span><br><span class="line">sha512sums=(<span class="string">&#x27;8933cb4eab13a37719a3771d14a7a3f5951f6bbce06381ffe37ad5bc3029efed3878723427a4e97b83dbc1d7ccc43b31551b0c336663c843f0e685f8a4e2390e&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">package</span></span>() &#123;</span><br><span class="line">	bsdtar -xf data.tar.xz -C <span class="string">&quot;<span class="variable">$pkgdir</span>/&quot;</span></span><br><span class="line">	rm -rf <span class="string">&quot;<span class="variable">$pkgdir</span>/usr/share/lintian/&quot;</span></span><br><span class="line">	chmod 4755 <span class="string">&quot;<span class="variable">$pkgdir</span>/usr/share/typora/chrome-sandbox&quot;</span></span><br><span class="line">	<span class="comment"># Remove write permission for group/other</span></span><br><span class="line">	chmod -R go-w <span class="string">&quot;<span class="variable">$pkgdir</span>/usr/share/typora/resources/node_modules&quot;</span></span><br><span class="line">	sed -i <span class="string">&#x27;/Change Log/d&#x27;</span> <span class="string">&quot;<span class="variable">$pkgdir</span>/usr/share/applications/typora.desktop&quot;</span></span><br><span class="line">	find <span class="string">&quot;<span class="variable">$pkgdir</span>&quot;</span> -<span class="built_in">type</span> d -<span class="built_in">exec</span> chmod 755 &#123;&#125; \;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的名字，版本，架构什么就不说了，主要关注下面的内容。</p>
+<p>首先是这里source，很明显就是再往上的这个文件的deb包，下面sha512sums就是检验码。</p>
+<p><strong>srcdir</strong></p>
+<p>​    <em>makepkg</em>将会把源文件解压到此文件夹或在此文件夹中生成指向 PKGBUILD 里 source 数组中文件的软连接。</p>
+<p><strong>pkgdir</strong></p>
+<p>​    makepkg会把该文件夹当成系统根目录，并将软件安装在此文件夹下。</p>
+<p>重点就是下面的打包函数，可以看到首先是解压了data.tar.xz这个包带pkgdir。后面就是删除个东西，然后改变权限(可以看到typora是Electron)，下面就是创建图标，最后就是修改pkgdir下目录的权限为755。</p>
+<p>关于aur的更多可以看<a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Creating_packages" >archwiki<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="sudo免密码"><a href="#sudo免密码" class="headerlink" title="sudo免密码"></a>sudo免密码</h2><p>这个是我每次装完系统必干的一件事情，不过经常忘，而且网上的很多东西都不能实现。所以这里自己记录一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root ALL=(ALL:ALL) ALL</span><br><span class="line">your_username ALL=(ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
+
+<p>删除<code>/etc/sudoers.d/10-installer</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实程序的安装并没有我以前想象的那么复杂，至少对于linux来说是这样的。如果遇到什么有趣的linux操作我也会及时分享。</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/04/10/RCTF2021%E5%A4%8D%E7%8E%B0/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">RCTF2021复现</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/24/kernel-pwn%E5%9F%BA%E7%A1%80-2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">kernel pwn基础[2]</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+        
+    
+</div>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 

