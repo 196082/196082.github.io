@@ -145,290 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">XDCTF_2015_filemanager</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-12-06 16:12:55
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/web-buuctf/">web-buuctf</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5/">二次注入</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <h3 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h3><p>扫描出来网站有源码泄漏<a class="link"   target="_blank" rel="noopener" href="http://www.tar.xz/" >www.tar.xz<i class="fas fa-external-link-alt"></i></a></p>
-<h2 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h2><p>index.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: phithon</span><br><span class="line"> * Date: 15/10/14</span><br><span class="line"> * Time: 下午7:46</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;file manage&lt;/title&gt;</span><br><span class="line">    &lt;base href=&quot;./&quot;&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h3&gt;Control&lt;/h3&gt;</span><br><span class="line">    &lt;ul style=&quot;list-style: none;&quot;&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;./delete.php&quot;&gt;Delete file&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;./rename.php&quot;&gt;Rename file&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">    &lt;h3&gt;Content&lt;/h3&gt;</span><br><span class="line">    &lt;form action=&quot;./upload.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;file&quot; name=&quot;upfile&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;upload file&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>upload.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: phithon</span><br><span class="line"> * Date: 15/10/14</span><br><span class="line"> * Time: 下午8:45</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">require_once &quot;common.inc.php&quot;;</span><br><span class="line"></span><br><span class="line">if ($_FILES) &#123;</span><br><span class="line">	$file = $_FILES[&quot;upfile&quot;];</span><br><span class="line">	if ($file[&quot;error&quot;] == UPLOAD_ERR_OK) &#123;</span><br><span class="line">		$name = basename($file[&quot;name&quot;]);</span><br><span class="line">		$path_parts = pathinfo($name);</span><br><span class="line"></span><br><span class="line">		if (!in_array($path_parts[&quot;extension&quot;], array(&quot;gif&quot;, &quot;jpg&quot;, &quot;png&quot;, &quot;zip&quot;, &quot;txt&quot;))) &#123;</span><br><span class="line">			exit(&quot;error extension&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		$path_parts[&quot;extension&quot;] = &quot;.&quot; . $path_parts[&quot;extension&quot;];</span><br><span class="line"></span><br><span class="line">		$name = $path_parts[&quot;filename&quot;] . $path_parts[&quot;extension&quot;];</span><br><span class="line"></span><br><span class="line">		// $path_parts[&quot;filename&quot;] = $db-&gt;quote($path_parts[&quot;filename&quot;]);</span><br><span class="line">		// Fix</span><br><span class="line">		$path_parts[&#x27;filename&#x27;] = addslashes($path_parts[&#x27;filename&#x27;]);</span><br><span class="line"></span><br><span class="line">		$sql = &quot;select * from `file` where `filename`=&#x27;&#123;$path_parts[&#x27;filename&#x27;]&#125;&#x27; and `extension`=&#x27;&#123;$path_parts[&#x27;extension&#x27;]&#125;&#x27;&quot;;</span><br><span class="line"></span><br><span class="line">		$fetch = $db-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">		if ($fetch-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">			exit(&quot;file is exists&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (move_uploaded_file($file[&quot;tmp_name&quot;], UPLOAD_DIR . $name)) &#123;</span><br><span class="line"></span><br><span class="line">			$sql = &quot;insert into `file` ( `filename`, `view`, `extension`) values( &#x27;&#123;$path_parts[&#x27;filename&#x27;]&#125;&#x27;, 0, &#x27;&#123;$path_parts[&#x27;extension&#x27;]&#125;&#x27;)&quot;;</span><br><span class="line">			$re = $db-&gt;query($sql);</span><br><span class="line">			if (!$re) &#123;</span><br><span class="line">				print_r($db-&gt;error);</span><br><span class="line">				exit;</span><br><span class="line">			&#125;</span><br><span class="line">			$url = &quot;/&quot; . UPLOAD_DIR . $name;</span><br><span class="line">			echo &quot;Your file is upload, url:</span><br><span class="line">                &lt;a href=\&quot;&#123;$url&#125;\&quot; target=&#x27;_blank&#x27;&gt;&#123;$url&#125;&lt;/a&gt;&lt;br/&gt;</span><br><span class="line">                &lt;a href=\&quot;/\&quot;&gt;go back&lt;/a&gt;&quot;;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			exit(&quot;upload error&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		print_r(error_get_last());</span><br><span class="line">		exit;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>common.inc.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: phithon</span><br><span class="line"> * Date: 15/10/14</span><br><span class="line"> * Time: 下午7:58</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">$DATABASE = array(</span><br><span class="line"></span><br><span class="line">	&quot;host&quot; =&gt; &quot;127.0.0.1&quot;,</span><br><span class="line">	&quot;username&quot; =&gt; &quot;tcdy&quot;,</span><br><span class="line">	&quot;password&quot; =&gt; &quot;1&quot;,</span><br><span class="line">	&quot;dbname&quot; =&gt; &quot;xdctf&quot;,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$db = new mysqli($DATABASE[&#x27;host&#x27;], $DATABASE[&#x27;username&#x27;], $DATABASE[&#x27;password&#x27;], $DATABASE[&#x27;dbname&#x27;]);</span><br><span class="line">$req = array();</span><br><span class="line"></span><br><span class="line">foreach (array($_GET, $_POST, $_COOKIE) as $global_var) &#123;</span><br><span class="line">	foreach ($global_var as $key =&gt; $value) &#123;</span><br><span class="line">		is_string($value) &amp;&amp; $req[$key] = addslashes($value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">define(&quot;UPLOAD_DIR&quot;, &quot;upload/&quot;);</span><br><span class="line"></span><br><span class="line">function redirect($location)</span><br><span class="line">&#123;</span><br><span class="line">	header(&quot;Location: &#123;$location&#125;&quot;);</span><br><span class="line">	exit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>delete.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: phithon</span><br><span class="line"> * Date: 15/10/14</span><br><span class="line"> * Time: 下午9:39</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">require_once &quot;common.inc.php&quot;;</span><br><span class="line"></span><br><span class="line">if(isset($req[&#x27;filename&#x27;])) &#123;</span><br><span class="line">    $result = $db-&gt;query(&quot;select * from `file` where `filename`=&#x27;&#123;$req[&#x27;filename&#x27;]&#125;&#x27;&quot;);</span><br><span class="line">    if ($result-&gt;num_rows&gt;0)&#123;</span><br><span class="line">        $result = $result-&gt;fetch_assoc();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $filename = UPLOAD_DIR . $result[&quot;filename&quot;] . $result[&quot;extension&quot;];</span><br><span class="line">    if ($result &amp;&amp; file_exists($filename)) &#123;</span><br><span class="line">        $db-&gt;query(&#x27;delete from `file` where `fid`=&#x27; . $result[&quot;fid&quot;]);</span><br><span class="line">        unlink($filename);</span><br><span class="line">        redirect(&quot;/&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;file manage&lt;/title&gt;</span><br><span class="line">    &lt;base href=&quot;/&quot;&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;h3&gt;Delete file&lt;/h3&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form method=&quot;post&quot;&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;span&gt;delete filename(exclude extension)：&lt;/span&gt;</span><br><span class="line">            &lt;input type=&quot;text&quot; name=&quot;filename&quot;&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &lt;input type=&quot;submit&quot; value=&quot;delete&quot;&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>rename.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by PhpStorm.</span><br><span class="line"> * User: phithon</span><br><span class="line"> * Date: 15/10/14</span><br><span class="line"> * Time: 下午9:39</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">require_once &quot;common.inc.php&quot;;</span><br><span class="line"></span><br><span class="line">if (isset($req[&#x27;oldname&#x27;]) &amp;&amp; isset($req[&#x27;newname&#x27;])) &#123;</span><br><span class="line">	$result = $db-&gt;query(&quot;select * from `file` where `filename`=&#x27;&#123;$req[&#x27;oldname&#x27;]&#125;&#x27;&quot;);</span><br><span class="line">	if ($result-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">		$result = $result-&gt;fetch_assoc();</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		exit(&quot;old file doesn&#x27;t exists!&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if ($result) &#123;</span><br><span class="line"></span><br><span class="line">		$req[&#x27;newname&#x27;] = basename($req[&#x27;newname&#x27;]);</span><br><span class="line">		$sql = &quot;update `file` set `filename`=&#x27;&#123;$req[&#x27;newname&#x27;]&#125;&#x27;, `oldname`=&#x27;&#123;$result[&#x27;filename&#x27;]&#125;&#x27; where `fid`=&#123;$result[&#x27;fid&#x27;]&#125;&quot;;</span><br><span class="line">		$re = $db-&gt;query(&quot;update `file` set `filename`=&#x27;&#123;$req[&#x27;newname&#x27;]&#125;&#x27;, `oldname`=&#x27;&#123;$result[&#x27;filename&#x27;]&#125;&#x27; where `fid`=&#123;$result[&#x27;fid&#x27;]&#125;&quot;);</span><br><span class="line">		if (!$re) &#123;</span><br><span class="line">			print_r($db-&gt;error);</span><br><span class="line">			exit;</span><br><span class="line">		&#125;</span><br><span class="line">		$oldname = UPLOAD_DIR . $result[&quot;filename&quot;] . $result[&quot;extension&quot;];</span><br><span class="line">		$newname = UPLOAD_DIR . $req[&quot;newname&quot;] . $result[&quot;extension&quot;];</span><br><span class="line">		if (file_exists($oldname)) &#123;</span><br><span class="line">			rename($oldname, $newname);</span><br><span class="line">		&#125;</span><br><span class="line">		$url = &quot;/&quot; . $newname;</span><br><span class="line">		echo &quot;Your file is rename, url:</span><br><span class="line">                &lt;a href=\&quot;&#123;$url&#125;\&quot; target=&#x27;_blank&#x27;&gt;&#123;$url&#125;&lt;/a&gt;&lt;br/&gt;</span><br><span class="line">                &lt;a href=\&quot;/\&quot;&gt;go back&lt;/a&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;file manage&lt;/title&gt;</span><br><span class="line">	&lt;base href=&quot;/&quot;&gt;</span><br><span class="line">	&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;h3&gt;Rename&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;form method=&quot;post&quot;&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			&lt;span&gt;old filename(exclude extension)：&lt;/span&gt;</span><br><span class="line">			&lt;input type=&quot;text&quot; name=&quot;oldname&quot;&gt;</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			&lt;span&gt;new filename(exclude extension)：&lt;/span&gt;</span><br><span class="line">			&lt;input type=&quot;text&quot; name=&quot;newname&quot;&gt;</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;</span><br><span class="line">			&lt;input type=&quot;submit&quot; value=&quot;rename&quot;&gt;</span><br><span class="line">		&lt;/p&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到upload.php是不存在注入点的，由因为白名单限制没法上传一句话的文件。但是rename文件可以修改文件名。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$result</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$req</span>[<span class="string">&#x27;newname&#x27;</span>] = basename(<span class="variable">$req</span>[<span class="string">&#x27;newname&#x27;</span>]);</span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;update `file` set `filename`=&#x27;<span class="subst">&#123;$req[&#x27;newname&#x27;]&#125;</span>&#x27;, `oldname`=&#x27;<span class="subst">&#123;$result[&#x27;filename&#x27;]&#125;</span>&#x27; where `fid`=<span class="subst">&#123;$result[&#x27;fid&#x27;]&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="variable">$re</span> = <span class="variable">$db</span>-&gt;query(<span class="string">&quot;update `file` set `filename`=&#x27;<span class="subst">&#123;$req[&#x27;newname&#x27;]&#125;</span>&#x27;, `oldname`=&#x27;<span class="subst">&#123;$result[&#x27;filename&#x27;]&#125;</span>&#x27; where `fid`=<span class="subst">&#123;$result[&#x27;fid&#x27;]&#125;</span>&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$re</span>) &#123;</span><br><span class="line">        print_r(<span class="variable">$db</span>-&gt;error);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$oldname</span> = UPLOAD_DIR . <span class="variable">$result</span>[<span class="string">&quot;filename&quot;</span>] . <span class="variable">$result</span>[<span class="string">&quot;extension&quot;</span>];</span><br><span class="line">    <span class="variable">$newname</span> = UPLOAD_DIR . <span class="variable">$req</span>[<span class="string">&quot;newname&quot;</span>] . <span class="variable">$result</span>[<span class="string">&quot;extension&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (file_exists(<span class="variable">$oldname</span>)) &#123;</span><br><span class="line">        rename(<span class="variable">$oldname</span>, <span class="variable">$newname</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$url</span> = <span class="string">&quot;/&quot;</span> . <span class="variable">$newname</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Your file is rename, url:</span></span><br><span class="line"><span class="string">                &lt;a href=\&quot;<span class="subst">&#123;$url&#125;</span>\&quot; target=&#x27;_blank&#x27;&gt;<span class="subst">&#123;$url&#125;</span>&lt;/a&gt;&lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;a href=\&quot;/\&quot;&gt;go back&lt;/a&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里对于oldname没有检查和处理，并且在下面是直接修改文件名字。描述起来比较费劲，就直接上图吧。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206170604425.png"
-                      alt="image-20211206170604425"
-                ></p>
-<p>构造一个文件名为<code>&#39;,extension=&#39;&#39;,filename=&#39;wow.gif.gif</code>的文件上传，两个gif是用第二个去逃避那个extension字段</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206170748384.png"
-                      alt="image-20211206170748384"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206170813726.png"
-                      alt="image-20211206170813726"
-                ></p>
-<p>数据库和upload文件夹的结果就是这样</p>
-<p>现在去rename一个</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206170908617.png"
-                      alt="image-20211206170908617"
-                ></p>
-<p>在rename里面的sql语句就是这样，那此时的extension就被置空了</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206170958771.png"
-                      alt="image-20211206170958771"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206171016993.png"
-                      alt="image-20211206171016993"
-                ></p>
-<p>这时候上传一个一句话wow.gif</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206171125649.png"
-                      alt="image-20211206171125649"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206171143484.png"
-                      alt="image-20211206171143484"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206171209937.png"
-                      alt="image-20211206171209937"
-                ></p>
-<p>现在数据储存的就是这样两个，下一步直接rename，修改木马尾缀</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211206171343183.png"
-                      alt="image-20211206171343183"
-                ></p>
-<p>此时就是将oldname修改到newname了，用蚁剑连接就好了</p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/12/06/echo-back/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">echo_back</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2021/12/03/4-ReeHY-main/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">4-ReeHY-main</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

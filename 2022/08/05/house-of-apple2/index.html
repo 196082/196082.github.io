@@ -145,384 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">house of apple续</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-08-05 15:10:34
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>4.3k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>21 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <p>死都想不到house of apple居然有三篇文章，这里就把第二篇和第三篇合并起来一起学完吧。</p>
-<h2 id="house-of-apple2"><a href="#house-of-apple2" class="headerlink" title="house of apple2"></a>house of apple2</h2><h3 id="利用条件："><a href="#利用条件：" class="headerlink" title="利用条件："></a>利用条件：</h3><ol>
-<li><p>已知<code>heap</code>地址和<code>glibc</code>地址</p>
-</li>
-<li><p>能控制程序执行<code>IO</code>操作，包括但不限于：从<code>main</code>函数返回、调用<code>exit</code>函数、通过<code>__malloc_assert</code>触发</p>
-</li>
-<li><p>能控制<code>_IO_FILE</code>的<code>vtable</code>和<code>_wide_data</code>，一般使用<code>largebin attack</code>去控制</p>
-</li>
-</ol>
-<h3 id="利用原理"><a href="#利用原理" class="headerlink" title="利用原理"></a>利用原理</h3><p>在<a href="https://cv196082.gitee.io/2022/02/23/FSOP/">https://cv196082.gitee.io/2022/02/23/FSOP/</a> 这篇文章中详细介绍了去调用vtable中的函数指针时会经过什么验证。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">IO_wide_data</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_read_ptr;    <span class="comment">/* Current read pointer */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_read_end;    <span class="comment">/* End of get area. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_read_base;    <span class="comment">/* Start of putback+get area. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_write_base;    <span class="comment">/* Start of put area. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_write_ptr;    <span class="comment">/* Current put pointer. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_write_end;    <span class="comment">/* End of put area. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_buf_base;    <span class="comment">/* Start of reserve area. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_buf_end;        <span class="comment">/* End of reserve area. */</span></span><br><span class="line">  <span class="comment">/* The following fields are used to support backing up and undo. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_save_base;    <span class="comment">/* Pointer to start of non-current get area. */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_backup_base;    <span class="comment">/* Pointer to first valid character of</span></span><br><span class="line"><span class="comment">                   backup area */</span></span><br><span class="line">  <span class="keyword">wchar_t</span> *_IO_save_end;    <span class="comment">/* Pointer to end of non-current get area. */</span></span><br><span class="line"> </span><br><span class="line">  <span class="keyword">__mbstate_t</span> _IO_state;</span><br><span class="line">  <span class="keyword">__mbstate_t</span> _IO_last_state;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> _<span class="title">codecvt</span>;</span></span><br><span class="line">  <span class="keyword">wchar_t</span> _shortbuf[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_jump_t</span> *_<span class="title">wide_vtable</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>注意_IO_wide_data结构体中存在_wide_vtable成员，在调用_wide_vtable虚表是同样会经过一系列宏去调用：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _IO_WOVERFLOW(FP, CH) WJUMP1 (__overflow, FP, CH)</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WJUMP1(FUNC, THIS, X1) (_IO_WIDE_JUMPS_FUNC(THIS)-&gt;FUNC) (THIS, X1)</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _IO_WIDE_JUMPS_FUNC(THIS) _IO_WIDE_JUMPS(THIS)</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _IO_WIDE_JUMPS(THIS) \</span></span><br><span class="line"><span class="meta">  _IO_CAST_FIELD_ACCESS ((THIS), struct _IO_FILE, _wide_data)-&gt;_wide_vtable</span></span><br></pre></td></tr></table></figure>
-
-<p>在这里调用的顺序中没有出现vtable是否合法的检测，因此我们可以劫持_IO_FILE的vtable为_IO_wfile_jumps，控制_wide_data为可以控制的堆空间，进一步控制_wide_data-&gt;_wide_vtable指向可以控制的堆地址，控制程序IO流函数调用，最终调用到IO_wxxxxx</p>
-<h3 id="利用思路"><a href="#利用思路" class="headerlink" title="利用思路"></a>利用思路</h3><p>这里最终目的是调用_wide_vtable成员，所以需要找到上述宏的调用，最终发现只存在以下四个：_IO_WSETBUF、_IO_WUNDERFLOW、_IO_WDOALLOCATE、_IO_WOVERFLOW</p>
-<p>并且其中前两个还是利用难度较高，甚至是无法利用。下面从原文的三个方向出发</p>
-<h4 id="IO-wfile-overflow"><a href="#IO-wfile-overflow" class="headerlink" title="_IO_wfile_overflow"></a><strong>_IO_wfile_overflow</strong></h4><p>这里的调用链为：<code>_IO_wfile_overflow</code>=&gt;<code>_IO_wdoallocbuf</code>=&gt;<code>_IO_WDOALLOCATE</code>=&gt;<code>*(fp-&gt;_wide_data-&gt;_wide_vtable+ 0x68)(fp)</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wint_t</span></span><br><span class="line">    _IO_wfile_overflow (FILE *f, <span class="keyword">wint_t</span> wch)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (f-&gt;_flags &amp; _IO_NO_WRITES) <span class="comment">/* SET ERROR */</span></span><br><span class="line">    &#123;</span><br><span class="line">        f-&gt;_flags |= _IO_ERR_SEEN;</span><br><span class="line">        __set_errno (EBADF);</span><br><span class="line">        <span class="keyword">return</span> WEOF;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* If currently reading or no buffer allocated. */</span></span><br><span class="line">    <span class="keyword">if</span> ((f-&gt;_flags &amp; _IO_CURRENTLY_PUTTING) == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* Allocate a buffer if needed. */</span></span><br><span class="line">        <span class="keyword">if</span> (f-&gt;_wide_data-&gt;_IO_write_base == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            _IO_wdoallocbuf (f);</span><br><span class="line">           ......</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要满足<code>f-&gt;_flags &amp; _IO_NO_WRITES == 0</code>并且<code>f-&gt;_flags &amp; _IO_CURRENTLY_PUTTING == 0</code>和<code>f-&gt;_wide_data-&gt;_IO_write_base == 0</code></p>
-<p>接着看_IO_wdoallocbuf</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">_IO_wdoallocbuf (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_buf_base)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (!(fp-&gt;_flags &amp; _IO_UNBUFFERED))</span><br><span class="line">    <span class="keyword">if</span> ((<span class="keyword">wint_t</span>)_IO_WDOALLOCATE (fp) != WEOF)</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  _IO_wsetb (fp, fp-&gt;_wide_data-&gt;_shortbuf,</span><br><span class="line">             fp-&gt;_wide_data-&gt;_shortbuf + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line">libc_hidden_def (_IO_wdoallocbuf)</span><br></pre></td></tr></table></figure>
-
-<p>这里就调用了IO_Wxxxx并且需要满足<code>fp-&gt;_wide_data-&gt;_IO_buf_base != 0</code>和<code>fp-&gt;_flags &amp; _IO_UNBUFFERED == 0</code>。</p>
-<p>所以总的来说构造方式为：</p>
-<ol>
-<li>_flags = ~(2 | 0x8 | 0x800)即可，所以可以直接设置为0或者这值为<code>  sh;</code></li>
-<li><code>vtable</code>设置为<code>_IO_wfile_jumps/_IO_wfile_jumps_mmap/_IO_wfile_jumps_maybe_mmap</code>地址（加减偏移），使其能成功调用<code>_IO_wfile_overflow</code>即可</li>
-<li><code>_wide_data</code>设置为可控堆地址<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_write_base</code>设置为<code>0</code>，即满足<code>*(A + 0x18) = 0</code></li>
-<li><code>_wide_data-&gt;_IO_buf_base</code>设置为<code>0</code>，即满足<code>*(A + 0x30) = 0</code></li>
-<li><code>_wide_data-&gt;_wide_vtable</code>设置为可控堆地址<code>B</code>，即满足<code>*(A + 0xe0) = B</code></li>
-<li><code>_wide_data-&gt;_wide_vtable-&gt;doallocate</code>设置为地址<code>C</code>用于劫持<code>RIP</code>，即满足<code>*(B + 0x68) = C</code></li>
-</ol>
-<h4 id="IO-wfile-underflow-mmap"><a href="#IO-wfile-underflow-mmap" class="headerlink" title="_IO_wfile_underflow_mmap"></a><strong>_IO_wfile_underflow_mmap</strong></h4><p>调用链：<code>_IO_wfile_underflow_mmap</code>=&gt;<code>_IO_wdoallocbuf</code>=&gt;<code>_IO_WDOALLOCATE</code>=&gt;<code>*(fp-&gt;_wide_data-&gt;_wide_vtable +0x68)(fp)</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">wint_t</span></span><br><span class="line">_IO_wfile_underflow_mmap (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cd</span>;</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *read_stop;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> (__glibc_unlikely (fp-&gt;_flags &amp; _IO_NO_READS))</span><br><span class="line">    &#123;</span><br><span class="line">      fp-&gt;_flags |= _IO_ERR_SEEN;</span><br><span class="line">      __set_errno (EBADF);</span><br><span class="line">      <span class="keyword">return</span> WEOF;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_read_ptr &lt; fp-&gt;_wide_data-&gt;_IO_read_end)</span><br><span class="line">    <span class="keyword">return</span> *fp-&gt;_wide_data-&gt;_IO_read_ptr;</span><br><span class="line"> </span><br><span class="line">  cd = fp-&gt;_codecvt;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* Maybe there is something left in the external buffer.  */</span></span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_IO_read_ptr &gt;= fp-&gt;_IO_read_end</span><br><span class="line">      <span class="comment">/* No.  But maybe the read buffer is not fully set up.  */</span></span><br><span class="line">      &amp;&amp; _IO_file_underflow_mmap (fp) == EOF)</span><br><span class="line">    <span class="comment">/* Nothing available.  _IO_file_underflow_mmap has set the EOF or error</span></span><br><span class="line"><span class="comment">       flags as appropriate.  */</span></span><br><span class="line">    <span class="keyword">return</span> WEOF;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* There is more in the external.  Convert it.  */</span></span><br><span class="line">  read_stop = (<span class="keyword">const</span> <span class="keyword">char</span> *) fp-&gt;_IO_read_ptr;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_buf_base == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">/* Maybe we already have a push back pointer.  */</span></span><br><span class="line">      <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_save_base != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">free</span> (fp-&gt;_wide_data-&gt;_IO_save_base);</span><br><span class="line">      fp-&gt;_flags &amp;= ~_IO_IN_BACKUP;</span><br><span class="line">    &#125;</span><br><span class="line">      _IO_wdoallocbuf (fp);</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里需要改写的有点略多了，需要设置<code>fp-&gt;_flags &amp; _IO_NO_READS == 0</code>，设置<code>fp-&gt;_wide_data-&gt;_IO_read_ptr &gt;= fp-&gt;_wide_data-&gt;_IO_read_end</code>，设置<code>fp-&gt;_IO_read_ptr &lt; fp-&gt;_IO_read_end</code>不进入调用，设置<code>fp-&gt;_wide_data-&gt;_IO_buf_base == NULL</code>和<code>fp-&gt;_wide_data-&gt;_IO_save_base == NULL</code>。</p>
-<p>构造方式：</p>
-<ol>
-<li><code>_flags</code>设置为<code>~4</code>，如果不需要控制<code>rdi</code>，设置为<code>0</code>即可；如果需要获得<code>shell</code>，可设置为<code>  sh;</code></li>
-<li><code>vtable</code>设置为<code>_IO_wfile_jumps_mmap</code>地址（加减偏移），使其能成功调用<code>_IO_wfile_underflow_mmap</code>即可</li>
-<li><code>_IO_read_ptr &lt; _IO_read_end</code>，即满足<code>*(fp + 8) &lt; *(fp + 0x10)</code></li>
-<li><code>_wide_data</code>设置为可控堆地址<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_read_ptr &gt;= _wide_data-&gt;_IO_read_end</code>，即满足<code>*A &gt;= *(A + 8)</code></li>
-<li><code>_wide_data-&gt;_IO_buf_base</code>设置为<code>0</code>，即满足<code>*(A + 0x30) = 0</code></li>
-<li><code>_wide_data-&gt;_IO_save_base</code>设置为<code>0</code>或者合法的可被<code>free</code>的地址，即满足<code>*(A + 0x40) = 0</code></li>
-<li><code>_wide_data-&gt;_wide_vtable</code>设置为可控堆地址<code>B</code>，即满足<code>*(A + 0xe0) = B</code></li>
-<li><code>_wide_data-&gt;_wide_vtable-&gt;doallocate</code>设置为地址<code>C</code>用于劫持<code>RIP</code>，即满足<code>*(B + 0x68) = C</code></li>
-</ol>
-<h4 id="IO-wdefault-xsgetn"><a href="#IO-wdefault-xsgetn" class="headerlink" title="_IO_wdefault_xsgetn"></a><strong>_IO_wdefault_xsgetn</strong></h4><p>调用链：<code>_IO_wdefault_xsgetn</code>=&gt;<code>__wunderflow</code>=&gt;<code>_IO_switch_to_wget_mode</code>=&gt;<code>_IO_WOVERFLOW</code>=&gt;<code>*(fp-&gt;_wide_data-&gt;_wide_vtable+0x18)(fp)</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">size_t</span></span><br><span class="line">    _IO_wdefault_xsgetn (FILE *fp, <span class="keyword">void</span> *data, <span class="keyword">size_t</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">size_t</span> more = n;</span><br><span class="line">    <span class="keyword">wchar_t</span> *s = (<span class="keyword">wchar_t</span>*) data;</span><br><span class="line">    <span class="keyword">for</span> (;;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* Data available. */</span></span><br><span class="line">        <span class="keyword">ssize_t</span> count = (fp-&gt;_wide_data-&gt;_IO_read_end</span><br><span class="line">                         - fp-&gt;_wide_data-&gt;_IO_read_ptr);</span><br><span class="line">        <span class="keyword">if</span> (count &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ((<span class="keyword">size_t</span>) count &gt; more)</span><br><span class="line">                count = more;</span><br><span class="line">            <span class="keyword">if</span> (count &gt; <span class="number">20</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s = __wmempcpy (s, fp-&gt;_wide_data-&gt;_IO_read_ptr, count);</span><br><span class="line">                fp-&gt;_wide_data-&gt;_IO_read_ptr += count;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (count &lt;= <span class="number">0</span>)</span><br><span class="line">                count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">wchar_t</span> *p = fp-&gt;_wide_data-&gt;_IO_read_ptr;</span><br><span class="line">                <span class="keyword">int</span> i = (<span class="keyword">int</span>) count;</span><br><span class="line">                <span class="keyword">while</span> (--i &gt;= <span class="number">0</span>)</span><br><span class="line">                    *s++ = *p++;</span><br><span class="line">                fp-&gt;_wide_data-&gt;_IO_read_ptr = p;</span><br><span class="line">            &#125;</span><br><span class="line">            more -= count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (more == <span class="number">0</span> || __wunderflow (fp) == WEOF)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n - more;</span><br><span class="line">&#125;</span><br><span class="line">libc_hidden_def (_IO_wdefault_xsgetn)</span><br></pre></td></tr></table></figure>
-
-<p>需要设置<code>fp-&gt;_wide_data-&gt;_IO_read_ptr == fp-&gt;_wide_data-&gt;_IO_read_end</code>，使得<code>count</code>为<code>0</code>，不进入<code>if</code>分支。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wint_t</span></span><br><span class="line">    __wunderflow (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_mode &lt; <span class="number">0</span> || (fp-&gt;_mode == <span class="number">0</span> &amp;&amp; _IO_fwide (fp, <span class="number">1</span>) != <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> WEOF;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_mode == <span class="number">0</span>)</span><br><span class="line">        _IO_fwide (fp, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (_IO_in_put_mode (fp))</span><br><span class="line">        <span class="keyword">if</span> (_IO_switch_to_wget_mode (fp) == EOF)</span><br><span class="line">            <span class="keyword">return</span> WEOF;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要设置<code>fp-&gt;mode &gt; 0</code>，并且<code>fp-&gt;_flags &amp; _IO_CURRENTLY_PUTTING != 0</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">    _IO_switch_to_wget_mode (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_write_ptr &gt; fp-&gt;_wide_data-&gt;_IO_write_base)</span><br><span class="line">        <span class="keyword">if</span> ((<span class="keyword">wint_t</span>)_IO_WOVERFLOW (fp, WEOF) == WEOF)</span><br><span class="line">            <span class="keyword">return</span> EOF;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要设置<code>fp-&gt;_wide_data-&gt;_IO_write_ptr &gt; fp-&gt;_wide_data-&gt;_IO_write_base</code></p>
-<p>构造方式：</p>
-<ol>
-<li><code>_flags</code>设置为<code>0x800</code></li>
-<li><code>vtable</code>设置为<code>_IO_wstrn_jumps/_IO_wmem_jumps/_IO_wstr_jumps</code>地址（加减偏移），使其能成功调用<code>_IO_wdefault_xsgetn</code>即可</li>
-<li><code>_mode</code>设置为大于<code>0</code>，即满足<code>*(fp + 0xc0) &gt; 0</code></li>
-<li><code>_wide_data</code>设置为可控堆地址<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_read_end == _wide_data-&gt;_IO_read_ptr</code>设置为<code>0</code>，即满足<code>*(A + 8) = *A</code></li>
-<li><code>_wide_data-&gt;_IO_write_ptr &gt; _wide_data-&gt;_IO_write_base</code>，即满足<code>*(A + 0x20) &gt; *(A + 0x18)</code></li>
-<li><code>_wide_data-&gt;_wide_vtable</code>设置为可控堆地址<code>B</code>，即满足<code>*(A + 0xe0) = B</code></li>
-<li><code>_wide_data-&gt;_wide_vtable-&gt;overflow</code>设置为地址<code>C</code>用于劫持<code>RIP</code>，即满足<code>*(B + 0x18) = C</code></li>
-</ol>
-<h2 id="house-of-apple3"><a href="#house-of-apple3" class="headerlink" title="house of apple3"></a>house of apple3</h2><p>前两篇文章中的利用链主要关注<code>_wide_data</code>成员，而本篇文章并不会特别关注<code>_wide_data</code>，而是关注<code>FILE</code>结构体的另外一个成员<code>_codecvt</code>的利用。</p>
-<h3 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h3><ol>
-<li>已知<code>heap</code>地址和<code>glibc</code>地址</li>
-<li>能控制程序执行<code>IO</code>操作，包括但不限于：从<code>main</code>函数返回、调用<code>exit</code>函数、通过<code>__malloc_assert</code>触发</li>
-<li>能控制<code>_IO_FILE</code>的<code>vtable</code>和<code>_codecvt</code>，一般使用<code>largebin attack</code>去控制</li>
-</ol>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>上面提到，本篇文章并不会特别关注<code>_wide_data</code>成员，这是因为<code>_wide_data</code>设置不当的话会影响某些利用链的分支走向。但是，如果采用默认的<code>_wide_data</code>成员（默认会指向<code>_IO_wide_data_2</code>，除了<code>_wide_vtable</code>外其他成员均默认为<code>0</code>），也并不影响<code>house of apple3</code>的利用。因此，如果能伪造整个<code>FILE</code>结构体，则需要设置合适的<code>_wide_data</code>；如果只能伪部分<code>FILE</code>的成员的话，保持<code>fp-&gt;_wide_data</code>为默认地址即可。</p>
-<h3 id="利用原理-1"><a href="#利用原理-1" class="headerlink" title="利用原理"></a>利用原理</h3><p><code>FILE</code>结构体中有一个成员<code>struct _IO_codecvt *_codecvt;</code>，偏移为<code>0x98</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  _IO_iconv_t __cd_in;</span><br><span class="line">  _IO_iconv_t __cd_out;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><code>__cd_in</code>和<code>__cd_out</code>是同一种类型的数据。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> __<span class="title">gconv_step</span> *<span class="title">step</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> __<span class="title">gconv_step_data</span> <span class="title">step_data</span>;</span></span><br><span class="line">&#125; _IO_iconv_t;</span><br></pre></td></tr></table></figure>
-
-<p>再观察以下结构体俩变量的定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">gconv_step</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> __<span class="title">gconv_loaded_object</span> *__<span class="title">shlib_handle</span>;</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *__modname;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* For internal use by glibc.  (Accesses to this member must occur</span></span><br><span class="line"><span class="comment">     when the internal __gconv_lock mutex is acquired).  */</span></span><br><span class="line">  <span class="keyword">int</span> __counter;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">char</span> *__from_name;</span><br><span class="line">  <span class="keyword">char</span> *__to_name;</span><br><span class="line"> </span><br><span class="line">  __gconv_fct __fct;</span><br><span class="line">  __gconv_btowc_fct __btowc_fct;</span><br><span class="line">  __gconv_init_fct __init_fct;</span><br><span class="line">  __gconv_end_fct __end_fct;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* Information about the number of bytes needed or produced in this</span></span><br><span class="line"><span class="comment">     step.  This helps optimizing the buffer sizes.  */</span></span><br><span class="line">  <span class="keyword">int</span> __min_needed_from;</span><br><span class="line">  <span class="keyword">int</span> __max_needed_from;</span><br><span class="line">  <span class="keyword">int</span> __min_needed_to;</span><br><span class="line">  <span class="keyword">int</span> __max_needed_to;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* Flag whether this is a stateful encoding or not.  */</span></span><br><span class="line">  <span class="keyword">int</span> __stateful;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">void</span> *__data;        <span class="comment">/* Pointer to step-local data.  */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">gconv_step_data</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> *__outbuf;    <span class="comment">/* Output buffer for this step.  */</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> *__outbufend; <span class="comment">/* Address of first byte after the output</span></span><br><span class="line"><span class="comment">                 buffer.  */</span></span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* Is this the last module in the chain.  */</span></span><br><span class="line">  <span class="keyword">int</span> __flags;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* Counter for number of invocations of the module function for this</span></span><br><span class="line"><span class="comment">     descriptor.  */</span></span><br><span class="line">  <span class="keyword">int</span> __invocation_counter;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">/* Flag whether this is an internal use of the module (in the mb*towc*</span></span><br><span class="line"><span class="comment">     and wc*tomb* functions) or regular with iconv(3).  */</span></span><br><span class="line">  <span class="keyword">int</span> __internal_use;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">__mbstate_t</span> *__statep;</span><br><span class="line">  <span class="keyword">__mbstate_t</span> __state;    <span class="comment">/* This element must not be used directly by</span></span><br><span class="line"><span class="comment">               any module; always use STATEP!  */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><code>house of apple3</code>的利用主要关注以下三个函数：<code>__libio_codecvt_out</code>、<code>__libio_codecvt_in</code>和<code>__libio_codecvt_length</code>。三个函数的利用点都差不多</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> __<span class="title">codecvt_result</span></span></span><br><span class="line"><span class="class">    __<span class="title">libio_codecvt_in</span> (<span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">codecvt</span>, __<span class="title">mbstate_t</span> *<span class="title">statep</span>,</span></span><br><span class="line"><span class="class">                        <span class="title">const</span> <span class="title">char</span> *<span class="title">from_start</span>, <span class="title">const</span> <span class="title">char</span> *<span class="title">from_end</span>,</span></span><br><span class="line"><span class="class">                        <span class="title">const</span> <span class="title">char</span> **<span class="title">from_stop</span>,</span></span><br><span class="line"><span class="class">                        <span class="title">wchar_t</span> *<span class="title">to_start</span>, <span class="title">wchar_t</span> *<span class="title">to_end</span>, <span class="title">wchar_t</span> **<span class="title">to_stop</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> __<span class="title">codecvt_result</span> <span class="title">result</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> __<span class="title">gconv_step</span> *<span class="title">gs</span> =</span> codecvt-&gt;__cd_in.step;</span><br><span class="line">    <span class="keyword">int</span> status;</span><br><span class="line">    <span class="keyword">size_t</span> dummy;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *from_start_copy = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) from_start;</span><br><span class="line"></span><br><span class="line">    codecvt-&gt;__cd_in.step_data.__outbuf = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) to_start;</span><br><span class="line">    codecvt-&gt;__cd_in.step_data.__outbufend = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) to_end;</span><br><span class="line">    codecvt-&gt;__cd_in.step_data.__statep = statep;</span><br><span class="line"></span><br><span class="line">    __gconv_fct fct = gs-&gt;__fct;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> PTR_DEMANGLE</span></span><br><span class="line">    <span class="keyword">if</span> (gs-&gt;__shlib_handle != <span class="literal">NULL</span>)</span><br><span class="line">        PTR_DEMANGLE (fct);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    status = DL_CALL_FCT (fct,</span><br><span class="line">                          (gs, &amp;codecvt-&gt;__cd_in.step_data, &amp;from_start_copy,</span><br><span class="line">                           (<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *) from_end, <span class="literal">NULL</span>,</span><br><span class="line">                           &amp;dummy, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*__gconv_fct)</span> <span class="params">(struct __gconv_step *, struct __gconv_step_data *,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> **, <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="keyword">unsigned</span> <span class="keyword">char</span> **, <span class="keyword">size_t</span> *, <span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DL_CALL_FCT</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> DL_CALL_FCT(fct, args) fct args</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这里呢最后这个宏就是调用fct (gs, …)</p>
-<p>在<code>_IO_wfile_underflow</code>函数中调用了<code>__libio_codecvt_in</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wint_t</span></span><br><span class="line">    _IO_wfile_underflow (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cd</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> __<span class="title">codecvt_result</span> <span class="title">status</span>;</span></span><br><span class="line">    <span class="keyword">ssize_t</span> count;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* C99 requires EOF to be &quot;sticky&quot;.  */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_flags &amp; _IO_EOF_SEEN)</span><br><span class="line">        <span class="keyword">return</span> WEOF;</span><br><span class="line">    <span class="keyword">if</span> (__glibc_unlikely (fp-&gt;_flags &amp; _IO_NO_READS))</span><br><span class="line">    &#123;</span><br><span class="line">        fp-&gt;_flags |= _IO_ERR_SEEN;</span><br><span class="line">        __set_errno (EBADF);</span><br><span class="line">        <span class="keyword">return</span> WEOF;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_read_ptr &lt; fp-&gt;_wide_data-&gt;_IO_read_end)</span><br><span class="line">        <span class="keyword">return</span> *fp-&gt;_wide_data-&gt;_IO_read_ptr;</span><br><span class="line"></span><br><span class="line">    cd = fp-&gt;_codecvt;</span><br><span class="line">    <span class="comment">/* Maybe there is something left in the external buffer.  */</span></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_IO_read_ptr &lt; fp-&gt;_IO_read_end)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* There is more in the external.  Convert it.  */</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *read_stop = (<span class="keyword">const</span> <span class="keyword">char</span> *) fp-&gt;_IO_read_ptr;</span><br><span class="line"></span><br><span class="line">        fp-&gt;_wide_data-&gt;_IO_last_state = fp-&gt;_wide_data-&gt;_IO_state;</span><br><span class="line">        fp-&gt;_wide_data-&gt;_IO_read_base = fp-&gt;_wide_data-&gt;_IO_read_ptr =</span><br><span class="line">            fp-&gt;_wide_data-&gt;_IO_buf_base;</span><br><span class="line">        status = __libio_codecvt_in (cd, &amp;fp-&gt;_wide_data-&gt;_IO_state,</span><br><span class="line">                                     fp-&gt;_IO_read_ptr, fp-&gt;_IO_read_end,</span><br><span class="line">                                     &amp;read_stop,</span><br><span class="line">                                     fp-&gt;_wide_data-&gt;_IO_read_ptr,</span><br><span class="line">                                     fp-&gt;_wide_data-&gt;_IO_buf_end,</span><br><span class="line">                                     &amp;fp-&gt;_wide_data-&gt;_IO_read_end);</span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>_IO_wfile_underflow</code>又是<code>_IO_wfile_jumps</code>这个<code>_IO_jump_t</code>类型变量的成员函数</p>
-<p>所以总的来说利用方式为：劫持或者伪造<code>FILE</code>结构体的<code>fp-&gt;vtable</code>为<code>_IO_wfile_jumps</code>，<code>fp-&gt;_codecvt</code>为可控堆地址，当程序执行<code>IO</code>操作时，控制程序执行流走到<code>_IO_wfile_underflow</code>，设置好<code>fp-&gt;codecvt-&gt;__cd_in</code>结构体，使得最终调用到<code>__libio_codecvt_in</code>中的<code>DL_CALL_FCT</code>宏，伪造函数指针，进而控制程序执行流。需要注意的是设置gs-&gt;__shlib_handle == NULL绕过__pointer_guard指针的加密保护</p>
-<h3 id="利用思路-1"><a href="#利用思路-1" class="headerlink" title="利用思路"></a>利用思路</h3><p>因为原文作者确实非常牛逼，甚至链都找好了，所以这里还是贴上原文的内容</p>
-<h4 id="IO-wfile-underflow"><a href="#IO-wfile-underflow" class="headerlink" title="_IO_wfile_underflow"></a><strong>_IO_wfile_underflow</strong></h4><p>调用链：<code>_IO_wfile_underflow</code>=&gt;<code>__libio_codecvt_in</code>=&gt;<code>DL_CALL_FCT</code>=&gt;<code>gs =fp-&gt;_codecvt-&gt;__cd_in.step</code>=&gt;<code>*(gs-&gt;__fct)(gs)</code></p>
-<p>这条链是在利用原理当作示例的一条，所以这里只给出构造方式：</p>
-<ol>
-<li><code>_flags</code>设置为<code>~(4 | 0x10)</code></li>
-<li><code>vtable</code>设置为<code>_IO_wfile_jumps</code>地址（加减偏移），使其能成功调用<code>_IO_wfile_underflow</code>即可</li>
-<li><code>fp-&gt;_IO_read_ptr &lt; fp-&gt;_IO_read_end</code>，即满足<code>*(fp + 8) &lt; *(fp + 0x10)</code></li>
-<li><code>_wide_data</code>保持默认，或者设置为堆地址，假设其地址为<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_read_ptr &gt;= _wide_data-&gt;_IO_read_end</code>，即满足<code>*A &gt;= *(A + 8)</code></li>
-<li><code>_codecvt</code>设置为可控堆地址<code>B</code>，即满足<code>*(fp + 0x98) = B</code></li>
-<li><code>codecvt-&gt;__cd_in.step</code>设置为可控堆地址<code>C</code>，即满足<code>*B = C</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__shlib_handle</code>设置为<code>0</code>，即满足<code>*C = 0</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__fct</code>设置为地址<code>D</code>,地址<code>D</code>用于控制<code>rip</code>，即满足<code>*(C + 0x28) = D</code>。当调用到<code>D</code>的时候，此时的<code>rdi</code>为<code>C</code>。如果<code>_wide_data</code>也可控的话，<code>rsi</code>也能控制。</li>
-</ol>
-<h4 id="IO-wfile-underflow-mmap-1"><a href="#IO-wfile-underflow-mmap-1" class="headerlink" title="_IO_wfile_underflow_mmap"></a><strong>_IO_wfile_underflow_mmap</strong></h4><p>调用链：<code>_IO_wfile_underflow_mmap</code>=&gt;<code>__libio_codecvt_in</code>=&gt;<code>DL_CALL_FCT</code>=&gt;<code>gs=fp-&gt;_codecvt-&gt;__cd_in.step</code>=&gt;<code>*(gs-&gt;__fct)(gs)</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">wint_t</span></span><br><span class="line">    _IO_wfile_underflow_mmap (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cd</span>;</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *read_stop;</span><br><span class="line">    <span class="keyword">if</span> (__glibc_unlikely (fp-&gt;_flags &amp; _IO_NO_READS))</span><br><span class="line">    &#123;</span><br><span class="line">        fp-&gt;_flags |= _IO_ERR_SEEN;</span><br><span class="line">        __set_errno (EBADF);</span><br><span class="line">        <span class="keyword">return</span> WEOF;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_read_ptr &lt; fp-&gt;_wide_data-&gt;_IO_read_end)</span><br><span class="line">        <span class="keyword">return</span> *fp-&gt;_wide_data-&gt;_IO_read_ptr;</span><br><span class="line"></span><br><span class="line">    cd = fp-&gt;_codecvt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Maybe there is something left in the external buffer.  */</span></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_IO_read_ptr &gt;= fp-&gt;_IO_read_end</span><br><span class="line">        <span class="comment">/* No.  But maybe the read buffer is not fully set up.  */</span></span><br><span class="line">        &amp;&amp; _IO_file_underflow_mmap (fp) == EOF)</span><br><span class="line">        <span class="comment">/* Nothing available.  _IO_file_underflow_mmap has set the EOF or error</span></span><br><span class="line"><span class="comment">       flags as appropriate.  */</span></span><br><span class="line">        <span class="keyword">return</span> WEOF;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* There is more in the external.  Convert it.  */</span></span><br><span class="line">    read_stop = (<span class="keyword">const</span> <span class="keyword">char</span> *) fp-&gt;_IO_read_ptr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_buf_base == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* Maybe we already have a push back pointer.  */</span></span><br><span class="line">        <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_save_base != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">free</span> (fp-&gt;_wide_data-&gt;_IO_save_base);</span><br><span class="line">            fp-&gt;_flags &amp;= ~_IO_IN_BACKUP;</span><br><span class="line">        &#125;</span><br><span class="line">        _IO_wdoallocbuf (fp);</span><br><span class="line">    &#125;</span><br><span class="line">    fp-&gt;_wide_data-&gt;_IO_last_state = fp-&gt;_wide_data-&gt;_IO_state;</span><br><span class="line">    fp-&gt;_wide_data-&gt;_IO_read_base = fp-&gt;_wide_data-&gt;_IO_read_ptr =</span><br><span class="line">        fp-&gt;_wide_data-&gt;_IO_buf_base;</span><br><span class="line"></span><br><span class="line">    __libio_codecvt_in (cd, &amp;fp-&gt;_wide_data-&gt;_IO_state,</span><br><span class="line">                        fp-&gt;_IO_read_ptr, fp-&gt;_IO_read_end,</span><br><span class="line">                        &amp;read_stop,</span><br><span class="line">                        fp-&gt;_wide_data-&gt;_IO_read_ptr,</span><br><span class="line">                        fp-&gt;_wide_data-&gt;_IO_buf_end,</span><br><span class="line">                        &amp;fp-&gt;_wide_data-&gt;_IO_read_end);</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要设置<code>fp-&gt;_flags &amp; _IO_NO_READS == 0</code>，设置<code>fp-&gt;_wide_data-&gt;_IO_read_ptr &gt;= fp-&gt;_wide_data-&gt;_IO_read_end</code>，设置<code>fp-&gt;_IO_read_ptr &lt; fp-&gt;_IO_read_end</code>不进入调用，设置<code>fp-&gt;_wide_data-&gt;_IO_buf_base != NULL</code>不进入调用。</p>
-<p>构造方法：</p>
-<ol>
-<li><code>_flags</code>设置为<code>~4</code></li>
-<li><code>vtable</code>设置为<code>_IO_wfile_jumps_mmap</code>地址（加减偏移），使其能成功调用<code>_IO_wfile_underflow_mmap</code>即可</li>
-<li><code>_IO_read_ptr &lt; _IO_read_end</code>，即满足<code>*(fp + 8) &lt; *(fp + 0x10)</code></li>
-<li><code>_wide_data</code>保持默认，或者设置为堆地址，假设其地址为<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_read_ptr &gt;= _wide_data-&gt;_IO_read_end</code>，即满足<code>*A &gt;= *(A + 8)</code></li>
-<li><code>_wide_data-&gt;_IO_buf_base</code>设置为非<code>0</code>，即满足<code>*(A + 0x30) != 0</code></li>
-<li><code>_codecvt</code>设置为可控堆地址<code>B</code>，即满足<code>*(fp + 0x98) = B</code></li>
-<li><code>codecvt-&gt;__cd_in.step</code>设置为可控堆地址<code>C</code>，即满足<code>*B = C</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__shlib_handle</code>设置为<code>0</code>，即满足<code>*C = 0</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__fct</code>设置为地址<code>D</code>,地址<code>D</code>用于控制<code>rip</code>，即满足<code>*(C + 0x28) = D</code>。当调用到<code>D</code>的时候，此时的<code>rdi</code>为<code>C</code>。如果<code>_wide_data</code>也可控的话，<code>rsi</code>也能控制。</li>
-</ol>
-<h4 id="IO-wdo-write"><a href="#IO-wdo-write" class="headerlink" title="_IO_wdo_write"></a><strong>_IO_wdo_write</strong></h4><p>调用链：<code>_IO_new_file_sync</code>=&gt;<code>_IO_do_flush</code>=&gt;<code>_IO_wdo_write</code>=&gt;<code>__libio_codecvt_out</code>=&gt;<code>DL_CALL_FCT</code>=&gt;<code>gs =</code> <code>fp-&gt;_codecvt-&gt;__cd_out.step</code>=&gt;<code>*(gs-&gt;__fct)(gs)</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">    _IO_new_file_sync (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">ssize_t</span> delta;</span><br><span class="line">    <span class="keyword">int</span> retval = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*    char* ptr = cur_ptr(); */</span></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_IO_write_ptr &gt; fp-&gt;_IO_write_base)</span><br><span class="line">        <span class="keyword">if</span> (_IO_do_flush(fp)) <span class="keyword">return</span> EOF;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>满足<code>fp-&gt;_IO_write_ptr &gt; fp-&gt;_IO_write_base</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _IO_do_flush(_f) \</span></span><br><span class="line"><span class="meta">  ((_f)-&gt;_mode &lt;= 0                                  \</span></span><br><span class="line"><span class="meta">   ? _IO_do_write(_f, (_f)-&gt;_IO_write_base,                      \</span></span><br><span class="line"><span class="meta">          (_f)-&gt;_IO_write_ptr-(_f)-&gt;_IO_write_base)              \</span></span><br><span class="line"><span class="meta">   : _IO_wdo_write(_f, (_f)-&gt;_wide_data-&gt;_IO_write_base,              \</span></span><br><span class="line"><span class="meta">           ((_f)-&gt;_wide_data-&gt;_IO_write_ptr                  \</span></span><br><span class="line"><span class="meta">            - (_f)-&gt;_wide_data-&gt;_IO_write_base)))</span></span><br></pre></td></tr></table></figure>
-
-<p>使<code>fp-&gt;_mode &gt; 0</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">    _IO_wdo_write (FILE *fp, <span class="keyword">const</span> <span class="keyword">wchar_t</span> *data, <span class="keyword">size_t</span> to_do)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cc</span> =</span> fp-&gt;_codecvt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (to_do &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (fp-&gt;_IO_write_end == fp-&gt;_IO_write_ptr</span><br><span class="line">            &amp;&amp; fp-&gt;_IO_write_end != fp-&gt;_IO_write_base)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (_IO_new_do_write (fp, fp-&gt;_IO_write_base,</span><br><span class="line">                                  fp-&gt;_IO_write_ptr - fp-&gt;_IO_write_base) == EOF)</span><br><span class="line">                <span class="keyword">return</span> WEOF;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ......</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* Now convert from the internal format into the external buffer.  */</span></span><br><span class="line">            result = __libio_codecvt_out (cc, &amp;fp-&gt;_wide_data-&gt;_IO_state,</span><br><span class="line">                                          data, data + to_do, &amp;new_data,</span><br><span class="line">                                          write_ptr,</span><br><span class="line">                                          buf_end,</span><br><span class="line">                                          &amp;write_ptr);</span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>满足<code>fp-&gt;_wide_data-&gt;_IO_write_ptr &gt; fp-&gt;_wide_data-&gt;_IO_write_base</code>，然后这个判断需要为假<code>fp-&gt;_IO_write_end == fp-&gt;_IO_write_ptr &amp;&amp; fp-&gt;_IO_write_end != fp-&gt;_IO_write_base</code>。</p>
-<p>构造方式：</p>
-<ol>
-<li><code>vtable</code>设置为<code>_IO_file_jumps</code>地址（加减偏移），使其能成功调用<code>_IO_new_file_sync</code>即可</li>
-<li><code>_IO_write_ptr &gt; _IO_write_base</code>，即满足<code>*(fp + 0x28) &gt; *(fp + 0x20)</code></li>
-<li><code>_mode &gt; 0</code>，即满足<code>(fp + 0xc0) &gt; 0</code></li>
-<li><code>_IO_write_end != _IO_write_ptr</code>或者<code>_IO_write_end == _IO_write_base</code>，即满足<code>*(fp + 0x30) != *(fp + 0x28)</code>或者<code>*(fp + 0x30) == *(fp + 0x20)</code></li>
-<li><code>_wide_data</code>设置为堆地址，假设地址为<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_write_ptr &gt;= _wide_data-&gt;_IO_write_base</code>，即满足<code>*(A + 0x20) &gt;= *(A + 0x18)</code></li>
-<li><code>_codecvt</code>设置为可控堆地址<code>B</code>，即满足<code>*(fp + 0x98) = B</code></li>
-<li><code>codecvt-&gt;__cd_out.step</code>设置为可控堆地址<code>C</code>，即满足<code>*(B + 0x38) = C</code></li>
-<li><code>codecvt-&gt;__cd_out.step-&gt;__shlib_handle</code>设置为<code>0</code>，即满足<code>*C = 0</code></li>
-<li><code>codecvt-&gt;__cd_out.step-&gt;__fct</code>设置为地址<code>D</code>,地址<code>D</code>用于控制<code>rip</code>，即满足<code>*(C + 0x28) = D</code>。当调用到<code>D</code>的时候，此时的<code>rdi</code>为<code>C</code>。如果<code>_wide_data</code>也可控的话，<code>rsi</code>也能控制。</li>
-</ol>
-<h4 id="IO-wfile-sync"><a href="#IO-wfile-sync" class="headerlink" title="_IO_wfile_sync"></a><strong>_IO_wfile_sync</strong></h4><p>调用链：<code>_IO_wfile_sync</code>=&gt;<code>__libio_codecvt_length</code>=&gt;<code>DL_CALL_FCT</code>=&gt;<code>gs =</code> <code>fp-&gt;_codecvt-&gt;__cd_in.step</code>=&gt;<code>*(gs-&gt;__fct)(gs)</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wint_t</span></span><br><span class="line">    _IO_wfile_sync (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">ssize_t</span> delta;</span><br><span class="line">    <span class="keyword">wint_t</span> retval = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*    char* ptr = cur_ptr(); */</span></span><br><span class="line">    <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_write_ptr &gt; fp-&gt;_wide_data-&gt;_IO_write_base)</span><br><span class="line">        <span class="keyword">if</span> (_IO_do_flush (fp))</span><br><span class="line">            <span class="keyword">return</span> WEOF;</span><br><span class="line">    delta = fp-&gt;_wide_data-&gt;_IO_read_ptr - fp-&gt;_wide_data-&gt;_IO_read_end;</span><br><span class="line">    <span class="keyword">if</span> (delta != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* We have to find out how many bytes we have to go back in the</span></span><br><span class="line"><span class="comment">     external buffer.  */</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cv</span> =</span> fp-&gt;_codecvt;</span><br><span class="line">        <span class="keyword">off64_t</span> new_pos;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> clen = __libio_codecvt_encoding (cv);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (clen &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="comment">/* It is easy, a fixed number of input bytes are used for each</span></span><br><span class="line"><span class="comment">       wide character.  */</span></span><br><span class="line">            delta *= clen;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/* We have to find out the hard way how much to back off.</span></span><br><span class="line"><span class="comment">         To do this we determine how much input we needed to</span></span><br><span class="line"><span class="comment">         generate the wide characters up to the current reading</span></span><br><span class="line"><span class="comment">         position.  */</span></span><br><span class="line">            <span class="keyword">int</span> nread;</span><br><span class="line">            <span class="keyword">size_t</span> wnread = (fp-&gt;_wide_data-&gt;_IO_read_ptr</span><br><span class="line">                             - fp-&gt;_wide_data-&gt;_IO_read_base);</span><br><span class="line">            fp-&gt;_wide_data-&gt;_IO_state = fp-&gt;_wide_data-&gt;_IO_last_state;</span><br><span class="line">            nread = __libio_codecvt_length (cv, &amp;fp-&gt;_wide_data-&gt;_IO_state,</span><br><span class="line">                                            fp-&gt;_IO_read_base,</span><br><span class="line">                                            fp-&gt;_IO_read_end, wnread);</span><br><span class="line">            ......</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>设置<code>fp-&gt;_wide_data-&gt;_IO_write_ptr &lt;= fp-&gt;_wide_data-&gt;_IO_write_base</code>和<code>fp-&gt;_wide_data-&gt;_IO_read_ptr - fp-&gt;_wide_data-&gt;_IO_read_end != 0</code>。可以看到这里还需要绕过<code>__libio_codecvt_encoding</code>函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">__libio_codecvt_encoding (struct _IO_codecvt *codecvt)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* See whether the encoding is stateful.  */</span></span><br><span class="line">  <span class="keyword">if</span> (codecvt-&gt;__cd_in.step-&gt;__stateful)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="comment">/* Fortunately not.  Now determine the input bytes for the conversion</span></span><br><span class="line"><span class="comment">     necessary for each wide character.  */</span></span><br><span class="line">  <span class="keyword">if</span> (codecvt-&gt;__cd_in.step-&gt;__min_needed_from</span><br><span class="line">      != codecvt-&gt;__cd_in.step-&gt;__max_needed_from)</span><br><span class="line">    <span class="comment">/* Not a constant value.  */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">return</span> codecvt-&gt;__cd_in.step-&gt;__min_needed_from;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>设置<code>fp-&gt;codecvt-&gt;__cd_in.step-&gt;__stateful != 0</code>即可返回<code>-1</code>。</p>
-<p>构造方式：</p>
-<ol>
-<li><code>_flags</code>设置为<code>~(4 | 0x10)</code></li>
-<li><code>vtable</code>设置为<code>_IO_wfile_jumps</code>地址（加减偏移），使其能成功调用<code>_IO_wfile_sync</code>即可</li>
-<li><code>_wide_data</code>设置为堆地址，假设其地址为<code>A</code>，即满足<code>*(fp + 0xa0) = A</code></li>
-<li><code>_wide_data-&gt;_IO_write_ptr &lt;= _wide_data-&gt;_IO_write_base</code>，即满足<code>*(A + 0x20) &lt;= *(A + 0x18)</code></li>
-<li><code>_wide_data-&gt;_IO_read_ptr != _wide_data-&gt;_IO_read_end</code>，即满足<code>*A != *(A + 8)</code></li>
-<li><code>_codecvt</code>设置为可控堆地址<code>B</code>，即满足<code>*(fp + 0x98) = B</code></li>
-<li><code>codecvt-&gt;__cd_in.step</code>设置为可控堆地址<code>C</code>，即满足<code>*B = C</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__stateful</code>设置为非<code>0</code>，即满足<code>*(B + 0x58) != 0</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__shlib_handle</code>设置为<code>0</code>，即满足<code>*C = 0</code></li>
-<li><code>codecvt-&gt;__cd_in.step-&gt;__fct</code>设置为地址<code>D</code>,地址<code>D</code>用于控制<code>rip</code>，即满足<code>*(C + 0x28) = D</code>。当调用到<code>D</code>的时候，此时的<code>rdi</code>为<code>C</code>。如果<code>rsi</code>为<code>&amp;codecvt-&gt;__cd_in.step_data</code>可控。</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>house of apple1主要作用就是实现任意地址写，而我认为house of apple2是最吊的，一定程度上减少了覆盖这个SB pointer_guard。而house of apple3在构造方面要求相对来说较为苛刻。(我还跟个SB一样准备自己写pack_file函数来构造IO_FILE结构体，但是我发现pwntools居然有<code>FileStructure()</code>这个函数可以直接生成)</p>
-<hr>
-<p>参考链接：</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-273832.htm#msg_header_h3_2" >https://bbs.pediy.com/thread-273832.htm#msg_header_h3_2<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-273863.htm#msg_header_h3_3" >https://bbs.pediy.com/thread-273863.htm#msg_header_h3_3<i class="fas fa-external-link-alt"></i></a></p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/08/07/WCTF-2018-klist/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">WCTF 2018 klist</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/08/04/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90-2/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">kernel pwn内存任意读写提升权限[2]</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

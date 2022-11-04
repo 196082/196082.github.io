@@ -145,289 +145,198 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    $avatarWidth = 46px;
+$arrow-icon-width = 16px;
+$post-nav-max-width = 220px;
+$article-title-font-size = 1.6rem;
 
-        <div class="article-title">
-            <span class="title-hover-animation">FSOP</span>
-        </div>
+.article-content-container {
 
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ai.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-02-23 11:50:09
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/FSOP/">FSOP</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+  keep-container(false, 0, 0, 30px, 30px);
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
+  .article-title {
+    color: var(--second-text-color);
+    font-weight: 600;
+    font-size: $article-title-font-size;
 
-                    </div>
-                </div>
-            </div>
-        
+    +keep-tablet() {
+      font-size: $article-title-font-size * 0.9;
+    }
 
-        <div class="article-content markdown-body">
-            <p>文章开头给出_IO_FILE结构体的偏移:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x0</span>   _flags</span><br><span class="line"><span class="number">0x8</span>   _IO_read_ptr</span><br><span class="line"><span class="number">0x10</span>  _IO_read_end</span><br><span class="line"><span class="number">0x18</span>  _IO_read_base</span><br><span class="line"><span class="number">0x20</span>  _IO_write_base</span><br><span class="line"><span class="number">0x28</span>  _IO_write_ptr</span><br><span class="line"><span class="number">0x30</span>  _IO_write_end</span><br><span class="line"><span class="number">0x38</span>  _IO_buf_base</span><br><span class="line"><span class="number">0x40</span>  _IO_buf_end</span><br><span class="line"><span class="number">0x48</span>  _IO_save_base</span><br><span class="line"><span class="number">0x50</span>  _IO_backup_base</span><br><span class="line"><span class="number">0x58</span>  _IO_save_end</span><br><span class="line"><span class="number">0x60</span>  _markers</span><br><span class="line"><span class="number">0x68</span>  _chain</span><br><span class="line"><span class="number">0x70</span>  _fileno</span><br><span class="line"><span class="number">0x74</span>  _flags2</span><br><span class="line"><span class="number">0x78</span>  _old_offset</span><br><span class="line"><span class="number">0x80</span>  _cur_column</span><br><span class="line"><span class="number">0x82</span>  _vtable_offset</span><br><span class="line"><span class="number">0x83</span>  _shortbuf</span><br><span class="line"><span class="number">0x88</span>  _lock</span><br><span class="line"><span class="number">0x90</span>  _offset</span><br><span class="line"><span class="number">0x98</span>  _codecvt</span><br><span class="line"><span class="number">0xa0</span>  _wide_data</span><br><span class="line"><span class="number">0xa8</span>  _freeres_list</span><br><span class="line"><span class="number">0xb0</span>  _freeres_buf</span><br><span class="line"><span class="number">0xb8</span>  __pad5</span><br><span class="line"><span class="number">0xc0</span>  _mode</span><br><span class="line"><span class="number">0xc4</span>  _unused2</span><br><span class="line"><span class="number">0xd8</span>  vtable</span><br></pre></td></tr></table></figure>
-
-<h2 id="Glibc2-23下的FSOP"><a href="#Glibc2-23下的FSOP" class="headerlink" title="Glibc2.23下的FSOP"></a>Glibc2.23下的FSOP</h2><p>FSOP全称是<code>File Stream Oriented Programming</code>进程中打开的所有文件结构体使用一个单链表来进行管理，即通过<code>_IO_list_all</code>进行管理，在<a target="_blank" rel="noopener" href="https://ray-cp.github.io/archivers/IO_FILE_fopen_analysis"><code>fopen</code></a>的分析中，我们知道了fopen是通过<code>_IO_link_in</code>函数将新打开的结构体链接进入<code>_IO_list_all</code>的，相关的代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fp-&gt;file._flags |= _IO_LINKED;</span><br><span class="line">...</span><br><span class="line">fp-&gt;file._chain = (_IO_FILE *) _IO_list_all;</span><br><span class="line">_IO_list_all = fp;</span><br></pre></td></tr></table></figure>
-
-<p>从代码中也可以看出来链表是通过FILE结构体的<code>_chain</code>字段来进行链接的。所以也就形成了链表。</p>
-<p>看到链表的操作，应该就大致猜到了FSOP的主要原理了。即通过伪造<code>_IO_list_all</code>中的节点来实现对FILE链表的控制以实现利用目的。通常来说一般是直接利用任意写的漏洞修改<code>_IO_list_all</code>直接指向可控的地址。</p>
-<p>具体来说该如何利用呢？glibc中有一个函数<code>_IO_flush_all_lockp</code>，该函数的功能是刷新所有FILE结构体的输出缓冲区，相关源码如下，文件在<code>libio\genops</code>中：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span></span><br><span class="line">_IO_flush_all_lockp (<span class="keyword">int</span> do_lock)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> _<span class="title">IO_FILE</span> *<span class="title">fp</span>;</span></span><br><span class="line">  <span class="keyword">int</span> last_stamp;</span><br><span class="line"></span><br><span class="line">  fp = (_IO_FILE *) _IO_list_all;</span><br><span class="line">  <span class="keyword">while</span> (fp != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    ...</span><br><span class="line">      <span class="keyword">if</span> (((fp-&gt;_mode &lt;= <span class="number">0</span> &amp;&amp; fp-&gt;_IO_write_ptr &gt; fp-&gt;_IO_write_base)</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined _LIBC || defined _GLIBCPP_USE_WCHAR_T</span></span><br><span class="line">     || (_IO_vtable_offset (fp) == <span class="number">0</span></span><br><span class="line">         &amp;&amp; fp-&gt;_mode &gt; <span class="number">0</span> &amp;&amp; (fp-&gt;_wide_data-&gt;_IO_write_ptr</span><br><span class="line">            &gt; fp-&gt;_wide_data-&gt;_IO_write_base))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">     )</span><br><span class="line">    &amp;&amp; _IO_OVERFLOW (fp, EOF) == EOF)</span><br><span class="line">  result = EOF;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">  fp = fp-&gt;_chain;</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过对上面代码的分析我们知道fp-&gt;_IO_write_base处保存这输出缓冲区的数据，并且长度为fp-&gt;_IO_write_ptr-fp-&gt;_IO_write_base，所以上面的if语句实际上就是判断缓冲区是否还有数据，如果有的话就会调用_IO_OVERFLOW去清空缓冲区，其中_IO_OVERFLOW是vtable当中的函数，所以我们若是能够控制_IO_list_all的话就可以控制程序执行流。</p>
-<p>而_IO_flush_all_lockp 不需要攻击者手动调用，在一些情况下这个函数会被系统调用：</p>
-<ol>
-<li><p>当 libc 执行 abort 流程时</p>
-</li>
-<li><p>当执行 exit 函数时</p>
-</li>
-<li><p>当执行流从 main 函数返回时</p>
-</li>
-</ol>
-<h3 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h3><p>伪造_IO_FILE结构体，并且利用漏洞使_IO_list_all指向我们伪造的结构体(当然这里我们可以使用任意结构体_chain字段)，最终触发_IO_flush_all_lockp，绕过检查实现执行流的劫持。</p>
-<p>其中需要绕过的也就是上面的缓冲区，所以只需要</p>
-<blockquote>
-<p>fp-&gt;_mode = 0;</p>
-<p>fp-&gt;_IO_write_ptr = 1;</p>
-<p>fp-&gt;_IO_write_base=0;</p>
-</blockquote>
-<p>最后把vtable修改为我们的system就好。</p>
-<h2 id="Glibc2-24到Glibc2-27下的FSOP"><a href="#Glibc2-24到Glibc2-27下的FSOP" class="headerlink" title="Glibc2.24到Glibc2.27下的FSOP"></a>Glibc2.24到Glibc2.27下的FSOP</h2><p>在Glibc2.24下，若是直接同上面的构造方式构造就会出现报错，这是因为在这个版本的Glibc下存在一种保护机制。</p>
-<h3 id="vtable-check机制分析"><a href="#vtable-check机制分析" class="headerlink" title="vtable check机制分析"></a>vtable check机制分析</h3><p>在执行_IO_OVERLOW时，会先执行到IO_validate_vtable函数，这是因为_IO_OVERLOW的宏定义发生了改变</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _IO_OVERFLOW(FP, CH) JUMP1 (__overflow, FP, CH)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> JUMP1(FUNC, THIS, X1) (_IO_JUMPS_FUNC(THIS)-&gt;FUNC) (THIS, X1)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> _IO_JUMPS_FUNC(THIS) \</span></span><br><span class="line"><span class="meta">  (IO_validate_vtable                                                   \</span></span><br><span class="line"><span class="meta">   (*(struct _IO_jump_t **) ((void *) &amp;_IO_JUMPS_FILE_plus (THIS)   \</span></span><br><span class="line"><span class="meta">                 + (THIS)-&gt;_vtable_offset)))</span></span><br></pre></td></tr></table></figure>
-
-<p>可以看到是在最后调用vtable的函数之前调用了IO_validate_vtable函数。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> struct _IO_jump_t *</span></span><br><span class="line"><span class="function"><span class="title">IO_validate_vtable</span> <span class="params">(<span class="keyword">const</span> struct _IO_jump_t *vtable)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">uintptr_t</span> section_length = __stop___libc_IO_vtables - __start___libc_IO_vtables;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *ptr = (<span class="keyword">const</span> <span class="keyword">char</span> *) vtable;</span><br><span class="line">  <span class="keyword">uintptr_t</span> offset = ptr - __start___libc_IO_vtables;</span><br><span class="line">  <span class="keyword">if</span> (__glibc_unlikely (offset &gt;= section_length))</span><br><span class="line">    <span class="comment">/* The vtable pointer is not in the expected section.  Use the</span></span><br><span class="line"><span class="comment">       slow path, which will terminate the process if necessary.  */</span></span><br><span class="line">    _IO_vtable_check ();</span><br><span class="line">  <span class="keyword">return</span> vtable;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上述代码当中，__start___libc_IO_vtables指向了第一个vtable的地址_IO_helper_jumps，__stop___libc_IO_vtables指向了最后一个vtable函数_IO_str_chk_jumps的结束地址。上面检验的就是当前的vtable是否在这两个地址之间。因此，简单的覆盖vtable是无法通过检查的。</p>
-<h3 id="利用方式-1"><a href="#利用方式-1" class="headerlink" title="利用方式"></a>利用方式</h3><p>其实在上述的check机制分析当中还存在一个检查外部vtable是否合法，不过存在的问题是我们无法控制flag，因为其是随机产生的。所以，我们使用的利用方式还是内部的vtable，使用到了vtable是_IO_str_jumps。</p>
-<p>首先观察其源码当中定义的函数表：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IO_jump_t</span> _<span class="title">IO_str_jumps</span> <span class="title">libio_vtable</span> =</span></span><br><span class="line">&#123;</span><br><span class="line">  JUMP_INIT_DUMMY,</span><br><span class="line">  JUMP_INIT(finish, _IO_str_finish),</span><br><span class="line">  JUMP_INIT(overflow, _IO_str_overflow),</span><br><span class="line">  JUMP_INIT(underflow, _IO_str_underflow),</span><br><span class="line">  JUMP_INIT(uflow, _IO_default_uflow),</span><br><span class="line">  JUMP_INIT(pbackfail, _IO_str_pbackfail),</span><br><span class="line">  JUMP_INIT(xsputn, _IO_default_xsputn),</span><br><span class="line">  JUMP_INIT(xsgetn, _IO_default_xsgetn),</span><br><span class="line">  JUMP_INIT(seekoff, _IO_str_seekoff),</span><br><span class="line">  JUMP_INIT(seekpos, _IO_default_seekpos),</span><br><span class="line">  JUMP_INIT(setbuf, _IO_default_setbuf),</span><br><span class="line">  JUMP_INIT(sync, _IO_default_sync),</span><br><span class="line">  JUMP_INIT(doallocate, _IO_default_doallocate),</span><br><span class="line">  JUMP_INIT(read, _IO_default_read),</span><br><span class="line">  JUMP_INIT(write, _IO_default_write),</span><br><span class="line">  JUMP_INIT(seek, _IO_default_seek),</span><br><span class="line">  JUMP_INIT(close, _IO_default_close),</span><br><span class="line">  JUMP_INIT(stat, _IO_default_stat),</span><br><span class="line">  JUMP_INIT(showmanyc, _IO_default_showmanyc),</span><br><span class="line">  JUMP_INIT(imbue, _IO_default_imbue)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>上面是我在Glibc源码当中看到的，下面是我调试出来的：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220223112300491.png"
-                      alt="image-20220223112300491"
-                ></p>
-<p>不过可以看到的是源码中的JUMP_INIT_DUMMY占了16字节。所以_IO_str_finish的偏移量为0x10，而_IO_str_overflow的偏移量为0x18。</p>
-<p>再来看_IO_str_finish的源码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">_IO_str_finish (_IO_FILE *fp, <span class="keyword">int</span> dummy)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_IO_buf_base &amp;&amp; !(fp-&gt;_flags &amp; _IO_USER_BUF))</span><br><span class="line">    (((_IO_strfile *) fp)-&gt;_s._free_buffer) (fp-&gt;_IO_buf_base); </span><br><span class="line">  fp-&gt;_IO_buf_base = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">  _IO_default_finish (fp, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到直接使用了fp-&gt;_s._free_buffer当作函数地址，参数即为_IO_buf_base。到了这一步，利用方式就很明显了。</p>
-<p>下面构造结构体，同样的，我们仍需要绕过之前_IO_flush_all_lokcp函数中的检测，也就是_mode&lt;=0以及_IO_write_ptr&gt;_IO_write_base。然后重点就是vtable的地址我们不能直接的_IO_str_jumps，我们应当写入_IO_str_jumps-8，这里解释一下，因为我们在绕过_IO_flush_all_lokcp的检查后会调用到_IO_OVERFLOW函数，但是我们真正要进入的其实是_IO_str_finish函数，又因为他相对与vtable的偏移量刚好比_IO_OVERFLOW小8个字节，所以减去8即可执行到_IO_str_finish。</p>
-<p>接着问题就是(((_IO_strfile *) fp)-&gt;_s._free_buffer)函数相对于fp的偏移量是多少，调试结果出来发现偏移量是0xe8，最后在fp-&gt;_IO_buf_base的地方写上/bin/sh的地址即可getshell。</p>
-<p>这里给出打包的函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pack_file</span>(<span class="params">_IO_read_base=<span class="number">0</span>, _IO_write_base=<span class="number">0</span>, _IO_write_ptr=<span class="number">0</span>, _IO_buf_base=<span class="number">0</span>, _mode=<span class="number">0</span>, vtable=<span class="number">0</span></span>):</span></span><br><span class="line">    IO_FILE = p64(<span class="number">0</span>)*<span class="number">3</span>+p64(_IO_read_base) + \</span><br><span class="line">        p64(_IO_write_base)+p64(_IO_write_ptr)+p64(<span class="number">0</span>)+p64(_IO_buf_base)</span><br><span class="line">    IO_FILE = IO_FILE.ljust(<span class="number">0xc0</span>, <span class="string">b&#x27;\x00&#x27;</span>)</span><br><span class="line">    IO_FILE += p32(_mode)</span><br><span class="line">    IO_FILE = IO_FILE.ljust(<span class="number">0xd8</span>, <span class="string">b&#x27;\x00&#x27;</span>)+p64(vtable)</span><br><span class="line">    <span class="keyword">return</span> IO_FILE</span><br><span class="line"></span><br><span class="line">file_struct = pack_file(IO_list_all, <span class="number">0</span>, <span class="number">1</span>, bin_sh_addr, <span class="number">0</span>, IO_str_jumps-<span class="number">8</span>)</span><br><span class="line">file_struct += p64(<span class="number">0</span>)+p64(system_addr)</span><br></pre></td></tr></table></figure>
-
-<p>这是我上一篇复现的exp当中的函数，我是根据其他师傅的exp写的，但是这里的_IO_read_base我也没在源码中看到有什么检验，我估计不用加上也行。</p>
-<h2 id="Glibc2-29下的FSOP"><a href="#Glibc2-29下的FSOP" class="headerlink" title="Glibc2.29下的FSOP"></a>Glibc2.29下的FSOP</h2><p>这应该是最后一个可以用FSOP的版本了，在Glibc2.31也会有这方面的使用，不过都不能直接getshell了。</p>
-<p>首先注意的是，我们在上面使用的是_IO_str_finish函数来利用的，但是这里的函数源码发生了改变：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">_IO_str_finish (FILE *fp, <span class="keyword">int</span> dummy)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_IO_buf_base &amp;&amp; !(fp-&gt;_flags &amp; _IO_USER_BUF))</span><br><span class="line">    <span class="built_in">free</span> (fp-&gt;_IO_buf_base);</span><br><span class="line">  fp-&gt;_IO_buf_base = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">  _IO_default_finish (fp, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到这里直接替换成了free，所以我们这里是没有利用空间的了。</p>
-<p>其他师傅的查找发现在_IO_wfile_jumps这个vtable里依旧存在大量的函数指针，而且当中最好利用的则是_IO_wfile_sync函数，一样的先看一下源码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wint_t</span></span><br><span class="line">_IO_wfile_sync (FILE *fp)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">ssize_t</span> delta;</span><br><span class="line">  <span class="keyword">wint_t</span> retval = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*    char* ptr = cur_ptr(); */</span></span><br><span class="line">  <span class="keyword">if</span> (fp-&gt;_wide_data-&gt;_IO_write_ptr &gt; fp-&gt;_wide_data-&gt;_IO_write_base)</span><br><span class="line">    <span class="keyword">if</span> (_IO_do_flush (fp))</span><br><span class="line">      <span class="keyword">return</span> WEOF;</span><br><span class="line">  delta = fp-&gt;_wide_data-&gt;_IO_read_ptr - fp-&gt;_wide_data-&gt;_IO_read_end;</span><br><span class="line">  <span class="keyword">if</span> (delta != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">/* We have to find out how many bytes we have to go back in the</span></span><br><span class="line"><span class="comment">	 external buffer.  */</span></span><br><span class="line">      <span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cv</span> =</span> fp-&gt;_codecvt;</span><br><span class="line">      <span class="keyword">off64_t</span> new_pos;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> clen = (*cv-&gt;__codecvt_do_encoding) (cv);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (clen &gt; <span class="number">0</span>)</span><br><span class="line">	<span class="comment">/* It is easy, a fixed number of input bytes are used for each</span></span><br><span class="line"><span class="comment">	   wide character.  */</span></span><br><span class="line">	delta *= clen;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	  <span class="comment">/* We have to find out the hard way how much to back off.</span></span><br><span class="line"><span class="comment">	     To do this we determine how much input we needed to</span></span><br><span class="line"><span class="comment">	     generate the wide characters up to the current reading</span></span><br><span class="line"><span class="comment">	     position.  */</span></span><br><span class="line">	  <span class="keyword">int</span> nread;</span><br><span class="line"></span><br><span class="line">	  fp-&gt;_wide_data-&gt;_IO_state = fp-&gt;_wide_data-&gt;_IO_last_state;</span><br><span class="line">	  nread = (*cv-&gt;__codecvt_do_length) (cv, &amp;fp-&gt;_wide_data-&gt;_IO_state,</span><br><span class="line">					      fp-&gt;_IO_read_base,</span><br><span class="line">					      fp-&gt;_IO_read_end, delta);</span><br><span class="line">	  fp-&gt;_IO_read_ptr = fp-&gt;_IO_read_base + nread;</span><br><span class="line">	  delta = -(fp-&gt;_IO_read_end - fp-&gt;_IO_read_base - nread);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">      new_pos = _IO_SYSSEEK (fp, delta, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">if</span> (new_pos != (<span class="keyword">off64_t</span>) EOF)</span><br><span class="line">	&#123;</span><br><span class="line">	  fp-&gt;_wide_data-&gt;_IO_read_end = fp-&gt;_wide_data-&gt;_IO_read_ptr;</span><br><span class="line">	  fp-&gt;_IO_read_end = fp-&gt;_IO_read_ptr;</span><br><span class="line">	&#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (errno == ESPIPE)</span><br><span class="line">	; <span class="comment">/* Ignore error from unseekable devices. */</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">	retval = WEOF;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">if</span> (retval != WEOF)</span><br><span class="line">    fp-&gt;_offset = _IO_pos_BAD;</span><br><span class="line">  <span class="comment">/* <span class="doctag">FIXME:</span> Cleanup - can this be shared? */</span></span><br><span class="line">  <span class="comment">/*    setg(base(), ptr, ptr); */</span></span><br><span class="line">  <span class="keyword">return</span> retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以注意到的是这两行代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *<span class="title">cv</span> =</span> fp-&gt;_codecvt;</span><br><span class="line"><span class="keyword">int</span> clen = (*cv-&gt;__codecvt_do_encoding) (cv);</span><br></pre></td></tr></table></figure>
-
-<p>这里又是将fp-&gt;_codecvt-&gt;__codecvt_do_encoding来做为函数来执行，参数则是fp-&gt;_codecvt</p>
-<p>再看_IO_codecvt结构体在源码是什么样子：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">IO_codecvt</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">void</span> (*__codecvt_destr) (struct _IO_codecvt *);</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> __<span class="title">codecvt_result</span> (*__<span class="title">codecvt_do_out</span>) (<span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *,</span></span><br><span class="line"><span class="class">					     __<span class="title">mbstate_t</span> *,</span></span><br><span class="line"><span class="class">					     <span class="title">const</span> <span class="title">wchar_t</span> *,</span></span><br><span class="line"><span class="class">					     <span class="title">const</span> <span class="title">wchar_t</span> *,</span></span><br><span class="line"><span class="class">					     <span class="title">const</span> <span class="title">wchar_t</span> **, <span class="title">char</span> *,</span></span><br><span class="line"><span class="class">					     <span class="title">char</span> *, <span class="title">char</span> **);</span></span><br><span class="line">  <span class="class"><span class="keyword">enum</span> __<span class="title">codecvt_result</span> (*__<span class="title">codecvt_do_unshift</span>) (<span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *,</span></span><br><span class="line"><span class="class">						 __<span class="title">mbstate_t</span> *, <span class="title">char</span> *,</span></span><br><span class="line"><span class="class">						 <span class="title">char</span> *, <span class="title">char</span> **);</span></span><br><span class="line">  <span class="class"><span class="keyword">enum</span> __<span class="title">codecvt_result</span> (*__<span class="title">codecvt_do_in</span>) (<span class="keyword">struct</span> _<span class="title">IO_codecvt</span> *,</span></span><br><span class="line"><span class="class">					    __<span class="title">mbstate_t</span> *,</span></span><br><span class="line"><span class="class">					    <span class="title">const</span> <span class="title">char</span> *, <span class="title">const</span> <span class="title">char</span> *,</span></span><br><span class="line"><span class="class">					    <span class="title">const</span> <span class="title">char</span> **, <span class="title">wchar_t</span> *,</span></span><br><span class="line"><span class="class">					    <span class="title">wchar_t</span> *, <span class="title">wchar_t</span> **);</span></span><br><span class="line">  <span class="keyword">int</span> (*__codecvt_do_encoding) (struct _IO_codecvt *);</span><br><span class="line">  <span class="keyword">int</span> (*__codecvt_do_always_noconv) (struct _IO_codecvt *);</span><br><span class="line">  <span class="keyword">int</span> (*__codecvt_do_length) (struct _IO_codecvt *, <span class="keyword">__mbstate_t</span> *,</span><br><span class="line">			      <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</span><br><span class="line">  <span class="keyword">int</span> (*__codecvt_do_max_length) (struct _IO_codecvt *);</span><br><span class="line"></span><br><span class="line">  _IO_iconv_t __cd_in;</span><br><span class="line">  _IO_iconv_t __cd_out;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到这里的__codecvt_do_encoding偏移量为4，所以要进行利用只需要满足以下条件：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.f</span>p-&gt;_wide_data-&gt;_IO_write_ptr &gt; fp-&gt;_wide_data-&gt;_IO_write_base</span><br><span class="line"><span class="number">2.f</span>p-&gt;_wide_data-&gt;_IO_read_ptr - fp-&gt;_wide_data-&gt;_IO_read_end</span><br><span class="line"><span class="number">3.</span>*(fp-&gt;_codecvt+<span class="number">4</span>)=func,参数就是fp-&gt;_codecvt</span><br></pre></td></tr></table></figure>
-
-<p>当然，我们这里依旧需要绕过_IO_flush_all_lokcp函数。</p>
-<p>后面会在梳理house_of_pig也就是在Glibc2.31下的利用。</p>
-<hr>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a class="link"   target="_blank" rel="noopener" href="https://darkeyer.github.io/2020/08/17/FSOP%E5%9C%A8glibc2.29%E4%B8%AD%E7%9A%84%E5%88%A9%E7%94%A8/" >https://darkeyer.github.io/2020/08/17/FSOP%E5%9C%A8glibc2.29%E4%B8%AD%E7%9A%84%E5%88%A9%E7%94%A8/<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://xz.aliyun.com/t/5579" >https://xz.aliyun.com/t/5579<i class="fas fa-external-link-alt"></i></a></p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/02/23/largebin-attack/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">largebin attack</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/02/22/VN2022%E5%A4%8D%E7%8E%B0-FShuiMaster/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">VN2022复现_FShuiMaster</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
+    +keep-mobile() {
+      font-size: $article-title-font-size * 0.8;
+    }
+  }
 
 
+  .article-header {
+    position: relative;
+    padding-left: $avatarWidth;
+    width: 100%;
+    height: $avatarWidth;
+    box-sizing: border-box;
 
-        
-    
-</div>
+    .avatar {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: $avatarWidth;
+      height: $avatarWidth;
+      padding: 1px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
 
-            </div>
-        
-    </div>
-</div>
+      img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: var(--avatar-background-color);
+      }
+
+    }
+
+
+    .info {
+      padding: 2px 0;
+      margin-left: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+
+      .author {
+        font-weight: 600;
+        font-size: 1.18rem;
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: var(--default-text-color);
+        }
+
+        .author-label {
+          margin-left: 10px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: #fff;
+          background: var(--selection-color);
+        }
+
+      }
+    }
+
+  }
+
+
+  .article-header, .article-header-meta-info {
+    margin-top: 16px;
+    +keep-tablet() {
+      transform: scale(0.9);
+      transform-origin: left top;
+    }
+  }
+
+
+  .article-content {
+    margin-top: $component-spacing-value;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--default-text-color);
+  }
+
+  .post-copyright-info {
+    margin-top: $component-spacing-value;
+    width: 100%;
+  }
+
+  .article-nav {
+    height: 40px;
+    margin-top: $component-spacing-value;
+
+    .article-prev, .article-next {
+      max-width: $post-nav-max-width;
+      height: 100%;
+      box-sizing: border-box;
+
+      keep-container(true, 1.03, 1.03, 10px, 0);
+
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &.prev {
+          padding-left: $arrow-icon-width;
+        }
+
+        &.next {
+          padding-right: $arrow-icon-width;
+        }
+
+        .arrow-icon {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: $arrow-icon-width;
+
+          &.left {
+            left: 0;
+          }
+
+          &.right {
+            right: 0;
+          }
+        }
+
+        .title {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+
+    .article-prev {
+      float: left;
+    }
+
+    .article-next {
+      float: right;
+    }
+
+    .post-nav-item {
+      display: none;
+
+      +keep-tablet() {
+        display: inline-block;
+      }
+
+    }
+
+
+    .post-nav-title-item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      +keep-tablet() {
+        display: none;
+      }
+    }
+
+  }
+
+
+}
+
 
 
                 
