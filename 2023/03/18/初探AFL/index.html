@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            FUZZ(1):初探AFL |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">FUZZ(1):初探AFL</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-03-18 14:32:59
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/FUZZ/">FUZZ</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AFL/">AFL</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/FUZZ/">FUZZ</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本篇文章主要是为王鼎杯线下赛做准备，不会涉及到AFL的原理，主要的方向为AFL的使用。</p>
+<h2 id="AFL-FUZZ介绍"><a href="#AFL-FUZZ介绍" class="headerlink" title="AFL-FUZZ介绍"></a>AFL-FUZZ介绍</h2><p>AFL则是fuzzing的一个很好用的工具，全称是American Fuzzy Lop，由Google安全工程师Michał Zalewski开发的一款开源fuzzing测试工具，可以高效地对二进制程序进行fuzzing，挖掘可能存在的内存安全漏洞，如栈溢出、堆溢出、UAF、double free等。由于需要在相关代码处插桩，因此AFL主要用于对开源软件进行测试。当然配合QEMU等工具，也可对闭源二进制代码进行fuzzing，但执行效率会受到影响。</p>
+<h2 id="白盒下的FUZZ"><a href="#白盒下的FUZZ" class="headerlink" title="白盒下的FUZZ"></a>白盒下的FUZZ</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span> </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">vuln</span><span class="params">(<span class="keyword">char</span> *str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">if</span>(str[<span class="number">0</span>] == <span class="string">&#x27;A&#x27;</span> &amp;&amp; len == <span class="number">66</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        raise(SIGSEGV);</span><br><span class="line">        <span class="comment">//如果输入的字符串的首字符为A并且长度为66，则异常退出</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(str[<span class="number">0</span>] == <span class="string">&#x27;F&#x27;</span> &amp;&amp; len == <span class="number">6</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        raise(SIGSEGV);</span><br><span class="line">        <span class="comment">//如果输入的字符串的首字符为F并且长度为6，则异常退出</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;it is good!\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">100</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    gets(buf);<span class="comment">//存在栈溢出漏洞</span></span><br><span class="line">    <span class="built_in">printf</span>(buf);<span class="comment">//存在格式化字符串漏洞</span></span><br><span class="line">    vuln(buf);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大概流程：</p>
+<p>首先是用afl-gcc编译源代码进行插桩，然后以测试文件为输入，然后启动afl-fuzz程序，将testcase作为程序的输入执行程序，afl会在这个testcase的基础上进行自动变异输入，使得程序产生crash，产生了crash就会被记录起来</p>
+<h3 id="编译插桩"><a href="#编译插桩" class="headerlink" title="编译插桩"></a>编译插桩</h3><p>首先是面对上面这类小文件时采取的方法就是直接进行编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-gcc -g -o <span class="built_in">test</span> test.c</span><br></pre></td></tr></table></figure>
+
+<p>但是面对编译项目时，大多会使用到Makefile。如果存在configure的话肯定是可以在里面直接进行修改，如果没有的话可以直接修改Makefile或者添加以下内容:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CC=/path/to/afl/afl-gcc</span><br><span class="line">CXX=/path/to/afl/afl-g++</span><br></pre></td></tr></table></figure>
+
+<p> 当然面对clang或者clang++的话也是一样的。</p>
+<h3 id="开始FUZZ"><a href="#开始FUZZ" class="headerlink" title="开始FUZZ"></a>开始FUZZ</h3><p>对那些可以直接从stdin读取输入的目标程序来说，语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./afl-fuzz -i testcase_dir -o findings_dir /path/to/program […params…]</span><br></pre></td></tr></table></figure>
+
+<p>对从文件读取输入的目标程序来说，要用“@@”，语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./afl-fuzz -i testcase_dir -o findings_dir /path/to/program @@</span><br></pre></td></tr></table></figure>
+
+<p>而对于这里命令为:<code>afl-fuzz -i input_dir -o output_dir ./test</code></p>
+<p>其中-i选项时输入测试文件的目录，-o选项时输出结果文件的目录。</p>
+<p>对于这个简单的例子，测试文件只需要随便输入点东西就行，这里选择输入<code>hello</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230318133051229.png"
+                      alt="image-20230318133051229"
+                >一般会出现上图中的问题，解决办法就是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="built_in">echo</span> core &gt;/proc/sys/kernel/core_pattern</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230318134324644.png"
+                      alt="image-20230318134324644"
+                ></p>
+<p>上图就是AFL的界面，上面的内容根据前面的注释基本可以猜出来一二，不过跑了十分钟只跑出了五处crash就挺离谱的，这个跑的结果与testcase和电脑性能以及运气都有一定关系。</p>
+<h3 id="分析crashes"><a href="#分析crashes" class="headerlink" title="分析crashes"></a>分析crashes</h3><h4 id="id-000000-sig-06-src-000001-op-havoc-rep-128样例"><a href="#id-000000-sig-06-src-000001-op-havoc-rep-128样例" class="headerlink" title="id:000000,sig:06,src:000001,op:havoc,rep:128样例"></a><strong>id:000000,sig:06,src:000001,op:havoc,rep:128样例</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  crashes xxd id:000000,sig:06,src:000001,op:havoc,rep:128 </span><br><span class="line">00000000: 8001 8001 92a8 c3e4 c3c3 c3fa c3ea e4c3  ................</span><br><span class="line">00000010: c3c3 fac3 ea04 2310 0423 1000 1010 0000  ......<span class="comment">#..#......</span></span><br><span class="line">00000020: 9b00 1000 009b 0100 f5f5 0423 1000 1010  ...........<span class="comment">#....</span></span><br><span class="line">00000030: 0000 9b00 1000 009b 0100 f5f5 f5f5 f5f5  ................</span><br><span class="line">00000040: f5f5 f5f5 f5f5 f5f5 f5f5 00fa 0423 1000  .............<span class="comment">#..</span></span><br><span class="line">00000050: 1000 0000 20f5 0064 1000 009b 0010 0000  .... ..d........</span><br><span class="line">00000060: 9b01 0001 92fa 0023 1000 1000 0003 2300  .......<span class="comment">#......#.</span></span><br><span class="line">00000070: 6410 0000 9b15                           d.....</span><br></pre></td></tr></table></figure>
+
+<p>可以猜测为栈溢出</p>
+<h4 id="id-000001-sig-06-src-000001-op-havoc-rep-128样例"><a href="#id-000001-sig-06-src-000001-op-havoc-rep-128样例" class="headerlink" title="id:000001,sig:06,src:000001,op:havoc,rep:128样例"></a><strong>id:000001,sig:06,src:000001,op:havoc,rep:128样例</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  crashes xxd id:000001,sig:06,src:000001,op:havoc,rep:128 </span><br><span class="line">00000000: 7fb8 b7b8 207f 0001 7fb7 f9ff ffff f9ff  .... ...........</span><br><span class="line">00000010: ffff ff17 ffff ffff 7f7f 7fb7 f9ff ffff  ................</span><br><span class="line">00000020: f9ff ffff ff17 ffff ffff e0ff b8ff ffdd  ................</span><br><span class="line">00000030: b8b7 b8da 8008 00f9 fa00 00f9 f087 8080  ................</span><br><span class="line">00000040: 80ff f9ff ffff ff17 ffff ffff 7f7f 7fb7  ................</span><br><span class="line">00000050: f9ff ffff f9ff ffff ff17 ffff ffff ff80  ................</span><br><span class="line">00000060: 69b8 00d8 bdda 80b8 00d8 bdda ff7f 7fb8  i...............</span><br></pre></td></tr></table></figure>
+
+<p>一样的应该也是栈溢出导致的</p>
+<h4 id="id-000002-sig-11-src-000000-op-flip1-pos-1样例"><a href="#id-000002-sig-11-src-000000-op-flip1-pos-1样例" class="headerlink" title="id:000002,sig:11,src:000000,op:flip1,pos:1样例"></a><strong>id:000002,sig:11,src:000000,op:flip1,pos:1样例</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  crashes xxd id:000002,sig:11,src:000000,op:flip1,pos:1  </span><br><span class="line">00000000: 7425 7374                                t%st</span><br></pre></td></tr></table></figure>
+
+<p>这里应该是格式化字符串漏洞引起的crash</p>
+<h4 id="id-000003-sig-11-src-000000-op-havoc-rep-64样例"><a href="#id-000003-sig-11-src-000000-op-havoc-rep-64样例" class="headerlink" title="id:000003,sig:11,src:000000,op:havoc,rep:64样例"></a><strong>id:000003,sig:11,src:000000,op:havoc,rep:64样例</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  crashes xxd id:000003,sig:11,src:000000,op:havoc,rep:64 </span><br><span class="line">00000000: 4662 4062 4040 0000 8040 7f40 1000 4040  Fb@b@@...@.@..@@</span><br><span class="line">00000010: 6240 4000 7740 407f 4040 8040 403f 6565  b@@.w@@.@@.@@?ee</span><br><span class="line">00000020: 6565 4044 4040 3340 403f 6565 6565 4040  ee@D@@3@@?eeee@@</span><br><span class="line">00000030: 4040 3340 4040 4040 40                   @@3@@@@@@</span><br></pre></td></tr></table></figure>
+
+<p>这里应该是以F开头且长度为6引起的crash</p>
+<h4 id="id-000004-sig-11-src-000002-op-havoc-rep-8样例"><a href="#id-000004-sig-11-src-000002-op-havoc-rep-8样例" class="headerlink" title="id:000004,sig:11,src:000002,op:havoc,rep:8样例"></a><strong>id:000004,sig:11,src:000002,op:havoc,rep:8样例</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  crashes xxd id:000004,sig:11,src:000002,op:havoc,rep:8  </span><br><span class="line">00000000: 4141 4141 4141 4141 4141 4141 4141 4141  AAAAAAAAAAAAAAAA</span><br><span class="line">00000010: 4141 4141 1e41 4141 4141 4141 4141 4132  AAAA.AAAAAAAAAA2</span><br><span class="line">00000020: 4141 4141 4141 1e41 4141 4141 4141 4141  AAAAAA.AAAAAAAAA</span><br><span class="line">00000030: 4141 4141 4141 4141 4141 4141 412a 4134  AAAAAAAAAAAAA*A4</span><br><span class="line">00000040: 41b8                                     A.</span><br></pre></td></tr></table></figure>
+
+<p>这里应该是以A开头并且长度为66引起的crash</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>可以看到上面五个样例基本覆盖了源码中存在的漏洞。</p>
+<h2 id="黑盒下的FUZZ"><a href="#黑盒下的FUZZ" class="headerlink" title="黑盒下的FUZZ"></a>黑盒下的FUZZ</h2><blockquote>
+<p>  黑盒模式需要使用qemu_mode，所以最好从开始就使用源码进行编译，这里可能会出现很多问题，大多都可以在网上搜到解决办法</p>
+</blockquote>
+<p>这里直接使用以下命令进行编译。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -g ./test.c -o <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="开始FUZZ-1"><a href="#开始FUZZ-1" class="headerlink" title="开始FUZZ"></a>开始FUZZ</h3><p>这里的FUZZ选项略有不同，需要加上-Q选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i ./input_dir -o ./output_dir -Q ./<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230318141300808.png"
+                      alt="image-20230318141300808"
+                ></p>
+<p>虽然可以看到这里被保存的crashes有6个，比上面的还多一个，但是看total crashes远远少于上面的。可以看出来用qemu的性能远远小于插桩的。</p>
+<p>这里就不再分析输出的crashes文件了。</p>
+<h2 id="文件读取输入的情况"><a href="#文件读取输入的情况" class="headerlink" title="文件读取输入的情况"></a>文件读取输入的情况</h2><p>首先做以下准备</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  input_dir mkdir file</span><br><span class="line">➜  input_dir cp ../../testcases/others/elf/small_exec.elf ./file</span><br><span class="line">➜  afl_test cp /usr/bin/readelf ./</span><br></pre></td></tr></table></figure>
+
+<p>随后直接进行fuzz</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">../afl-fuzz -i ./input_dir/file -o ./output_dir -Q ./readelf -a @@</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230318142936126.png"
+                      alt="image-20230318142936126"
+                >跑了十分钟一次crash都没有的，当然跑再久应该也是一样的，这里就不再继续跑了。</p>
+<hr>
+<p>参考资料:<br>    <a class="link"   target="_blank" rel="noopener" href="https://xz.aliyun.com/t/4314" >https://xz.aliyun.com/t/4314<i class="fas fa-external-link-alt"></i></a><br>    <a class="link"   target="_blank" rel="noopener" href="https://www.cjovi.icu/fuzzing/1138.html" >https://www.cjovi.icu/fuzzing/1138.html<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/03/15/q-escape/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">q-escape</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AFL-FUZZ%E4%BB%8B%E7%BB%8D"><span class="nav-text">AFL-FUZZ介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BD%E7%9B%92%E4%B8%8B%E7%9A%84FUZZ"><span class="nav-text">白盒下的FUZZ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%8F%92%E6%A1%A9"><span class="nav-text">编译插桩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8BFUZZ"><span class="nav-text">开始FUZZ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90crashes"><span class="nav-text">分析crashes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#id-000000-sig-06-src-000001-op-havoc-rep-128%E6%A0%B7%E4%BE%8B"><span class="nav-text">id:000000,sig:06,src:000001,op:havoc,rep:128样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-000001-sig-06-src-000001-op-havoc-rep-128%E6%A0%B7%E4%BE%8B"><span class="nav-text">id:000001,sig:06,src:000001,op:havoc,rep:128样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-000002-sig-11-src-000000-op-flip1-pos-1%E6%A0%B7%E4%BE%8B"><span class="nav-text">id:000002,sig:11,src:000000,op:flip1,pos:1样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-000003-sig-11-src-000000-op-havoc-rep-64%E6%A0%B7%E4%BE%8B"><span class="nav-text">id:000003,sig:11,src:000000,op:havoc,rep:64样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-000004-sig-11-src-000002-op-havoc-rep-8%E6%A0%B7%E4%BE%8B"><span class="nav-text">id:000004,sig:11,src:000002,op:havoc,rep:8样例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%91%E7%9B%92%E4%B8%8B%E7%9A%84FUZZ"><span class="nav-text">黑盒下的FUZZ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8BFUZZ-1"><span class="nav-text">开始FUZZ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E8%BE%93%E5%85%A5%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">文件读取输入的情况</span></a>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
