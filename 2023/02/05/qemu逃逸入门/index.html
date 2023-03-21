@@ -384,7 +384,7 @@
                       alt="image-20230205170230132"
                 ></p>
 <p>调试脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo gdb \</span><br><span class="line">-ex <span class="string">&quot;file qemu-system-x86_64&quot;</span> \</span><br><span class="line">-ex <span class="string">&quot;attach <span class="variable">$1</span>&quot;</span> \</span><br><span class="line">-ex <span class="string">&quot;b*\$rebase(0x284191)&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">pid=`ps -aux | grep <span class="string">&quot;qemu-system-x86_64&quot;</span> | grep -v <span class="string">&quot;grep&quot;</span> | awk <span class="string">&#x27;&#123;print($2)&#125;&#x27;</span>`</span><br><span class="line"></span><br><span class="line">sudo gdb \</span><br><span class="line">-ex <span class="string">&quot;file qemu-system-x86_64&quot;</span> \</span><br><span class="line">-ex <span class="string">&quot;attach <span class="variable">$pid</span>&quot;</span> \</span><br><span class="line">-ex <span class="string">&quot;b*\$rebase(0x284191)&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p><img  
                      lazyload
