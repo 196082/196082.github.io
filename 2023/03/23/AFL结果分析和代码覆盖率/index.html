@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            FUZZ(2):AFL结果分析和代码覆盖率 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">FUZZ(2):AFL结果分析和代码覆盖率</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-03-23 21:47:34
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/FUZZ/">FUZZ</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AFL/">AFL</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/FUZZ/">FUZZ</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>本来不打算做AFL的源码分析，但是看到了一篇文章吸引到了我，当然这篇文章还是不会涉及到源码分析，在后续的FUZZ相关文章中会进行进一步分析。</p>
+<h2 id="fuzzer工作状态"><a href="#fuzzer工作状态" class="headerlink" title="fuzzer工作状态"></a>fuzzer工作状态</h2><p>首先可以查看在<code>output</code>目录下的<code>fuzzer_state</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">➜  afl-2.52b cat ./afl_test/output_dir/fuzzer_stats</span><br><span class="line">start_time        : 1679542022</span><br><span class="line">last_update       : 1679542022</span><br><span class="line">fuzzer_pid        : 541718</span><br><span class="line">cycles_done       : 0</span><br><span class="line">execs_done        : 24</span><br><span class="line">execs_per_sec     : 387.10</span><br><span class="line">paths_total       : 3</span><br><span class="line">paths_favored     : 2</span><br><span class="line">paths_found       : 0</span><br><span class="line">paths_imported    : 0</span><br><span class="line">max_depth         : 1</span><br><span class="line">cur_path          : 0</span><br><span class="line">pending_favs      : 2</span><br><span class="line">pending_total     : 3</span><br><span class="line">variable_paths    : 0</span><br><span class="line">stability         : 100.00%</span><br><span class="line">bitmap_cvg        : 0.05%</span><br><span class="line">unique_crashes    : 0</span><br><span class="line">unique_hangs      : 0</span><br><span class="line">last_path         : 0</span><br><span class="line">last_crash        : 0</span><br><span class="line">last_hang         : 0</span><br><span class="line">execs_since_crash : 24</span><br><span class="line">exec_timeout      : 20</span><br><span class="line">afl_banner        : <span class="built_in">test</span></span><br><span class="line">afl_version       : 2.52b</span><br><span class="line">target_mode       : qemu </span><br><span class="line">command_line      : ./afl-fuzz -i ./afl_test/input_dir -o ./afl_test/output_dir -Q ./afl_test/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>不过这里我在运行时cat几次内容都没有发生变化所以我猜测应该是运行开始时产生，运行结束时才修改内容。那么如果想要实时的查看运行情况的话可以用<code>afl-whatsup</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">➜  afl-2.52b ./afl-whatsup ./afl_test</span><br><span class="line">status check tool <span class="keyword">for</span> afl-fuzz by &lt;lcamtuf@google.com&gt;</span><br><span class="line"></span><br><span class="line">Individual fuzzers</span><br><span class="line">==================</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; <span class="built_in">test</span> (0 days, 0 hrs) &lt;&lt;&lt;</span><br><span class="line"></span><br><span class="line">  <span class="string">cycle 1, lifetime speed 2 execs/sec, path 0/3 (0%)</span></span><br><span class="line"><span class="string">  pending 2/3, coverage 0.05%, no crashes yet</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Summary stats</span></span><br><span class="line"><span class="string">=============</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       Fuzzers alive : 1</span></span><br><span class="line"><span class="string">      Total run time : 0 days, 0 hours</span></span><br><span class="line"><span class="string">         Total execs : 0 million</span></span><br><span class="line"><span class="string">    Cumulative speed : 2 execs/sec</span></span><br><span class="line"><span class="string">       Pending paths : 2 faves, 3 total</span></span><br><span class="line"><span class="string">       Crashes found : 0 locally unique</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">➜  afl-2.52b ./afl-whatsup ./afl_test</span></span><br><span class="line"><span class="string">status check tool for afl-fuzz by &lt;lcamtuf@google.com&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Individual fuzzers</span></span><br><span class="line"><span class="string">==================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt;&gt;&gt; test (0 days, 0 hrs) &lt;&lt;&lt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  cycle</span> 96, lifetime speed 1480 execs/sec, path 3/4 (75%)</span><br><span class="line">  pending 0/0, coverage 0.05%, crash count 3 (!)</span><br><span class="line"></span><br><span class="line">Summary stats</span><br><span class="line">=============</span><br><span class="line"></span><br><span class="line">       Fuzzers alive : 1</span><br><span class="line">      Total run time : 0 days, 0 hours</span><br><span class="line">         Total execs : 0 million</span><br><span class="line">    Cumulative speed : 1480 execs/sec</span><br><span class="line">       Pending paths : 0 faves, 0 total</span><br><span class="line">       Crashes found : 3 locally unique</span><br></pre></td></tr></table></figure>
+
+<p>虽然但是，我感觉我这里好像使用有问题，但是先不管那么多了。</p>
+<p>再简单介绍一下<code>afl-plot</code>，这个工具总结出来的内容更为直观，可以直接图形化显示。这里存在一定依赖问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install gnuplot</span><br><span class="line">afl-plot afl_state_dir graph_output_dir</span><br></pre></td></tr></table></figure>
+
+<p>下面就是输出出来的结果，但是不知道为什么这里的<code>total paths</code>没有显示，我猜测可能是因为这里不是使用<code>afl-gcc</code>进行编译或者就是我的电脑性能太拉了。这里的<code>uniq crashes</code>开始在增加随后逐渐趋于平稳。最后一个就是执行速度，随着时间的推移也是越来越慢了，当然也可能是因为占用了太多的系统资源。<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323142824705.png"
+                      alt="image-20230323142824705"
+                ></p>
+<p>然后再说说pythia插件吧，这个插件可以看到发现新的crash和path的概率。他与原版也只是差了几个字段。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323153710947.png"
+                      alt="image-20230323153710947"
+                ></p>
+<p>这里在<code>process timing</code>里面框中出现了两个新的字段分别是<code>correctiness</code>和<code>fuzzability</code>，他们的含义分别是在没有发现crash时，发现一个导致crash输入的概率，表示在该程序中发现新路径的难度，该数值越高代表程序越容易Fuzz。在<code>overall results</code>框中也多了两个，第一个是当前发现的路径，一个是路径覆盖率。</p>
+<h2 id="何时关闭fuzz"><a href="#何时关闭fuzz" class="headerlink" title="何时关闭fuzz"></a>何时关闭fuzz</h2><p>用过就能知道的是fuzz其实是无限执行下去的，这里可以用上面的几种方法来观察是否该结束，当然这里也可以直接在原始的AFL中看到何时该结束，注意这里<code>cycles done</code>的颜色，在fuzz的过程中这个颜色是一直会变化的，可以看到上面的图中颜色为紫色，这里为蓝色。所以他的变化顺序为紫色-&gt;黄色-&gt;蓝色-&gt;绿色，当为绿色是就代表很难再找到新的crash了，而这个时候就可以结束了。(下图为蓝色主要是受我电脑性能影响的)<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323140202009.png"
+                      alt="image-20230323140202009"
+                ></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  output_dir tree</span><br><span class="line">.</span><br><span class="line">├── crashes</span><br><span class="line">│   ├── id:000000,sig:06,src:000001,op:havoc,rep:64</span><br><span class="line">│   ├── id:000001,sig:11,src:000000,op:flip1,pos:1</span><br><span class="line">│   ├── id:000002,sig:11,src:000000,op:havoc,rep:16</span><br><span class="line">│   └── README.txt</span><br><span class="line">├── fuzz_bitmap</span><br><span class="line">├── fuzzer_stats</span><br><span class="line">├── hangs</span><br><span class="line">├── plot_data</span><br><span class="line">└── queue</span><br><span class="line">    ├── id:000000,orig:in.txt</span><br><span class="line">    ├── id:000001,orig:in1.txt</span><br><span class="line">    ├── id:000002,orig:in2.txt</span><br><span class="line">    └── id:000003,src:000001,op:arith8,pos:0,val:-27,+cov</span><br></pre></td></tr></table></figure>
+
+<p>queue：存放所有具有独特执行路径的测试用例。<br>crashes：导致目标接收致命signal而崩溃的独特测试用例。<br>crashes/README.txt：保存了目标执行这些crash文件的命令行参数。<br>hangs：导致目标超时的独特测试用例。<br>fuzzer_stats：afl-fuzz的运行状态。<br>plot_data：用于afl-plot绘图。</p>
+<h2 id="处理测试结果"><a href="#处理测试结果" class="headerlink" title="处理测试结果"></a>处理测试结果</h2><p>这里只介绍两种方式，一是<code>crashwalk</code>再就是<code>afl-collect</code></p>
+<h3 id="crashwalk"><a href="#crashwalk" class="headerlink" title="crashwalk"></a>crashwalk</h3><p>安装过程这里就不再说了，网上很多，搜搜就有。</p>
+<p>首先这个有两种模式，一是<code>Manual Mode</code>其次就是<code>AFL Mode</code>，他们的命令新式分别如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~/tools/go/bin/cwtriage -root syncdir/fuzzer1/crashes/ -match id -- ~/parse @@</span><br><span class="line">~/tools/go/bin/cwtriage -root syncdir -afl</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323190851304.png"
+                      alt="image-20230323190851304"
+                ></p>
+<p>这里使用的是第一种方式(用AFL时我这里会出现无法<code>no crash detected</code>错误)。</p>
+<p>可以看到这里的描述中写上了栈溢出漏洞。</p>
+<h3 id="afl-collect"><a href="#afl-collect" class="headerlink" title="afl-collect"></a>afl-collect</h3><p>这个工具使用命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ./afl-collect -j 8 -d crashes.db -e gdb_script ./afl_sync_dir ./collection_dir --  /path/to/target --target-opts</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323195200830.png"
+                      alt="image-20230323195200830"
+                ></p>
+<p>结果比上面的更为直观。</p>
+<h2 id="代码覆盖率"><a href="#代码覆盖率" class="headerlink" title="代码覆盖率"></a>代码覆盖率</h2><p>代码覆盖率是模糊测试中一个极其重要的概念，使用代码覆盖率可以评估和改进测试过程，执行到的代码越多，找到bug的可能性就越大，毕竟，在覆盖的代码中并不能100%发现bug，在未覆盖的代码中却是100%找不到任何bug的，所以本节中就将详细介绍代码覆盖率的相关概念。</p>
+<p>代码覆盖率是一种度量代码的覆盖程度的方式，也就是指源代码中的某行代码是否已执行；对二进制程序，还可将此概念理解为汇编代码中的某条指令是否已执行。其计量方式很多，但无论是GCC的GCOV还是LLVM的SanitizerCoverage，都提供函数（function）、基本块（basic-block）、边界（edge）三种级别的覆盖率检测，更具体的细节可以参考LLVM的<a class="link"   target="_blank" rel="noopener" href="https://clang.llvm.org/docs/SanitizerCoverage.html" >官方文档<i class="fas fa-external-link-alt"></i></a>。</p>
+<h3 id="基本块"><a href="#基本块" class="headerlink" title="基本块"></a>基本块</h3><blockquote>
+<p>只有一个入口点，BB中的指令不是任何<strong>跳转指令</strong>的目标。</p>
+<p>只有一个退出点，只有最后一条指令使执行流程转移到另一个BB</p>
+</blockquote>
+<p>如下图中的代码就可以被切割为4个基本块，平时我们在IDA图形模式中看到的就是一个一个的基本块<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/1552285577000-006tNc79gy1fz1gm5zohnj30sj0ikahx.jpg-w331s.jpg"
+                     
+                ></p>
+<p>拿一个程序举例，在ida中每一块就代表一个基本块。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323200531347.png"
+                      alt="image-20230323200531347"
+                ></p>
+<h3 id="边"><a href="#边" class="headerlink" title="边"></a>边</h3><p>依旧是上面ida的图，每一条线，也就是每一个箭头就代表一个边。</p>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>在AFL中，使用二元组(branch_src, branch_dst)来记录<strong>当前基本块</strong> + <strong>前一基本块</strong>的信息，从而获取目标的执行流程和代码覆盖情况，伪代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cur_location = &lt;COMPILE_TIME_RANDOM&gt;;            <span class="comment">//用一个随机数标记当前基本块</span></span><br><span class="line">shared_mem[cur_location ^ prev_location]++;        <span class="comment">//将当前块和前一块异或保存到shared_mem[]</span></span><br><span class="line">prev_location = cur_location &gt;&gt; <span class="number">1</span>;                <span class="comment">//cur_location右移1位区分从当前块到当前块的转跳</span></span><br></pre></td></tr></table></figure>
+
+<p>实际插入的汇编代码，如下图所示，首先保存各种寄存器的值并设置rcx，然后调用<code>__afl_maybe_log</code>，这个方法的内容相当复杂，这里就不展开讲了，但其主要功能就和上面的伪代码相似，用于记录覆盖率，放入一块共享内存中。<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323200655405.png"
+                      alt="image-20230323200655405"
+                ></p>
+<h2 id="计算代码覆盖率"><a href="#计算代码覆盖率" class="headerlink" title="计算代码覆盖率"></a>计算代码覆盖率</h2><p>这里计算代码覆盖率主要是介绍两个工具，一是GCOV另一个则是LCOV它是GCOV的前端。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323214327472.png"
+                      alt="image-20230323214327472"
+                ></p>
+<p>可以看到这里有覆盖率之类的东西，当然也可以在网页中打开</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323214409463.png"
+                      alt="image-20230323214409463"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230323214533298.png"
+                      alt="image-20230323214533298"
+                ></p>
+<p>点开文件会有更为详细的数据，每行代码前的数字代表被执行的次数，其中红色的代表未执行过的。</p>
+<hr>
+<p>参考链接:<br>    <a class="link"   target="_blank" rel="noopener" href="https://paper.seebug.org/842/#4-afl-collect" >https://paper.seebug.org/842/#4-afl-collect<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/03/22/house-of-snake/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">house of snake</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fuzzer%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="nav-text">fuzzer工作状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E5%85%B3%E9%97%ADfuzz"><span class="nav-text">何时关闭fuzz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="nav-text">处理测试结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#crashwalk"><span class="nav-text">crashwalk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#afl-collect"><span class="nav-text">afl-collect</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87"><span class="nav-text">代码覆盖率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%9D%97"><span class="nav-text">基本块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9"><span class="nav-text">边</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%BB%84"><span class="nav-text">元组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87"><span class="nav-text">计算代码覆盖率</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
