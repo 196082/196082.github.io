@@ -151,6 +151,69 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/09/06/kernel%E5%A0%86%E5%8D%A0%E4%BD%8D/">
+                        kernel堆占位
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        关于userfaultfd这里就不再提及了，不熟悉的可以看一下上一篇文章 https://cv196082.gitee.io/2022/08/16/userfaultfd/ 
+setxattrsetxattr这个系统调用是非常独特的，在kernel的...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Sep 06 2022 19:55:19 GMT+0800">2022-09-06</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/userfaultfd/">userfaultfd</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/setxattr/">setxattr</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/09/06/kernel%E5%A0%86%E5%8D%A0%E4%BD%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/08/16/userfaultfd/">
                         userfaultfd利用
                     </a>
@@ -244,12 +307,12 @@
                     
                         <li>
                             
-                            <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
+                            <a href="/tags/modify-ldt/">modify_ldt</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/modify-ldt/">modify_ldt</a>&nbsp;
+                            <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
                         </li>
                     
                         <li>
@@ -648,59 +711,6 @@ LLVM PA...
     </div>
 
     <a href="/2022/07/26/house-of-apple/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/06/18/exit-hook/">
-                        exit_hook
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        众所周知的俩hook在glibc2.34移除了，不过exit_hook好像在这个版本的glibc表现得也不是很佳，不过在近期遇到的两道题目都需要用到这方面的知识所以来补了。
-exit_hook首先呢，程序正常退出以及使用exit函数都会调用exit所...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Jun 18 2022 15:27:49 GMT+0800">2022-06-18</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/pwn/">pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%A0%86%E5%88%A9%E7%94%A8/">堆利用</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/06/18/exit-hook/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
