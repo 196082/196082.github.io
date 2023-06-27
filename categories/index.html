@@ -148,7 +148,7 @@
                     <div class="fade-in-down-animation">
     <div class="category-list-container">
         <div class="category-list-content">
-            <ul class="all-category-list"><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/FUZZ/">FUZZ</a><span class="all-category-list-count">2</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/kernel-pwn/">kernel-pwn</a><span class="all-category-list-count">20</span><ul class="all-category-list-child"><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/kernel-pwn/CVE/">CVE</a><span class="all-category-list-count">3</span></li></ul></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/pwn/">pwn</a><span class="all-category-list-count">27</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/pwn-buuctf/">pwn-buuctf</a><span class="all-category-list-count">5</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/pwn-xctf/">pwn-xctf</a><span class="all-category-list-count">21</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/qemu-escape/">qemu escape</a><span class="all-category-list-count">3</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/web/">web</a><span class="all-category-list-count">5</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/web-buuctf/">web-buuctf</a><span class="all-category-list-count">15</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/%E6%90%9E%E6%9C%BA/">搞机</a><span class="all-category-list-count">1</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/%E6%AF%94%E8%B5%9Bwp/">比赛wp</a><span class="all-category-list-count">2</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a><span class="all-category-list-count">9</span></li></ul>
+            <ul class="all-category-list"><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/FUZZ/">FUZZ</a><span class="all-category-list-count">2</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/chrome-pwn/">chrome-pwn</a><span class="all-category-list-count">1</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/kernel-pwn/">kernel-pwn</a><span class="all-category-list-count">20</span><ul class="all-category-list-child"><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/kernel-pwn/CVE/">CVE</a><span class="all-category-list-count">3</span></li></ul></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/pwn/">pwn</a><span class="all-category-list-count">27</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/pwn-buuctf/">pwn-buuctf</a><span class="all-category-list-count">5</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/pwn-xctf/">pwn-xctf</a><span class="all-category-list-count">21</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/qemu-escape/">qemu escape</a><span class="all-category-list-count">3</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/%E6%90%9E%E6%9C%BA/">搞机</a><span class="all-category-list-count">1</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/%E6%AF%94%E8%B5%9Bwp/">比赛wp</a><span class="all-category-list-count">2</span></li><li class="all-category-list-item"><a class="all-category-list-link" href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a><span class="all-category-list-count">9</span></li></ul>
         </div>
         <div class="category-comments">
             
@@ -163,36 +163,35 @@
         </div>
 
         <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2021</span>&nbsp;-&nbsp;
-            
-            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
-        </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
-        </div>
-        
-    </div>
-</footer>
+            .footer {
+  font-size: 1rem;
+  color: var(--third-text-color);
+
+
+  a {
+    color: var(--third-text-color);
+
+
+    &:hover {
+      color: var(--primary-color);
+
+    }
+  }
+
+  .info-container {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .info-item {
+    margin: 5px 0;
+  }
+
+  .icon-animate {
+    animation: icon-animate 1.2s ease-in-out infinite;
+  }
+
+}
 
         </div>
     </div>
