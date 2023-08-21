@@ -151,6 +151,74 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/08/14/modify-ldt%E5%88%A9%E7%94%A8/">
+                        modify_ldt利用
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        在内核的堆题目中，如果不存在读取数据的函数可能是毫无头绪，因为堆块即便是free之后储存的也只是堆地址，这也没办法进行partial write等操作。那么在面对没有读取函数的情况下应该采取什么方法呢？
+利用原理linux存在这样一个系统调用叫做mo...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Aug 14 2022 16:37:45 GMT+0800">2022-08-14</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/modify-ldt/">modify_ldt</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/seq-operations/">seq_operations</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/bypass-kpti/">bypass kpti</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/08/14/modify-ldt%E5%88%A9%E7%94%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/08/10/starCTF-2019-hackme/">
                         starCTF 2019 hackme
                     </a>
@@ -628,58 +696,6 @@ exit_hook首先呢，程序正常退出以及使用exit函数都会调用exit所
     </div>
 
     <a href="/2022/05/26/fastbin-reverse-into-tcache/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/05/17/house-of-emma/">
-                        house of emma
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        在glibc2.34中删除了malloc_hook和free_hook，所以孕育而生了一个新的利用方法house of emma。这篇文章需要两个前置知识largebin attack和house of kiwi在这里就不再提了。然后后面一篇文章上次...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 17 2022 15:46:12 GMT+0800">2022-05-17</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/pwn/">pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/05/17/house-of-emma/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
