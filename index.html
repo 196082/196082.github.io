@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -151,6 +151,79 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2023/10/01/CVE-2022-0185/">
+                        CVE-2022-0185
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        前言其实并不是很想复现这个洞，但是在前些天fmyy告诉了我一个利用方式fuse，虽然他也给我推荐了对应的CVE，不过我更加愿意看墨晚鸢佬的博客。这个CVE复现结束之后应该会有很长一段时间不会继续复现CVE了，后续的打算是更多的学习kernel fuz...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Oct 01 2023 12:24:20 GMT+0800">2023-10-01</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/kernel-pwn/CVE/">CVE</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/msg-msg/">msg_msg</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/pipe-buffer/">pipe_buffer</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Filesystem/">Filesystem</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/fuse/">fuse</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/01/CVE-2022-0185/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2023/09/30/%E6%B5%85%E5%B0%9Ddocker-escape/">
                         浅尝docker escape
                     </a>
@@ -185,7 +258,12 @@
                     
                         <li>
                             
-                            <a href="/tags/docker-escape%EF%BC%8Cnamespace%E6%9C%BA%E5%88%B6/">docker escape，namespace机制</a>&nbsp;
+                            <a href="/tags/docker-escape/">docker escape</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/namespace%E6%9C%BA%E5%88%B6/">namespace机制</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -691,60 +769,6 @@ io_uring在堆喷中的局限性1234567...
     </div>
 
     <a href="/2023/05/24/pipe-buffer/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/04/22/RCTF2022%E5%A4%8D%E7%8E%B0/">
-                        RCTF2022复现
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        diary利用分析就是一道很正常的用户态堆题。在delete函数中存在UAF漏洞。
-不过题目的逆向过程比较麻烦，加之我开始没注意到题目已经给了输入command的格式，如果注意到的话动态调试来逆向更为简单。
-题目很简单，利用UAF使得tcache和u...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Apr 22 2023 13:35:06 GMT+0800">2023-04-22</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/UAF/">UAF</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/04/22/RCTF2022%E5%A4%8D%E7%8E%B0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

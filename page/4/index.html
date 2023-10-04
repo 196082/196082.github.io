@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ai.jpg","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
@@ -145,6 +145,69 @@
                 
                     <div class="home-content-container fade-in-down-animation">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/09/16/kernel%E5%86%85%E5%AD%98%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF/">
+                        kernel内存搜索技术
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        这里作为演示的例题为d3kheap，也是我拖了很久的复现题目，题目链接放在文章末尾。这篇文章使用的方法是作者的预期解的方法，也就是setxattr多次劫持msg_msg泄漏地址，在下一篇文章会记录第二种方法 CVE-2021-22555。
+题目分析1...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Sep 16 2022 22:36:11 GMT+0800">2022-09-16</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/msg-msg/">msg_msg</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/pipe-buffer/">pipe_buffer</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/setxattr/">setxattr</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/09/16/kernel%E5%86%85%E5%AD%98%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
         
             <li class="home-article-item">
 
@@ -307,12 +370,12 @@ setxattrsetxattr这个系统调用是非常独特的，在kernel的...
                     
                         <li>
                             
-                            <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
+                            <a href="/tags/modify-ldt/">modify_ldt</a>&nbsp;
                         </li>
                     
                         <li>
                             | 
-                            <a href="/tags/modify-ldt/">modify_ldt</a>&nbsp;
+                            <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
                         </li>
                     
                         <li>
@@ -658,59 +721,6 @@ LLVM PA...
     </div>
 
     <a href="/2022/07/27/llvm-pass-pwn/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/07/26/house-of-apple/">
-                        house of apple
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        简单介绍在高版本中large bin attack算是为数不多的可以任意地址写堆地址的方法。
-这一利用方式是相较于其他house of 系列来说存在一定差异，它不是直接通过IO_FILE getshell是通过扩大现存的写堆地址漏洞的方式，从而辅佐其...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Jul 26 2022 18:55:24 GMT+0800">2022-07-26</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/pwn/">pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/07/26/house-of-apple/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
