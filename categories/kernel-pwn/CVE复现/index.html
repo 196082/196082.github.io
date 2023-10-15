@@ -9,7 +9,7 @@
     
     <title>
         
-            CVE-2022-0185 |
+            分类: CVE复现 |
         
         196082&#39;s blog
     </title>
@@ -74,7 +74,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class=""
+                            <a class="active"
                                href="/categories"
                             >
                                 分类
@@ -121,7 +121,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class=""
+                    <a class="active"
                        href="/categories">分类</a>
                 </li>
             
@@ -146,202 +146,101 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">CVE-2022-0185</span>
+    <div class="category-container">
+        <div class="category-name">
+            <i class="fas fa-folder"></i>&nbsp;CVE复现
         </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2023-10-01 12:24:20
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/kernel-pwn/CVE/">CVE</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/msg-msg/">msg_msg</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/pipe-buffer/">pipe_buffer</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Filesystem/">Filesystem</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/fuse/">fuse</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>98 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        <div class="article-content markdown-body">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实并不是很想复现这个洞，但是在前些天fmyy告诉了我一个利用方式<code>fuse</code>，虽然他也给我推荐了对应的CVE，不过我更加愿意看墨晚鸢佬的博客。这个CVE复现结束之后应该会有很长一段时间不会继续复现CVE了，后续的打算是更多的学习<code>kernel fuzz</code>。</p>
-
-        </div>
-
-        
-
-        
-            <div class="article-nav">
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2023/09/30/%E6%B5%85%E5%B0%9Ddocker-escape/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">浅尝docker escape</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
+        <div class="category-post-list">
             
-    <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
-        <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
-            }
-
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
-            }
-        </script>
-    </div>
-
-
-
-        
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <span class="archive-year-post-count">[5]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/10/15/CVE-2022-0185/"
+                        >CVE-2022-0185复现</a>
+                        <span class="article-date">10-15</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/09/06/CVE-2022-32250/"
+                        >CVE-2022-32250复现</a>
+                        <span class="article-date">09-06</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/08/21/CVE-2022-0995/"
+                        >CVE-2022-0995复现</a>
+                        <span class="article-date">08-21</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/08/12/CVE-2021-3490/"
+                        >CVE-2021-3490复现</a>
+                        <span class="article-date">08-12</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2023/08/08/CVE-2016-5195/"
+                        >CVE-2016-5195复现</a>
+                        <span class="article-date">08-08</span>
+                    </li>
+                
+            </ul>
+        </section>
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2022</span>
+                <span class="archive-year-post-count">[3]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2022/11/22/CVE-2022-0847-Dirty-Pipe/"
+                        >CVE-2022-0847 Dirty Pipe</a>
+                        <span class="article-date">11-22</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2022/10/10/CVE-2017-16995/"
+                        >CVE-2017-16995复现</a>
+                        <span class="article-date">10-10</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2022/09/20/CVE-2021-22555%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90/"
+                        >CVE-2021-22555利用方法分析</a>
+                        <span class="article-date">09-20</span>
+                    </li>
+                
+            </ul>
+        </section>
     
 </div>
 
-            </div>
-        
+        </div>
+    </div>
+    <div class="category-paginator">
+        <div class="paginator">
+    
+
+    
+</div>
+
     </div>
 </div>
 
@@ -386,27 +285,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fas fa-comment"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -461,14 +339,6 @@
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li></ol>
-    </div>
-</div>
-        </aside>
     
 
     <div class="image-viewer-container">
@@ -526,8 +396,6 @@
 
 
 <div class="post-scripts">
-    
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
     
 </div>
 
