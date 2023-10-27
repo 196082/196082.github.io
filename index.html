@@ -151,6 +151,69 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2023/10/27/CVE-2022-2588/">
+                        CVE-2022-2588复现
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        前言本来不想分析CVE了，无奈前面提到了内核内部隔离机制，而在往期的文章中只在向pipe_buffer说yes！ 文章中简要提到过通过实现页级的UAF来实现绕过的，可是还存在一种技术可以绕过，如果不记录下来是真的心痒，所以只能把syzkaller的学...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Oct 27 2023 16:39:53 GMT+0800">2023-10-27</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/kernel-pwn/CVE%E5%A4%8D%E7%8E%B0/">CVE复现</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Rtnetlink/">Rtnetlink</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Dirty-Cred/">Dirty Cred</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2023/10/27/CVE-2022-2588/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2023/10/15/CVE-2022-0185/">
                         CVE-2022-0185复现
                     </a>
@@ -554,7 +617,7 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        前言在先前其实我已经写过一篇ret2dl-runtime-resolve了。不过在那篇文章中并没有提到当RELRO的等级为FULL的情况下该如何进行利用方法。又因为这类题目一般来说就是模板题目的缘故所以我也就一直没有放在心上，知道这一次巅峰极客遇到了...
+                        前言在先前其实我已经写过一篇ret2dl-runtime-resolve了。不过在那篇文章中并没有提到当RELRO的等级为FULL的情况下该如何进行利用方法。又因为这类题目一般来说就是模板题目的缘故所以我也就一直没有放在心上，直到这一次巅峰极客遇到了...
                     
                 </div>
 
@@ -704,76 +767,6 @@
     </div>
 
     <a href="/2023/05/30/protobuf/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/05/24/pipe-buffer/">
-                        向pipe_buffer说yes！
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-前言起因是墨晚鸢大佬的一句回复，不过我这里还没尝试挖掘新的东西，更多的是对墨晚鸢佬的内容做适合自己理解的总结。可以看到标签中还有一个上一篇文章主要介绍的io_uring，这里就先说说。
-万字警告！！！
-io_uring在堆喷中的局限性1234567...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed May 24 2023 16:39:35 GMT+0800">2023-05-24</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/kernel-pwn/">kernel-pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/msg-msg/">msg_msg</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/pipe-buffer/">pipe_buffer</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/io-uring/">io_uring</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E9%A1%B5%E7%BA%A7%E5%A0%86%E9%A3%8E%E6%B0%B4/">页级堆风水</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2023/05/24/pipe-buffer/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

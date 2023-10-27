@@ -222,7 +222,7 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在先前其实我已经写过一篇<a href="https://cv196082.gitee.io/2022/02/03/ret2dl-runtime-resolve/">ret2dl-runtime-resolve</a>了。不过在那篇文章中并没有提到当<code>RELRO</code>的等级为<code>FULL</code>的情况下该如何进行利用方法。又因为这类题目一般来说就是模板题目的缘故所以我也就一直没有放在心上，知道这一次巅峰极客遇到了这样一道题目。事先需要提到的是，这道题其实是具有更简单的解题方法的，那就是将got表中read的函数地址写到bss中，随后修改便宜直接调用syscall即可。不过既然取名叫<code>link_map</code>也导致我头铁到一直尝试<code>_dl_runtime_resolve</code>的方式去解决，所以后续的题目都没看。</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在先前其实我已经写过一篇<a href="https://cv196082.gitee.io/2022/02/03/ret2dl-runtime-resolve/">ret2dl-runtime-resolve</a>了。不过在那篇文章中并没有提到当<code>RELRO</code>的等级为<code>FULL</code>的情况下该如何进行利用方法。又因为这类题目一般来说就是模板题目的缘故所以我也就一直没有放在心上，直到这一次巅峰极客遇到了这样一道题目。事先需要提到的是，这道题其实是具有更简单的解题方法的，那就是将got表中read的函数地址写到bss中，随后修改便宜直接调用syscall即可。不过既然取名叫<code>link_map</code>也导致我头铁到一直尝试<code>_dl_runtime_resolve</code>的方式去解决，所以后续的题目都没看。</p>
 <p>因为内核玩的比较多，所以下来看了那一道内核题，题目给的驱动是没有漏洞的，但是因为没有加任何锁的缘故并且内核版本为5.10.x所以可以直接使用<a href="https://cv196082.gitee.io/2022/09/06/kernel%E5%A0%86%E5%8D%A0%E4%BD%8D/">堆占位技术</a>直接造成UAF，还算是比较简单，所以不会单独写文章进行复现。</p>
 <h2 id="利用原理"><a href="#利用原理" class="headerlink" title="利用原理"></a>利用原理</h2><h3 id="Full和Partial的区别"><a href="#Full和Partial的区别" class="headerlink" title="Full和Partial的区别"></a>Full和Partial的区别</h3><p>首先最直接的区别就是在Full的情况下got表是不可写的，并且所有符号的在在开始时就会被解析，<code>.got.plt</code>段会被完全初始化为目标函数的最终地址。这也就导致<code>link_map</code>和<code>_dl_runtime_resolve</code>不会被加载。所以首先需要的就是泄漏出<code>link_map</code>和<code>_dl_runtime_resolve</code>函数。</p>
 <h3 id="利用的必要条件"><a href="#利用的必要条件" class="headerlink" title="利用的必要条件"></a>利用的必要条件</h3><p>一、栈溢出</p>
