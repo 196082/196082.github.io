@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            syzkaller基本使用 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">syzkaller基本使用</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ling.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-11-10 17:04:05
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/FUZZ/">FUZZ</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/syzlang/">syzlang</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/LKM/">LKM</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.4k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>28 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章在前面已经是埋了许多坑了，靠后的几篇文章都提到了我想学<code>syzkaller</code>，但是总有事耽搁以至于拖到了现在。本来没有打算将基本的使用方法写成文章的，但是就是前面的坑过多，如果不写出来的话就会觉得心里膈应。这一篇不会涉及到<code>syzkaller</code>的实现原理，只能默默祈祷不会太水。</p>
+<p>一样的，这里也就不多提如何编译了，网上的资料很多。</p>
+<h2 id="syzkaller使用"><a href="#syzkaller使用" class="headerlink" title="syzkaller使用"></a>syzkaller使用</h2><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/LxNvdhpEX2sBjYc.png"
+                     
+                ></p>
+<p>经常看我文章的朋友或许看出来了，我不是很愿意将图片上到博客，主要原因还是我没有使用图床所以尽量少的上传图片，所以我一般放到博客的图片都是较为有用的图片。</p>
+<p>这里简单提一下上图：</p>
+<p>首先<code>syz-manager</code>作为的是<code>syzkallmer</code>的控制中枢，其会启动多个vm实例 ( 图中一个黄色卡片代表一个实例 ) 并进行监视，同时通过<code>RPC</code>启动<code>syz-fuzzer</code>。</p>
+<p><code>syz-fuzzer</code>负责引导整个fuzz的过程。第一步，生成input。第二步，启动<code>syz-executor</code>进程进行fuzz。第三步，从被fuzz的内核的<code>/sys/kernel/debug/kcov</code>获得覆盖 ( coverage ) 相关信息。最后，通过<code>RPC</code>将新的覆盖送回<code>syz-manager</code>。</p>
+<p><code>syz-executor</code>负责执行单个输入。</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>在正式使用前我们需要为其额外编写配置文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;target&quot;</span>: <span class="string">&quot;linux/amd64&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;http&quot;</span>: <span class="string">&quot;127.0.0.1:56741&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workdir&quot;</span>: <span class="string">&quot;/media/psf/pwn/fuzz01&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;kernel_obj&quot;</span>: <span class="string">&quot;/home/parallels/linux-5.11&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;image&quot;</span>: <span class="string">&quot;/media/psf/pwn/fuzz01/bullseye.img&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;sshkey&quot;</span>: <span class="string">&quot;/media/psf/pwn/fuzz01/bullseye.id_rsa&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;syzkaller&quot;</span>: <span class="string">&quot;/home/parallels/fuzz/gopath/syzkaller&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;procs&quot;</span>: <span class="number">8</span>,</span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;qemu&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;vm&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;count&quot;</span>: <span class="number">4</span>,</span><br><span class="line">        <span class="attr">&quot;kernel&quot;</span>: <span class="string">&quot;/media/psf/pwn/fuzz01/bzImage&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cpu&quot;</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&quot;mem&quot;</span>: <span class="number">2048</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>$&#123;WORKDIR&#125;</code>是需要替换为所需的工作目录，之后生成的crash文件将会位于其中。<code>$&#123;LINUX&#125;</code>为Linux源码目录。<code>$&#123;IMAGE&#125;</code>为方才制作的系统镜像与密钥文件目录。<code>$&#123;GOPATH&#125;</code>替换为安装Syzkaller所使用的GOPATH。</p>
+<h3 id="启动syzkaller"><a href="#启动syzkaller" class="headerlink" title="启动syzkaller"></a>启动syzkaller</h3><p>启动就很简单了，直接输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/syz-manager -config=config.json <span class="comment"># config.json为前面提到的配置文件</span></span><br></pre></td></tr></table></figure>
+
+<p>启动成功后通过访问<code>localhost:56741</code>即可获取到<code>syzkaller</code>的状态</p>
+<h2 id="syzlang编写指南"><a href="#syzlang编写指南" class="headerlink" title="syzlang编写指南"></a>syzlang编写指南</h2><p>如果只是上述流程中那样一直挂着可以出洞的话，大公司的服务器可比我这电脑好得不知道哪去了，所以我们需要人工配置系统调用模板，以有针对性的进行漏洞挖掘。</p>
+<p>syzkaller 使用它自己的声明式语言来描述系统调用模板，在安装目录下的 <code>docs/syscall_descriptions.md</code> 与 <code>docs/syscall_descriptions_syntax.md</code> 中有着相关的说明。</p>
+<p>我们需要使用 syzlang 来编写特定的系统调用描述文件（也叫规则文件），syzkaller 会根据我们的描述文件有针对性地进行 fuzz。</p>
+<h3 id="syzlang语法"><a href="#syzlang语法" class="headerlink" title="syzlang语法"></a>syzlang语法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">syscallname <span class="string">&quot;(&quot;</span> [arg [<span class="string">&quot;,&quot;</span> arg]*] <span class="string">&quot;)&quot;</span> [type] [<span class="string">&quot;(&quot;</span> attribute* <span class="string">&quot;)&quot;</span>]</span><br><span class="line">arg = argname type</span><br><span class="line">argname = identifier</span><br><span class="line">type = <span class="keyword">typename</span> [ <span class="string">&quot;[&quot;</span> type-options <span class="string">&quot;]&quot;</span> ]</span><br><span class="line"><span class="keyword">typename</span> = <span class="string">&quot;const&quot;</span> | <span class="string">&quot;intN&quot;</span> | <span class="string">&quot;intptr&quot;</span> | <span class="string">&quot;flags&quot;</span> | <span class="string">&quot;array&quot;</span> | <span class="string">&quot;ptr&quot;</span> |</span><br><span class="line">	   <span class="string">&quot;string&quot;</span> | <span class="string">&quot;strconst&quot;</span> | <span class="string">&quot;filename&quot;</span> | <span class="string">&quot;glob&quot;</span> | <span class="string">&quot;len&quot;</span> |</span><br><span class="line">	   <span class="string">&quot;bytesize&quot;</span> | <span class="string">&quot;bytesizeN&quot;</span> | <span class="string">&quot;bitsize&quot;</span> | <span class="string">&quot;vma&quot;</span> | <span class="string">&quot;proc&quot;</span></span><br><span class="line">type-options = [type-opt [<span class="string">&quot;,&quot;</span> type-opt]]</span><br></pre></td></tr></table></figure>
+
+<p>上述即是<code>syzlang</code>的语法结构，这简单介绍一下上面符号的含义。</p>
+<blockquote>
+<p><code>&quot;&quot;</code> 表示这个符号内的内容应按照其原样进行匹配</p>
+<p><code>|</code>   表示的含义大差不差，意味取左右两边皆可</p>
+<p><code>=</code>   表示左边的表达式应为右边的形式</p>
+<p><code>[]</code> 表示取其内部的一个值</p>
+<p><code>*</code>   表示和正则一样，即为0个或多个</p>
+</blockquote>
+<p>所以其写法为，<code>syscallname</code> + 多个<code>arg</code>组成。<code>arg</code>由标识符<code>identifier</code>与操作类型<code>type</code>构成。<code>type</code>由操作类型名<code>typename</code>以及对应类型的类型选择<code>type-options</code>组成，最后根据<code>typename</code>的不同，<code>type-options</code>跟一个或两个<code>type-opt</code>。</p>
+<p>根据上述规则可以很轻松的理解Google官方提供的一个模板</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(file filename, flags flags[open_flags], mode flags[open_mode]) <span class="function">fd</span></span><br><span class="line"><span class="function"><span class="title">read</span><span class="params">(fd fd, buf buffer[out], count len[buf])</span></span></span><br><span class="line"><span class="function"><span class="title">close</span><span class="params">(fd fd)</span></span></span><br><span class="line"><span class="function">open_mode </span>= S_IRUSR, S_IWUSR, S_IXUSR, S_IRGRP, S_IWGRP, S_IXGRP, S_IROTH, S_IWOTH, S_IXOTH</span><br></pre></td></tr></table></figure>
+
+<p>这里注释的写法就和<code>python</code>一样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># aaaa</span></span><br></pre></td></tr></table></figure>
+
+<p>文件包含的写法基本就和C一样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include&lt;linux/fs.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>前面中提到了参数的形式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg = argname + type</span><br></pre></td></tr></table></figure>
+
+<p>其有一个参数名加一个操作类型构成。下面根据例子详细讲一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(read, <span class="keyword">unsigned</span> <span class="keyword">int</span>, fd, <span class="keyword">char</span> __user *, buf, <span class="keyword">size_t</span>, count)</span><br></pre></td></tr></table></figure>
+
+<p>上述是内核中read系统调用的声明，当我们使用 libc 的 wrapper 进行 read 系统调用时，形式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> 	my_file_fd = open(<span class="string">&quot;/dev/test&quot;</span>, O_RDONLY);</span><br><span class="line"><span class="keyword">char</span> 			my_buf[<span class="number">114514</span>];</span><br><span class="line"><span class="keyword">size_t</span>			my_count = <span class="number">114514</span>;</span><br><span class="line">read(my_file_fd, my_buf, my_count);</span><br></pre></td></tr></table></figure>
+
+<p>在上述例子中<code>fd、buf、count</code>即为<code>argname</code>，<code>my_file_fd、my_buf、my_count</code>即为<code>type</code></p>
+<p>那么在<code>syzlang</code>编写系统调用时就应该写为<code>fd my_file_fd</code>。( 这里假设<code>my_file_fd</code>已定义为<code>resources</code> )</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>前面提到了<code>arg</code>是由<code>argname type</code>构成，也提到了<code>type</code>是由<code>typename type-options</code>构成。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type = <span class="keyword">typename</span> [ <span class="string">&quot;[&quot;</span> type-options <span class="string">&quot;]&quot;</span> ]</span><br></pre></td></tr></table></figure>
+
+<p>首先这里详细提一下类型名，即该 type 的类型，例如 C 当中的int、char、void 等等。</p>
+<p>常规的类型名包括：( <del>直接搬！</del>)</p>
+<ul>
+<li>  <strong>opt</strong>：这是一个可选参数（例如 mmap 的 fd）</li>
+</ul>
+<p>其余 type-options 是基于特定 type 的，如下：</p>
+<ul>
+<li><strong>const</strong>：整型常数<ul>
+<li>类型选项：<ul>
+<li>  值（value）：例如 <code>0</code></li>
+<li>  基础类型（underlying type）：<code>intN</code> 或 <code>intptr</code> 之一</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>intN</strong> 或 <strong>intptr</strong>：一个有着特殊含义的整型，下文会进行详细说明<ul>
+<li>类型选项：<ul>
+<li>  可选范围区间：例如 <code>&quot;1:100&quot;</code> 表示取值值的区间为 <code>[1, 100]</code></li>
+<li>  可选参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>flags</strong>：值的集合<ul>
+<li>类型选项：<ul>
+<li>  对 flags 描述的引用</li>
+<li>  基础整型类型：例如 <code>int32</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>array</strong>：一个可变长/固定长度的数组<ul>
+<li>类型选项：<ul>
+<li>  元素的 type</li>
+<li>  可选长度区间：例如固定长度 <code>&quot;5&quot;</code> 或者长度范围 <code>&quot;5:10&quot;</code>（包括边界）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>ptr</strong> 或 <strong>ptr64</strong>：指向一个对象的指针<ul>
+<li>类型选项：<ul>
+<li>  方向：<code>in</code> 或 <code>out</code> 或 <code>inout</code></li>
+<li>  对象的 type</li>
+</ul>
+</li>
+<li>  无论对象指针大小如何，ptr64 永远为 8 字节</li>
+</ul>
+</li>
+<li><strong>string</strong>：一块有着 0 终止符的内存缓冲区<ul>
+<li>类型选项：<ul>
+<li>常量字符串/对字符串的引用<ul>
+<li>  前者：例如 <code>&quot;foo&quot;</code>作为常规字符串进行解析，或者<code>deadbeef</code>作为4个 16 进制字节进行解析</li>
+<li>  后者：若是特殊类型 <code>filename</code> 则会<strong>生成</strong>文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>stringnoz</strong>：一块<strong>没有</strong> 0 终止符的内存缓冲区<ul>
+<li>  类型选项：（同 <code>string</code>)</li>
+</ul>
+</li>
+<li><strong>glob</strong>：匹配目标文件的 glob（？）模式<ul>
+<li>类型选项：<ul>
+<li>  用引号包裹着的模式字符串：例如 <code>&quot;/sys/&quot;</code> 或 <code>&quot;/sys/**/*/&quot;</code>，具体用法参见<a class="link"   target="_blank" rel="noopener" href="https://pkg.go.dev/path/filepath#Match" >https://pkg.go.dev/path/filepath#Match<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>fmt</strong>：一个表示一个整数的字符串<ul>
+<li>类型选项：<ul>
+<li>  格式与值：前者可取值为 <code>dec</code>或 <code>hex</code> 或 <code>oct</code>；后者可以是一个 resource、int、flags、const 或 proc</li>
+</ul>
+</li>
+<li>  最终的结果通常是固定尺寸的</li>
+</ul>
+</li>
+<li><strong>len</strong>：另一个 <code>字段</code> 的长度（对于 array 而言为元素的数量）<ul>
+<li>类型选项：<ul>
+<li>  对象的 argname</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>bytesize</strong>：与 len 类似，不过单位是<strong>字节</strong><ul>
+<li>类型选项：<ul>
+<li>  对象的 argname</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>bitsize</strong>：与 len 类型，不过单位是<strong>比特位</strong><ul>
+<li>类型选项：<ul>
+<li>  对象的 argname</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>offsetof</strong>：一个 <code>字段</code> 在其 parent struct 中的偏移<ul>
+<li>类型选项：<ul>
+<li>  <code>字段</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>vma</strong> 或 <strong>vma64</strong>：指向一组页的指针（用作 mmap/munmap/mremap/madvise 的输入）<ul>
+<li>类型选项：<ul>
+<li>  （可选）页的数量或页的范围：前者例如 <code>vma[7]</code>，后者例如 <code>vma[2-4]</code></li>
+</ul>
+</li>
+<li>  vma64 的长度恒为 8 字节</li>
+</ul>
+</li>
+<li><strong>proc</strong>：单个进程的整型（详见下面的描述）<ul>
+<li>类型选项：<ul>
+<li>  值的区间的起始</li>
+<li>  每个进程的值的数量</li>
+<li>  基础类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>text</strong>：特定 type 的机器码<ul>
+<li>类型选项：<ul>
+<li>  代码类型：<code>x86_real</code>, <code>x86_16</code>, <code>x86_32</code>, <code>x86_64</code>, <code>arm64</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>void</strong>：type with static size 0<ul>
+<li>  通常在模板以及可变长（varlen）联合体中使用，<strong>不能用作系统调用的参数</strong></li>
+</ul>
+</li>
+</ul>
+<p>在 <code>结构体/联合体/指针</code> 中使用时，<code>flags/len/flags</code> 的构成中尾部还可以跟着 type type-options</p>
+<p>接着提一下类型选项</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-options = [type-opt [<span class="string">&quot;,&quot;</span> type-opt]]</span><br></pre></td></tr></table></figure>
+
+<p>形式如上，从一开始的语法规则来看<code>type-options</code>对于<code>type</code>即为可选项，也可以同时拥有多个<code>type-options</code>，同样根据前面的语法规则可以看出来要使用<code>type-options</code>是应如下例一样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flags flags[open_flags]</span><br></pre></td></tr></table></figure>
+
+<p>上面这个例子的解析，我们这个参数名为<code>flags</code>参数，输入的类型为<code>flags</code>，其类型选项为对一个<code>flags</code>描述<code>open_flags</code>的应用，即为取<code>open_flags</code>中的值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open_flags = O_WRONLY, O_RDWR, O_APPEND, FASYNC, O_CLOEXEC, O_CREAT, O_DIRECT, O_DIRECTORY, O_EXCL, O_LARGEFILE, O_NOATIME, O_NOCTTY, O_NOFOLLOW, O_NONBLOCK, O_PATH, O_SYNC, O_TRUNC, __O_TMPFILE</span><br></pre></td></tr></table></figure>
+
+<p>其中的<code>open_flags</code>定义的内容如上，这些值可以通过<code>include</code>语句从内核源码中被包含进来。</p>
+<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>在前面提到了系统调用的模板如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syscallname <span class="string">&quot;(&quot;</span> [arg [<span class="string">&quot;,&quot;</span> arg]*] <span class="string">&quot;)&quot;</span> [type] [<span class="string">&quot;(&quot;</span> attribute* <span class="string">&quot;)&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>其中除了<code>attribute</code>都已经做过一定解释了，这里在对其做分解分析。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(file ptr[in, filename], flags flags[open_flags], mode flags[open_mode])</span><br><span class="line"></span><br><span class="line">open_flags = O_WRONLY, O_RDWR, O_APPEND, FASYNC, O_CLOEXEC, O_CREAT, O_DIRECT, O_DIRECTORY, O_EXCL, O_LARGEFILE, O_NOATIME, O_NOCTTY, O_NOFOLLOW, O_NONBLOCK, O_PATH, O_SYNC, O_TRUNC, __O_TMPFILE</span><br><span class="line">open_mode = S_IRUSR, S_IWUSR, S_IXUSR, S_IRGRP, S_IWGRP, S_IXGRP, S_IROTH, S_IWOTH, S_IXOTH</span><br></pre></td></tr></table></figure>
+
+<p>这里对<code>open</code>系统调用，存在以下三个输入：</p>
+<ul>
+<li>  file 参数：一个指针类型，其 type-opetions 的第一个为 <code>in</code>，意为由该指针指向特定对象，第二个为 <code>filename</code>，为特殊的 string 对象，对于 filename，syzlang 会进行文件生成，将文件名作为输入</li>
+<li>  flags 参数：一个 flags类型，其 <code>type-options</code> 为 <code>open_flags</code> ，意为从我们定义的 flags——<code>open_flags</code> 中取值</li>
+<li>  mode 参数：一个flags类型，其 <code>type-options</code> 为 <code>open_mode</code> ，意为从我们定义的 flags——<code>open_mode</code> 中取值</li>
+</ul>
+<p>一般来说，系统调用都会存在返回值，在<code>syzlang</code>中可以忽略掉返回值也可以选择接收，如果选择接收则应形如上式在系统调用后面加上一个<code>type</code>，例如<code>open</code>系统调用会返回一个文件描述符，若是我们像将其返回的的文件描述符存到一个变量中如<code>test_fd</code>，我们应当写成如下形式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(file ptr[in, filename], flags flags[open_flags], mode flags[open_mode]) test_fd</span><br><span class="line"></span><br><span class="line">open_flags = O_WRONLY, O_RDWR, O_APPEND, FASYNC, O_CLOEXEC, O_CREAT, O_DIRECT, O_DIRECTORY, O_EXCL, O_LARGEFILE, O_NOATIME, O_NOCTTY, O_NOFOLLOW, O_NONBLOCK, O_PATH, O_SYNC, O_TRUNC, __O_TMPFILE</span><br><span class="line">open_mode = S_IRUSR, S_IWUSR, S_IXUSR, S_IRGRP, S_IWGRP, S_IXGRP, S_IROTH, S_IWOTH, S_IXOTH</span><br></pre></td></tr></table></figure>
+
+<p>既然文件描述符中已经存在我们的变量，那么在后续也是可以继续使用的，如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(fd test_fd)</span><br></pre></td></tr></table></figure>
+
+<p>随后就是前面提到的，在<code>type</code>后还有一个可选参数<code>attribute</code>，其有以下可选值：</p>
+<ul>
+<li>  <code>disabled</code>：该系统调用将不用于 fuzzing；这个属性通常用于临时禁用某些系统调用，或者禁用特定的参数组合</li>
+<li>  <code>timeout[N]</code>：系统调用在默认值以外的额外的超时时间，单位为毫秒（ms）</li>
+<li>  <code>prog_timeoout[N]</code>：若一个程序包含了该系统调用，则该属性为整个程序的执行的超时时间，若存在多个定义了该属性的系统调用则取最大值</li>
+<li>  <code>ignore_return</code>：在回退反馈中忽视这个系统调用的返回值；用于不返回固定的错误码（例如 -EFAULT）而是返回其他值的系统调用</li>
+<li>  <code>break_returns</code>：忽略回退反馈中程序中所有后续系统调用的返回值</li>
+</ul>
+<p>接着就是系统调用的变种（variants）可以在系统调用名后面使用 <code>$</code> 符号进行额外的指定</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">socket$inet_tcp(domain <span class="keyword">const</span>[AF_INET], type <span class="keyword">const</span>[SOCK_STREAM], proto <span class="keyword">const</span>[<span class="number">0</span>]) sock_tcp</span><br><span class="line">socket$inet_udp(domain <span class="keyword">const</span>[AF_INET], type <span class="keyword">const</span>[SOCK_DGRAM], proto <span class="keyword">const</span>[<span class="number">0</span>]) sock_udp</span><br></pre></td></tr></table></figure>
+
+<p>例如socket系统调用可以用于创建很多类型的socket，上述定义了两种不同的变体。而变种的作用主要是区分syscall，类似于别名的效果。</p>
+<h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>整型也是一种 type，其可选项为 <code>int8</code> 、<code>int16</code>、<code>int32</code>、<code>int64</code>，表示相应大小的整型，<code>intptr</code> 用以表示一个<strong>指针大小</strong>的整型，对应 C 语言中的 <code>long</code>，通过添加 <code>be</code> 后缀表示这个整型存储为大端序。</p>
+<p>可以用 int32[0:100] 或 int32[0:4096,512] 的格式为一个 512 对齐的 int 指定一个整数的值范围。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read$eventfd(fd fd_event, val ptr[out, int64], len len[val])</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>在<code>syzlang</code>中同样可以存在结构体，联合体这一说，既然前面已经提到了这么多，这里就放一个它的一个语法结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">structname <span class="string">&quot;&#123;&quot;</span> <span class="string">&quot;\n&quot;</span></span><br><span class="line">	(fieldname type (<span class="string">&quot;(&quot;</span> fieldattribute* <span class="string">&quot;)&quot;</span>)? <span class="string">&quot;\n&quot;</span>)+</span><br><span class="line"><span class="string">&quot;&#125;&quot;</span> (<span class="string">&quot;[&quot;</span> attribute* <span class="string">&quot;]&quot;</span>)?</span><br></pre></td></tr></table></figure>
+
+<p>可以看出来结构其实和c的很类似，定义一个<code>structname</code>，然后内部成员包含了<code>fieldname / type</code>以及后面可以添加<code>(fieldattribute)</code>，这里的属性与前面的是有一定差距的，这里的属性只有方向<code>in / out / inout</code></p>
+<p>最后可以看到在结构体结尾可以被<code>[attribute]</code>来添加属性，这里存在以下属性：</p>
+<ul>
+<li>  <code>packed</code>：该结构体不同字段之间没有 padding（例如 C 中有一个结构体 <code>struct T&#123;int a; char b;&#125;;</code>，char 为 1 字节，int 为 4 字节，那么该结构体便会对 4 字节对齐，在其两个字段之间就会有 3 字节的 padding）</li>
+<li>  <code>align[N]</code>：指定该结构体对 N 字节对齐，padding 的内容并未指定（通常为0）</li>
+<li>  <code>size[N]</code>：结构体被填充到指定的大小 <code>N</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test_struct &#123;</span><br><span class="line">	field0	<span class="keyword">const</span>[<span class="number">1</span>, int32]	  (in)</span><br><span class="line">	<span class="function">field1	<span class="title">int32</span>         		<span class="params">(inout)</span></span></span><br><span class="line"><span class="function">	field2	<span class="title">fd</span>								<span class="params">(out)</span></span></span><br><span class="line"><span class="function">&#125; [packed]</span></span><br></pre></td></tr></table></figure>
+
+<p>与结构体类似，联合体的语法结构如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unionname <span class="string">&quot;[&quot;</span> <span class="string">&quot;\n&quot;</span></span><br><span class="line">	(fieldname type (<span class="string">&quot;(&quot;</span> fieldattribute* <span class="string">&quot;)&quot;</span>)? <span class="string">&quot;\n&quot;</span>)+</span><br><span class="line"><span class="string">&quot;]&quot;</span> (<span class="string">&quot;[&quot;</span> attribute* <span class="string">&quot;]&quot;</span>)?</span><br></pre></td></tr></table></figure>
+
+<p>与前面的区别主要是最后的<code>[attribute]</code>中的可选性的区别，这里主要有：</p>
+<ul>
+<li>  <code>varlen</code>：联合体的大小可变（为指定的字段的长度），若未指定则该联合体大小为其最大字段的大小（类型 C 语言）</li>
+<li>  <code>size[N]</code>：该联合体被填充到指定的大小 <code>N</code></li>
+</ul>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>资源的定义是作为一个系统调用的输出作为另一个系统调用输入的值。在前面的时候其实已经是提到过了，使用open系统调用打开的文件描述符再交由close系统调用进行关闭，如果要实现这样的效果则需要声明一个资源。资源的形式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;resource&quot;</span> identifier <span class="string">&quot;[&quot;</span> underlying_type <span class="string">&quot;]&quot;</span> [ <span class="string">&quot;:&quot;</span> <span class="keyword">const</span> (<span class="string">&quot;,&quot;</span> <span class="keyword">const</span>)* ]</span><br></pre></td></tr></table></figure>
+
+<p>其中的<code>identifier</code>即位其标识也就是名字，后面的<code>underlying_type</code> 可以是 <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>intptr</code> 或者是另一个资源。常量集合可以作为可选参数，表示该资源的特殊值（比如说 0xdeadbeef），特殊值偶尔被用作资源的值，若未指定特殊值，则会使用特殊值 <code>0</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">resource fd[int32]: <span class="number">0xffffffffffffffff</span>, AT_FDCWD, <span class="number">1000000</span></span><br><span class="line">resource sock[fd]</span><br><span class="line">resource sock_unix[sock]</span><br><span class="line"></span><br><span class="line">socket(...) <span class="function">sock</span></span><br><span class="line"><span class="function"><span class="title">accept</span><span class="params">(fd sock, ...)</span> sock</span></span><br><span class="line"><span class="function"><span class="title">listen</span><span class="params">(fd sock, backlog int32)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>资源不一定是系统调用的返回，他可以像其他任何数据一样被使用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">resource my_resource[int32]</span><br><span class="line"></span><br><span class="line">request_producer(..., arg ptr[out, my_resource])</span><br><span class="line">request_consumer(..., arg ptr[inout, test_struct])</span><br><span class="line"></span><br><span class="line">test_struct &#123;</span><br><span class="line">	...</span><br><span class="line">	attr	my_resource</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于更为复杂的生产者/消费者场景，字段属性也可以被利用，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">resource my_resource_1[int32]</span><br><span class="line">resource my_resource_2[int32]</span><br><span class="line"></span><br><span class="line">request_produce1_consume2(..., arg ptr[inout, test_struct])</span><br><span class="line"></span><br><span class="line">test_struct &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function">field0	<span class="title">my_resource_1</span>	<span class="params">(out)</span></span></span><br><span class="line"><span class="function">	field1	<span class="title">my_resource_2</span>	<span class="params">(in)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>这个的形式很类似于C语言中的<code>typedef</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type identifier underlying_type</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type bool8		int8[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">type bool16		int16[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">type bool32		int32[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">type bool64		int64[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">type boolptr	intptr[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">type fileoff[BASE] BASE</span><br><span class="line"></span><br><span class="line">type filename <span class="built_in">string</span>[filename]</span><br><span class="line"></span><br><span class="line">type buffer[DIR] ptr[DIR, <span class="built_in">array</span>[int8]]</span><br></pre></td></tr></table></figure>
+
+<p>在布尔中的取值返回就是0和1所以可以使用<code>intN[0:1]</code>来达到效果，不过在后面每次使用会使的易读性大打折扣，所以可以定义为bool。</p>
+<h3 id="类型模板"><a href="#类型模板" class="headerlink" title="类型模板"></a>类型模板</h3><p>其形式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type optional[T] [</span><br><span class="line">	val		T</span><br><span class="line">	<span class="keyword">void</span>	<span class="keyword">void</span></span><br><span class="line">] [varlen]</span><br></pre></td></tr></table></figure>
+
+<p>其在的简单的用法为</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">type buffer[DIR] ptr[DIR, <span class="built_in">array</span>[int8]]</span><br><span class="line">type fileoff[BASE] BASE</span><br><span class="line">type nlattr[TYPE, PAYLOAD] &#123;</span><br><span class="line">	nla_len		len[parent, int16]</span><br><span class="line">	nla_type	<span class="keyword">const</span>[TYPE, int16]</span><br><span class="line">	payload		PAYLOAD</span><br><span class="line">&#125; [align_4]</span><br><span class="line"></span><br><span class="line">syscall(a buffer[in], b fileoff[int64], c ptr[in, nlattr[FOO, int32]])</span><br></pre></td></tr></table></figure>
+
+<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><p>你可以使用关键字 <code>len</code>、<code>bytesize</code>、<code>bitsize</code> 来指定结构体当中特定字段的长度，若是 <code>len</code> 的参数为一个指针，则其取值为指针所指对象的大小，若要表示一个 N 字节的字中字段的长度，则应当使用 <code>bytesizeN</code>，其中 N 的取值可以为 1、2、4、8。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">write(fd fd, buf ptr[in, <span class="built_in">array</span>[int8]], count len[buf])</span><br><span class="line"></span><br><span class="line">sock_fprog &#123;</span><br><span class="line">	len	len[filter, int16]</span><br><span class="line">	filter	ptr[in, <span class="built_in">array</span>[sock_filter]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的<code>write</code>系统调用中，第三个参数的类型为<code>len[buf]</code>，这里的含义表示buf的长度。在 sock_fprog 这个结构体当中，我们给其字段 len 设置的值为其 filter 字段的长度，类型为 int 16。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s1 &#123;</span><br><span class="line">    f0      len[s2]  <span class="meta"># length of s2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">s2 &#123;</span><br><span class="line">    f0      s1</span><br><span class="line">    f1      <span class="built_in">array</span>[int32]</span><br><span class="line">    f2      len[parent, int32]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若要表示父类的长度，可以使用 <code>len[parent, intN]</code>，若要在结构体互相嵌入时表示更顶层的父类的长度，可以指定特定父类的类型名称。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">s1 &#123;</span><br><span class="line">	a	ptr[in, s2]</span><br><span class="line">	b	ptr[in, s3]</span><br><span class="line">	c	<span class="built_in">array</span>[int8]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">s2 &#123;</span><br><span class="line">	d	<span class="built_in">array</span>[int8]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">s3 &#123;</span><br><span class="line"># This refers to the <span class="built_in">array</span> c in the parent s1.</span><br><span class="line">	e	len[s1:c, int32]</span><br><span class="line"># This refers to the <span class="built_in">array</span> d in the sibling s2.</span><br><span class="line">	f	len[s1:a:d, int32]</span><br><span class="line"># This refers to the <span class="built_in">array</span> k in the child s4.</span><br><span class="line">	g	len[i:j, int32]</span><br><span class="line"># This refers to syscall argument l.</span><br><span class="line">	h	len[syscall:l, int32]</span><br><span class="line">	i	ptr[in, s4]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">s4 &#123;</span><br><span class="line">	j	<span class="built_in">array</span>[int8]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(k ptr[in, s1], l ptr[in, <span class="built_in">array</span>[int8]])</span><br></pre></td></tr></table></figure>
+
+<p>这里可以看出len也适用于更为复杂的路径寻址。</p>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p><code>proc</code> 类型用于表示每个进程的数值。这样做的目的是为每个执行者提供一个单独的数值范围，这样他们就不会相互干扰。</p>
+<p>最简单的例子是一个端口号。<code>proc [20000, 4, int16be]</code> 类型意味着我们要从 20000 开始生成一个<code> int16be</code> 整数，并为每个进程分配 4 个值。因此，执行者编号 n 将得到 <code>[20000 + n * 4, 20000 + (n + 1) * 4]</code> 范围内的值。</p>
+<h3 id="整型常量"><a href="#整型常量" class="headerlink" title="整型常量"></a>整型常量</h3><p>整型常量可以指定为十进制、<code>0x</code> 开头的十六进制、用单引号 <code>&#39;</code> 包裹的字符，或者从内核头文件中提取出来的由 <code>define</code> 定义的常量（比如说 <code>O_RDONLY</code>）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">foo(a <span class="keyword">const</span>[<span class="number">10</span>], b <span class="keyword">const</span>[<span class="number">-10</span>])</span><br><span class="line">foo(a <span class="keyword">const</span>[<span class="number">0xabcd</span>])</span><br><span class="line">foo(a int8[<span class="string">&#x27;a&#x27;</span>:<span class="string">&#x27;z&#x27;</span>])</span><br><span class="line">foo(a <span class="keyword">const</span>[PATH_MAX])</span><br><span class="line">foo(a ptr[in, <span class="built_in">array</span>[int8, MY_PATH_MAX]])</span><br><span class="line">define MY_PATH_MAX	PATH_MAX + <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>描述文件还包括用以进行内核头文件包含的 <code>include</code> 指令，用以包含内核头文件目录的 <code>incdir</code> 指令，以及用以设置常量的 <code>define</code> 指令。</p>
+<p>syzkaller executor 还定义了一些伪系统调用，我们可以在描述文件中使用这些伪系统调用。这些伪系统调用被扩展为 C 代码，可以执行用户自定义的一些操作。</p>
+<h2 id="尝试捕捉简单溢出洞"><a href="#尝试捕捉简单溢出洞" class="headerlink" title="尝试捕捉简单溢出洞"></a>尝试捕捉简单溢出洞</h2><h3 id="syz-extract"><a href="#syz-extract" class="headerlink" title="syz-extract"></a>syz-extract</h3><p>第一步是从内核源文件中提取符号常量的值：<code>syz-extract</code> 会根据 syzlang 文件从内核源文件中提取出使用的对应的宏、系统调用号等的值，生成 <code>.const</code> 文件</p>
+<h3 id="syz-sysgen"><a href="#syz-sysgen" class="headerlink" title="syz-sysgen"></a>syz-sysgen</h3><p>第二步便是将描述翻译成 Golang 代码：<code>syz-sysgen</code> 通过 syzlang 文件与 .const 文件进行语法分析与语义分析，生成抽象语法树，最终生成供 syzkaller 使用的 golang 代码，分为如下四个步骤：</p>
+<ul>
+<li>  <strong>assignSyscallNumbers</strong>：分配系统调用号，检测不支持的系统调用并丢弃</li>
+<li>  <strong>patchConsts</strong>：将 AST 中的常量替换为对应的值</li>
+<li>  <strong>check</strong>：进行语义分析</li>
+<li>  <strong>genSyscalls</strong>：从 AST 生成 prog 对象</li>
+</ul>
+<h3 id="实战流程"><a href="#实战流程" class="headerlink" title="实战流程"></a>实战流程</h3><p>首先编写一个具有漏洞的驱动</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/device.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/slab.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEVICE_NAME <span class="meta-string">&quot;intel_rapl_msrdv&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CLASS_NAME <span class="meta-string">&quot;intel_rapl_msrmd&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEVICE_PATH <span class="meta-string">&quot;/dev/intel_rapl_msrdv&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> major_num;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="keyword">class</span> *<span class="title">module_class</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">device</span> *<span class="title">module_device</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *__<span class="title">file</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">inode</span> *__<span class="title">inode</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __init <span class="title">test_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> __exit <span class="title">test_exit</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_open</span><span class="params">(struct inode *, struct file *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_read</span><span class="params">(struct file *, <span class="keyword">char</span> __user *, <span class="keyword">size_t</span>, <span class="keyword">loff_t</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_write</span><span class="params">(struct file *, <span class="keyword">const</span> <span class="keyword">char</span> __user *, <span class="keyword">size_t</span>, <span class="keyword">loff_t</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_release</span><span class="params">(struct inode *, struct file *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">test_ioctl</span><span class="params">(struct file *, <span class="keyword">unsigned</span> <span class="keyword">int</span>, <span class="keyword">unsigned</span> <span class="keyword">long</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">file_operations</span> <span class="title">test_op</span> =</span></span><br><span class="line">    &#123;</span><br><span class="line">        .owner = THIS_MODULE,</span><br><span class="line">        .unlocked_ioctl = test_ioctl,</span><br><span class="line">        .open = test_open,</span><br><span class="line">        .read = test_read,</span><br><span class="line">        .write = test_write,</span><br><span class="line">        .release = test_release,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_open</span><span class="params">(struct inode *__inode, struct file *__file)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_read</span><span class="params">(struct file *__file, <span class="keyword">char</span> __user *user_buf, <span class="keyword">size_t</span> size, <span class="keyword">loff_t</span> *__loff)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_write</span><span class="params">(struct file *__file, <span class="keyword">const</span> <span class="keyword">char</span> __user *user_buf, <span class="keyword">size_t</span> size, <span class="keyword">loff_t</span> *__loff)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *param;</span><br><span class="line"></span><br><span class="line">    param = kmalloc(<span class="number">512</span>, GFP_KERNEL);</span><br><span class="line">    copy_from_user(param, user_buf, <span class="number">4096</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_release</span><span class="params">(struct inode *__inode, struct file *__file)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">test_ioctl</span><span class="params">(struct file *__file, <span class="keyword">unsigned</span> <span class="keyword">int</span> cmd, <span class="keyword">unsigned</span> <span class="keyword">long</span> param)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __init <span class="title">test_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    major_num = register_chrdev(<span class="number">0</span>, DEVICE_NAME, &amp;test_op);</span><br><span class="line">    <span class="keyword">if</span> (major_num &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> major_num;</span><br><span class="line"></span><br><span class="line">    module_class = class_create(THIS_MODULE, CLASS_NAME);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(module_class))</span><br><span class="line">    &#123;</span><br><span class="line">        unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">        <span class="keyword">return</span> PTR_ERR(module_class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    module_device = device_create(module_class, <span class="literal">NULL</span>, MKDEV(major_num, <span class="number">0</span>), <span class="literal">NULL</span>, DEVICE_NAME);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(module_device))</span><br><span class="line">    &#123;</span><br><span class="line">        class_destroy(module_class);</span><br><span class="line">        unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">        <span class="keyword">return</span> PTR_ERR(module_device);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    __file = filp_open(DEVICE_PATH, O_RDONLY, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(__file))</span><br><span class="line">    &#123;</span><br><span class="line">        device_destroy(module_class, MKDEV(major_num, <span class="number">0</span>));</span><br><span class="line">        class_destroy(module_class);</span><br><span class="line">        unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">        <span class="keyword">return</span> PTR_ERR(__file);</span><br><span class="line">    &#125;</span><br><span class="line">    __inode = file_inode(__file);</span><br><span class="line">    __inode-&gt;i_mode |= <span class="number">0666</span>;</span><br><span class="line">    filp_close(__file, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> __exit <span class="title">test_exit</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    device_destroy(module_class, MKDEV(major_num, <span class="number">0</span>));</span><br><span class="line">    class_destroy(module_class);</span><br><span class="line">    unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(test_init);</span><br><span class="line">module_exit(test_exit);</span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br><span class="line">MODULE_AUTHOR(<span class="string">&quot;196082&quot;</span>);</span><br><span class="line">MODULE_INFO(intree, <span class="string">&quot;Y&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这里存在明显的堆溢出。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">obj-m += vuln_device.o</span><br><span class="line">CURRENT_PATH := <span class="variable">$(<span class="built_in">shell</span> pwd)</span></span><br><span class="line">LINUX_KERNEL := <span class="variable">$(<span class="built_in">shell</span> uname -r)</span></span><br><span class="line">LINUX_KERNEL_PATH := ~/linux-5.11</span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	make -C <span class="variable">$(LINUX_KERNEL_PATH)</span> M=<span class="variable">$(CURRENT_PATH)</span> modules</span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	make -C <span class="variable">$(LINUX_KERNEL_PATH)</span> M=<span class="variable">$(CURRENT_PATH)</span> clean</span><br></pre></td></tr></table></figure>
+
+<p>通过上述的<code>Makefile</code>编译</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">include &lt;linux/fs.h&gt;</span><br><span class="line"></span><br><span class="line">resource fd_111[fd]</span><br><span class="line"></span><br><span class="line">open$test(file ptr[in, <span class="built_in">string</span>[<span class="string">&quot;/dev/intel_rapl_msrdv&quot;</span>]], flags flags[vuln_open_flags], mode flags[vuln_open_mode]) fd_111</span><br><span class="line">read$test(fd fd_111, buf buffer[out], count len[buf])</span><br><span class="line">write$test(fd fd_111, buf buffer[in], count len[buf])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">vuln_open_flags = O_RDONLY, O_WRONLY, O_RDWR, O_APPEND, FASYNC, O_CLOEXEC, O_CREAT, O_DIRECT, O_DIRECTORY, O_EXCL, O_LARGEFILE, O_NOATIME, O_NOCTTY, O_NOFOLLOW, O_NONBLOCK, O_PATH, O_SYNC, O_TRUNC, __O_TMPFILE</span><br><span class="line">vuln_open_mode = S_IRUSR, S_IWUSR, S_IXUSR, S_IRGRP, S_IWGRP, S_IXGRP, S_IROTH, S_IWOTH, S_IXOTH</span><br></pre></td></tr></table></figure>
+
+<p>编写<code>syzlang</code>随后放入到<code>sys/linux/</code>目录下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make bin/syz-extract</span><br><span class="line">make bin/syz-sysgen</span><br></pre></td></tr></table></figure>
+
+<p>编译 syz-extract 和 syz-sysgen</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/syz-extract -os linux -sourcedir <span class="string">&quot;~/linux-5.11&quot;</span> -arch amd64 vuln_test.txt</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>syz_extract</code>生成对应的<code>const</code>文件，随后重新运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./bin/syz-sysgen</span><br><span class="line">make generate</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>随后配置config文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;target&quot;</span>: <span class="string">&quot;linux/amd64&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;http&quot;</span>: <span class="string">&quot;127.0.0.1:56741&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;rpc&quot;</span>: <span class="string">&quot;127.0.0.1:0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;sshkey&quot;</span>: <span class="string">&quot;/media/psf/pwn/fuzz01/bullseye.id_rsa&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workdir&quot;</span>: <span class="string">&quot;/media/psf/pwn/fuzz01&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;kernel_obj&quot;</span>: <span class="string">&quot;/home/parallels/linux-5.11&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;syzkaller&quot;</span>: <span class="string">&quot;/home/parallels/fuzz/gopath/syzkaller&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;sandbox&quot;</span>: <span class="string">&quot;setuid&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;isolated&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;enable_syscalls&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;open$test&quot;</span>,</span><br><span class="line">        <span class="string">&quot;read$test&quot;</span>,</span><br><span class="line">        <span class="string">&quot;write$test&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;vm&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;targets&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;127.0.0.1:10021&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;pstore&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;target_dir&quot;</span>: <span class="string">&quot;/home/fuzzdir&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;target_reboot&quot;</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里写法与上面略有不同，不过看一下是挺好理解的。其中的<code>enable_syscalls</code>主要是限制只允许调用什么系统调用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/syz-manager -config=/media/psf/pwn/fuzz01/config.json</span><br></pre></td></tr></table></figure>
+
+<p>最后通过上述命令启动fuzz。</p>
+<table>
+<thead>
+<tr>
+<th>Descriptions</th>
+<th>Count</th>
+<th>Last Time</th>
+<th>Report</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KASAN: slab-out-of-bounds Write in test_write</td>
+<td>1</td>
+<td>2023/11/10 16:31</td>
+<td>reproducing</td>
+</tr>
+</tbody></table>
+<p>当跑出一个<code>crash</code>会出现如上表格，其一个含义可以看到是在<code>test_write</code>中触发了一个<code>slab-out-of-bounds</code>，也就是越界。然后最后的<code>report</code>显示的状态是正在尝试重现这个<code>crash</code>运气不佳的是这个并不能重现，如果能够重现则会显示其对应的结果，如果一个品相好的漏洞其<code>report</code>会显示<code>has C repo</code>表示有该<code>crash</code>的C语言代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r2 = open$test(&amp;(<span class="number">0x7f0000000380</span>), <span class="number">0x10000</span>, <span class="number">0x2</span>)</span><br><span class="line">write$test(r2, &amp;(<span class="number">0x7f00000003c0</span>)=<span class="string">&quot;da0f433ee1bffca3085037fc1dcce3ed4bce4ba262cfd2069703973bbd42cb061bc099e240f5a5645d2d34a9cb270151cd6edcdd7e26dbb7ff57eae5352b1920eb5e2354178f009c8c3b86de024a06cd9c24386cf0db616ae8ef502687bc61db26bb28ff8f81500321e73feb9a639fbdf287fa98c6a0e6de0510c675e920cf4e5dc6e2cb9fe4e4be66ddb29bf45283b0f9359a0028e4ffc65c54ec966e16113a6b49e3ba85f9f29aa297e978a5944426f644de7a37cfd242563e97b2ec55f3633fe9569b776c3a299ec199153afd8187b798f515ae9fdf30ebda4d9bfad062514718bef675a6528e2879aeb56ad583077ffe63f4a0e994ef211deb84f15379f6b1fa2067cf9e4d4bd7bfc5ed7ec8133ae06be457e498087f306d661684531a7f353dfeb8982d89a1a6a3554b5bbe27379c20c9bae3a5672ea0176721d8e38fbb656064062ff431efac310c5a3dc36d754b2407a82d63e152ecefa945219d0149fd17ae8c37b563ae571108ea67e7642da91f629d797380411d153b68e2ce1050f75c8be7ee1f4c626127223ee46d61986db8685710a79b8cf636570c5a522a2d83971fb5fa457326030a2899e3acfb54a4764cb8e46892c49e4ca23b633384886260f23e6ca06522928c82364950d8e24feab8c02b2442a1a102eb4374c721b6c59f66ad306ce03215d5f4db91151b0690669a09b5b59f249b64172a0009be02dd91a8c8733f9b9a64c72b3342c1c7e770e52fe6c31fff0d856ac0de9344555449e2c817f27363ef1694d10c2dd92b15f0698b003f586444a1b529c2ec2d338b64ba2bfa2ecd285b4631f8df46969a646a291c7e967c323589e49e5e01b29547848f62e9672a07e9a223ebc612058a4d1849ba105b09bbfbb2ee4dc62d32ee80ed4302a2921ed7de6f51bf068fe420debed43a0a0ecad74bba4b0d576afe8e4df6900d7fe7104427c87c1559576020c751bc040f905caf5c155331af5645872210cc76dc3a356bb3abdd373c9e02f1770f5df9b9de527e6a3359016c56199e35a832b658a410e2a97f549edf96f8781aeb5fa08e922f333d86026c62f1a24f865074202002a85042bb85ddbcbf4430b446bb0cdf984682f1d8fc7a1889352407d1c781a653fe489ece1e7ffbdc15cb0cec3ff776b7d1a34fc9642fcbdc8f2a732dae5f00a692e78dbd4f6a94986f35b38ac8aecbe3c2bc4a7932b5e933c08c4c5f8b90eb1ce3c80af44fd11d2715ec76b369e6468170a93757083a701a2d84c08a1602533ee4ab629f0839a984546a8aa1b7fee547fa4d78f6d67397ea1e9f853e22da69fe40ba837cc6a64a1ad873d971fe383ae2c862301672c236f758aa1ede00483cc4f40b066e1e3e9997ba723141726af050ba7789c9e7451a0baf52e9d49b44e8d92ab5df925598e6d9b8b10bee1089c6ff3f9dd9dfd660f832c025fcb20a159bd305563647ae9c4f0fedf7f3fd9d2d0589956cee8f5ec040f043cd931539fa7880fd69147e5a32c468611774f18987adca95a0eaa0b962f4c2fdcb91ac52ec28e39704b924bd3fc0e1f796bbd9c8b815b646b682f1d4796b9e567112453291220a7f5d2012a565f7abfba7fd318e72530b1cf04d74b42e64627c6936587c81d9bae45fc0cc2815674946427529151641aba2284c17c8ca26d7b8e0cf45ccb12db3705693a9eeb5b92d84830aae5aa170e6317544681b24a8fcb01ff769d3e89f65e9b205540239d43b81a6c2679810a3467ff0bef5bce56bcb853b60744315fc0f2899e6db88edd5ff2c8d11bd0ea553b3b1766f2ba0ac02e46805a89cfb8f71d743666556f530b759528877b8b71aa6f882616c8a795ef295961007c07479673af54818ccc79b5e43e2bbdcf00ff3d9cbfe679c6e7fc688dd0797c0a7a7e22cbdad3f1f3e3e99f8ed3b17b7f04de17e5817d48abb90203163317ee630fae9bbbe06887208ce9138b0ce0bb8ce511229698c71351c8cbdef2dcf0279c4b334c55254babf6bf4b00a7a2e89557550f338ab5e332824fbf4f1f774b970248916bdd4922fe69c825d62950c6b6a98f49795ef6fbacfc65fd8e879bad0e2963f46be54ae3c699339384cbde926d360501a6a0f0f21090d8f735301c04230d969ec4e88f1e18fc62e656ac03610dc1772295df75ca08fbd4e1fd7f39eb2cb349878a4936d35f335d1eac7da574276a6d43672393a747dd7182c27100370667700f3de9b0389cf8ac812f5ad07c7517a2a64ca22b17f120011e2a70d95cb8f7835f7cc0481defaf20665a0418e1385d0306ee26c5a861ef69e37ccb91237c9c106e9b483ae4e1c3957e02f1f5b247c835dff73502bf518d1c80e827c7d6221f1c8ca9226d2a1ef904f5025504544f4024c60ff5bf23f5b79cee9720745bf36a86179d7d0af1758e663bcd6e98d2f9339dc9ecc038a1521bb16edfbb9071fb09c2917a2144c90cd752b5683e321b70271089252da45fbb01ec19e9bc9261f7f50e129d44f6ecfed3222f7bc9943356b46f0aa97f1b03ef95890543c22a00655a8c99fdccd4ef04a7d72084d5c77a96025d5095ed608b19d0f5a7ae778fa4eab4a8f739b5ceb3fc97f11ec67a9b6c6d7ff88a4395e8bc27e8b7034de7be8683c958f2773f2bb985a9bede7e1d39aa7899e1e88aa7d7af00a9a9f084a094636af8160a14626d2c0dc142656911e418aef80dcace137e41ad996984975c62f63e5f0fdc53a699944c2e06d275264375a5330e4a295918e6f0f6e57d82e2de705eb9ce5791eac9a117d9912c6d6ae1ffdb08389dfd1eea539d2e9069520076873608d22975dd38bfd1df04c4f9dcac4bfed02af53802f8582ac59321a8453e69a7cb5a5cee4a6940466a5cecb19c9527c94d0441ad4328297f3e92714ee3153b459f45cad7e2a2197da7bb5f3ea498e0b9e49405e8f4c881eb6a9555b82072d5a3fa06b935d0c127244d747a637d09fceaffc64f983aa7df54d59f265ed28ebe79f41ebd72c2a401b88adf0daf4158bc47faebfec1fcf934b55a9bac5da808566db2216c21c17b26e25dc8566e3a14bbddd83b8d2db809a5098f5404e67958fa801f073ba48e5c0b4a5a1a98df77d8d81dd1054c7e8ece8ac44d4c21435e830c7d28927b1a61670886116d4f819bd406dd61c0bc7e57933b9071cd1de7fe9e5e8bfb66c3e637f3dc27329c936b47c2ce5f7bd8d96e889c9a4cfe6ffcfcc1b2de5b1b6cc417952d07413fbaa586bc997db9dc916a529d6e6ef7d358f41d35f888825f6491bea834adb7d57a6fdfe7b61e6ed369329b009404352f168b1adf1683fa8c860e272dcdc5593e100d83fa4bf2fcb4832bd6da307c3910675e36f5df01e1e90253948f17a6b286f50afff315e562d8feb83c8dd68397319022dfd951be06d494e9bba6dc0ddc8c8b20821522ae68bb02b749925c94f7d80566cdfdef0f6076cf7542ec7c064d0a9e1a7f71d5b67a88a94ad19d4a73e3f16d68709e0e5ca166d37c8baa384434732bba3e7d08fba66f012d22e21077a23001f1f0160f4efee36be51edb83910cd2e7362fdc173d5699b634e75489a16580c733ffce3df11d5f482c7ff82cd8c843c0d513404758016955862d308c1e0e36ad3d98652cf837782423451c4e8638990fb65eff25c380caed61a0a8fbd1cc484ecc70467efc17310cef1fd3c075d339f40067b71b15541571be112f85f89afc6fc842b263e3ce57116176402a76e695fd28eacc2da85ee62aafa6bcb896d554f843ee152e6b84b8a3c6aaeea7443b5290cec768ba0ba2aada7dee7438b76861d2434104fac6a86f7448981ab970d27c5268d3d7eac9ff26b657affacbd0dbdc30ecfd0e305fba89461c1d85aef2feb30f0cb9c94a46578d55957984deed9ec02f796246c366adc7cb32eeae18f2d56a86702c04c1dd172a70899d28808d2050d7cdaf78c6975c5dd56ab3435fc40b8019a6bbd8964bc212abb6ab3e82e12604650433964cb48093e46fe79439022f6b862ed96c6bfa59f834a28ae857df0805b6e7b4ed5db1bee79ed3999485131468ebaa043304ce67f01a6b67ac7e0d744326e0c21a857620b0e999534e36c72855a1f674ec301dc06fc1640ee4af225a3f8a1a6ed344bff7b377e957eb6a606c4fb4d82ba4238d3eedeb4ec74ee2dc7341edab9dedfcb49828b901abac4991f5886f663d8d07e77b2b8b4b12c896f28149ca896eb2d9dcb2f18a5ad6c7918e57d0e730d012f39328a94172a9f41946348ed5eed60b87512aec77114c4582ab7a29f0a19e84e52c11b07f14d53b3310cadac1546e0b042243e6afb376192ecd87be7b574f852f411ff5a8a6f7fdb743b568e89a34ba3547b2959f3760e382b75441bea3713c81e31391b10751f80bdb42216d7644d8ab5aedb5ed437e0e7954a1ef4bd6c3cc2aa45b652c86281345eaa3dbaceb684224222db02c9a638475364135284a21097286ef864706c9df5c350dc5933a5ba1d46795f49316705d7ae7cb59f5e91994a6c57ae525189243cd36b8ab1c351eaaa04ace3bccfb1287c4c60667524562b8f350da09e6ca212194d49e6550b2289170c64e8c9d019b4d4f7d888e62b5458c5b28b2eda131079f5e66d35014d5460e7e785bcc7ffc6141384498c55dad57901729fc056a5595850ceb1d5c6d31a6894b8d8b85f9173f9ebc158d2d43952c48d4f3590a4e4fae41ea0aa9c8ab78557fd4e9ca5611b62ca6f0b5f6c46592537f008cd5083b08bc3fd1218773cb10fa44933fbaeed4afa57afae135c8a1898b06a5c2855e3f8a6bfe8ba9a589bceb5f9a5376f220cfdfc977e7416abd7258b40e9df634d966d7d8e665ab3ab6495bd07dcdf32ac3f62eaaf2e18ba093f46c96b7ac2e6fca971dfec82c72fd7241aac6774655ad19b8bebd1766e1afa44510682369083ae89734a7809539193d48146fe83f2401b3a33a0857f8cd2a305bc59e58bf41360fe0abe63a6f99bd12a8d1988a3c52dc3ac7091c71ffbab698284079799bbd66370b473b542dab968670fb8b4444af52b5070601df1702738cb29aceae70c6b916d11bdfc6814d5f57a6b257f62587f4e35525074fc031db80f98b9b59130d831bd8bbaa45ed2544dcb34badeac02b794c19875e3edb4b4b78156995df60b4f03a03a9eae88bc5bc071d0f948f38f9a92511b5939acc135820d10c708edb737c9ad7c7dd80cb9cba5347a712e946409bd400c7bb5badc9ecf969ca886260e184ebcb5826b6de23bd0e0a3935321299d45d0e151c782cde6239490566f11b91bac99fd0d202f20abd4c8fad629c4596b857730ac92cc6e67e3177692dd27f1eaa48ca6d19649d0692bd6ab77772c04535c91660f961222ae3a2fbb2663f4fb737f153595ce9a8b865c2dd36eb19b459e933322ddef02a2412e8dbd3b48e951eb9497f3837a6a3b567c43edb3c4f74bf5356187c591f4419dbc21cec3eb31ed865a6146cb455b6a381f0663f8a09c16eda030839fce28a85faa27a0adbb504cc20e3a1af0c6b29f8a7a8b9cbf2e16cfc4ae9413338a6fe08e30f9c495869828203e774cff77da575ec0399368c5568a5d98e51047ece46b2612fe5ab2613761b58d6dcbd079c7d253db81a540f2b921bd0599b70c3119803fc5e97954feaf4a7f813d77a03a811d2582f14989fca781dc28aa96958b9546cc83fa543bc00928a602f3f4be13ec7f1acb78d57e6ebd599e2a077656ffaf04d9a971a017f2391301fdcd7053925d41f9d355dc229ac94fcc0f0b01070b3cb485cbae3356a5421ff428067e9be643933615b0d3bcbe3a2a6d25&quot;</span>, <span class="number">0x1000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面是截取的log文件，其中会记录系统调用，调用的参数等一系列信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">==================================================================</span><br><span class="line">BUG: KASAN: slab-out-of-bounds <span class="keyword">in</span> instrument_copy_from_user include/linux/instrumented.h:135 [inline]</span><br><span class="line">BUG: KASAN: slab-out-of-bounds <span class="keyword">in</span> _copy_from_user+0x66/0xd0 lib/usercopy.c:15</span><br><span class="line">Write of size 4096 at addr ffff88810686f800 by task syz-executor/3452</span><br><span class="line">CPU: 0 PID: 3452 Comm: syz-executor Not tainted 5.11.0 <span class="comment">#1</span></span><br><span class="line">Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.13.0-1ubuntu1.1 04/01/2014</span><br><span class="line">Call Trace:</span><br><span class="line"> __dump_stack lib/dump_stack.c:79 [inline]</span><br><span class="line"> dump_stack+0x9c/0xcf lib/dump_stack.c:120</span><br><span class="line"> print_address_description.constprop.0+0x1a/0x140 mm/kasan/report.c:230</span><br><span class="line"> __kasan_report mm/kasan/report.c:396 [inline]</span><br><span class="line"> kasan_report.cold+0x7f/0x10e mm/kasan/report.c:413</span><br><span class="line"> check_memory_region_inline mm/kasan/generic.c:179 [inline]</span><br><span class="line"> check_memory_region+0x17c/0x1e0 mm/kasan/generic.c:185</span><br><span class="line"> instrument_copy_from_user include/linux/instrumented.h:135 [inline]</span><br><span class="line"> _copy_from_user+0x66/0xd0 lib/usercopy.c:15</span><br><span class="line"> test_write+0x4f/0x70 [vuln_device]</span><br><span class="line"> vfs_write+0x1bf/0x760 fs/read_write.c:603</span><br><span class="line"> ksys_write+0x100/0x210 fs/read_write.c:658</span><br><span class="line"> do_syscall_64+0x33/0x40 arch/x86/entry/common.c:46</span><br><span class="line"> entry_SYSCALL_64_after_hwframe+0x44/0xa9</span><br><span class="line">RIP: 0033:0x7f1a044ec96d</span><br><span class="line">Code: c3 e8 17 32 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 &lt;48&gt; 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48</span><br><span class="line">RSP: 002b:00007f1a0325bbf8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001</span><br><span class="line">RAX: ffffffffffffffda RBX: 00007f1a04628f80 RCX: 00007f1a044ec96d</span><br><span class="line">RDX: 000000000000003f RSI: 0000000020001580 RDI: 0000000000000004</span><br><span class="line">RBP: 00007f1a0454a4af R08: 0000000000000000 R09: 0000000000000000</span><br><span class="line">R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000</span><br><span class="line">R13: 00007fff371812bf R14: 00007fff37181460 R15: 00007f1a0325bd80</span><br><span class="line">Allocated by task 3452:</span><br><span class="line"> kasan_save_stack+0x1b/0x40 mm/kasan/common.c:38</span><br><span class="line"> kasan_set_track mm/kasan/common.c:46 [inline]</span><br><span class="line"> set_alloc_info mm/kasan/common.c:401 [inline]</span><br><span class="line"> ____kasan_kmalloc.constprop.0+0x84/0xa0 mm/kasan/common.c:429</span><br><span class="line"> test_write+0x3f/0x70 [vuln_device]</span><br><span class="line"> vfs_write+0x1bf/0x760 fs/read_write.c:603</span><br><span class="line"> ksys_write+0x100/0x210 fs/read_write.c:658</span><br><span class="line"> do_syscall_64+0x33/0x40 arch/x86/entry/common.c:46</span><br><span class="line"> entry_SYSCALL_64_after_hwframe+0x44/0xa9</span><br><span class="line">The buggy address belongs to the object at ffff88810686f800</span><br><span class="line">The buggy address is located 0 bytes inside of</span><br><span class="line">The buggy address belongs to the page:</span><br><span class="line">page:00000000a4947c90 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x10686e</span><br><span class="line">head:00000000a4947c90 order:1 compound_mapcount:0</span><br><span class="line">flags: 0x200000000010200(slab|head)</span><br><span class="line">raw: 0200000000010200 ffffea0004335180 0000000300000003 ffff888100041280</span><br><span class="line">raw: 0000000000000000 0000000080080008 00000001ffffffff 0000000000000000</span><br><span class="line">page dumped because: kasan: bad access detected</span><br><span class="line">Memory state around the buggy address:</span><br><span class="line"> ffff88810686f900: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line"> ffff88810686f980: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">&gt;ffff88810686fa00: <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span></span><br><span class="line">                   ^</span><br><span class="line"> ffff88810686fa80: <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span></span><br><span class="line"> ffff88810686fb00: <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span> <span class="built_in">fc</span></span><br><span class="line">==================================================================</span><br></pre></td></tr></table></figure>
+
+<p>这里就是<code>report</code>给出的是<code>kernel</code>相关的信息，比如函数调用栈，以及寄存器信息等。</p>
+<p>至于这里为什么无法重现出我觉得一大原因就是我没对这个驱动载入设置自启动，导致一次<code>kernel panic</code>之后没有重新加载驱动（<del>下班了不搞了！</del>）。其实有kernel pwn基础的朋友读懂前面的log和<code>kernel panic</code>的信息都会特别轻松的，这里不详细说了！</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2023/10/27/CVE-2022-2588/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2022-2588复现</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzkaller%E4%BD%BF%E7%94%A8"><span class="nav-text">syzkaller使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8syzkaller"><span class="nav-text">启动syzkaller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzlang%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97"><span class="nav-text">syzlang编写指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syzlang%E8%AF%AD%E6%B3%95"><span class="nav-text">syzlang语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B"><span class="nav-text">整型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-text">资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF"><span class="nav-text">类型模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6"><span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E5%B8%B8%E9%87%8F"><span class="nav-text">整型常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%8D%95%E6%8D%89%E7%AE%80%E5%8D%95%E6%BA%A2%E5%87%BA%E6%B4%9E"><span class="nav-text">尝试捕捉简单溢出洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-extract"><span class="nav-text">syz-extract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-sysgen"><span class="nav-text">syz-sysgen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E6%B5%81%E7%A8%8B"><span class="nav-text">实战流程</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
