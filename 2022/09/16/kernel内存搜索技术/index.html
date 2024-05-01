@@ -337,7 +337,7 @@
 <h2 id="补充一下"><a href="#补充一下" class="headerlink" title="补充一下"></a>补充一下</h2><p>这里解释一下为什么使用<code>swapgs_restore_regs_and_return_to_usermode+0x16</code>首先这里是ROP所以我们需要的是最后swapgs然后iretq，并且这里是开启了KPTI保护的，所以我们在最后还需要修改cr3寄存器。其次为什么要加上0x16呢？首先我们要知道的是前面的pop对我们来说并没有什么用。其次就是在切换完cr3之后我们还有两次pop所以我们需要保证rsp也是在可以识别的，最终根据上述要求我们必须选择<code>swapgs_restore_regs_and_return_to_usermode+0x16</code>。</p>
 <hr>
 <p>参考链接：<a class="link"   target="_blank" rel="noopener" href="https://arttnba3.cn/2022/03/08/CTF-0X06-D3CTF2022_D3KHEAP/#0x01-%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90" >https://arttnba3.cn/2022/03/08/CTF-0X06-D3CTF2022_D3KHEAP/#0x01-%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90<i class="fas fa-external-link-alt"></i></a></p>
-<p>题目链接：<a target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/kernel_pwn/d3kheap.zip">https://github.com/196082/196082/blob/main/kernel_pwn/d3kheap.zip</a></p>
+<p>题目链接：<a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/kernel_pwn/d3kheap.zip" >https://github.com/196082/196082/blob/main/kernel_pwn/d3kheap.zip<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 

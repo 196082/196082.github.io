@@ -257,7 +257,7 @@
 <h2 id="补充一下"><a href="#补充一下" class="headerlink" title="补充一下"></a>补充一下</h2><p>根据exp可以可能会存在以这样一个疑问：为什么开始要申请16个pipe_buffer结构体？</p>
 <p>上面这个问题我依稀记得我在某篇文章提到过，不过我也没找到，所以这里再做一下解释。在最后利用时我们就已经破坏掉了slab的freelist链表了，但是系统会继续申请很多堆块，所以我们所做的算是保证在申请0x400size的object的时候不会发生kernel panic。</p>
 <hr>
-<p>题目链接：<a target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/kernel_pwn/cactus.zip">https://github.com/196082/196082/blob/main/kernel_pwn/cactus.zip</a></p>
+<p>题目链接：<a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/kernel_pwn/cactus.zip" >https://github.com/196082/196082/blob/main/kernel_pwn/cactus.zip<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>
 
