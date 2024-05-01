@@ -3,11 +3,11 @@
   <title>196082&#39;s blog</title>
   
   
-  <link href="https://github.com/196082/github.io.git/atom.xml" rel="self"/>
+  <link href="https://github.com/196082/196082.github.io.git/atom.xml" rel="self"/>
   
-  <link href="https://github.com/196082/github.io.git/"/>
+  <link href="https://github.com/196082/196082.github.io.git/"/>
   <updated>2024-03-14T04:58:01.425Z</updated>
-  <id>https://github.com/196082/github.io.git/</id>
+  <id>https://github.com/196082/196082.github.io.git/</id>
   
   <author>
     <name>196082</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Linux Rootkit现代技术分析</title>
-    <link href="https://github.com/196082/github.io.git/2024/03/03/Linux-Rootkit%E7%8E%B0%E4%BB%A3%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/"/>
-    <id>https://github.com/196082/github.io.git/2024/03/03/Linux-Rootkit%E7%8E%B0%E4%BB%A3%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2024/03/03/Linux-Rootkit%E7%8E%B0%E4%BB%A3%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/"/>
+    <id>https://github.com/196082/196082.github.io.git/2024/03/03/Linux-Rootkit%E7%8E%B0%E4%BB%A3%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/</id>
     <published>2024-03-03T05:54:56.000Z</published>
     <updated>2024-03-14T04:58:01.425Z</updated>
     
@@ -33,17 +33,17 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="LKM" scheme="https://github.com/196082/github.io.git/tags/LKM/"/>
+    <category term="LKM" scheme="https://github.com/196082/196082.github.io.git/tags/LKM/"/>
     
   </entry>
   
   <entry>
     <title>Linux Rootkit入门</title>
-    <link href="https://github.com/196082/github.io.git/2024/02/16/Linux-Rootkit/"/>
-    <id>https://github.com/196082/github.io.git/2024/02/16/Linux-Rootkit/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2024/02/16/Linux-Rootkit/"/>
+    <id>https://github.com/196082/196082.github.io.git/2024/02/16/Linux-Rootkit/</id>
     <published>2024-02-16T09:06:09.000Z</published>
     <updated>2024-02-16T09:05:35.075Z</updated>
     
@@ -58,17 +58,17 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="LKM" scheme="https://github.com/196082/github.io.git/tags/LKM/"/>
+    <category term="LKM" scheme="https://github.com/196082/196082.github.io.git/tags/LKM/"/>
     
   </entry>
   
   <entry>
     <title>Kernel内存管理</title>
-    <link href="https://github.com/196082/github.io.git/2024/01/24/Kernel%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
-    <id>https://github.com/196082/github.io.git/2024/01/24/Kernel%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2024/01/24/Kernel%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>https://github.com/196082/196082.github.io.git/2024/01/24/Kernel%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</id>
     <published>2024-01-24T09:11:09.000Z</published>
     <updated>2024-01-24T09:10:57.282Z</updated>
     
@@ -82,19 +82,19 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="buddy system" scheme="https://github.com/196082/github.io.git/tags/buddy-system/"/>
+    <category term="buddy system" scheme="https://github.com/196082/196082.github.io.git/tags/buddy-system/"/>
     
-    <category term="内存管理" scheme="https://github.com/196082/github.io.git/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <category term="内存管理" scheme="https://github.com/196082/196082.github.io.git/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>Pspray: Timing Side-Channel based Linux Kernel Heap Exploitation Technique</title>
-    <link href="https://github.com/196082/github.io.git/2023/11/23/Pspray-Timing-Side-Channel-based-Linux-Kernel-Heap-Exploitation-Technique/"/>
-    <id>https://github.com/196082/github.io.git/2023/11/23/Pspray-Timing-Side-Channel-based-Linux-Kernel-Heap-Exploitation-Technique/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/11/23/Pspray-Timing-Side-Channel-based-Linux-Kernel-Heap-Exploitation-Technique/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/11/23/Pspray-Timing-Side-Channel-based-Linux-Kernel-Heap-Exploitation-Technique/</id>
     <published>2023-11-23T09:05:25.000Z</published>
     <updated>2023-11-29T10:14:05.650Z</updated>
     
@@ -108,21 +108,21 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="堆喷射" scheme="https://github.com/196082/github.io.git/tags/%E5%A0%86%E5%96%B7%E5%B0%84/"/>
+    <category term="堆喷射" scheme="https://github.com/196082/196082.github.io.git/tags/%E5%A0%86%E5%96%B7%E5%B0%84/"/>
     
-    <category term="侧信道攻击" scheme="https://github.com/196082/github.io.git/tags/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB/"/>
+    <category term="侧信道攻击" scheme="https://github.com/196082/196082.github.io.git/tags/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB/"/>
     
-    <category term="slab源码分析" scheme="https://github.com/196082/github.io.git/tags/slab%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <category term="slab源码分析" scheme="https://github.com/196082/196082.github.io.git/tags/slab%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
     <title>syzkaller: syz-manager源码分析</title>
-    <link href="https://github.com/196082/github.io.git/2023/11/17/syzkaller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/"/>
-    <id>https://github.com/196082/github.io.git/2023/11/17/syzkaller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/11/17/syzkaller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/11/17/syzkaller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/</id>
     <published>2023-11-17T03:40:06.000Z</published>
     <updated>2023-11-17T03:40:55.615Z</updated>
     
@@ -137,19 +137,19 @@
     
     
     
-    <category term="FUZZ" scheme="https://github.com/196082/github.io.git/categories/FUZZ/"/>
+    <category term="FUZZ" scheme="https://github.com/196082/196082.github.io.git/categories/FUZZ/"/>
     
     
-    <category term="FUZZ" scheme="https://github.com/196082/github.io.git/tags/FUZZ/"/>
+    <category term="FUZZ" scheme="https://github.com/196082/196082.github.io.git/tags/FUZZ/"/>
     
-    <category term="syzkaller" scheme="https://github.com/196082/github.io.git/tags/syzkaller/"/>
+    <category term="syzkaller" scheme="https://github.com/196082/196082.github.io.git/tags/syzkaller/"/>
     
   </entry>
   
   <entry>
     <title>syzkaller基本使用</title>
-    <link href="https://github.com/196082/github.io.git/2023/11/10/syzkaller%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-    <id>https://github.com/196082/github.io.git/2023/11/10/syzkaller%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/11/10/syzkaller%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/11/10/syzkaller%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</id>
     <published>2023-11-10T09:04:05.000Z</published>
     <updated>2023-11-29T10:13:25.396Z</updated>
     
@@ -163,23 +163,23 @@
     
     
     
-    <category term="FUZZ" scheme="https://github.com/196082/github.io.git/categories/FUZZ/"/>
+    <category term="FUZZ" scheme="https://github.com/196082/196082.github.io.git/categories/FUZZ/"/>
     
     
-    <category term="FUZZ" scheme="https://github.com/196082/github.io.git/tags/FUZZ/"/>
+    <category term="FUZZ" scheme="https://github.com/196082/196082.github.io.git/tags/FUZZ/"/>
     
-    <category term="LKM" scheme="https://github.com/196082/github.io.git/tags/LKM/"/>
+    <category term="LKM" scheme="https://github.com/196082/196082.github.io.git/tags/LKM/"/>
     
-    <category term="syzkaller" scheme="https://github.com/196082/github.io.git/tags/syzkaller/"/>
+    <category term="syzkaller" scheme="https://github.com/196082/196082.github.io.git/tags/syzkaller/"/>
     
-    <category term="syzlang" scheme="https://github.com/196082/github.io.git/tags/syzlang/"/>
+    <category term="syzlang" scheme="https://github.com/196082/196082.github.io.git/tags/syzlang/"/>
     
   </entry>
   
   <entry>
     <title>CVE-2022-2588复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/10/27/CVE-2022-2588/"/>
-    <id>https://github.com/196082/github.io.git/2023/10/27/CVE-2022-2588/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/10/27/CVE-2022-2588/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/10/27/CVE-2022-2588/</id>
     <published>2023-10-27T08:39:53.000Z</published>
     <updated>2023-11-29T10:11:29.184Z</updated>
     
@@ -193,21 +193,21 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
-    <category term="CVE复现" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
+    <category term="CVE复现" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="Rtnetlink" scheme="https://github.com/196082/github.io.git/tags/Rtnetlink/"/>
+    <category term="Rtnetlink" scheme="https://github.com/196082/196082.github.io.git/tags/Rtnetlink/"/>
     
-    <category term="Dirty Cred" scheme="https://github.com/196082/github.io.git/tags/Dirty-Cred/"/>
+    <category term="Dirty Cred" scheme="https://github.com/196082/196082.github.io.git/tags/Dirty-Cred/"/>
     
   </entry>
   
   <entry>
     <title>CVE-2022-0185复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/10/15/CVE-2022-0185/"/>
-    <id>https://github.com/196082/github.io.git/2023/10/15/CVE-2022-0185/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/10/15/CVE-2022-0185/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/10/15/CVE-2022-0185/</id>
     <published>2023-10-15T09:03:20.000Z</published>
     <updated>2023-11-29T10:11:19.513Z</updated>
     
@@ -221,27 +221,27 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
-    <category term="CVE复现" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
+    <category term="CVE复现" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="msg_msg" scheme="https://github.com/196082/github.io.git/tags/msg-msg/"/>
+    <category term="msg_msg" scheme="https://github.com/196082/196082.github.io.git/tags/msg-msg/"/>
     
-    <category term="pipe_buffer" scheme="https://github.com/196082/github.io.git/tags/pipe-buffer/"/>
+    <category term="pipe_buffer" scheme="https://github.com/196082/196082.github.io.git/tags/pipe-buffer/"/>
     
-    <category term="Filesystem" scheme="https://github.com/196082/github.io.git/tags/Filesystem/"/>
+    <category term="Filesystem" scheme="https://github.com/196082/196082.github.io.git/tags/Filesystem/"/>
     
-    <category term="fuse" scheme="https://github.com/196082/github.io.git/tags/fuse/"/>
+    <category term="fuse" scheme="https://github.com/196082/196082.github.io.git/tags/fuse/"/>
     
-    <category term="seq_operations" scheme="https://github.com/196082/github.io.git/tags/seq-operations/"/>
+    <category term="seq_operations" scheme="https://github.com/196082/196082.github.io.git/tags/seq-operations/"/>
     
   </entry>
   
   <entry>
     <title>浅尝docker escape</title>
-    <link href="https://github.com/196082/github.io.git/2023/09/30/%E6%B5%85%E5%B0%9Ddocker-escape/"/>
-    <id>https://github.com/196082/github.io.git/2023/09/30/%E6%B5%85%E5%B0%9Ddocker-escape/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/09/30/%E6%B5%85%E5%B0%9Ddocker-escape/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/09/30/%E6%B5%85%E5%B0%9Ddocker-escape/</id>
     <published>2023-09-30T03:17:07.000Z</published>
     <updated>2023-11-29T10:10:55.600Z</updated>
     
@@ -255,19 +255,19 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="docker escape" scheme="https://github.com/196082/github.io.git/tags/docker-escape/"/>
+    <category term="docker escape" scheme="https://github.com/196082/196082.github.io.git/tags/docker-escape/"/>
     
-    <category term="namespace机制" scheme="https://github.com/196082/github.io.git/tags/namespace%E6%9C%BA%E5%88%B6/"/>
+    <category term="namespace机制" scheme="https://github.com/196082/196082.github.io.git/tags/namespace%E6%9C%BA%E5%88%B6/"/>
     
   </entry>
   
   <entry>
     <title>CVE-2022-32250复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/09/06/CVE-2022-32250/"/>
-    <id>https://github.com/196082/github.io.git/2023/09/06/CVE-2022-32250/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/09/06/CVE-2022-32250/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/09/06/CVE-2022-32250/</id>
     <published>2023-09-06T01:57:12.000Z</published>
     <updated>2023-11-29T10:11:32.000Z</updated>
     
@@ -281,23 +281,23 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
-    <category term="CVE复现" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
+    <category term="CVE复现" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="netfilter" scheme="https://github.com/196082/github.io.git/tags/netfilter/"/>
+    <category term="netfilter" scheme="https://github.com/196082/196082.github.io.git/tags/netfilter/"/>
     
-    <category term="io_uring" scheme="https://github.com/196082/github.io.git/tags/io-uring/"/>
+    <category term="io_uring" scheme="https://github.com/196082/196082.github.io.git/tags/io-uring/"/>
     
-    <category term="user_key_payload" scheme="https://github.com/196082/github.io.git/tags/user-key-payload/"/>
+    <category term="user_key_payload" scheme="https://github.com/196082/196082.github.io.git/tags/user-key-payload/"/>
     
   </entry>
   
   <entry>
     <title>CVE-2022-0995复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/08/21/CVE-2022-0995/"/>
-    <id>https://github.com/196082/github.io.git/2023/08/21/CVE-2022-0995/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/08/21/CVE-2022-0995/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/08/21/CVE-2022-0995/</id>
     <published>2023-08-21T06:27:52.000Z</published>
     <updated>2023-11-29T10:11:26.118Z</updated>
     
@@ -311,21 +311,21 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
-    <category term="CVE复现" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
+    <category term="CVE复现" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="msg_msg" scheme="https://github.com/196082/github.io.git/tags/msg-msg/"/>
+    <category term="msg_msg" scheme="https://github.com/196082/196082.github.io.git/tags/msg-msg/"/>
     
-    <category term="watch queue" scheme="https://github.com/196082/github.io.git/tags/watch-queue/"/>
+    <category term="watch queue" scheme="https://github.com/196082/196082.github.io.git/tags/watch-queue/"/>
     
   </entry>
   
   <entry>
     <title>CVE-2021-3490复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/08/12/CVE-2021-3490/"/>
-    <id>https://github.com/196082/github.io.git/2023/08/12/CVE-2021-3490/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/08/12/CVE-2021-3490/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/08/12/CVE-2021-3490/</id>
     <published>2023-08-12T13:30:19.000Z</published>
     <updated>2023-11-29T10:11:13.843Z</updated>
     
@@ -340,19 +340,19 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
-    <category term="CVE复现" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
+    <category term="CVE复现" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="ebpf" scheme="https://github.com/196082/github.io.git/tags/ebpf/"/>
+    <category term="ebpf" scheme="https://github.com/196082/196082.github.io.git/tags/ebpf/"/>
     
   </entry>
   
   <entry>
     <title>CVE-2016-5195复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/08/08/CVE-2016-5195/"/>
-    <id>https://github.com/196082/github.io.git/2023/08/08/CVE-2016-5195/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/08/08/CVE-2016-5195/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/08/08/CVE-2016-5195/</id>
     <published>2023-08-08T02:46:43.000Z</published>
     <updated>2023-11-29T10:11:05.327Z</updated>
     
@@ -366,23 +366,23 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
-    <category term="CVE复现" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
+    <category term="CVE复现" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="page fault" scheme="https://github.com/196082/github.io.git/tags/page-fault/"/>
+    <category term="page fault" scheme="https://github.com/196082/196082.github.io.git/tags/page-fault/"/>
     
-    <category term="COW" scheme="https://github.com/196082/github.io.git/tags/COW/"/>
+    <category term="COW" scheme="https://github.com/196082/196082.github.io.git/tags/COW/"/>
     
-    <category term="Race condition" scheme="https://github.com/196082/github.io.git/tags/Race-condition/"/>
+    <category term="Race condition" scheme="https://github.com/196082/196082.github.io.git/tags/Race-condition/"/>
     
   </entry>
   
   <entry>
     <title>dl-runtime-resolve重温</title>
-    <link href="https://github.com/196082/github.io.git/2023/07/28/dl-runtime-resolve/"/>
-    <id>https://github.com/196082/github.io.git/2023/07/28/dl-runtime-resolve/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/07/28/dl-runtime-resolve/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/07/28/dl-runtime-resolve/</id>
     <published>2023-07-28T14:27:42.000Z</published>
     <updated>2023-10-27T08:39:07.061Z</updated>
     
@@ -396,19 +396,19 @@
     
     
     
-    <category term="pwn" scheme="https://github.com/196082/github.io.git/categories/pwn/"/>
+    <category term="pwn" scheme="https://github.com/196082/196082.github.io.git/categories/pwn/"/>
     
     
-    <category term="dl-runtime-resolve" scheme="https://github.com/196082/github.io.git/tags/dl-runtime-resolve/"/>
+    <category term="dl-runtime-resolve" scheme="https://github.com/196082/196082.github.io.git/tags/dl-runtime-resolve/"/>
     
-    <category term="Full RELRO" scheme="https://github.com/196082/github.io.git/tags/Full-RELRO/"/>
+    <category term="Full RELRO" scheme="https://github.com/196082/196082.github.io.git/tags/Full-RELRO/"/>
     
   </entry>
   
   <entry>
     <title>v8初体验</title>
-    <link href="https://github.com/196082/github.io.git/2023/06/27/v8%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
-    <id>https://github.com/196082/github.io.git/2023/06/27/v8%E5%88%9D%E4%BD%93%E9%AA%8C/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/06/27/v8%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/06/27/v8%E5%88%9D%E4%BD%93%E9%AA%8C/</id>
     <published>2023-06-27T12:05:06.000Z</published>
     <updated>2023-06-27T12:05:13.396Z</updated>
     
@@ -422,17 +422,17 @@
     
     
     
-    <category term="chrome-pwn" scheme="https://github.com/196082/github.io.git/categories/chrome-pwn/"/>
+    <category term="chrome-pwn" scheme="https://github.com/196082/196082.github.io.git/categories/chrome-pwn/"/>
     
     
-    <category term="overstep" scheme="https://github.com/196082/github.io.git/tags/overstep/"/>
+    <category term="overstep" scheme="https://github.com/196082/196082.github.io.git/tags/overstep/"/>
     
   </entry>
   
   <entry>
     <title>关于protobuf的解题步骤</title>
-    <link href="https://github.com/196082/github.io.git/2023/05/30/protobuf/"/>
-    <id>https://github.com/196082/github.io.git/2023/05/30/protobuf/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/05/30/protobuf/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/05/30/protobuf/</id>
     <published>2023-05-30T08:26:30.000Z</published>
     <updated>2023-05-30T08:28:07.409Z</updated>
     
@@ -446,19 +446,19 @@
     
     
     
-    <category term="pwn" scheme="https://github.com/196082/github.io.git/categories/pwn/"/>
+    <category term="pwn" scheme="https://github.com/196082/196082.github.io.git/categories/pwn/"/>
     
     
-    <category term="UAF" scheme="https://github.com/196082/github.io.git/tags/UAF/"/>
+    <category term="UAF" scheme="https://github.com/196082/196082.github.io.git/tags/UAF/"/>
     
-    <category term="protobuf" scheme="https://github.com/196082/github.io.git/tags/protobuf/"/>
+    <category term="protobuf" scheme="https://github.com/196082/196082.github.io.git/tags/protobuf/"/>
     
   </entry>
   
   <entry>
     <title>向pipe_buffer说yes！</title>
-    <link href="https://github.com/196082/github.io.git/2023/05/24/pipe-buffer/"/>
-    <id>https://github.com/196082/github.io.git/2023/05/24/pipe-buffer/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/05/24/pipe-buffer/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/05/24/pipe-buffer/</id>
     <published>2023-05-24T08:39:35.000Z</published>
     <updated>2023-11-29T10:12:19.720Z</updated>
     
@@ -475,23 +475,23 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="msg_msg" scheme="https://github.com/196082/github.io.git/tags/msg-msg/"/>
+    <category term="msg_msg" scheme="https://github.com/196082/196082.github.io.git/tags/msg-msg/"/>
     
-    <category term="pipe_buffer" scheme="https://github.com/196082/github.io.git/tags/pipe-buffer/"/>
+    <category term="pipe_buffer" scheme="https://github.com/196082/196082.github.io.git/tags/pipe-buffer/"/>
     
-    <category term="io_uring" scheme="https://github.com/196082/github.io.git/tags/io-uring/"/>
+    <category term="io_uring" scheme="https://github.com/196082/196082.github.io.git/tags/io-uring/"/>
     
-    <category term="页级堆风水" scheme="https://github.com/196082/github.io.git/tags/%E9%A1%B5%E7%BA%A7%E5%A0%86%E9%A3%8E%E6%B0%B4/"/>
+    <category term="页级堆风水" scheme="https://github.com/196082/196082.github.io.git/tags/%E9%A1%B5%E7%BA%A7%E5%A0%86%E9%A3%8E%E6%B0%B4/"/>
     
   </entry>
   
   <entry>
     <title>RCTF2022复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/04/22/RCTF2022%E5%A4%8D%E7%8E%B0/"/>
-    <id>https://github.com/196082/github.io.git/2023/04/22/RCTF2022%E5%A4%8D%E7%8E%B0/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/04/22/RCTF2022%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/04/22/RCTF2022%E5%A4%8D%E7%8E%B0/</id>
     <published>2023-04-22T05:35:06.000Z</published>
     <updated>2023-04-24T12:39:40.207Z</updated>
     
@@ -505,17 +505,17 @@
     
     
     
-    <category term="比赛复现" scheme="https://github.com/196082/github.io.git/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/"/>
+    <category term="比赛复现" scheme="https://github.com/196082/196082.github.io.git/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="UAF" scheme="https://github.com/196082/github.io.git/tags/UAF/"/>
+    <category term="UAF" scheme="https://github.com/196082/196082.github.io.git/tags/UAF/"/>
     
   </entry>
   
   <entry>
     <title>io_uring在kernel pwn中的优异表现</title>
-    <link href="https://github.com/196082/github.io.git/2023/04/20/io-uring/"/>
-    <id>https://github.com/196082/github.io.git/2023/04/20/io-uring/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/04/20/io-uring/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/04/20/io-uring/</id>
     <published>2023-04-20T10:13:02.000Z</published>
     <updated>2023-11-29T10:11:41.225Z</updated>
     
@@ -529,19 +529,19 @@
     
     
     
-    <category term="Linux Kernel" scheme="https://github.com/196082/github.io.git/categories/Linux-Kernel/"/>
+    <category term="Linux Kernel" scheme="https://github.com/196082/196082.github.io.git/categories/Linux-Kernel/"/>
     
     
-    <category term="io_uring" scheme="https://github.com/196082/github.io.git/tags/io-uring/"/>
+    <category term="io_uring" scheme="https://github.com/196082/196082.github.io.git/tags/io-uring/"/>
     
-    <category term="modify_ldt" scheme="https://github.com/196082/github.io.git/tags/modify-ldt/"/>
+    <category term="modify_ldt" scheme="https://github.com/196082/196082.github.io.git/tags/modify-ldt/"/>
     
   </entry>
   
   <entry>
     <title>ByteRun复现</title>
-    <link href="https://github.com/196082/github.io.git/2023/04/01/ByteRun%E5%A4%8D%E7%8E%B0/"/>
-    <id>https://github.com/196082/github.io.git/2023/04/01/ByteRun%E5%A4%8D%E7%8E%B0/</id>
+    <link href="https://github.com/196082/196082.github.io.git/2023/04/01/ByteRun%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://github.com/196082/196082.github.io.git/2023/04/01/ByteRun%E5%A4%8D%E7%8E%B0/</id>
     <published>2023-04-01T07:05:48.000Z</published>
     <updated>2023-04-01T07:05:25.085Z</updated>
     
@@ -556,16 +556,16 @@
     
     
     
-    <category term="比赛复现" scheme="https://github.com/196082/github.io.git/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/"/>
+    <category term="比赛复现" scheme="https://github.com/196082/196082.github.io.git/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="msg_msg" scheme="https://github.com/196082/github.io.git/tags/msg-msg/"/>
+    <category term="msg_msg" scheme="https://github.com/196082/196082.github.io.git/tags/msg-msg/"/>
     
-    <category term="sk_buff" scheme="https://github.com/196082/github.io.git/tags/sk-buff/"/>
+    <category term="sk_buff" scheme="https://github.com/196082/196082.github.io.git/tags/sk-buff/"/>
     
-    <category term="pipe_buffer" scheme="https://github.com/196082/github.io.git/tags/pipe-buffer/"/>
+    <category term="pipe_buffer" scheme="https://github.com/196082/196082.github.io.git/tags/pipe-buffer/"/>
     
-    <category term="qemu escape" scheme="https://github.com/196082/github.io.git/tags/qemu-escape/"/>
+    <category term="qemu escape" scheme="https://github.com/196082/196082.github.io.git/tags/qemu-escape/"/>
     
   </entry>
   
