@@ -14,17 +14,17 @@
         196082&#39;s blog
     </title>
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/196082/github.io.git/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="shortcut icon" href="/196082/github.io.git/images/ufo.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.hexo_config = {"hostname":"github.com","root":"/196082/github.io.git/","language":"zh-CN","path":"search.json"};
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/196082/github.io.git/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -59,7 +59,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/"
+                               href="/196082/github.io.git/"
                             >
                                 首页
                             </a>
@@ -67,7 +67,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/archives"
+                               href="/196082/github.io.git/archives"
                             >
                                 归档
                             </a>
@@ -75,7 +75,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/categories"
+                               href="/196082/github.io.git/categories"
                             >
                                 分类
                             </a>
@@ -83,7 +83,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/tags"
+                               href="/196082/github.io.git/tags"
                             >
                                 标签
                             </a>
@@ -112,22 +112,22 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/196082/github.io.git/">首页</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/196082/github.io.git/archives">归档</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/196082/github.io.git/categories">分类</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/196082/github.io.git/tags">标签</a>
                 </li>
             
         </ul>
@@ -155,7 +155,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/ling.JPG">
+                    <img src="/196082/github.io.git/images/ling.JPG">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -175,7 +175,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
+                        <a href="/196082/github.io.git/categories/pwn/">pwn</a>&nbsp;
                     </li>
                 
             </ul>
@@ -187,7 +187,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%A0%86%E5%88%A9%E7%94%A8/">堆利用</a>&nbsp;
+                        <a href="/196082/github.io.git/tags/%E5%A0%86%E5%88%A9%E7%94%A8/">堆利用</a>&nbsp;
                     </li>
                 
             </ul>
@@ -218,7 +218,7 @@
         
 
         <div class="article-content markdown-body">
-            <p>这一利用方式是一种类似于unsorted bin，<a href="https://cv196082.gitee.io/2022/02/24/tcache-stashing-unlink-attack/">tcache stashing unlink attack</a>可以在任意地址写入堆地址的漏洞。</p>
+            <p>这一利用方式是一种类似于unsorted bin，<a class="link"   target="_blank" rel="noopener" href="https://cv196082.gitee.io/2022/02/24/tcache-stashing-unlink-attack/" >tcache stashing unlink attack<i class="fas fa-external-link-alt"></i></a>可以在任意地址写入堆地址的漏洞。</p>
 <h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) (nb) &lt;= (<span class="keyword">unsigned</span> <span class="keyword">long</span>) (get_max_fast ()))</span><br><span class="line">&#123;</span><br><span class="line">    idx = fastbin_index (nb);</span><br><span class="line">    mfastbinptr *fb = &amp;fastbin (av, idx);</span><br><span class="line">    mchunkptr pp;</span><br><span class="line">    victim = *fb;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (victim != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (SINGLE_THREAD_P)</span><br><span class="line">            *fb = victim-&gt;fd;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            REMOVE_FB (fb, pp, victim);</span><br><span class="line">        <span class="keyword">if</span> (__glibc_likely (victim != <span class="literal">NULL</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">size_t</span> victim_idx = fastbin_index (chunksize (victim));</span><br><span class="line">            <span class="keyword">if</span> (__builtin_expect (victim_idx != idx, <span class="number">0</span>))</span><br><span class="line">                malloc_printerr (<span class="string">&quot;malloc(): memory corruption (fast)&quot;</span>);</span><br><span class="line">            check_remalloced_chunk (av, victim, nb);</span><br><span class="line">            <span class="meta">#<span class="meta-keyword">if</span> USE_TCACHE</span></span><br><span class="line">            <span class="comment">/* While we&#x27;re here, if we see other chunks of the same size,</span></span><br><span class="line"><span class="comment">		 stash them in the tcache.  */</span></span><br><span class="line">            <span class="keyword">size_t</span> tc_idx = csize2tidx (nb);</span><br><span class="line">            <span class="keyword">if</span> (tcache &amp;&amp; tc_idx &lt; mp_.tcache_bins)</span><br><span class="line">            &#123;</span><br><span class="line">                mchunkptr tc_victim;</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* While bin not empty and tcache not full, copy chunks.  */</span></span><br><span class="line">                <span class="keyword">while</span> (tcache-&gt;counts[tc_idx] &lt; mp_.tcache_count</span><br><span class="line">                       &amp;&amp; (tc_victim = *fb) != <span class="literal">NULL</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (SINGLE_THREAD_P)</span><br><span class="line">                        *fb = tc_victim-&gt;fd;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        REMOVE_FB (fb, pp, tc_victim);</span><br><span class="line">                        <span class="keyword">if</span> (__glibc_unlikely (tc_victim == <span class="literal">NULL</span>))</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    tcache_put (tc_victim, tc_idx);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">            <span class="keyword">void</span> *p = chunk2mem (victim);</span><br><span class="line">            alloc_perturb (p, bytes);</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到在源码中，如果tcache不为空，那么就会从fastbin的fd指针指向的chunk开始往tcache内放入chunk。如果我们能够将最后一个堆地址的fd指针改成我们的目标地址即可实现任意地址写了。</p>
@@ -249,7 +249,7 @@
 
 <p>并且在上面poc也说了，如果我们再一次malloc即可获得我们目标地址的chunk，也就是可以进行任意地址分配chunk。</p>
 <hr>
-<p>参考链接：<a class="link"   target="_blank" rel="noopener" href="https://github.com/shellphish/how2heap/blob/master/glibc_2.31/fastbin_reverse_into_tcache.c" >https://github.com/shellphish/how2heap/blob/master/glibc_2.31/fastbin_reverse_into_tcache.c<i class="fas fa-external-link-alt"></i></a></p>
+<p>参考链接：<a href="https://github.com/shellphish/how2heap/blob/master/glibc_2.31/fastbin_reverse_into_tcache.c">https://github.com/shellphish/how2heap/blob/master/glibc_2.31/fastbin_reverse_into_tcache.c</a></p>
 
         </div>
 
@@ -261,7 +261,7 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/06/18/exit-hook/"
+                           href="/196082/github.io.git/2022/06/18/exit-hook/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
@@ -277,7 +277,7 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/05/17/house-of-emma/"
+                           href="/196082/github.io.git/2022/05/17/house-of-emma/"
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">house of emma</span>

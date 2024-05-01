@@ -14,17 +14,17 @@
         196082&#39;s blog
     </title>
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/196082/github.io.git/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="shortcut icon" href="/196082/github.io.git/images/ufo.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"cv196082.gitee.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.hexo_config = {"hostname":"github.com","root":"/196082/github.io.git/","language":"zh-CN","path":"search.json"};
     KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/196082/github.io.git/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -59,7 +59,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/"
+                               href="/196082/github.io.git/"
                             >
                                 首页
                             </a>
@@ -67,7 +67,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/archives"
+                               href="/196082/github.io.git/archives"
                             >
                                 归档
                             </a>
@@ -75,7 +75,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/categories"
+                               href="/196082/github.io.git/categories"
                             >
                                 分类
                             </a>
@@ -83,7 +83,7 @@
                     
                         <li class="menu-item">
                             <a class=""
-                               href="/tags"
+                               href="/196082/github.io.git/tags"
                             >
                                 标签
                             </a>
@@ -112,22 +112,22 @@
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/">首页</a>
+                       href="/196082/github.io.git/">首页</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/archives">归档</a>
+                       href="/196082/github.io.git/archives">归档</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/categories">分类</a>
+                       href="/196082/github.io.git/categories">分类</a>
                 </li>
             
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                       href="/tags">标签</a>
+                       href="/196082/github.io.git/tags">标签</a>
                 </li>
             
         </ul>
@@ -155,7 +155,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/ling.JPG">
+                    <img src="/196082/github.io.git/images/ling.JPG">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -175,7 +175,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
+                        <a href="/196082/github.io.git/categories/pwn/">pwn</a>&nbsp;
                     </li>
                 
             </ul>
@@ -187,11 +187,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/HeapFengShui/">HeapFengShui</a>&nbsp;
+                        <a href="/196082/github.io.git/tags/HeapFengShui/">HeapFengShui</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
+                        | <a href="/196082/github.io.git/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
                     </li>
                 
             </ul>
@@ -273,7 +273,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">unlink_chunk (mstate av, mchunkptr p)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (chunksize (p) != prev_size (next_chunk (p)))</span><br><span class="line">    malloc_printerr (<span class="string">&quot;corrupted size vs. prev_size&quot;</span>);</span><br><span class="line"></span><br><span class="line">  mchunkptr fd = p-&gt;fd;</span><br><span class="line">  mchunkptr bk = p-&gt;bk;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (__builtin_expect (fd-&gt;bk != p || bk-&gt;fd != p, <span class="number">0</span>))</span><br><span class="line">    malloc_printerr (<span class="string">&quot;corrupted double-linked list&quot;</span>);</span><br><span class="line"></span><br><span class="line">  fd-&gt;bk = bk;</span><br><span class="line">  bk-&gt;fd = fd;</span><br><span class="line">  ... ...</span><br></pre></td></tr></table></figure>
 
 <p>导致堆地址写在了其他索引的chunk当中，所以可以非常轻松的泄漏出来，不过这里的main_arena+96非常恶心，结尾是\x00有因为是strlen计算大小打印就导致泄漏不出来，但是这里使用的方法可以继续延续在unsorted bin当中的思路进行切割，但是下一步就是申请大chunk将我们consolidate的chunk放到largin bin当中。</p>
-<p>后面也就是实现任意地址写了，首先想到的肯定就是tcache，虽然题目看起来是没有办法对tcache进行攻击的但是tcache这个结构体也只是因为tls结构存放的指针才起的作用，所以我们可以通过large bin attack来修改tls结构当中的指针，然后在堆块中布置好地址，最后修改地址进行fsop。这里采取的方式就是以前写过的<a href="https://cv196082.gitee.io/2022/03/11/house-of-corrosion-husk-kiwi/">house of kiwi</a>不过以前写的比较匆忙也没有加以实践，可能看起来就会晕头晕脑的，所以这里还是从源码层面分析一边接着放出exp应该会好点。</p>
+<p>后面也就是实现任意地址写了，首先想到的肯定就是tcache，虽然题目看起来是没有办法对tcache进行攻击的但是tcache这个结构体也只是因为tls结构存放的指针才起的作用，所以我们可以通过large bin attack来修改tls结构当中的指针，然后在堆块中布置好地址，最后修改地址进行fsop。这里采取的方式就是以前写过的<a class="link"   target="_blank" rel="noopener" href="https://cv196082.gitee.io/2022/03/11/house-of-corrosion-husk-kiwi/" >house of kiwi<i class="fas fa-external-link-alt"></i></a>不过以前写的比较匆忙也没有加以实践，可能看起来就会晕头晕脑的，所以这里还是从源码层面分析一边接着放出exp应该会好点。</p>
 <h3 id="house-of-kiwi"><a href="#house-of-kiwi" class="headerlink" title="house of kiwi"></a>house of kiwi</h3><p>先来说一下为什么不能用house of系列中的其他方式，因为这道题的退出函数是_exit然而其他的要求是exit退出或者正常main退出，所以这里只能寻找其他攻击链。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">__malloc_assert (<span class="keyword">const</span> <span class="keyword">char</span> *assertion, <span class="keyword">const</span> <span class="keyword">char</span> *file, <span class="keyword">unsigned</span> <span class="keyword">int</span> line,</span><br><span class="line">		 <span class="keyword">const</span> <span class="keyword">char</span> *function)</span><br><span class="line">&#123;</span><br><span class="line">  (<span class="keyword">void</span>) __fxprintf (<span class="literal">NULL</span>, <span class="string">&quot;%s%s%s:%u: %s%sAssertion `%s&#x27; failed.\n&quot;</span>,</span><br><span class="line">		     __progname, __progname[<span class="number">0</span>] ? <span class="string">&quot;: &quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">		     file, line,</span><br><span class="line">		     function ? function : <span class="string">&quot;&quot;</span>, function ? <span class="string">&quot;: &quot;</span> : <span class="string">&quot;&quot;</span>,</span><br><span class="line">		     assertion);</span><br><span class="line">  fflush (<span class="built_in">stderr</span>);</span><br><span class="line">  <span class="built_in">abort</span> ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -311,7 +311,7 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/05/17/house-of-emma/"
+                           href="/196082/github.io.git/2022/05/17/house-of-emma/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
@@ -327,7 +327,7 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/05/10/musl1-2-2%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-starCTF-BabyNote%E5%A4%8D%E7%8E%B0/"
+                           href="/196082/github.io.git/2022/05/10/musl1-2-2%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-starCTF-BabyNote%E5%A4%8D%E7%8E%B0/"
                         >
                             <span class="title flex-center">
                                 <span class="post-nav-title-item">musl1.2.2源码分析+starCTF-BabyNote复现</span>
