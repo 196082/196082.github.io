@@ -151,6 +151,70 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/11/22/CVE-2022-0847-Dirty-Pipe/">
+                        CVE-2022-0847 Dirty Pipe
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        前言持续性摆烂一段时间了，又想看jyy的课，又要期末考试了，好烦！索性花点时间把Gyan神上半年叫我复现的CVE复现了。
+这个CVE允许向任意可读文件中写数据，可造成非特权进程向root进程注入代码。该漏洞发生linux内核空间通过splice方式实...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Nov 22 2022 20:54:31 GMT+0800">2022-11-22</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/">CVE复现</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E9%9B%B6%E6%8B%B7%E8%B4%9D/">零拷贝</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/pipe/">pipe</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/11/22/CVE-2022-0847-Dirty-Pipe/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/11/04/GLIBC2-35-hook/">
                         GLIBC 2.35 hook
                     </a>
@@ -707,64 +771,6 @@ setxattrsetxattr这个系统调用是非常独特的，在kernel的...
     </div>
 
     <a href="/2022/09/06/kernel%E5%A0%86%E5%8D%A0%E4%BD%8D/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/08/16/userfaultfd/">
-                        userfaultfd利用
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        其实这应该是kernelpwn基础中的一个，但是一直没有很关心，在最近做一道题目时又提到了这一利用方式，索性就把这玩意给先写了。
-简单理解userfaultfd 并不是一种攻击的名字，它是 Linux 提供的一种让用户自己处理缺页异常的机制，初衷是为...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Aug 16 2022 18:11:10 GMT+0800">2022-08-16</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/userfaultfd/">userfaultfd</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/tty-struct/">tty_struct</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/08/16/userfaultfd/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

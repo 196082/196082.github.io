@@ -151,6 +151,64 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/08/16/userfaultfd/">
+                        userfaultfd利用
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        其实这应该是kernelpwn基础中的一个，但是一直没有很关心，在最近做一道题目时又提到了这一利用方式，索性就把这玩意给先写了。
+简单理解userfaultfd 并不是一种攻击的名字，它是 Linux 提供的一种让用户自己处理缺页异常的机制，初衷是为...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Aug 16 2022 18:11:10 GMT+0800">2022-08-16</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/userfaultfd/">userfaultfd</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/tty-struct/">tty_struct</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/08/16/userfaultfd/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/08/14/modify-ldt%E5%88%A9%E7%94%A8/">
                         modify_ldt利用
                     </a>
@@ -643,59 +701,6 @@ exit_hook首先呢，程序正常退出以及使用exit函数都会调用exit所
     </div>
 
     <a href="/2022/06/18/exit-hook/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/05/26/fastbin-reverse-into-tcache/">
-                        fastbin_reverse_into_tcache
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        这一利用方式是一种类似于unsorted bin，tcache stashing unlink attack可以在任意地址写入堆地址的漏洞。
-源码分析12345678910111213141516171819202122232425262728293...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu May 26 2022 14:11:52 GMT+0800">2022-05-26</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/pwn/">pwn</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%A0%86%E5%88%A9%E7%94%A8/">堆利用</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/05/26/fastbin-reverse-into-tcache/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
