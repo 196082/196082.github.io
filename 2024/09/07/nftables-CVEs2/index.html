@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            nftables_CVEs2 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/ufo.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">nftables_CVEs2</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/ling.JPG">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">196082</span>
+                        
+                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2024-09-07 14:09:30
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Linux-Kernel/CVE%E5%A4%8D%E7%8E%B0/">CVE复现</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Race-condition/">Race condition</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/genmask/">genmask</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Integer-Overflow/">Integer Overflow</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>22 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>学二进制的第一步就是斩断情丝！</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/102805509648.png"
+                     
+                ></p>
+<h2 id="CVE-2024-1085"><a href="#CVE-2024-1085" class="headerlink" title="CVE-2024-1085"></a>CVE-2024-1085</h2><h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><p>为什么如此之多的前置知识，主要是在<a href="https://196082.github.io/2024/08/17/nftables/">nftables子系统浅分析</a>的分析并不彻底所以在遇到一个新的问题的时候还是有必要回过头去细致分析的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Generic transaction helpers</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Check if this object is currently active. */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nft_is_active(__net, __obj)				\</span></span><br><span class="line"><span class="meta">	(((__obj)-&gt;genmask &amp; nft_genmask_cur(__net)) == 0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Check if this object is active in the next generation. */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nft_is_active_next(__net, __obj)			\</span></span><br><span class="line"><span class="meta">	(((__obj)-&gt;genmask &amp; nft_genmask_next(__net)) == 0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* This object becomes active in the next generation. */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nft_activate_next(__net, __obj)				\</span></span><br><span class="line"><span class="meta">	(__obj)-&gt;genmask = nft_genmask_cur(__net)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* This object becomes inactive in the next generation. */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nft_deactivate_next(__net, __obj)			\</span></span><br><span class="line"><span class="meta">        (__obj)-&gt;genmask = nft_genmask_next(__net)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* After committing the ruleset, clear the stale generation bit. */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nft_clear(__net, __obj)					\</span></span><br><span class="line"><span class="meta">	(__obj)-&gt;genmask &amp;= ~nft_genmask_next(__net)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nft_active_genmask(__obj, __genmask)			\</span></span><br><span class="line"><span class="meta">	!((__obj)-&gt;genmask &amp; __genmask)</span></span><br></pre></td></tr></table></figure>
+
+<p>在看源码的过程中会看到很多上述宏，其实在nftables中genmask用于标记对象的状态，主要是有两个重要的标记，分别是该对象当前任务是否可用以及该对象下一次任务是否可以用。</p>
+<p>当一个对象被删除时通常会被调用<code>nft_deactivate_next</code>函数来设置下次任务不可用。</p>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nft_setelem_catchall_deactivate</span><span class="params">(<span class="keyword">const</span> struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">					   struct nft_set *<span class="built_in">set</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">					   struct nft_set_elem *elem)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_set_elem_catchall</span> *<span class="title">catchall</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_set_ext</span> *<span class="title">ext</span>;</span></span><br><span class="line"></span><br><span class="line">	list_for_each_entry(catchall, &amp;<span class="built_in">set</span>-&gt;catchall_list, <span class="built_in">list</span>) &#123;</span><br><span class="line">		ext = nft_set_elem_ext(<span class="built_in">set</span>, catchall-&gt;elem);</span><br><span class="line">		<span class="keyword">if</span> (!nft_is_active(net, ext))</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">		kfree(elem-&gt;priv);</span><br><span class="line">		elem-&gt;priv = catchall-&gt;elem;</span><br><span class="line">		nft_set_elem_change_active(net, <span class="built_in">set</span>, ext);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> -ENOENT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该漏洞发生于<code>nft_setelem_catchall_deactivate</code>函数，这里会遍历当前set中所有的catchall_list然后会通过<code>nft_is_active</code>函数判断element在当前任务是否可用，随后修改掉该element的active状态。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">nft_set_elem_change_active</span><span class="params">(<span class="keyword">const</span> struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">					      <span class="keyword">const</span> struct nft_set *<span class="built_in">set</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">					      struct nft_set_ext *ext)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ext-&gt;genmask ^= nft_genmask_next(net);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里改变active状态所使用的函数内部实现是与<code>nft_genmask_next</code>进行异或，也就是其实修改的是其在下一次任务中的活跃状态，但是前面用于判断的是这一次任务，这也就导致可以两次del它，也就是Double Free。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nf_tables_commit</span><span class="params">(struct net *net, struct sk_buff *skb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nftables_pernet</span> *<span class="title">nft_net</span> =</span> nft_pernet(net);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_trans</span> *<span class="title">trans</span>, *<span class="title">next</span>;</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> base_seq, gc_seq;</span><br><span class="line">	LIST_HEAD(set_update_list);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_trans_elem</span> *<span class="title">te</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_chain</span> *<span class="title">chain</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_table</span> *<span class="title">table</span>;</span></span><br><span class="line">	LIST_HEAD(adl);</span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">	list_for_each_entry_safe(trans, next, &amp;nft_net-&gt;commit_list, <span class="built_in">list</span>) &#123;</span><br><span class="line">		nf_tables_commit_audit_collect(&amp;adl, trans-&gt;ctx.table,</span><br><span class="line">					       trans-&gt;msg_type);</span><br><span class="line">		<span class="keyword">switch</span> (trans-&gt;msg_type) &#123;</span><br><span class="line">		<span class="comment">// ......</span></span><br><span class="line">		<span class="keyword">case</span> NFT_MSG_DELSETELEM:</span><br><span class="line">		<span class="keyword">case</span> NFT_MSG_DESTROYSETELEM:</span><br><span class="line">			te = (struct nft_trans_elem *)trans-&gt;data;</span><br><span class="line"></span><br><span class="line">			nf_tables_setelem_notify(&amp;trans-&gt;ctx, te-&gt;<span class="built_in">set</span>,</span><br><span class="line">						 te-&gt;elem_priv,</span><br><span class="line">						 trans-&gt;msg_type);</span><br><span class="line">			nft_setelem_remove(net, te-&gt;<span class="built_in">set</span>, te-&gt;elem_priv);</span><br><span class="line">			<span class="keyword">if</span> (!nft_setelem_is_catchall(te-&gt;<span class="built_in">set</span>, te-&gt;elem_priv)) &#123;</span><br><span class="line">				atomic_dec(&amp;te-&gt;<span class="built_in">set</span>-&gt;nelems);</span><br><span class="line">				te-&gt;<span class="built_in">set</span>-&gt;ndeact--;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (te-&gt;<span class="built_in">set</span>-&gt;ops-&gt;commit &amp;&amp;</span><br><span class="line">			    list_empty(&amp;te-&gt;<span class="built_in">set</span>-&gt;pending_update)) &#123;</span><br><span class="line">				list_add_tail(&amp;te-&gt;<span class="built_in">set</span>-&gt;pending_update,</span><br><span class="line">					      &amp;set_update_list);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="comment">// ......</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	nft_set_commit_update(&amp;set_update_list);</span><br><span class="line"></span><br><span class="line">	nft_commit_notify(net, NETLINK_CB(skb).portid);</span><br><span class="line">	nf_tables_gen_notify(net, skb, NFT_MSG_NEWGEN);</span><br><span class="line">	nf_tables_commit_audit_log(&amp;adl, nft_net-&gt;base_seq);</span><br><span class="line"></span><br><span class="line">	nft_gc_seq_end(nft_net, gc_seq);</span><br><span class="line">	nft_net-&gt;validate_state = NFT_VALIDATE_SKIP;</span><br><span class="line">	nf_tables_commit_release(net);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们两次删除element的时候会两次进入如上case分支中，虽然在<code>nft_setelem_remove</code>函数中会free掉<code>set-&gt;catchall</code>但是并不影响第二次的删除，因为这里的<code>elem_priv</code>是从trans中拿出来的。</p>
+<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p>目前已经可以实现Double Free了，所以利用方法就十分简单，通过DF我们可以控制<code>table-&gt;udata</code>指向该内存区域，然后在内存区域中放上其余堆块例如<code>expr</code>来泄漏出它的ops来获得内核基地址，随后在分配<code>set</code>来获取该内存获得内核堆地址，最后先使用<code>expr</code>占据该内存随后使用<code>table-&gt;udata</code>来修改其ops来劫持rip。</p>
+<p>需要注意的是内核是存在Double Free的检测的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">set_freepointer</span><span class="params">(struct kmem_cache *s, <span class="keyword">void</span> *object, <span class="keyword">void</span> *fp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> freeptr_addr = (<span class="keyword">unsigned</span> <span class="keyword">long</span>)object + s-&gt;offset;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SLAB_FREELIST_HARDENED</span></span><br><span class="line">	BUG_ON(object == fp); <span class="comment">/* naive detection of double free or corruption */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	freeptr_addr = (<span class="keyword">unsigned</span> <span class="keyword">long</span>)kasan_reset_tag((<span class="keyword">void</span> *)freeptr_addr);</span><br><span class="line">	*(<span class="keyword">freeptr_t</span> *)freeptr_addr = freelist_ptr_encode(s, fp, freeptr_addr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们在两次删除element的中间可以穿插一个删除其他结构体来避免检测。</p>
+<h2 id="CVE-2023-31248"><a href="#CVE-2023-31248" class="headerlink" title="CVE-2023-31248"></a>CVE-2023-31248</h2><h3 id="漏洞分析-1"><a href="#漏洞分析-1" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> struct nft_chain *<span class="title">nft_chain_lookup_byid</span><span class="params">(<span class="keyword">const</span> struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">					       <span class="keyword">const</span> struct nft_table *table,</span></span></span><br><span class="line"><span class="params"><span class="function">					       <span class="keyword">const</span> struct nlattr *nla)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nftables_pernet</span> *<span class="title">nft_net</span> =</span> nft_pernet(net);</span><br><span class="line">	u32 id = ntohl(nla_get_be32(nla));</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_trans</span> *<span class="title">trans</span>;</span></span><br><span class="line"></span><br><span class="line">	list_for_each_entry(trans, &amp;nft_net-&gt;commit_list, <span class="built_in">list</span>) &#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">nft_chain</span> *<span class="title">chain</span> =</span> trans-&gt;ctx.chain;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (trans-&gt;msg_type == NFT_MSG_NEWCHAIN &amp;&amp;</span><br><span class="line">		    chain-&gt;table == table &amp;&amp;</span><br><span class="line">		    id == nft_trans_chain_id(trans))</span><br><span class="line">			<span class="keyword">return</span> chain;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ERR_PTR(-ENOENT);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>漏洞出现在这个函数，当通过id寻找chain时是不会判断当前chain的活跃状态的，如果此时在同一个batch中，该chain已被删除这里依旧可以拿到目标chain，例如在chain2中有一个expr会goto到chain1但是chain1在当前batch中已被删除，那么chain2依旧会引用chain1，不过这里虽然会删除chain1但是其并不会被free掉，因为<code>chain1-&gt;use</code>会因为引用加一。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nf_tables_commit_release</span><span class="params">(struct net *net)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nftables_pernet</span> *<span class="title">nft_net</span> =</span> nft_pernet(net);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_trans</span> *<span class="title">trans</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* all side effects have to be made visible.</span></span><br><span class="line"><span class="comment">	 * For example, if a chain named &#x27;foo&#x27; has been deleted, a</span></span><br><span class="line"><span class="comment">	 * new transaction must not find it anymore.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * Memory reclaim happens asynchronously from work queue</span></span><br><span class="line"><span class="comment">	 * to prevent expensive synchronize_rcu() in commit phase.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">if</span> (list_empty(&amp;nft_net-&gt;commit_list)) &#123;</span><br><span class="line">		nf_tables_module_autoload_cleanup(net);</span><br><span class="line">		mutex_unlock(&amp;nft_net-&gt;commit_mutex);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	trans = list_last_entry(&amp;nft_net-&gt;commit_list,</span><br><span class="line">				struct nft_trans, <span class="built_in">list</span>);</span><br><span class="line">	get_net(trans-&gt;ctx.net);</span><br><span class="line">	WARN_ON_ONCE(trans-&gt;put_net);</span><br><span class="line"></span><br><span class="line">	trans-&gt;put_net = <span class="literal">true</span>;</span><br><span class="line">	spin_lock(&amp;nf_tables_destroy_list_lock);</span><br><span class="line">	list_splice_tail_init(&amp;nft_net-&gt;commit_list, &amp;nf_tables_destroy_list);</span><br><span class="line">	spin_unlock(&amp;nf_tables_destroy_list_lock);</span><br><span class="line"></span><br><span class="line">	nf_tables_module_autoload_cleanup(net);</span><br><span class="line">	schedule_work(&amp;trans_destroy_work);</span><br><span class="line"></span><br><span class="line">	mutex_unlock(&amp;nft_net-&gt;commit_mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在commit最终处理release时最后其实是通过<code>schedule_work</code>新起一个线程来调用调度任务。</p>
+<p>所以这里可以使用条件竞争来扩大漏洞影响到UAF，也就是在执行<code>trans_destroy_work</code>之前，第二个batch进入到内核中并开始运行。</p>
+<p>第一个batch如上面出发漏洞那样做，最后会正确执行调用<code>trans_destroy_work</code>，但是最后在其中不会free掉目标chain1。</p>
+<p>第二个batch主要做的事就是删除掉chain2中的rule，并且在chain2中错误创建一个rule，那么会因为第二次的错误创建而导致不会进入到<code>nf_tables_commit</code>中，也就不会真正的删除掉chain2中原本的rule（因为真正删除是在commit中完成的），但是会因为存在删除chain2的行为导致<code>chain1-&gt;use</code>减一，从而使其为0。</p>
+<p>那么如果能够在进入<code>nf_tables_chain_destroy</code>函数前执行完batch2那么在真正进入该函数时chain1的use依旧变为了0但是chain1依旧被chain2的rule所引用从而实现uaf。</p>
+<p>因为这一漏洞的利用方式和前面的cve过于类似就不再赘述。</p>
+<h2 id="CVE-2023-3390"><a href="#CVE-2023-3390" class="headerlink" title="CVE-2023-3390"></a>CVE-2023-3390</h2><h3 id="前置知识-1"><a href="#前置知识-1" class="headerlink" title="前置知识"></a>前置知识</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nft_lookup_init</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx,</span></span></span><br><span class="line"><span class="params"><span class="function">			   <span class="keyword">const</span> struct nft_expr *expr,</span></span></span><br><span class="line"><span class="params"><span class="function">			   <span class="keyword">const</span> struct nlattr * <span class="keyword">const</span> tb[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_lookup</span> *<span class="title">priv</span> =</span> nft_expr_priv(expr);</span><br><span class="line">	u8 genmask = nft_genmask_next(ctx-&gt;net);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_set</span> *<span class="title">set</span>;</span></span><br><span class="line">	u32 flags;</span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (tb[NFTA_LOOKUP_SET] == <span class="literal">NULL</span> ||</span><br><span class="line">	    tb[NFTA_LOOKUP_SREG] == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">set</span> = nft_set_lookup_global(ctx-&gt;net, ctx-&gt;table, tb[NFTA_LOOKUP_SET],</span><br><span class="line">				    tb[NFTA_LOOKUP_SET_ID], genmask);</span><br><span class="line">	<span class="keyword">if</span> (IS_ERR(<span class="built_in">set</span>))</span><br><span class="line">		<span class="keyword">return</span> PTR_ERR(<span class="built_in">set</span>);</span><br><span class="line"></span><br><span class="line">	err = nft_parse_register_load(tb[NFTA_LOOKUP_SREG], &amp;priv-&gt;sreg,</span><br><span class="line">				      <span class="built_in">set</span>-&gt;klen);</span><br><span class="line">	<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (tb[NFTA_LOOKUP_FLAGS]) &#123;</span><br><span class="line">		flags = ntohl(nla_get_be32(tb[NFTA_LOOKUP_FLAGS]));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (flags &amp; ~NFT_LOOKUP_F_INV)</span><br><span class="line">			<span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (flags &amp; NFT_LOOKUP_F_INV) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">set</span>-&gt;flags &amp; NFT_SET_MAP)</span><br><span class="line">				<span class="keyword">return</span> -EINVAL;</span><br><span class="line">			priv-&gt;invert = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (tb[NFTA_LOOKUP_DREG] != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (priv-&gt;invert)</span><br><span class="line">			<span class="keyword">return</span> -EINVAL;</span><br><span class="line">		<span class="keyword">if</span> (!(<span class="built_in">set</span>-&gt;flags &amp; NFT_SET_MAP))</span><br><span class="line">			<span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">		err = nft_parse_register_store(ctx, tb[NFTA_LOOKUP_DREG],</span><br><span class="line">					       &amp;priv-&gt;dreg, <span class="literal">NULL</span>, <span class="built_in">set</span>-&gt;dtype,</span><br><span class="line">					       <span class="built_in">set</span>-&gt;dlen);</span><br><span class="line">		<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> err;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">set</span>-&gt;flags &amp; NFT_SET_MAP)</span><br><span class="line">		<span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">	priv-&gt;binding.flags = <span class="built_in">set</span>-&gt;flags &amp; NFT_SET_MAP;</span><br><span class="line"></span><br><span class="line">	err = nf_tables_bind_set(ctx, <span class="built_in">set</span>, &amp;priv-&gt;binding);</span><br><span class="line">	<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">	priv-&gt;<span class="built_in">set</span> = <span class="built_in">set</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这次接触的新的一个expr类型，这里是<code>lookup</code>类型，该类型会绑定一个set。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nf_tables_bind_set</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx, struct nft_set *<span class="built_in">set</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">		       struct nft_set_binding *binding)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_set_binding</span> *<span class="title">i</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_set_iter</span> <span class="title">iter</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">set</span>-&gt;use == UINT_MAX)</span><br><span class="line">		<span class="keyword">return</span> -EOVERFLOW;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!list_empty(&amp;<span class="built_in">set</span>-&gt;bindings) &amp;&amp; nft_set_is_anonymous(<span class="built_in">set</span>))</span><br><span class="line">		<span class="keyword">return</span> -EBUSY;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (binding-&gt;flags &amp; NFT_SET_MAP) &#123;</span><br><span class="line">		<span class="comment">/* If the set is already bound to the same chain all</span></span><br><span class="line"><span class="comment">		 * jumps are already validated for that chain.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		list_for_each_entry(i, &amp;<span class="built_in">set</span>-&gt;bindings, <span class="built_in">list</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (i-&gt;flags &amp; NFT_SET_MAP &amp;&amp;</span><br><span class="line">			    i-&gt;chain == binding-&gt;chain)</span><br><span class="line">				<span class="keyword">goto</span> bind;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		iter.genmask	= nft_genmask_next(ctx-&gt;net);</span><br><span class="line">		iter.skip 	= <span class="number">0</span>;</span><br><span class="line">		iter.count	= <span class="number">0</span>;</span><br><span class="line">		iter.err	= <span class="number">0</span>;</span><br><span class="line">		iter.fn		= nf_tables_bind_check_setelem;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">set</span>-&gt;ops-&gt;walk(ctx, <span class="built_in">set</span>, &amp;iter);</span><br><span class="line">		<span class="keyword">if</span> (!iter.err)</span><br><span class="line">			iter.err = nft_set_catchall_bind_check(ctx, <span class="built_in">set</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (iter.err &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> iter.err;</span><br><span class="line">	&#125;</span><br><span class="line">bind:</span><br><span class="line">	binding-&gt;chain = ctx-&gt;chain;</span><br><span class="line">	list_add_tail_rcu(&amp;binding-&gt;<span class="built_in">list</span>, &amp;<span class="built_in">set</span>-&gt;bindings);</span><br><span class="line">	nft_set_trans_bind(ctx, <span class="built_in">set</span>);</span><br><span class="line">	<span class="built_in">set</span>-&gt;use++;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL_GPL(nf_tables_bind_set);</span><br></pre></td></tr></table></figure>
+
+<p>这里就是简单的set绑定到expr上，并且在最后对set的use成员加一。</p>
+<h3 id="漏洞分析-2"><a href="#漏洞分析-2" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nf_tables_newrule</span><span class="params">(struct sk_buff *skb, <span class="keyword">const</span> struct nfnl_info *info,</span></span></span><br><span class="line"><span class="params"><span class="function">			     <span class="keyword">const</span> struct nlattr * <span class="keyword">const</span> nla[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">err_destroy_flow_rule:</span><br><span class="line">	<span class="keyword">if</span> (flow)</span><br><span class="line">		nft_flow_rule_destroy(flow);</span><br><span class="line">err_release_rule:</span><br><span class="line">	nf_tables_rule_release(&amp;ctx, rule);</span><br><span class="line">err_release_expr:</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (expr_info[i].ops) &#123;</span><br><span class="line">			module_put(expr_info[i].ops-&gt;type-&gt;owner);</span><br><span class="line">			<span class="keyword">if</span> (expr_info[i].ops-&gt;type-&gt;release_ops)</span><br><span class="line">				expr_info[i].ops-&gt;type-&gt;release_ops(expr_info[i].ops);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	kvfree(expr_info);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>漏洞又发生在<code>nf_tables_newrule</code>内，在<code>nf_tables_rule_release</code>函数内部。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nf_tables_rule_release</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx, struct nft_rule *rule)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	nft_rule_expr_deactivate(ctx, rule, NFT_TRANS_RELEASE);</span><br><span class="line">	nf_tables_rule_destroy(ctx, rule);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先看较为熟悉的<code>nft_rule_expr_deactivate</code>函数，这个函数的主要作用就是调用expr对应的<code>deactivate</code>函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nft_lookup_deactivate</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx,</span></span></span><br><span class="line"><span class="params"><span class="function">				  <span class="keyword">const</span> struct nft_expr *expr,</span></span></span><br><span class="line"><span class="params"><span class="function">				  <span class="keyword">enum</span> nft_trans_phase phase)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_lookup</span> *<span class="title">priv</span> =</span> nft_expr_priv(expr);</span><br><span class="line"></span><br><span class="line">	nf_tables_deactivate_set(ctx, priv-&gt;<span class="built_in">set</span>, &amp;priv-&gt;binding, phase);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数内部直接调用了<code>nf_tables_deactivate_set</code>函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nf_tables_deactivate_set</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx, struct nft_set *<span class="built_in">set</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">			      struct nft_set_binding *binding,</span></span></span><br><span class="line"><span class="params"><span class="function">			      <span class="keyword">enum</span> nft_trans_phase phase)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> (phase) &#123;</span><br><span class="line">	<span class="keyword">case</span> NFT_TRANS_PREPARE:</span><br><span class="line">		<span class="built_in">set</span>-&gt;use--;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">case</span> NFT_TRANS_ABORT:</span><br><span class="line">	<span class="keyword">case</span> NFT_TRANS_RELEASE:</span><br><span class="line">		<span class="built_in">set</span>-&gt;use--;</span><br><span class="line">		fallthrough;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		nf_tables_unbind_set(ctx, <span class="built_in">set</span>, binding,</span><br><span class="line">				     phase == NFT_TRANS_COMMIT);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL_GPL(nf_tables_deactivate_set);</span><br></pre></td></tr></table></figure>
+
+<p>在这个函数中会根据不同的标志位进入到不同分支，这里的漏洞就是因为给了错误的标志位所引起的，这里的标志位为<code>NFT_TRANS_RELEASE</code>，这会直接对set的use成员进行减一操作随后进入到<code>nf_tables_unbind_set</code>函数内部。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nf_tables_unbind_set</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx, struct nft_set *<span class="built_in">set</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">				 struct nft_set_binding *binding, <span class="keyword">bool</span> event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	list_del_rcu(&amp;binding-&gt;<span class="built_in">list</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (list_empty(&amp;<span class="built_in">set</span>-&gt;bindings) &amp;&amp; nft_set_is_anonymous(<span class="built_in">set</span>)) &#123;</span><br><span class="line">		list_del_rcu(&amp;<span class="built_in">set</span>-&gt;<span class="built_in">list</span>);</span><br><span class="line">		<span class="keyword">if</span> (event)</span><br><span class="line">			nf_tables_set_notify(ctx, <span class="built_in">set</span>, NFT_MSG_DELSET,</span><br><span class="line">					     GFP_KERNEL);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该函数首先对binding解绑，然后判断set的bindings是否为空，如果为空并且该集合为匿名集合那么就会对该集合的list进行脱链（也就是从table中取出）。</p>
+<p>回到前面的init函数，其中是通过<code>nft_set_lookup_global</code>函数找到对应的集合的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> struct nft_set *<span class="title">nft_set_lookup_byid</span><span class="params">(<span class="keyword">const</span> struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">					   <span class="keyword">const</span> struct nft_table *table,</span></span></span><br><span class="line"><span class="params"><span class="function">					   <span class="keyword">const</span> struct nlattr *nla, u8 genmask)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nftables_pernet</span> *<span class="title">nft_net</span> =</span> nft_pernet(net);</span><br><span class="line">	u32 id = ntohl(nla_get_be32(nla));</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_trans</span> *<span class="title">trans</span>;</span></span><br><span class="line"></span><br><span class="line">	list_for_each_entry(trans, &amp;nft_net-&gt;commit_list, <span class="built_in">list</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (trans-&gt;msg_type == NFT_MSG_NEWSET) &#123;</span><br><span class="line">			<span class="class"><span class="keyword">struct</span> <span class="title">nft_set</span> *<span class="title">set</span> =</span> nft_trans_set(trans);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (id == nft_trans_set_id(trans) &amp;&amp;</span><br><span class="line">			    <span class="built_in">set</span>-&gt;table == table &amp;&amp;</span><br><span class="line">			    nft_active_genmask(<span class="built_in">set</span>, genmask))</span><br><span class="line">				<span class="keyword">return</span> <span class="built_in">set</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ERR_PTR(-ENOENT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">struct nft_set *<span class="title">nft_set_lookup_global</span><span class="params">(<span class="keyword">const</span> struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">const</span> struct nft_table *table,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">const</span> struct nlattr *nla_set_name,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">const</span> struct nlattr *nla_set_id,</span></span></span><br><span class="line"><span class="params"><span class="function">				      u8 genmask)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_set</span> *<span class="title">set</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">set</span> = nft_set_lookup(table, nla_set_name, genmask);</span><br><span class="line">	<span class="keyword">if</span> (IS_ERR(<span class="built_in">set</span>)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!nla_set_id)</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">set</span>;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">set</span> = nft_set_lookup_byid(net, table, nla_set_id, genmask);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">set</span>;</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL_GPL(nft_set_lookup_global);</span><br></pre></td></tr></table></figure>
+
+<p>从上述可以看到，如果我们通过名字找失败的话就会直接通过id去找，并且这里通过id去找事在trans中去寻找最后关于table的校验也只是从set中的table成员拿来对比，所以他也是能够被继续拿到的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nf_tables_rule_destroy</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx,</span></span></span><br><span class="line"><span class="params"><span class="function">				   struct nft_rule *rule)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_expr</span> *<span class="title">expr</span>, *<span class="title">next</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * Careful: some expressions might not be initialized in case this</span></span><br><span class="line"><span class="comment">	 * is called on error from nf_tables_newrule().</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	expr = nft_expr_first(rule);</span><br><span class="line">	<span class="keyword">while</span> (nft_expr_more(rule, expr)) &#123;</span><br><span class="line">		next = nft_expr_next(expr);</span><br><span class="line">		nf_tables_expr_destroy(ctx, expr);</span><br><span class="line">		expr = next;</span><br><span class="line">	&#125;</span><br><span class="line">	kfree(rule);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>回到<code>nf_tables_rule_release</code>函数，后续会接着调用<code>nf_tables_rule_destroy</code>函数，这个函数还是比较眼熟，又回调用<code>expr-&gt;ops-&gt;destroy</code>函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nft_lookup_destroy</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx,</span></span></span><br><span class="line"><span class="params"><span class="function">			       <span class="keyword">const</span> struct nft_expr *expr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_lookup</span> *<span class="title">priv</span> =</span> nft_expr_priv(expr);</span><br><span class="line"></span><br><span class="line">	nf_tables_destroy_set(ctx, priv-&gt;<span class="built_in">set</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nft_set_destroy</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx, struct nft_set *<span class="built_in">set</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (WARN_ON(<span class="built_in">set</span>-&gt;use &gt; <span class="number">0</span>))</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="built_in">set</span>-&gt;num_exprs; i++)</span><br><span class="line">		nft_expr_destroy(ctx, <span class="built_in">set</span>-&gt;exprs[i]);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">set</span>-&gt;ops-&gt;destroy(<span class="built_in">set</span>);</span><br><span class="line">	nft_set_catchall_destroy(ctx, <span class="built_in">set</span>);</span><br><span class="line">	kfree(<span class="built_in">set</span>-&gt;name);</span><br><span class="line">	kvfree(<span class="built_in">set</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nf_tables_destroy_set</span><span class="params">(<span class="keyword">const</span> struct nft_ctx *ctx, struct nft_set *<span class="built_in">set</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (list_empty(&amp;<span class="built_in">set</span>-&gt;bindings) &amp;&amp; nft_set_is_anonymous(<span class="built_in">set</span>))</span><br><span class="line">		nft_set_destroy(ctx, <span class="built_in">set</span>);</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL_GPL(nf_tables_destroy_set);</span><br></pre></td></tr></table></figure>
+
+<p>这里会首先验证set的bindings是否为空，随后检测是否是匿名集合。在进入<code>nft_set_destroy</code>后回西安判断use成员是否为0，最终直接free掉set和<code>set-&gt;name</code>。</p>
+<p>所以这里存在明显的UAF，不过利用起来稍显麻烦，这里简单介绍一下。</p>
+<h3 id="利用分析-1"><a href="#利用分析-1" class="headerlink" title="利用分析"></a>利用分析</h3><p>其实也不是利用起来麻烦，主要是了解为什么可以这样用这样很麻烦。</p>
+<h4 id="CONFIG-KMALLOC-SPLIT-VARSIZE"><a href="#CONFIG-KMALLOC-SPLIT-VARSIZE" class="headerlink" title="CONFIG_KMALLOC_SPLIT_VARSIZE"></a><strong>CONFIG_KMALLOC_SPLIT_VARSIZE</strong></h4><p>首先是<code>CONFIG_KMALLOC_SPLIT_VARSIZE</code>标志位，该标志位会将可变大小的对象从<code>dyn-kmalloc-cg-xx</code>中申请，但是在原作者的利用过程中利用的全是可变大小的结构体，并且可变大小的结构体挺多的。</p>
+<h4 id="CONFIG-DEBUG-LIST"><a href="#CONFIG-DEBUG-LIST" class="headerlink" title="CONFIG_DEBUG_LIST"></a><strong>CONFIG_DEBUG_LIST</strong></h4><p>再就是这次利用最为核心的标志位<code>CONFIG_DEBUG_LIST</code>，因为可见的是在前面如果想要完成Double Free那么第二次free的时候会再一次对set进行脱链操作，而没有该标志位系统会直接<code>kernel panic</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">list_del_rcu</span><span class="params">(struct list_head *entry)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	__list_del_entry(entry);</span><br><span class="line">	entry-&gt;prev = LIST_POISON2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面就是删除链的操作，主要逻辑还是在<code>__list_del_entry</code>中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> __list_del_entry(struct list_head *entry)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (!__list_del_entry_valid(entry))</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	__list_del(entry-&gt;prev, entry-&gt;next);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里关注<code>__list_del_entry_valid</code>函数，其主要用于检测是否合法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_DEBUG_LIST</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">bool</span> __list_add_valid(struct list_head *<span class="keyword">new</span>,</span><br><span class="line">			      struct list_head *prev,</span><br><span class="line">			      struct list_head *next);</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">bool</span> __list_del_entry_valid(struct list_head *entry);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">bool</span> __list_add_valid(struct list_head *<span class="keyword">new</span>,</span><br><span class="line">				struct list_head *prev,</span><br><span class="line">				struct list_head *next)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">bool</span> __list_del_entry_valid(struct list_head *entry)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>该函数定义由是否存在该标志位决定，如果存在那么就是外部引用的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> __list_del_entry_valid(struct list_head *entry)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> *<span class="title">prev</span>, *<span class="title">next</span>;</span></span><br><span class="line"></span><br><span class="line">	prev = entry-&gt;prev;</span><br><span class="line">	next = entry-&gt;next;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (CHECK_DATA_CORRUPTION(next == <span class="literal">NULL</span>,</span><br><span class="line">			<span class="string">&quot;list_del corruption, %px-&gt;next is NULL\n&quot;</span>, entry) ||</span><br><span class="line">	    CHECK_DATA_CORRUPTION(prev == <span class="literal">NULL</span>,</span><br><span class="line">			<span class="string">&quot;list_del corruption, %px-&gt;prev is NULL\n&quot;</span>, entry) ||</span><br><span class="line">	    CHECK_DATA_CORRUPTION(next == LIST_POISON1,</span><br><span class="line">			<span class="string">&quot;list_del corruption, %px-&gt;next is LIST_POISON1 (%px)\n&quot;</span>,</span><br><span class="line">			entry, LIST_POISON1) ||</span><br><span class="line">	    CHECK_DATA_CORRUPTION(prev == LIST_POISON2,</span><br><span class="line">			<span class="string">&quot;list_del corruption, %px-&gt;prev is LIST_POISON2 (%px)\n&quot;</span>,</span><br><span class="line">			entry, LIST_POISON2) ||</span><br><span class="line">	    CHECK_DATA_CORRUPTION(prev-&gt;next != entry,</span><br><span class="line">			<span class="string">&quot;list_del corruption. prev-&gt;next should be %px, but was %px. (prev=%px)\n&quot;</span>,</span><br><span class="line">			entry, prev-&gt;next, prev) ||</span><br><span class="line">	    CHECK_DATA_CORRUPTION(next-&gt;prev != entry,</span><br><span class="line">			<span class="string">&quot;list_del corruption. next-&gt;prev should be %px, but was %px. (next=%px)\n&quot;</span>,</span><br><span class="line">			entry, next-&gt;prev, next))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL(__list_del_entry_valid);</span><br></pre></td></tr></table></figure>
+
+<p>因为在第一次脱链结束后，<code>entry-&gt;prev</code>就被赋值为<code>LIST_POISON2</code>了，所以这里会直接返回flase，从而不会进行地址操作也就不会出现kernel panic。</p>
+<h4 id="CONFIG-SLAB-FREELIST-HARDENED"><a href="#CONFIG-SLAB-FREELIST-HARDENED" class="headerlink" title="CONFIG_SLAB_FREELIST_HARDENED"></a><strong>CONFIG_SLAB_FREELIST_HARDENED</strong></h4><p>这里有点怪的是，在原作者文档中给出了<code>freelist_ptr_decode</code>函数的定义。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> *<span class="title">freelist_ptr_decode</span><span class="params">(<span class="keyword">const</span> struct kmem_cache *s,</span></span></span><br><span class="line"><span class="params"><span class="function">					<span class="keyword">freeptr_t</span> ptr, <span class="keyword">unsigned</span> <span class="keyword">long</span> ptr_addr,</span></span></span><br><span class="line"><span class="params"><span class="function">					struct slab *slab)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SLAB_FREELIST_HARDENED</span></span><br><span class="line">	<span class="keyword">void</span> *decoded;</span><br><span class="line">	<span class="comment">/* <span class="doctag">TODO:</span> maybe let slab_to_virt load a virtual address from</span></span><br><span class="line"><span class="comment">	 * struct slab instead of using arithmetic for the translation?</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> slab_base = (<span class="keyword">unsigned</span> <span class="keyword">long</span>)slab_to_virt(slab);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * When CONFIG_KASAN_SW/HW_TAGS is enabled, ptr_addr might be tagged.</span></span><br><span class="line"><span class="comment">	 * Normally, this doesn&#x27;t cause any issues, as both set_freepointer()</span></span><br><span class="line"><span class="comment">	 * and get_freepointer() are called with a pointer with the same tag.</span></span><br><span class="line"><span class="comment">	 * However, there are some issues with CONFIG_SLUB_DEBUG code. For</span></span><br><span class="line"><span class="comment">	 * example, when __free_slub() iterates over objects in a cache, it</span></span><br><span class="line"><span class="comment">	 * passes untagged pointers to check_object(). check_object() in turns</span></span><br><span class="line"><span class="comment">	 * calls get_freepointer() with an untagged pointer, which causes the</span></span><br><span class="line"><span class="comment">	 * freepointer to be restored incorrectly.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	decoded = (<span class="keyword">void</span> *)(ptr.v ^ s-&gt;random ^</span><br><span class="line">			swab((<span class="keyword">unsigned</span> <span class="keyword">long</span>)kasan_reset_tag((<span class="keyword">void</span> *)ptr_addr)));</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * This verifies that the SLUB freepointer does not point outside the</span></span><br><span class="line"><span class="comment">	 * slab. Since at that point we can basically do it for free, it also</span></span><br><span class="line"><span class="comment">	 * checks that the pointer alignment looks vaguely sane.</span></span><br><span class="line"><span class="comment">	 * However, we probably don&#x27;t want the cost of a proper division here,</span></span><br><span class="line"><span class="comment">	 * so instead we just do a cheap check whether the bottom bits that are</span></span><br><span class="line"><span class="comment">	 * clear in the size are also clear in the pointer.</span></span><br><span class="line"><span class="comment">	 * So for kmalloc-32, it does a perfect alignment check, but for</span></span><br><span class="line"><span class="comment">	 * kmalloc-192, it just checks that the pointer is a multiple of 32.</span></span><br><span class="line"><span class="comment">	 * This should probably be reconsidered - is this a good tradeoff, or</span></span><br><span class="line"><span class="comment">	 * should that part be thrown out, or do we want a proper accurate</span></span><br><span class="line"><span class="comment">	 * alignment check (and can we make it work with acceptable performance</span></span><br><span class="line"><span class="comment">	 * cost compared to the security improvement - probably not)?</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * NULL freepointer must be special-cased.</span></span><br><span class="line"><span class="comment">	 * Write it in a way that gives the compiler a chance to avoid adding</span></span><br><span class="line"><span class="comment">	 * an unpredictable branch.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	slab_base = decoded ? slab_base : <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (CHECK_DATA_CORRUPTION(</span><br><span class="line">			((<span class="keyword">unsigned</span> <span class="keyword">long</span>)decoded &amp; slab-&gt;align_mask) != slab_base,</span><br><span class="line">			<span class="string">&quot;bad freeptr (encoded %lx, ptr %px, base %lx, mask %lx&quot;</span>,</span><br><span class="line">			ptr.v, decoded, slab_base, slab-&gt;align_mask))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> decoded;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">void</span>*)ptr.v;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里会检测地址是否在slab_base中，但是我在elixir.bootlin.com中切换了很多版本，死活找不到这段代码，不过这里有没有这段代码其实影响不大，因为原作者在这里使用了错位的堆块来利用（感觉是不必要的），所以是需要考虑一下这个对齐是否会引起panic，不过这里使用的是<code>CHECK_DATA_CORRUPTION</code>也只是会引起警告，并且如果不是对齐的堆地址只会返回NULL故在后面的利用结束后虽然freelist的内容依旧损坏但是依旧不会出现kernel panic。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> *<span class="title">freelist_ptr</span><span class="params">(<span class="keyword">const</span> struct kmem_cache *s, <span class="keyword">void</span> *ptr,</span></span></span><br><span class="line"><span class="params"><span class="function">				 <span class="keyword">unsigned</span> <span class="keyword">long</span> ptr_addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SLAB_FREELIST_HARDENED</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * When CONFIG_KASAN_SW/HW_TAGS is enabled, ptr_addr might be tagged.</span></span><br><span class="line"><span class="comment">	 * Normally, this doesn&#x27;t cause any issues, as both set_freepointer()</span></span><br><span class="line"><span class="comment">	 * and get_freepointer() are called with a pointer with the same tag.</span></span><br><span class="line"><span class="comment">	 * However, there are some issues with CONFIG_SLUB_DEBUG code. For</span></span><br><span class="line"><span class="comment">	 * example, when __free_slub() iterates over objects in a cache, it</span></span><br><span class="line"><span class="comment">	 * passes untagged pointers to check_object(). check_object() in turns</span></span><br><span class="line"><span class="comment">	 * calls get_freepointer() with an untagged pointer, which causes the</span></span><br><span class="line"><span class="comment">	 * freepointer to be restored incorrectly.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">void</span> *)((<span class="keyword">unsigned</span> <span class="keyword">long</span>)ptr ^ s-&gt;random ^</span><br><span class="line">			swab((<span class="keyword">unsigned</span> <span class="keyword">long</span>)kasan_reset_tag((<span class="keyword">void</span> *)ptr_addr)));</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="keyword">return</span> ptr;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过在我看到的内容里是没有上面那些代码的，所以在利用结束后freelist被破坏的数据被申请时就极有可能出现kernel panic的问题，不过这里我能想到的解决办法就是开始申请一部分会污染掉freelist对应大小的堆块，最后放入其中避免出现panic。</p>
+<p>这个CVE的具体利用方法可以参考<a href="https://196082.github.io/2022/09/20/CVE-2021-22555%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90/">CVE-2021-22555利用方法分析</a>文章，利用方式基本一致（并且我觉得错位堆块是无意义的，当然可能是我没有理解到原作者使用此方式的背后含意）。</p>
+<h2 id="CVE-2023-3777"><a href="#CVE-2023-3777" class="headerlink" title="CVE-2023-3777"></a>CVE-2023-3777</h2><h3 id="漏洞分析-3"><a href="#漏洞分析-3" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>该漏洞类似于上一篇中的CVE-2023-4015漏洞。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nf_tables_delrule</span><span class="params">(struct sk_buff *skb, <span class="keyword">const</span> struct nfnl_info *info,</span></span></span><br><span class="line"><span class="params"><span class="function">			     <span class="keyword">const</span> struct nlattr * <span class="keyword">const</span> nla[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">netlink_ext_ack</span> *<span class="title">extack</span> =</span> info-&gt;extack;</span><br><span class="line">	u8 genmask = nft_genmask_next(info-&gt;net);</span><br><span class="line">	u8 family = info-&gt;nfmsg-&gt;nfgen_family;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_chain</span> *<span class="title">chain</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">net</span> *<span class="title">net</span> =</span> info-&gt;net;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_table</span> *<span class="title">table</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_rule</span> *<span class="title">rule</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_ctx</span> <span class="title">ctx</span>;</span></span><br><span class="line">	<span class="keyword">int</span> err = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	table = nft_table_lookup(net, nla[NFTA_RULE_TABLE], family, genmask,</span><br><span class="line">				 NETLINK_CB(skb).portid);</span><br><span class="line">	<span class="keyword">if</span> (IS_ERR(table)) &#123;</span><br><span class="line">		NL_SET_BAD_ATTR(extack, nla[NFTA_RULE_TABLE]);</span><br><span class="line">		<span class="keyword">return</span> PTR_ERR(table);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nla[NFTA_RULE_CHAIN]) &#123;</span><br><span class="line">		chain = nft_chain_lookup(net, table, nla[NFTA_RULE_CHAIN],</span><br><span class="line">					 genmask);</span><br><span class="line">		<span class="keyword">if</span> (IS_ERR(chain)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (PTR_ERR(chain) == -ENOENT &amp;&amp;</span><br><span class="line">			    NFNL_MSG_TYPE(info-&gt;nlh-&gt;nlmsg_type) == NFT_MSG_DESTROYRULE)</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">			NL_SET_BAD_ATTR(extack, nla[NFTA_RULE_CHAIN]);</span><br><span class="line">			<span class="keyword">return</span> PTR_ERR(chain);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (nft_chain_is_bound(chain))</span><br><span class="line">			<span class="keyword">return</span> -EOPNOTSUPP;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	nft_ctx_init(&amp;ctx, net, skb, info-&gt;nlh, family, table, chain, nla);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (chain) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nla[NFTA_RULE_HANDLE]) &#123;</span><br><span class="line">			rule = nft_rule_lookup(chain, nla[NFTA_RULE_HANDLE]);</span><br><span class="line">			<span class="keyword">if</span> (IS_ERR(rule)) &#123;</span><br><span class="line">				<span class="keyword">if</span> (PTR_ERR(rule) == -ENOENT &amp;&amp;</span><br><span class="line">				    NFNL_MSG_TYPE(info-&gt;nlh-&gt;nlmsg_type) == NFT_MSG_DESTROYRULE)</span><br><span class="line">					<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">				NL_SET_BAD_ATTR(extack, nla[NFTA_RULE_HANDLE]);</span><br><span class="line">				<span class="keyword">return</span> PTR_ERR(rule);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			err = nft_delrule(&amp;ctx, rule);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nla[NFTA_RULE_ID]) &#123;</span><br><span class="line">			rule = nft_rule_lookup_byid(net, chain, nla[NFTA_RULE_ID]);</span><br><span class="line">			<span class="keyword">if</span> (IS_ERR(rule)) &#123;</span><br><span class="line">				NL_SET_BAD_ATTR(extack, nla[NFTA_RULE_ID]);</span><br><span class="line">				<span class="keyword">return</span> PTR_ERR(rule);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			err = nft_delrule(&amp;ctx, rule);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			err = nft_delrule_by_chain(&amp;ctx);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		list_for_each_entry(chain, &amp;table-&gt;chains, <span class="built_in">list</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (!nft_is_active_next(net, chain))</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">			ctx.chain = chain;</span><br><span class="line">			err = nft_delrule_by_chain(&amp;ctx);</span><br><span class="line">			<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该漏洞发生于<code>nf_tables_delrule</code>函数中，可以看到在给定chain时，会在最后对chain是否绑定做检测，但是在没有给定chain时会直接遍历chain删除所有rule。</p>
+<p>删除rule的流程就不过多介绍了，前面已经分析过很多次了，所以很容易想到这里会出现use成员下溢的现象最终转化为uaf。</p>
+<hr>
+<p>参考链接：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/google/security-research/blob/master/pocs/linux/kernelctf/CVE-2024-1085_lts/docs/exploit.md" >https://github.com/google/security-research/blob/master/pocs/linux/kernelctf/CVE-2024-1085_lts/docs/exploit.md<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://starlabs.sg/blog/2023/09-nftables-adventures-bug-hunting-and-n-day-exploitation/#cve-2023-31248" >https://starlabs.sg/blog/2023/09-nftables-adventures-bug-hunting-and-n-day-exploitation/#cve-2023-31248<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/google/security-research/blob/master/pocs/linux/kernelctf/CVE-2023-3390_lts_cos_mitigation/docs/exploit.md" >https://github.com/google/security-research/blob/master/pocs/linux/kernelctf/CVE-2023-3390_lts_cos_mitigation/docs/exploit.md<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/google/security-research/blob/master/pocs/linux/kernelctf/CVE-2023-3777_lts/docs/exploit.md" >https://github.com/google/security-research/blob/master/pocs/linux/kernelctf/CVE-2023-3777_lts/docs/exploit.md<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2024/09/03/nftables-CVEs1/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">nftables CVE复现系列【一】</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '😜若有问题请各位大师傅留言评论',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = '196082';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2021</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2024-1085"><span class="nav-text">CVE-2024-1085</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2023-31248"><span class="nav-text">CVE-2023-31248</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90-1"><span class="nav-text">漏洞分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2023-3390"><span class="nav-text">CVE-2023-3390</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-1"><span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90-2"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90-1"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CONFIG-KMALLOC-SPLIT-VARSIZE"><span class="nav-text">CONFIG_KMALLOC_SPLIT_VARSIZE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CONFIG-DEBUG-LIST"><span class="nav-text">CONFIG_DEBUG_LIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CONFIG-SLAB-FREELIST-HARDENED"><span class="nav-text">CONFIG_SLAB_FREELIST_HARDENED</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CVE-2023-3777"><span class="nav-text">CVE-2023-3777</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90-3"><span class="nav-text">漏洞分析</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

@@ -151,6 +151,166 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2022/07/27/llvm-pass-pwn/">
+                        llvm pass pwn
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        简要介绍首先呢，也是同其他博主一样，copy一下百度对于llvm的介绍：
+LLVM是构架编译器的框架系统，以C++编写而成，用于优化以任意程序语言编写的程序的编译时间、链接时间、运行时间以及空闲时间，对开发者保持开放，并兼容已有脚本。
+LLVM PA...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Jul 27 2022 17:44:41 GMT+0800">2022-07-27</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/pwn/">pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/llvm-pass/">llvm pass</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/07/27/llvm-pass-pwn/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/07/26/house-of-apple/">
+                        house of apple
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        简单介绍在高版本中large bin attack算是为数不多的可以任意地址写堆地址的方法。
+这一利用方式是相较于其他house of 系列来说存在一定差异，它不是直接通过IO_FILE getshell是通过扩大现存的写堆地址漏洞的方式，从而辅佐其...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Jul 26 2022 18:55:24 GMT+0800">2022-07-26</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/pwn/">pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/07/26/house-of-apple/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2022/06/18/exit-hook/">
+                        exit_hook
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        众所周知的俩hook在glibc2.34移除了，不过exit_hook好像在这个版本的glibc表现得也不是很佳，不过在近期遇到的两道题目都需要用到这方面的知识所以来补了。
+exit_hook首先呢，程序正常退出以及使用exit函数都会调用exit所...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Jun 18 2022 15:27:49 GMT+0800">2022-06-18</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/pwn/">pwn</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%A0%86%E5%88%A9%E7%94%A8/">堆利用</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2022/06/18/exit-hook/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2022/05/26/fastbin-reverse-into-tcache/">
                         fastbin_reverse_into_tcache
                     </a>
@@ -524,183 +684,6 @@ chunk关于0x10字节对其，如果是group中的第一个chunk，p的前...
     </div>
 
     <a href="/2022/04/10/RCTF2021%E5%A4%8D%E7%8E%B0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/04/07/linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%97%B6%E5%88%B0%E5%BA%95%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88/">
-                        linux软件安装时到底在做什么?
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        除了CTF外我其实还是一个特别喜欢搞linux的一个垃圾，在2020年11月份左右我将电脑系统换到了kali并且因为当时不会装双系统把windows搞没了，不过用过一段时间发现linux的操作逻辑更加的符合我。
-依赖linux的依赖问题一直是被人诟病...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Apr 07 2022 10:22:57 GMT+0800">2022-04-07</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/%E6%90%9E%E6%9C%BA/">搞机</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/deb/">deb</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/aur/">aur</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/04/07/linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%97%B6%E5%88%B0%E5%BA%95%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/03/24/kernel-pwn%E5%9F%BA%E7%A1%80-2/">
-                        kernel pwn基础[2]
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        2018 0CTF Finals Baby Kernel这次题目的附件只有驱动和文件系统没有bzImage
-12tcdy@arch-linux ..study_kernel/2018_0CTFFinalsBabyKernel % strings ba...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Mar 24 2022 14:47:50 GMT+0800">2022-03-24</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E4%BE%A7%E4%BF%A1%E9%81%93%E6%94%BB%E5%87%BB/">侧信道攻击</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Double-Fetch/">Double Fetch</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/03/24/kernel-pwn%E5%9F%BA%E7%A1%80-2/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2022/03/22/kernel-pwn%E5%9F%BA%E7%A1%80-1/">
-                        kernel pwn基础[1]
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        这里的例题仍然是上一篇的两个例题，不过使用不同的解法。
-2018 强网杯 - core上一篇里这道题使用的方法是ROP，不过这一方法相对来说比较麻烦，构造ROP链挺恼火的。
-
-可以看到并没有打开smep所以可以直接实现ret2usr。
-exp1234...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 22 2022 16:17:19 GMT+0800">2022-03-22</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/ret2usr/">ret2usr</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/bypass-semp/">bypass semp</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2022/03/22/kernel-pwn%E5%9F%BA%E7%A1%80-1/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
