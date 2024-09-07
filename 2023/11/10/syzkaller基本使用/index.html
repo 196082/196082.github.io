@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,104 +190,121 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        syzkaller基本使用
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">syzkaller基本使用</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2023-11-10 17:04:05
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/fuzzing/">fuzzing</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/LKM/">LKM</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/syzkaller/">syzkaller</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/syzlang/">syzlang</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/fuzzing/">fuzzing</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-11-10 17:04:05</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>6.4k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>28 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Jun 12 2024 20:51:43 GMT+0800">2024-06-12 20:51:43</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/fuzzing/">fuzzing</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/fuzzing/">fuzzing</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/LKM/">LKM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/syzkaller/">syzkaller</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/syzlang/">syzlang</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6.4k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>28 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章在前面已经是埋了许多坑了，靠后的几篇文章都提到了我想学<code>syzkaller</code>，但是总有事耽搁以至于拖到了现在。本来没有打算将基本的使用方法写成文章的，但是就是前面的坑过多，如果不写出来的话就会觉得心里膈应。这一篇不会涉及到<code>syzkaller</code>的实现原理，只能默默祈祷不会太水。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇文章在前面已经是埋了许多坑了，靠后的几篇文章都提到了我想学<code>syzkaller</code>，但是总有事耽搁以至于拖到了现在。本来没有打算将基本的使用方法写成文章的，但是就是前面的坑过多，如果不写出来的话就会觉得心里膈应。这一篇不会涉及到<code>syzkaller</code>的实现原理，只能默默祈祷不会太水。</p>
 <p>一样的，这里也就不多提如何编译了，网上的资料很多。</p>
-<h2 id="syzkaller使用"><a href="#syzkaller使用" class="headerlink" title="syzkaller使用"></a>syzkaller使用</h2><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/LxNvdhpEX2sBjYc.png"
-                     
-                ></p>
+<h2 id="syzkaller使用"><a href="#syzkaller使用" class="headerlink" title="syzkaller使用"></a>syzkaller使用</h2><h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p><img   src="/images/LxNvdhpEX2sBjYc.png" ></p>
 <p>经常看我文章的朋友或许看出来了，我不是很愿意将图片上到博客，主要原因还是我没有使用图床所以尽量少的上传图片，所以我一般放到博客的图片都是较为有用的图片。</p>
 <p>这里简单提一下上图：</p>
 <p>首先<code>syz-manager</code>作为的是<code>syzkallmer</code>的控制中枢，其会启动多个vm实例 ( 图中一个黄色卡片代表一个实例 ) 并进行监视，同时通过<code>RPC</code>启动<code>syz-fuzzer</code>。</p>
@@ -291,56 +358,56 @@
 <p>首先这里详细提一下类型名，即该 type 的类型，例如 C 当中的int、char、void 等等。</p>
 <p>常规的类型名包括：( <del>直接搬！</del>)</p>
 <ul>
-<li>  <strong>opt</strong>：这是一个可选参数（例如 mmap 的 fd）</li>
+<li><strong>opt</strong>：这是一个可选参数（例如 mmap 的 fd）</li>
 </ul>
 <p>其余 type-options 是基于特定 type 的，如下：</p>
 <ul>
 <li><strong>const</strong>：整型常数<ul>
 <li>类型选项：<ul>
-<li>  值（value）：例如 <code>0</code></li>
-<li>  基础类型（underlying type）：<code>intN</code> 或 <code>intptr</code> 之一</li>
+<li>值（value）：例如 <code>0</code></li>
+<li>基础类型（underlying type）：<code>intN</code> 或 <code>intptr</code> 之一</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>intN</strong> 或 <strong>intptr</strong>：一个有着特殊含义的整型，下文会进行详细说明<ul>
 <li>类型选项：<ul>
-<li>  可选范围区间：例如 <code>&quot;1:100&quot;</code> 表示取值值的区间为 <code>[1, 100]</code></li>
-<li>  可选参数</li>
+<li>可选范围区间：例如 <code>&quot;1:100&quot;</code> 表示取值值的区间为 <code>[1, 100]</code></li>
+<li>可选参数</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>flags</strong>：值的集合<ul>
 <li>类型选项：<ul>
-<li>  对 flags 描述的引用</li>
-<li>  基础整型类型：例如 <code>int32</code></li>
+<li>对 flags 描述的引用</li>
+<li>基础整型类型：例如 <code>int32</code></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>array</strong>：一个可变长/固定长度的数组<ul>
+<li><strong>array</strong>：一个可变长&#x2F;固定长度的数组<ul>
 <li>类型选项：<ul>
-<li>  元素的 type</li>
-<li>  可选长度区间：例如固定长度 <code>&quot;5&quot;</code> 或者长度范围 <code>&quot;5:10&quot;</code>（包括边界）</li>
+<li>元素的 type</li>
+<li>可选长度区间：例如固定长度 <code>&quot;5&quot;</code> 或者长度范围 <code>&quot;5:10&quot;</code>（包括边界）</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>ptr</strong> 或 <strong>ptr64</strong>：指向一个对象的指针<ul>
 <li>类型选项：<ul>
-<li>  方向：<code>in</code> 或 <code>out</code> 或 <code>inout</code></li>
-<li>  对象的 type</li>
+<li>方向：<code>in</code> 或 <code>out</code> 或 <code>inout</code></li>
+<li>对象的 type</li>
 </ul>
 </li>
-<li>  无论对象指针大小如何，ptr64 永远为 8 字节</li>
+<li>无论对象指针大小如何，ptr64 永远为 8 字节</li>
 </ul>
 </li>
 <li><strong>string</strong>：一块有着 0 终止符的内存缓冲区<ul>
 <li>类型选项：<ul>
-<li>常量字符串/对字符串的引用<ul>
-<li>  前者：例如 <code>&quot;foo&quot;</code>作为常规字符串进行解析，或者<code>deadbeef</code>作为4个 16 进制字节进行解析</li>
-<li>  后者：若是特殊类型 <code>filename</code> 则会<strong>生成</strong>文件名</li>
+<li>常量字符串&#x2F;对字符串的引用<ul>
+<li>前者：例如 <code>&quot;foo&quot;</code>作为常规字符串进行解析，或者<code>deadbeef</code>作为4个 16 进制字节进行解析</li>
+<li>后者：若是特殊类型 <code>filename</code> 则会<strong>生成</strong>文件名</li>
 </ul>
 </li>
 </ul>
@@ -348,78 +415,78 @@
 </ul>
 </li>
 <li><strong>stringnoz</strong>：一块<strong>没有</strong> 0 终止符的内存缓冲区<ul>
-<li>  类型选项：（同 <code>string</code>)</li>
+<li>类型选项：（同 <code>string</code>)</li>
 </ul>
 </li>
 <li><strong>glob</strong>：匹配目标文件的 glob（？）模式<ul>
 <li>类型选项：<ul>
-<li>  用引号包裹着的模式字符串：例如 <code>&quot;/sys/&quot;</code> 或 <code>&quot;/sys/**/*/&quot;</code>，具体用法参见<a class="link"   target="_blank" rel="noopener" href="https://pkg.go.dev/path/filepath#Match" >https://pkg.go.dev/path/filepath#Match<i class="fas fa-external-link-alt"></i></a></li>
+<li>用引号包裹着的模式字符串：例如 <code>&quot;/sys/&quot;</code> 或 <code>&quot;/sys/**/*/&quot;</code>，具体用法参见<a class="link"   target="_blank" rel="noopener" href="https://pkg.go.dev/path/filepath#Match" >https://pkg.go.dev/path/filepath#Match<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>fmt</strong>：一个表示一个整数的字符串<ul>
 <li>类型选项：<ul>
-<li>  格式与值：前者可取值为 <code>dec</code>或 <code>hex</code> 或 <code>oct</code>；后者可以是一个 resource、int、flags、const 或 proc</li>
+<li>格式与值：前者可取值为 <code>dec</code>或 <code>hex</code> 或 <code>oct</code>；后者可以是一个 resource、int、flags、const 或 proc</li>
 </ul>
 </li>
-<li>  最终的结果通常是固定尺寸的</li>
+<li>最终的结果通常是固定尺寸的</li>
 </ul>
 </li>
 <li><strong>len</strong>：另一个 <code>字段</code> 的长度（对于 array 而言为元素的数量）<ul>
 <li>类型选项：<ul>
-<li>  对象的 argname</li>
+<li>对象的 argname</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>bytesize</strong>：与 len 类似，不过单位是<strong>字节</strong><ul>
 <li>类型选项：<ul>
-<li>  对象的 argname</li>
+<li>对象的 argname</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>bitsize</strong>：与 len 类型，不过单位是<strong>比特位</strong><ul>
 <li>类型选项：<ul>
-<li>  对象的 argname</li>
+<li>对象的 argname</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>offsetof</strong>：一个 <code>字段</code> 在其 parent struct 中的偏移<ul>
 <li>类型选项：<ul>
-<li>  <code>字段</code></li>
+<li><code>字段</code></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>vma</strong> 或 <strong>vma64</strong>：指向一组页的指针（用作 mmap/munmap/mremap/madvise 的输入）<ul>
+<li><strong>vma</strong> 或 <strong>vma64</strong>：指向一组页的指针（用作 mmap&#x2F;munmap&#x2F;mremap&#x2F;madvise 的输入）<ul>
 <li>类型选项：<ul>
-<li>  （可选）页的数量或页的范围：前者例如 <code>vma[7]</code>，后者例如 <code>vma[2-4]</code></li>
+<li>（可选）页的数量或页的范围：前者例如 <code>vma[7]</code>，后者例如 <code>vma[2-4]</code></li>
 </ul>
 </li>
-<li>  vma64 的长度恒为 8 字节</li>
+<li>vma64 的长度恒为 8 字节</li>
 </ul>
 </li>
 <li><strong>proc</strong>：单个进程的整型（详见下面的描述）<ul>
 <li>类型选项：<ul>
-<li>  值的区间的起始</li>
-<li>  每个进程的值的数量</li>
-<li>  基础类型</li>
+<li>值的区间的起始</li>
+<li>每个进程的值的数量</li>
+<li>基础类型</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>text</strong>：特定 type 的机器码<ul>
 <li>类型选项：<ul>
-<li>  代码类型：<code>x86_real</code>, <code>x86_16</code>, <code>x86_32</code>, <code>x86_64</code>, <code>arm64</code></li>
+<li>代码类型：<code>x86_real</code>, <code>x86_16</code>, <code>x86_32</code>, <code>x86_64</code>, <code>arm64</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>void</strong>：type with static size 0<ul>
-<li>  通常在模板以及可变长（varlen）联合体中使用，<strong>不能用作系统调用的参数</strong></li>
+<li>通常在模板以及可变长（varlen）联合体中使用，<strong>不能用作系统调用的参数</strong></li>
 </ul>
 </li>
 </ul>
@@ -442,9 +509,9 @@
 
 <p>这里对<code>open</code>系统调用，存在以下三个输入：</p>
 <ul>
-<li>  file 参数：一个指针类型，其 type-opetions 的第一个为 <code>in</code>，意为由该指针指向特定对象，第二个为 <code>filename</code>，为特殊的 string 对象，对于 filename，syzlang 会进行文件生成，将文件名作为输入</li>
-<li>  flags 参数：一个 flags类型，其 <code>type-options</code> 为 <code>open_flags</code> ，意为从我们定义的 flags——<code>open_flags</code> 中取值</li>
-<li>  mode 参数：一个flags类型，其 <code>type-options</code> 为 <code>open_mode</code> ，意为从我们定义的 flags——<code>open_mode</code> 中取值</li>
+<li>file 参数：一个指针类型，其 type-opetions 的第一个为 <code>in</code>，意为由该指针指向特定对象，第二个为 <code>filename</code>，为特殊的 string 对象，对于 filename，syzlang 会进行文件生成，将文件名作为输入</li>
+<li>flags 参数：一个 flags类型，其 <code>type-options</code> 为 <code>open_flags</code> ，意为从我们定义的 flags——<code>open_flags</code> 中取值</li>
+<li>mode 参数：一个flags类型，其 <code>type-options</code> 为 <code>open_mode</code> ，意为从我们定义的 flags——<code>open_mode</code> 中取值</li>
 </ul>
 <p>一般来说，系统调用都会存在返回值，在<code>syzlang</code>中可以忽略掉返回值也可以选择接收，如果选择接收则应形如上式在系统调用后面加上一个<code>type</code>，例如<code>open</code>系统调用会返回一个文件描述符，若是我们像将其返回的的文件描述符存到一个变量中如<code>test_fd</code>，我们应当写成如下形式：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(file ptr[in, filename], flags flags[open_flags], mode flags[open_mode]) test_fd</span><br><span class="line"></span><br><span class="line">open_flags = O_WRONLY, O_RDWR, O_APPEND, FASYNC, O_CLOEXEC, O_CREAT, O_DIRECT, O_DIRECTORY, O_EXCL, O_LARGEFILE, O_NOATIME, O_NOCTTY, O_NOFOLLOW, O_NONBLOCK, O_PATH, O_SYNC, O_TRUNC, __O_TMPFILE</span><br><span class="line">open_mode = S_IRUSR, S_IWUSR, S_IXUSR, S_IRGRP, S_IWGRP, S_IXGRP, S_IROTH, S_IWOTH, S_IXOTH</span><br></pre></td></tr></table></figure>
@@ -454,11 +521,11 @@
 
 <p>随后就是前面提到的，在<code>type</code>后还有一个可选参数<code>attribute</code>，其有以下可选值：</p>
 <ul>
-<li>  <code>disabled</code>：该系统调用将不用于 fuzzing；这个属性通常用于临时禁用某些系统调用，或者禁用特定的参数组合</li>
-<li>  <code>timeout[N]</code>：系统调用在默认值以外的额外的超时时间，单位为毫秒（ms）</li>
-<li>  <code>prog_timeoout[N]</code>：若一个程序包含了该系统调用，则该属性为整个程序的执行的超时时间，若存在多个定义了该属性的系统调用则取最大值</li>
-<li>  <code>ignore_return</code>：在回退反馈中忽视这个系统调用的返回值；用于不返回固定的错误码（例如 -EFAULT）而是返回其他值的系统调用</li>
-<li>  <code>break_returns</code>：忽略回退反馈中程序中所有后续系统调用的返回值</li>
+<li><code>disabled</code>：该系统调用将不用于 fuzzing；这个属性通常用于临时禁用某些系统调用，或者禁用特定的参数组合</li>
+<li><code>timeout[N]</code>：系统调用在默认值以外的额外的超时时间，单位为毫秒（ms）</li>
+<li><code>prog_timeoout[N]</code>：若一个程序包含了该系统调用，则该属性为整个程序的执行的超时时间，若存在多个定义了该属性的系统调用则取最大值</li>
+<li><code>ignore_return</code>：在回退反馈中忽视这个系统调用的返回值；用于不返回固定的错误码（例如 -EFAULT）而是返回其他值的系统调用</li>
+<li><code>break_returns</code>：忽略回退反馈中程序中所有后续系统调用的返回值</li>
 </ul>
 <p>接着就是系统调用的变种（variants）可以在系统调用名后面使用 <code>$</code> 符号进行额外的指定</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">socket$inet_tcp(domain <span class="keyword">const</span>[AF_INET], type <span class="keyword">const</span>[SOCK_STREAM], proto <span class="keyword">const</span>[<span class="number">0</span>]) sock_tcp</span><br><span class="line">socket$inet_udp(domain <span class="keyword">const</span>[AF_INET], type <span class="keyword">const</span>[SOCK_DGRAM], proto <span class="keyword">const</span>[<span class="number">0</span>]) sock_udp</span><br></pre></td></tr></table></figure>
@@ -474,9 +541,9 @@
 <p>可以看出来结构其实和c的很类似，定义一个<code>structname</code>，然后内部成员包含了<code>fieldname / type</code>以及后面可以添加<code>(fieldattribute)</code>，这里的属性与前面的是有一定差距的，这里的属性只有方向<code>in / out / inout</code></p>
 <p>最后可以看到在结构体结尾可以被<code>[attribute]</code>来添加属性，这里存在以下属性：</p>
 <ul>
-<li>  <code>packed</code>：该结构体不同字段之间没有 padding（例如 C 中有一个结构体 <code>struct T&#123;int a; char b;&#125;;</code>，char 为 1 字节，int 为 4 字节，那么该结构体便会对 4 字节对齐，在其两个字段之间就会有 3 字节的 padding）</li>
-<li>  <code>align[N]</code>：指定该结构体对 N 字节对齐，padding 的内容并未指定（通常为0）</li>
-<li>  <code>size[N]</code>：结构体被填充到指定的大小 <code>N</code></li>
+<li><code>packed</code>：该结构体不同字段之间没有 padding（例如 C 中有一个结构体 <code>struct T&#123;int a; char b;&#125;;</code>，char 为 1 字节，int 为 4 字节，那么该结构体便会对 4 字节对齐，在其两个字段之间就会有 3 字节的 padding）</li>
+<li><code>align[N]</code>：指定该结构体对 N 字节对齐，padding 的内容并未指定（通常为0）</li>
+<li><code>size[N]</code>：结构体被填充到指定的大小 <code>N</code></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test_struct &#123;</span><br><span class="line">	field0	<span class="keyword">const</span>[<span class="number">1</span>, int32]	  (in)</span><br><span class="line">	<span class="function">field1	<span class="title">int32</span>         		<span class="params">(inout)</span></span></span><br><span class="line"><span class="function">	field2	<span class="title">fd</span>								<span class="params">(out)</span></span></span><br><span class="line"><span class="function">&#125; [packed]</span></span><br></pre></td></tr></table></figure>
 
@@ -485,8 +552,8 @@
 
 <p>与前面的区别主要是最后的<code>[attribute]</code>中的可选性的区别，这里主要有：</p>
 <ul>
-<li>  <code>varlen</code>：联合体的大小可变（为指定的字段的长度），若未指定则该联合体大小为其最大字段的大小（类型 C 语言）</li>
-<li>  <code>size[N]</code>：该联合体被填充到指定的大小 <code>N</code></li>
+<li><code>varlen</code>：联合体的大小可变（为指定的字段的长度），若未指定则该联合体大小为其最大字段的大小（类型 C 语言）</li>
+<li><code>size[N]</code>：该联合体被填充到指定的大小 <code>N</code></li>
 </ul>
 <h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p>资源的定义是作为一个系统调用的输出作为另一个系统调用输入的值。在前面的时候其实已经是提到过了，使用open系统调用打开的文件描述符再交由close系统调用进行关闭，如果要实现这样的效果则需要声明一个资源。资源的形式如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;resource&quot;</span> identifier <span class="string">&quot;[&quot;</span> underlying_type <span class="string">&quot;]&quot;</span> [ <span class="string">&quot;:&quot;</span> <span class="keyword">const</span> (<span class="string">&quot;,&quot;</span> <span class="keyword">const</span>)* ]</span><br></pre></td></tr></table></figure>
@@ -497,7 +564,7 @@
 <p>资源不一定是系统调用的返回，他可以像其他任何数据一样被使用。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">resource my_resource[int32]</span><br><span class="line"></span><br><span class="line">request_producer(..., arg ptr[out, my_resource])</span><br><span class="line">request_consumer(..., arg ptr[inout, test_struct])</span><br><span class="line"></span><br><span class="line">test_struct &#123;</span><br><span class="line">	...</span><br><span class="line">	attr	my_resource</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>对于更为复杂的生产者/消费者场景，字段属性也可以被利用，例如：</p>
+<p>对于更为复杂的生产者&#x2F;消费者场景，字段属性也可以被利用，例如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">resource my_resource_1[int32]</span><br><span class="line">resource my_resource_2[int32]</span><br><span class="line"></span><br><span class="line">request_produce1_consume2(..., arg ptr[inout, test_struct])</span><br><span class="line"></span><br><span class="line">test_struct &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function">field0	<span class="title">my_resource_1</span>	<span class="params">(out)</span></span></span><br><span class="line"><span class="function">	field1	<span class="title">my_resource_2</span>	<span class="params">(in)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>这个的形式很类似于C语言中的<code>typedef</code>：</p>
@@ -532,10 +599,10 @@
 <h2 id="尝试捕捉简单溢出洞"><a href="#尝试捕捉简单溢出洞" class="headerlink" title="尝试捕捉简单溢出洞"></a>尝试捕捉简单溢出洞</h2><h3 id="syz-extract"><a href="#syz-extract" class="headerlink" title="syz-extract"></a>syz-extract</h3><p>第一步是从内核源文件中提取符号常量的值：<code>syz-extract</code> 会根据 syzlang 文件从内核源文件中提取出使用的对应的宏、系统调用号等的值，生成 <code>.const</code> 文件</p>
 <h3 id="syz-sysgen"><a href="#syz-sysgen" class="headerlink" title="syz-sysgen"></a>syz-sysgen</h3><p>第二步便是将描述翻译成 Golang 代码：<code>syz-sysgen</code> 通过 syzlang 文件与 .const 文件进行语法分析与语义分析，生成抽象语法树，最终生成供 syzkaller 使用的 golang 代码，分为如下四个步骤：</p>
 <ul>
-<li>  <strong>assignSyscallNumbers</strong>：分配系统调用号，检测不支持的系统调用并丢弃</li>
-<li>  <strong>patchConsts</strong>：将 AST 中的常量替换为对应的值</li>
-<li>  <strong>check</strong>：进行语义分析</li>
-<li>  <strong>genSyscalls</strong>：从 AST 生成 prog 对象</li>
+<li><strong>assignSyscallNumbers</strong>：分配系统调用号，检测不支持的系统调用并丢弃</li>
+<li><strong>patchConsts</strong>：将 AST 中的常量替换为对应的值</li>
+<li><strong>check</strong>：进行语义分析</li>
+<li><strong>genSyscalls</strong>：从 AST 生成 prog 对象</li>
 </ul>
 <h3 id="实战流程"><a href="#实战流程" class="headerlink" title="实战流程"></a>实战流程</h3><p>首先编写一个具有漏洞的驱动</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/device.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/slab.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEVICE_NAME <span class="meta-string">&quot;intel_rapl_msrdv&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CLASS_NAME <span class="meta-string">&quot;intel_rapl_msrmd&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEVICE_PATH <span class="meta-string">&quot;/dev/intel_rapl_msrdv&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> major_num;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="keyword">class</span> *<span class="title">module_class</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">device</span> *<span class="title">module_device</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *__<span class="title">file</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">inode</span> *__<span class="title">inode</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __init <span class="title">test_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> __exit <span class="title">test_exit</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_open</span><span class="params">(struct inode *, struct file *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_read</span><span class="params">(struct file *, <span class="keyword">char</span> __user *, <span class="keyword">size_t</span>, <span class="keyword">loff_t</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_write</span><span class="params">(struct file *, <span class="keyword">const</span> <span class="keyword">char</span> __user *, <span class="keyword">size_t</span>, <span class="keyword">loff_t</span> *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_release</span><span class="params">(struct inode *, struct file *)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">test_ioctl</span><span class="params">(struct file *, <span class="keyword">unsigned</span> <span class="keyword">int</span>, <span class="keyword">unsigned</span> <span class="keyword">long</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">file_operations</span> <span class="title">test_op</span> =</span></span><br><span class="line">    &#123;</span><br><span class="line">        .owner = THIS_MODULE,</span><br><span class="line">        .unlocked_ioctl = test_ioctl,</span><br><span class="line">        .open = test_open,</span><br><span class="line">        .read = test_read,</span><br><span class="line">        .write = test_write,</span><br><span class="line">        .release = test_release,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_open</span><span class="params">(struct inode *__inode, struct file *__file)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_read</span><span class="params">(struct file *__file, <span class="keyword">char</span> __user *user_buf, <span class="keyword">size_t</span> size, <span class="keyword">loff_t</span> *__loff)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">test_write</span><span class="params">(struct file *__file, <span class="keyword">const</span> <span class="keyword">char</span> __user *user_buf, <span class="keyword">size_t</span> size, <span class="keyword">loff_t</span> *__loff)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *param;</span><br><span class="line"></span><br><span class="line">    param = kmalloc(<span class="number">512</span>, GFP_KERNEL);</span><br><span class="line">    copy_from_user(param, user_buf, <span class="number">4096</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test_release</span><span class="params">(struct inode *__inode, struct file *__file)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">test_ioctl</span><span class="params">(struct file *__file, <span class="keyword">unsigned</span> <span class="keyword">int</span> cmd, <span class="keyword">unsigned</span> <span class="keyword">long</span> param)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __init <span class="title">test_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    major_num = register_chrdev(<span class="number">0</span>, DEVICE_NAME, &amp;test_op);</span><br><span class="line">    <span class="keyword">if</span> (major_num &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> major_num;</span><br><span class="line"></span><br><span class="line">    module_class = class_create(THIS_MODULE, CLASS_NAME);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(module_class))</span><br><span class="line">    &#123;</span><br><span class="line">        unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">        <span class="keyword">return</span> PTR_ERR(module_class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    module_device = device_create(module_class, <span class="literal">NULL</span>, MKDEV(major_num, <span class="number">0</span>), <span class="literal">NULL</span>, DEVICE_NAME);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(module_device))</span><br><span class="line">    &#123;</span><br><span class="line">        class_destroy(module_class);</span><br><span class="line">        unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">        <span class="keyword">return</span> PTR_ERR(module_device);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    __file = filp_open(DEVICE_PATH, O_RDONLY, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (IS_ERR(__file))</span><br><span class="line">    &#123;</span><br><span class="line">        device_destroy(module_class, MKDEV(major_num, <span class="number">0</span>));</span><br><span class="line">        class_destroy(module_class);</span><br><span class="line">        unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">        <span class="keyword">return</span> PTR_ERR(__file);</span><br><span class="line">    &#125;</span><br><span class="line">    __inode = file_inode(__file);</span><br><span class="line">    __inode-&gt;i_mode |= <span class="number">0666</span>;</span><br><span class="line">    filp_close(__file, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> __exit <span class="title">test_exit</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    device_destroy(module_class, MKDEV(major_num, <span class="number">0</span>));</span><br><span class="line">    class_destroy(module_class);</span><br><span class="line">    unregister_chrdev(major_num, DEVICE_NAME);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(test_init);</span><br><span class="line">module_exit(test_exit);</span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br><span class="line">MODULE_AUTHOR(<span class="string">&quot;196082&quot;</span>);</span><br><span class="line">MODULE_INFO(intree, <span class="string">&quot;Y&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -574,7 +641,7 @@
 <tbody><tr>
 <td>KASAN: slab-out-of-bounds Write in test_write</td>
 <td>1</td>
-<td>2023/11/10 16:31</td>
+<td>2023&#x2F;11&#x2F;10 16:31</td>
 <td>reproducing</td>
 </tr>
 </tbody></table>
@@ -587,197 +654,297 @@
 <p>这里就是<code>report</code>给出的是<code>kernel</code>相关的信息，比如函数调用栈，以及寄存器信息等。</p>
 <p>至于这里为什么无法重现出我觉得一大原因就是我没对这个驱动载入设置自启动，导致一次<code>kernel panic</code>之后没有重新加载驱动（<del>下班了不搞了！</del>）。其实有kernel pwn基础的朋友读懂前面的log和<code>kernel panic</code>的信息都会特别轻松的，这里不详细说了！</p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2023/11/17/syzkaller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">syzkaller: syz-manager源码分析</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/fuzzing/">fuzzing</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/LKM/">LKM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/syzkaller/">syzkaller</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/syzlang/">syzlang</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2023/10/27/CVE-2022-2588/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">CVE-2022-2588复现</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/11/17/syzkaller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%901/"
+                                   title="syzkaller: syz-manager源码分析"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">syzkaller: syz-manager源码分析</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/10/27/CVE-2022-2588/"
+                                   title="CVE-2022-2588复现"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">CVE-2022-2588复现</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzkaller%E4%BD%BF%E7%94%A8"><span class="nav-text">syzkaller使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8syzkaller"><span class="nav-text">启动syzkaller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzlang%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97"><span class="nav-text">syzlang编写指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syzlang%E8%AF%AD%E6%B3%95"><span class="nav-text">syzlang语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B"><span class="nav-text">整型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-text">资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF"><span class="nav-text">类型模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6"><span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E5%B8%B8%E9%87%8F"><span class="nav-text">整型常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%8D%95%E6%8D%89%E7%AE%80%E5%8D%95%E6%BA%A2%E5%87%BA%E6%B4%9E"><span class="nav-text">尝试捕捉简单溢出洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-extract"><span class="nav-text">syz-extract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-sysgen"><span class="nav-text">syz-sysgen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E6%B5%81%E7%A8%8B"><span class="nav-text">实战流程</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -786,13 +953,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -806,42 +972,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzkaller%E4%BD%BF%E7%94%A8"><span class="nav-text">syzkaller使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8syzkaller"><span class="nav-text">启动syzkaller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzlang%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97"><span class="nav-text">syzlang编写指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syzlang%E8%AF%AD%E6%B3%95"><span class="nav-text">syzlang语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B"><span class="nav-text">整型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-text">资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF"><span class="nav-text">类型模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6"><span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E5%B8%B8%E9%87%8F"><span class="nav-text">整型常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%8D%95%E6%8D%89%E7%AE%80%E5%8D%95%E6%BA%A2%E5%87%BA%E6%B4%9E"><span class="nav-text">尝试捕捉简单溢出洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-extract"><span class="nav-text">syz-extract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-sysgen"><span class="nav-text">syz-sysgen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E6%B5%81%E7%A8%8B"><span class="nav-text">实战流程</span></a></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -859,7 +1028,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -873,29 +1042,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzkaller%E4%BD%BF%E7%94%A8"><span class="nav-text">syzkaller使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8syzkaller"><span class="nav-text">启动syzkaller</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syzlang%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97"><span class="nav-text">syzlang编写指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syzlang%E8%AF%AD%E6%B3%95"><span class="nav-text">syzlang语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B"><span class="nav-text">整型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-text">资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF"><span class="nav-text">类型模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6"><span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E5%B8%B8%E9%87%8F"><span class="nav-text">整型常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%8D%95%E6%8D%89%E7%AE%80%E5%8D%95%E6%BA%A2%E5%87%BA%E6%B4%9E"><span class="nav-text">尝试捕捉简单溢出洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-extract"><span class="nav-text">syz-extract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#syz-sysgen"><span class="nav-text">syz-sysgen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E6%B5%81%E7%A8%8B"><span class="nav-text">实战流程</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

