@@ -237,6 +237,144 @@
                 <div class="home-post-item-bottom border-box">
                     
                     <h3 class="home-post-title border-box">
+                        <a href="/2022/08/04/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90-2/">
+                            kernel pwn内存任意读写提升权限[2]
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            这次的例题是solid_core，题目的整体和前面那一道stringipc几乎一样
+12345678910111213141516171819202122case 0x77617369:    if ( copy_from_user(&amp;v27...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-history"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Wed Nov 29 2023 18:12:00 GMT+0800"
+                >2023-11-29 18:12:00</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux-Kernel/">Linux Kernel</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/HijackPrctl/">HijackPrctl</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/2022/08/04/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90-2/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
+                        <a href="/2022/08/03/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90/">
+                            kernel pwn内存任意读写提升权限[1]
+                        </a>
+                    </h3>
+
+                    <div class="home-post-content keep-markdown-body">
+                        
+                            前言分析通过内存任意读写到提升权限的三种方式
+在此之前呢，我所写的关于kernel的文章中适用到的提权方式基本都是通过commit_creds(prepare_kernel_cred(0));以及第一篇提到的直接修改cred结构体，所以这里将入门的其...
+                        
+                    </div>
+
+                    
+
+<div class="post-meta-info-container border-box home">
+    <div class="post-meta-info border-box">
+        
+            <span class="meta-info-item border-box">
+                <i class="icon fa-solid fa-history"></i>&nbsp;<span class="home-post-history"
+                                                                                data-updated="Wed Nov 29 2023 18:12:03 GMT+0800"
+                >2023-11-29 18:12:03</span>
+            </span>
+        
+
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux-Kernel/">Linux Kernel</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BF%AE%E6%94%B9cred%EF%BC%8C%E5%8A%AB%E6%8C%81vdso/">修改cred，劫持vdso</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+        <a class="home-read-more" href="/2022/08/03/kernel-pwn%E5%86%85%E5%AD%98%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%86%99%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
+    
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-post-item">
+
+                
+
+                <div class="home-post-item-bottom border-box">
+                    
+                    <h3 class="home-post-title border-box">
                         <a href="/2022/07/27/llvm-pass-pwn/">
                             llvm pass pwn
                         </a>
@@ -785,149 +923,6 @@ chunk关于0x10字节对其，如果是group中的第一个chunk，p的前...
                 </div>
             </li>
         
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/2022/04/17/CTF-examination/">
-                            *CTF-examination
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            examination太菜了只做了第一道题，第二道题死活找不到漏洞点
-流程分析这道题的流程挺明确的，因为是c语言逆向起来比较简单这里就不再赘述逆向过程了。
-总的来说程序就是下图所示的这个结构
-
-首先就是程序存在一个可以让我们任意地址+1的函数，利用此...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fa-solid fa-history"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Sun Apr 17 2022 11:07:10 GMT+0800"
-                >2022-04-17 11:07:10</span>
-            </span>
-        
-
-        
-
-        
-            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
-                <ul class="post-category-ul">
-                    
-                            <li class="category-item"><a href="/categories/%E6%AF%94%E8%B5%9Bwp/">比赛wp</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/house-of-pig/">house of pig</a></li>
-                        
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/HeapFengShui/">HeapFengShui</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/2022/04/17/CTF-examination/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-post-item">
-
-                
-
-                <div class="home-post-item-bottom border-box">
-                    
-                    <h3 class="home-post-title border-box">
-                        <a href="/2022/04/10/RCTF2021%E5%A4%8D%E7%8E%B0/">
-                            RCTF2021复现
-                        </a>
-                    </h3>
-
-                    <div class="home-post-content keep-markdown-body">
-                        
-                            以前做pwn题比较在意的是利用方式以及利用原理，很少静下心来去逆向一个程序，也就导致我现在逆向能力相对来说很差，在遇到RCTF这种题目极其复杂的内容我可能就直接放弃了，然后比赛完就看别人wp，别人说了流程之后我就会想，这么简单我为什么当时不做呢？所以...
-                        
-                    </div>
-
-                    
-
-<div class="post-meta-info-container border-box home">
-    <div class="post-meta-info border-box">
-        
-            <span class="meta-info-item border-box">
-                <i class="icon fa-solid fa-history"></i>&nbsp;<span class="home-post-history"
-                                                                                data-updated="Thu Apr 14 2022 19:48:01 GMT+0800"
-                >2022-04-14 19:48:01</span>
-            </span>
-        
-
-        
-
-        
-            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
-                <ul class="post-category-ul">
-                    
-                            <li class="category-item"><a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/">比赛复现</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/chunk-overlapping/">chunk overlapping</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-        <a class="home-read-more" href="/2022/04/10/RCTF2021%E5%A4%8D%E7%8E%B0/">阅读全文&nbsp;<i class="icon fas fa-angle-right"></i></a>
-    
-</div>
-
-                </div>
-            </li>
-        
     </ul>
     
     <div class="paginator border-box flex-center">
@@ -1001,7 +996,7 @@ chunk关于0x10字节对其，如果是group中的第一个chunk，p的前...
             
                 <span class="count-item border-box word">
                     <span class="item-type border-box">总字数</span>
-                    <span class="item-value border-box word">335.6k</span>
+                    <span class="item-value border-box word">341.8k</span>
                 </span>
             
 

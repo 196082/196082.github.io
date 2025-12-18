@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            netfilter |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/rocket-lunch.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/rocket-lunch.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","categories":"/categories || fa-solid fa-folder","tags":"/tags || fa-solid fa-tags"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"评论邮件通知的功能已开启，欢迎大家留言评论，有问题我会及时回复的哦～","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论（留下邮箱有通知哦～）"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-folder"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                标签
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-folder"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        netfilter
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-01-04 11:32:40</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Jan 18 2025 18:32:15 GMT+0800">2025-01-18 18:32:15</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux-Kernel/">Linux Kernel</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/netfilter/">netfilter</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>3.2k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>16 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>不知道继续看nftables是不是一个错误的决定，因为好像这个子系统最近的更新都只是用户态的工具更新了，并且在今年下半年没有见到有新的相关CVE。但是在之前对此子系统进行分析的时候分析的节奏是非常的片面的，对于其中很多模块的实现目的都不太清楚，在经历了这几个月特别是和我的同事交流学习以及我自己又回过头去挖了几个路由器的洞之后感觉自己对审计代码又有了更新的认识。所以，我最终还是觉得将netfilter从头到尾分析一边，即便是没有找到漏洞也是一次不错的学习经历。如果在这一遍分析之后我仍未发现可疑的代码可能就会选择去分析ebpf或是其他闭源的iot设备了。</p>
+<h2 id="netfilter初始化分析"><a href="#netfilter初始化分析" class="headerlink" title="netfilter初始化分析"></a>netfilter初始化分析</h2><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/%5Cimages%5Cnf-hooks.png"
+                       
+                 ></p>
+<p>本文的内容基本围绕上图展开，应该会涵盖上图的所有部分以及上图中不存在的部分。</p>
+<h3 id="HOOK初始化"><a href="#HOOK初始化" class="headerlink" title="HOOK初始化"></a>HOOK初始化</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __init <span class="title">netfilter_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret;</span><br><span class="line"></span><br><span class="line">	ret = register_pernet_subsys(&amp;netfilter_net_ops);</span><br><span class="line">	<span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> err;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_LWTUNNEL</span></span><br><span class="line">	ret = netfilter_lwtunnel_init();</span><br><span class="line">	<span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> err_lwtunnel_pernet;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	ret = netfilter_log_init();</span><br><span class="line">	<span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> err_log_pernet;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">err_log_pernet:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_LWTUNNEL</span></span><br><span class="line">	netfilter_lwtunnel_fini();</span><br><span class="line">err_lwtunnel_pernet:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	unregister_pernet_subsys(&amp;netfilter_net_ops);</span><br><span class="line">err:</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先关于netfilter的初始化十分简单，其中最重要的部分就是注册了子系统。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __net_init</span><br><span class="line">__netfilter_net_init(struct nf_hook_entries __rcu **e, <span class="keyword">int</span> max)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> h;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (h = <span class="number">0</span>; h &lt; max; h++)</span><br><span class="line">		RCU_INIT_POINTER(e[h], <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __net_init <span class="title">netfilter_net_init</span><span class="params">(struct net *net)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	__netfilter_net_init(net-&gt;nf.hooks_ipv4, ARRAY_SIZE(net-&gt;nf.hooks_ipv4));</span><br><span class="line">	__netfilter_net_init(net-&gt;nf.hooks_ipv6, ARRAY_SIZE(net-&gt;nf.hooks_ipv6));</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_FAMILY_ARP</span></span><br><span class="line">	__netfilter_net_init(net-&gt;nf.hooks_arp, ARRAY_SIZE(net-&gt;nf.hooks_arp));</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_FAMILY_BRIDGE</span></span><br><span class="line">	__netfilter_net_init(net-&gt;nf.hooks_bridge, ARRAY_SIZE(net-&gt;nf.hooks_bridge));</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_PROC_FS</span></span><br><span class="line">	net-&gt;nf.proc_netfilter = proc_net_mkdir(net, <span class="string">&quot;netfilter&quot;</span>,</span><br><span class="line">						net-&gt;proc_net);</span><br><span class="line">	<span class="keyword">if</span> (!net-&gt;nf.proc_netfilter) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!net_eq(net, &amp;init_net))</span><br><span class="line">			pr_err(<span class="string">&quot;cannot create netfilter proc entry&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> -ENOMEM;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在系统的初始化函数中就是简单的初始化了各个hook，即将数组赋值为null</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">netns_nf</span> &#123;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined CONFIG_PROC_FS</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">proc_dir_entry</span> *<span class="title">proc_netfilter</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">nf_logger</span> __<span class="title">rcu</span> *<span class="title">nf_loggers</span>[<span class="title">NFPROTO_NUMPROTO</span>];</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SYSCTL</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ctl_table_header</span> *<span class="title">nf_log_dir_header</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_LWTUNNEL</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ctl_table_header</span> *<span class="title">nf_lwtnl_dir_header</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> __<span class="title">rcu</span> *<span class="title">hooks_ipv4</span>[<span class="title">NF_INET_NUMHOOKS</span>];</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> __<span class="title">rcu</span> *<span class="title">hooks_ipv6</span>[<span class="title">NF_INET_NUMHOOKS</span>];</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_FAMILY_ARP</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> __<span class="title">rcu</span> *<span class="title">hooks_arp</span>[<span class="title">NF_ARP_NUMHOOKS</span>];</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_FAMILY_BRIDGE</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> __<span class="title">rcu</span> *<span class="title">hooks_bridge</span>[<span class="title">NF_INET_NUMHOOKS</span>];</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> IS_ENABLED(CONFIG_NF_DEFRAG_IPV4)</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> defrag_ipv4_users;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> IS_ENABLED(CONFIG_NF_DEFRAG_IPV6)</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> defrag_ipv6_users;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>上述就是在net结构体中用于表示netfilter的结构体，可以看到的是默认有的是ipv4、ipv4以及loggers这三个成员，在开启相应选项就会开启相应的成员如arp的hook。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> &#123;</span></span><br><span class="line">	u16				num_hook_entries;</span><br><span class="line">	<span class="comment">/* padding */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entry</span>		<span class="title">hooks</span>[];</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* trailer: pointers to original orig_ops of each hook,</span></span><br><span class="line"><span class="comment">	 * followed by rcu_head and scratch space used for freeing</span></span><br><span class="line"><span class="comment">	 * the structure via call_rcu.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 *   This is not part of struct nf_hook_entry since its only</span></span><br><span class="line"><span class="comment">	 *   needed in slow path (hook register/unregister):</span></span><br><span class="line"><span class="comment">	 * const struct nf_hook_ops     *orig_ops[]</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 *   For the same reason, we store this at end -- its</span></span><br><span class="line"><span class="comment">	 *   only needed when a hook is deleted, not during</span></span><br><span class="line"><span class="comment">	 *   packet path processing:</span></span><br><span class="line"><span class="comment">	 * struct nf_hook_entries_rcu_head     head</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里的注释说明的大概是（我英文不好，通过看源码分析出来的）后面会在申请改结构体时为<code>orig_ops[]</code>和<code>head</code>留空间。</p>
+<p>上述结构体中的<code>num_hook_entries</code>的含义也就是在该hook点有多少entry。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_ops</span> &#123;</span></span><br><span class="line">	<span class="comment">/* User fills in from here down. */</span></span><br><span class="line">	nf_hookfn		*hook;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">net_device</span>	*<span class="title">dev</span>;</span></span><br><span class="line">	<span class="keyword">void</span>			*priv;</span><br><span class="line">	u8			pf;</span><br><span class="line">	<span class="class"><span class="keyword">enum</span> <span class="title">nf_hook_ops_type</span>	<span class="title">hook_ops_type</span>:</span><span class="number">8</span>;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span>		hooknum;</span><br><span class="line">	<span class="comment">/* Hooks are ordered in ascending priority. */</span></span><br><span class="line">	<span class="keyword">int</span>			priority;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在这一函数就中目前需要注意的是pf成员指代的是该hook的协议，还有hooknum成员指代的是所位于的hook点，在后续的注册hook的过程就是通过这两个成员来确定位置的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">nf_inet_hooks</span> &#123;</span></span><br><span class="line">	NF_INET_PRE_ROUTING,</span><br><span class="line">	NF_INET_LOCAL_IN,</span><br><span class="line">	NF_INET_FORWARD,</span><br><span class="line">	NF_INET_LOCAL_OUT,</span><br><span class="line">	NF_INET_POST_ROUTING,</span><br><span class="line">	NF_INET_NUMHOOKS,</span><br><span class="line">	NF_INET_INGRESS = NF_INET_NUMHOOKS,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面的hooknum须为以上中的一个，这么来看就可以很清晰的知道了<code>nf_hook_ops</code>结构体中比较重要的成员的含义了。</p>
+<h3 id="HOOK注册过程"><a href="#HOOK注册过程" class="headerlink" title="HOOK注册过程"></a>HOOK注册过程</h3><p>在nftable中，没有初始化相应hook，它是通过用户指定base chain到某一个hook点中。</p>
+<p>但是在nftable中有一个初始化ops的过程（在此处仅初始化以下部分hook）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __init <span class="title">nft_chain_filter_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	err = nft_chain_filter_netdev_init();</span><br><span class="line">	<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">	nft_chain_filter_ipv4_init();</span><br><span class="line">	nft_chain_filter_ipv6_init();</span><br><span class="line">	nft_chain_filter_arp_init();</span><br><span class="line">	nft_chain_filter_inet_init();</span><br><span class="line">	nft_chain_filter_bridge_init();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述函数会对几种协议进行初始化。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">nft_do_chain_ipv4</span><span class="params">(<span class="keyword">void</span> *priv,</span></span></span><br><span class="line"><span class="params"><span class="function">				      struct sk_buff *skb,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">const</span> struct nf_hook_state *state)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_pktinfo</span> <span class="title">pkt</span>;</span></span><br><span class="line"></span><br><span class="line">	nft_set_pktinfo(&amp;pkt, skb, state);</span><br><span class="line">	nft_set_pktinfo_ipv4(&amp;pkt);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> nft_do_chain(&amp;pkt, priv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">nft_chain_type</span> <span class="title">nft_chain_filter_ipv4</span> =</span> &#123;</span><br><span class="line">	.name		= <span class="string">&quot;filter&quot;</span>,</span><br><span class="line">	.type		= NFT_CHAIN_T_DEFAULT,</span><br><span class="line">	.family		= NFPROTO_IPV4,</span><br><span class="line">	.hook_mask	= (<span class="number">1</span> &lt;&lt; NF_INET_LOCAL_IN) |</span><br><span class="line">			  (<span class="number">1</span> &lt;&lt; NF_INET_LOCAL_OUT) |</span><br><span class="line">			  (<span class="number">1</span> &lt;&lt; NF_INET_FORWARD) |</span><br><span class="line">			  (<span class="number">1</span> &lt;&lt; NF_INET_PRE_ROUTING) |</span><br><span class="line">			  (<span class="number">1</span> &lt;&lt; NF_INET_POST_ROUTING),</span><br><span class="line">	.hooks		= &#123;</span><br><span class="line">		[NF_INET_LOCAL_IN]	= nft_do_chain_ipv4,</span><br><span class="line">		[NF_INET_LOCAL_OUT]	= nft_do_chain_ipv4,</span><br><span class="line">		[NF_INET_FORWARD]	= nft_do_chain_ipv4,</span><br><span class="line">		[NF_INET_PRE_ROUTING]	= nft_do_chain_ipv4,</span><br><span class="line">		[NF_INET_POST_ROUTING]	= nft_do_chain_ipv4,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nft_chain_filter_ipv4_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	nft_register_chain_type(&amp;nft_chain_filter_ipv4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里以ipv4位例，上面会执行<code>nft_register_chain_type</code>函数将前面的结构体进行注册。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nft_register_chain_type</span><span class="params">(<span class="keyword">const</span> struct nft_chain_type *ctype)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	nfnl_lock(NFNL_SUBSYS_NFTABLES);</span><br><span class="line">	<span class="keyword">if</span> (WARN_ON(__nft_chain_type_get(ctype-&gt;family, ctype-&gt;type))) &#123;</span><br><span class="line">		nfnl_unlock(NFNL_SUBSYS_NFTABLES);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	chain_type[ctype-&gt;family][ctype-&gt;type] = ctype;</span><br><span class="line">	nfnl_unlock(NFNL_SUBSYS_NFTABLES);</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL_GPL(nft_register_chain_type);</span><br></pre></td></tr></table></figure>
+
+<p>该函数的实现如上，主要是通过结构体的协议族以及类型进行定位，将其放入到全局变量<code>chain_type</code>中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nf_tables_addchain</span><span class="params">(struct nft_ctx *ctx, u8 family, u8 genmask,</span></span></span><br><span class="line"><span class="params"><span class="function">			      u8 policy, u32 flags,</span></span></span><br><span class="line"><span class="params"><span class="function">			      struct netlink_ext_ack *extack)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">nlattr</span> * <span class="title">const</span> *<span class="title">nla</span> =</span> ctx-&gt;nla;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_table</span> *<span class="title">table</span> =</span> ctx-&gt;table;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_base_chain</span> *<span class="title">basechain</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">net</span> *<span class="title">net</span> =</span> ctx-&gt;net;</span><br><span class="line">	<span class="keyword">char</span> name[NFT_NAME_MAXLEN];</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_rule_blob</span> *<span class="title">blob</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_trans</span> *<span class="title">trans</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_chain</span> *<span class="title">chain</span>;</span></span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nla[NFTA_CHAIN_HOOK]) &#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">nft_stats</span> __<span class="title">percpu</span> *<span class="title">stats</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">nft_chain_hook</span> <span class="title">hook</span> =</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (table-&gt;flags &amp; __NFT_TABLE_F_UPDATE)</span><br><span class="line">			<span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (flags &amp; NFT_CHAIN_BINDING)</span><br><span class="line">			<span class="keyword">return</span> -EOPNOTSUPP;</span><br><span class="line"></span><br><span class="line">		err = nft_chain_parse_hook(net, <span class="literal">NULL</span>, nla, &amp;hook, family, flags,</span><br><span class="line">					   extack);</span><br><span class="line">		<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">		basechain = kzalloc(<span class="keyword">sizeof</span>(*basechain), GFP_KERNEL_ACCOUNT);</span><br><span class="line">		<span class="keyword">if</span> (basechain == <span class="literal">NULL</span>) &#123;</span><br><span class="line">			nft_chain_release_hook(&amp;hook);</span><br><span class="line">			<span class="keyword">return</span> -ENOMEM;</span><br><span class="line">		&#125;</span><br><span class="line">		chain = &amp;basechain-&gt;chain;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (nla[NFTA_CHAIN_COUNTERS]) &#123;</span><br><span class="line">			stats = nft_stats_alloc(nla[NFTA_CHAIN_COUNTERS]);</span><br><span class="line">			<span class="keyword">if</span> (IS_ERR(stats)) &#123;</span><br><span class="line">				nft_chain_release_hook(&amp;hook);</span><br><span class="line">				kfree(basechain);</span><br><span class="line">				<span class="keyword">return</span> PTR_ERR(stats);</span><br><span class="line">			&#125;</span><br><span class="line">			rcu_assign_pointer(basechain-&gt;stats, stats);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		err = nft_basechain_init(basechain, family, &amp;hook, flags);</span><br><span class="line">		<span class="keyword">if</span> (err &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			nft_chain_release_hook(&amp;hook);</span><br><span class="line">			kfree(basechain);</span><br><span class="line">			free_percpu(stats);</span><br><span class="line">			<span class="keyword">return</span> err;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (stats)</span><br><span class="line">			static_branch_inc(&amp;nft_counters_enabled);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// ......</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// ......</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* This must be LAST to ensure no packets are walking over this chain. */</span></span><br><span class="line">	err = nf_tables_register_hook(net, table, chain);</span><br><span class="line">	<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">goto</span> err_register_hook;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">err_register_hook:</span><br><span class="line">	nft_chain_del(chain);</span><br><span class="line">err_chain_add:</span><br><span class="line">	nft_trans_destroy(trans);</span><br><span class="line">err_trans:</span><br><span class="line">	nft_use_dec_restore(&amp;table-&gt;use);</span><br><span class="line">err_destroy_chain:</span><br><span class="line">	nf_tables_chain_destroy(ctx);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当用户指定了<code>NFTA_CHAIN_HOOK</code>就会进入到base chain的分支中，这里首先会通过<code>nft_chain_parse_hook</code>函数进行解析hook，其内容主要是获取到hook的协议、hook点位、优先级以及type（即前面的结构体）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nft_basechain_init</span><span class="params">(struct nft_base_chain *basechain, u8 family,</span></span></span><br><span class="line"><span class="params"><span class="function">			      struct nft_chain_hook *hook, u32 flags)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_chain</span> *<span class="title">chain</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_hook</span> *<span class="title">h</span>;</span></span><br><span class="line"></span><br><span class="line">	basechain-&gt;type = hook-&gt;type;</span><br><span class="line">	INIT_LIST_HEAD(&amp;basechain-&gt;hook_list);</span><br><span class="line">	chain = &amp;basechain-&gt;chain;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nft_base_chain_netdev(family, hook-&gt;num)) &#123;</span><br><span class="line">		list_splice_init(&amp;hook-&gt;<span class="built_in">list</span>, &amp;basechain-&gt;hook_list);</span><br><span class="line">		list_for_each_entry(h, &amp;basechain-&gt;hook_list, <span class="built_in">list</span>)</span><br><span class="line">			nft_basechain_hook_init(&amp;h-&gt;ops, family, hook, chain);</span><br><span class="line">	&#125;</span><br><span class="line">	nft_basechain_hook_init(&amp;basechain-&gt;ops, family, hook, chain);</span><br><span class="line"></span><br><span class="line">	chain-&gt;flags |= NFT_CHAIN_BASE | flags;</span><br><span class="line">	basechain-&gt;policy = NF_ACCEPT;</span><br><span class="line">	<span class="keyword">if</span> (chain-&gt;flags &amp; NFT_CHAIN_HW_OFFLOAD &amp;&amp;</span><br><span class="line">	    !nft_chain_offload_support(basechain)) &#123;</span><br><span class="line">		list_splice_init(&amp;basechain-&gt;hook_list, &amp;hook-&gt;<span class="built_in">list</span>);</span><br><span class="line">		<span class="keyword">return</span> -EOPNOTSUPP;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	flow_block_init(&amp;basechain-&gt;flow_block);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>随后通过<code>nft_basechain_init</code>函数初始化base chain。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">nft_basechain_hook_init</span><span class="params">(struct nf_hook_ops *ops, u8 family,</span></span></span><br><span class="line"><span class="params"><span class="function">				    <span class="keyword">const</span> struct nft_chain_hook *hook,</span></span></span><br><span class="line"><span class="params"><span class="function">				    struct nft_chain *chain)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ops-&gt;pf			= family;</span><br><span class="line">	ops-&gt;hooknum		= hook-&gt;num;</span><br><span class="line">	ops-&gt;priority		= hook-&gt;priority;</span><br><span class="line">	ops-&gt;priv		= chain;</span><br><span class="line">	ops-&gt;hook		= hook-&gt;type-&gt;hooks[ops-&gt;hooknum];</span><br><span class="line">	ops-&gt;hook_ops_type	= NF_HOOK_OP_NF_TABLES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在其中主要通过<code>nft_basechain_hook_init</code>函数对base chain的ops进行初始化。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nf_tables_register_hook</span><span class="params">(struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">				   <span class="keyword">const</span> struct nft_table *table,</span></span></span><br><span class="line"><span class="params"><span class="function">				   struct nft_chain *chain)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_base_chain</span> *<span class="title">basechain</span>;</span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_ops</span> *<span class="title">ops</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (table-&gt;flags &amp; NFT_TABLE_F_DORMANT ||</span><br><span class="line">	    !nft_is_base_chain(chain))</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	basechain = nft_base_chain(chain);</span><br><span class="line">	ops = &amp;basechain-&gt;ops;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (basechain-&gt;type-&gt;ops_register)</span><br><span class="line">		<span class="keyword">return</span> basechain-&gt;type-&gt;ops_register(net, ops);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nft_base_chain_netdev(table-&gt;family, basechain-&gt;ops.hooknum))</span><br><span class="line">		<span class="keyword">return</span> nft_netdev_register_hooks(net, &amp;basechain-&gt;hook_list);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> nf_register_net_hook(net, &amp;basechain-&gt;ops);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在完成对base chain的初始化之后，会在添加chain的最后一步进入到<code>nf_tables_register_hook</code>函数中，将base chain注册到hook。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nf_register_net_hook</span><span class="params">(struct net *net, <span class="keyword">const</span> struct nf_hook_ops *reg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (reg-&gt;pf == NFPROTO_INET) &#123;</span><br><span class="line">		<span class="keyword">if</span> (reg-&gt;hooknum == NF_INET_INGRESS) &#123;</span><br><span class="line">			err = __nf_register_net_hook(net, NFPROTO_INET, reg);</span><br><span class="line">			<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">				<span class="keyword">return</span> err;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			err = __nf_register_net_hook(net, NFPROTO_IPV4, reg);</span><br><span class="line">			<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">				<span class="keyword">return</span> err;</span><br><span class="line"></span><br><span class="line">			err = __nf_register_net_hook(net, NFPROTO_IPV6, reg);</span><br><span class="line">			<span class="keyword">if</span> (err &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				__nf_unregister_net_hook(net, NFPROTO_IPV4, reg);</span><br><span class="line">				<span class="keyword">return</span> err;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		err = __nf_register_net_hook(net, reg-&gt;pf, reg);</span><br><span class="line">		<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> err;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL(nf_register_net_hook);</span><br></pre></td></tr></table></figure>
+
+<p>在上述函数会根据协议进入不同分支然后执行<code>__nf_register_net_hook</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> __nf_register_net_hook(struct net *net, <span class="keyword">int</span> pf,</span><br><span class="line">				  <span class="keyword">const</span> struct nf_hook_ops *reg)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> *<span class="title">p</span>, *<span class="title">new_hooks</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> __<span class="title">rcu</span> **<span class="title">pp</span>;</span></span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> (pf) &#123;</span><br><span class="line">	<span class="keyword">case</span> NFPROTO_NETDEV:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CONFIG_NETFILTER_INGRESS</span></span><br><span class="line">		<span class="keyword">if</span> (reg-&gt;hooknum == NF_NETDEV_INGRESS)</span><br><span class="line">			<span class="keyword">return</span> -EOPNOTSUPP;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CONFIG_NETFILTER_EGRESS</span></span><br><span class="line">		<span class="keyword">if</span> (reg-&gt;hooknum == NF_NETDEV_EGRESS)</span><br><span class="line">			<span class="keyword">return</span> -EOPNOTSUPP;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">		<span class="keyword">if</span> ((reg-&gt;hooknum != NF_NETDEV_INGRESS &amp;&amp;</span><br><span class="line">		     reg-&gt;hooknum != NF_NETDEV_EGRESS) ||</span><br><span class="line">		    !reg-&gt;dev || dev_net(reg-&gt;dev) != net)</span><br><span class="line">			<span class="keyword">return</span> -EINVAL;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NFPROTO_INET:</span><br><span class="line">		<span class="keyword">if</span> (reg-&gt;hooknum != NF_INET_INGRESS)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		err = nf_ingress_check(net, reg, NF_INET_INGRESS);</span><br><span class="line">		<span class="keyword">if</span> (err &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> err;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pp = nf_hook_entry_head(net, pf, reg-&gt;hooknum, reg-&gt;dev);</span><br><span class="line">	<span class="keyword">if</span> (!pp)</span><br><span class="line">		<span class="keyword">return</span> -EINVAL;</span><br><span class="line"></span><br><span class="line">	mutex_lock(&amp;nf_hook_mutex);</span><br><span class="line"></span><br><span class="line">	p = nf_entry_dereference(*pp);</span><br><span class="line">	new_hooks = nf_hook_entries_grow(p, reg);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!IS_ERR(new_hooks)) &#123;</span><br><span class="line">		hooks_validate(new_hooks);</span><br><span class="line">		rcu_assign_pointer(*pp, new_hooks);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mutex_unlock(&amp;nf_hook_mutex);</span><br><span class="line">	<span class="keyword">if</span> (IS_ERR(new_hooks))</span><br><span class="line">		<span class="keyword">return</span> PTR_ERR(new_hooks);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_INGRESS</span></span><br><span class="line">	<span class="keyword">if</span> (nf_ingress_hook(reg, pf))</span><br><span class="line">		net_inc_ingress_queue();</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_EGRESS</span></span><br><span class="line">	<span class="keyword">if</span> (nf_egress_hook(reg, pf))</span><br><span class="line">		net_inc_egress_queue();</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	nf_static_key_inc(reg, pf);</span><br><span class="line"></span><br><span class="line">	BUG_ON(p == new_hooks);</span><br><span class="line">	nf_hook_entries_free(p);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前面的switch主要做的事就是验证协议和ops是否合法。随后通过<code>nf_hook_entry_head</code>函数找到<code>nf_hook_entries</code>的头。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> struct nf_hook_entries *</span></span><br><span class="line"><span class="function"><span class="title">nf_hook_entries_grow</span><span class="params">(<span class="keyword">const</span> struct nf_hook_entries *old,</span></span></span><br><span class="line"><span class="params"><span class="function">		     <span class="keyword">const</span> struct nf_hook_ops *reg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i, alloc_entries, nhooks, old_entries;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_ops</span> **<span class="title">orig_ops</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_ops</span> **<span class="title">new_ops</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> *<span class="title">new</span>;</span></span><br><span class="line">	<span class="keyword">bool</span> inserted = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	alloc_entries = <span class="number">1</span>;</span><br><span class="line">	old_entries = old ? old-&gt;num_hook_entries : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (old) &#123;</span><br><span class="line">		orig_ops = nf_hook_entries_get_hook_ops(old);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; old_entries; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (orig_ops[i] != &amp;dummy_ops)</span><br><span class="line">				alloc_entries++;</span><br><span class="line"></span><br><span class="line">			<span class="comment">/* Restrict BPF hook type to force a unique priority, not</span></span><br><span class="line"><span class="comment">			 * shared at attach time.</span></span><br><span class="line"><span class="comment">			 *</span></span><br><span class="line"><span class="comment">			 * This is mainly to avoid ordering issues between two</span></span><br><span class="line"><span class="comment">			 * different bpf programs, this doesn&#x27;t prevent a normal</span></span><br><span class="line"><span class="comment">			 * hook at same priority as a bpf one (we don&#x27;t want to</span></span><br><span class="line"><span class="comment">			 * prevent defrag, conntrack, iptables etc from attaching).</span></span><br><span class="line"><span class="comment">			 */</span></span><br><span class="line">			<span class="keyword">if</span> (reg-&gt;priority == orig_ops[i]-&gt;priority &amp;&amp;</span><br><span class="line">			    reg-&gt;hook_ops_type == NF_HOOK_OP_BPF)</span><br><span class="line">				<span class="keyword">return</span> ERR_PTR(-EBUSY);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (alloc_entries &gt; MAX_HOOK_COUNT)</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(-E2BIG);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">new</span> = allocate_hook_entries_size(alloc_entries);</span><br><span class="line">	<span class="keyword">if</span> (!<span class="keyword">new</span>)</span><br><span class="line">		<span class="keyword">return</span> ERR_PTR(-ENOMEM);</span><br><span class="line"></span><br><span class="line">	new_ops = nf_hook_entries_get_hook_ops(<span class="keyword">new</span>);</span><br><span class="line"></span><br><span class="line">	i = <span class="number">0</span>;</span><br><span class="line">	nhooks = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; old_entries) &#123;</span><br><span class="line">		<span class="keyword">if</span> (orig_ops[i] == &amp;dummy_ops) &#123;</span><br><span class="line">			++i;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (inserted || reg-&gt;priority &gt; orig_ops[i]-&gt;priority) &#123;</span><br><span class="line">			new_ops[nhooks] = (<span class="keyword">void</span> *)orig_ops[i];</span><br><span class="line">			<span class="keyword">new</span>-&gt;hooks[nhooks] = old-&gt;hooks[i];</span><br><span class="line">			i++;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			new_ops[nhooks] = (<span class="keyword">void</span> *)reg;</span><br><span class="line">			<span class="keyword">new</span>-&gt;hooks[nhooks].hook = reg-&gt;hook;</span><br><span class="line">			<span class="keyword">new</span>-&gt;hooks[nhooks].priv = reg-&gt;priv;</span><br><span class="line">			inserted = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		nhooks++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!inserted) &#123;</span><br><span class="line">		new_ops[nhooks] = (<span class="keyword">void</span> *)reg;</span><br><span class="line">		<span class="keyword">new</span>-&gt;hooks[nhooks].hook = reg-&gt;hook;</span><br><span class="line">		<span class="keyword">new</span>-&gt;hooks[nhooks].priv = reg-&gt;priv;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>随后进入到<code>nf_hook_entries_grow</code>函数获得新的<code>nf_hook_entries</code>。到这一步就可以理解到前面我所提到的<code>nf_hook_entries</code>结构体的申请，后半部分就是根据priority进行排序，具体逻辑很简单就不多赘述。</p>
+<p>后续则是将其添加到hook中。</p>
+<h3 id="HOOK触发过程"><a href="#HOOK触发过程" class="headerlink" title="HOOK触发过程"></a>HOOK触发过程</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * IP receive entry point</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ip_rcv</span><span class="params">(struct sk_buff *skb, struct net_device *dev, struct packet_type *pt,</span></span></span><br><span class="line"><span class="params"><span class="function">	   struct net_device *orig_dev)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">net</span> *<span class="title">net</span> =</span> dev_net(dev);</span><br><span class="line"></span><br><span class="line">	skb = ip_rcv_core(skb, net);</span><br><span class="line">	<span class="keyword">if</span> (skb == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> NET_RX_DROP;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> NF_HOOK(NFPROTO_IPV4, NF_INET_PRE_ROUTING,</span><br><span class="line">		       net, <span class="literal">NULL</span>, skb, dev, <span class="literal">NULL</span>,</span><br><span class="line">		       ip_rcv_finish);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述的<code>ip_rcv</code>函数是ip接受的入口点，其中的<code>ip_rcv_core</code>函数主要的操作是对数据包的检验以及裁剪等，在完成该步骤后进入到<code>NF_HOOK</code>中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span></span></span><br><span class="line"><span class="function"><span class="title">NF_HOOK</span><span class="params">(<span class="keyword">uint8_t</span> pf, <span class="keyword">unsigned</span> <span class="keyword">int</span> hook, struct net *net, struct sock *sk, struct sk_buff *skb,</span></span></span><br><span class="line"><span class="params"><span class="function">	struct net_device *in, struct net_device *out,</span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="keyword">int</span> (*okfn)(struct net *, struct sock *, struct sk_buff *))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = nf_hook(pf, hook, net, sk, skb, in, out, okfn);</span><br><span class="line">	<span class="keyword">if</span> (ret == <span class="number">1</span>)</span><br><span class="line">		ret = okfn(net, sk, skb);</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该函数中会先调用<code>nf_hook</code>而不是直接调用okfn回调。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">nf_hook</span><span class="params">(<span class="keyword">u_int8_t</span> pf, <span class="keyword">unsigned</span> <span class="keyword">int</span> hook, struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">			  struct sock *sk, struct sk_buff *skb,</span></span></span><br><span class="line"><span class="params"><span class="function">			  struct net_device *indev, struct net_device *outdev,</span></span></span><br><span class="line"><span class="params"><span class="function">			  <span class="keyword">int</span> (*okfn)(struct net *, struct sock *, struct sk_buff *))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_entries</span> *<span class="title">hook_head</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_JUMP_LABEL</span></span><br><span class="line">	<span class="keyword">if</span> (__builtin_constant_p(pf) &amp;&amp;</span><br><span class="line">	    __builtin_constant_p(hook) &amp;&amp;</span><br><span class="line">	    !static_key_false(&amp;nf_hooks_needed[pf][hook]))</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	rcu_read_lock();</span><br><span class="line">	<span class="keyword">switch</span> (pf) &#123;</span><br><span class="line">	<span class="keyword">case</span> NFPROTO_IPV4:</span><br><span class="line">		hook_head = rcu_dereference(net-&gt;nf.hooks_ipv4[hook]);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NFPROTO_IPV6:</span><br><span class="line">		hook_head = rcu_dereference(net-&gt;nf.hooks_ipv6[hook]);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NFPROTO_ARP:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_FAMILY_ARP</span></span><br><span class="line">		<span class="keyword">if</span> (WARN_ON_ONCE(hook &gt;= ARRAY_SIZE(net-&gt;nf.hooks_arp)))</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		hook_head = rcu_dereference(net-&gt;nf.hooks_arp[hook]);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> NFPROTO_BRIDGE:</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_NETFILTER_FAMILY_BRIDGE</span></span><br><span class="line">		hook_head = rcu_dereference(net-&gt;nf.hooks_bridge[hook]);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		WARN_ON_ONCE(<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (hook_head) &#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">nf_hook_state</span> <span class="title">state</span>;</span></span><br><span class="line"></span><br><span class="line">		nf_hook_state_init(&amp;state, hook, pf, indev, outdev,</span><br><span class="line">				   sk, net, okfn);</span><br><span class="line"></span><br><span class="line">		ret = nf_hook_slow(skb, &amp;state, hook_head, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	rcu_read_unlock();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数内部首先根据协议找到hook的头部，随后进入下面对state进行初始化。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">nf_hook_state_init</span><span class="params">(struct nf_hook_state *p,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">unsigned</span> <span class="keyword">int</span> hook,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">u_int8_t</span> pf,</span></span></span><br><span class="line"><span class="params"><span class="function">				      struct net_device *indev,</span></span></span><br><span class="line"><span class="params"><span class="function">				      struct net_device *outdev,</span></span></span><br><span class="line"><span class="params"><span class="function">				      struct sock *sk,</span></span></span><br><span class="line"><span class="params"><span class="function">				      struct net *net,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">int</span> (*okfn)(struct net *, struct sock *, struct sk_buff *))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	p-&gt;hook = hook;</span><br><span class="line">	p-&gt;pf = pf;</span><br><span class="line">	p-&gt;in = indev;</span><br><span class="line">	p-&gt;out = outdev;</span><br><span class="line">	p-&gt;sk = sk;</span><br><span class="line">	p-&gt;net = net;</span><br><span class="line">	p-&gt;okfn = okfn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在完成对state的初始化之后调用<code>nf_hook_slow</code>函数进行hook点位的调用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Returns 1 if okfn() needs to be executed by the caller,</span></span><br><span class="line"><span class="comment"> * -EPERM for NF_DROP, 0 otherwise.  Caller must hold rcu_read_lock. */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nf_hook_slow</span><span class="params">(struct sk_buff *skb, struct nf_hook_state *state,</span></span></span><br><span class="line"><span class="params"><span class="function">		 <span class="keyword">const</span> struct nf_hook_entries *e, <span class="keyword">unsigned</span> <span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> verdict;</span><br><span class="line">	<span class="keyword">int</span> ret;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (; s &lt; e-&gt;num_hook_entries; s++) &#123;</span><br><span class="line">		verdict = nf_hook_entry_hookfn(&amp;e-&gt;hooks[s], skb, state);</span><br><span class="line">		<span class="keyword">switch</span> (verdict &amp; NF_VERDICT_MASK) &#123;</span><br><span class="line">		<span class="keyword">case</span> NF_ACCEPT:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> NF_DROP:</span><br><span class="line">			kfree_skb_reason(skb,</span><br><span class="line">					 SKB_DROP_REASON_NETFILTER_DROP);</span><br><span class="line">			ret = NF_DROP_GETERR(verdict);</span><br><span class="line">			<span class="keyword">if</span> (ret == <span class="number">0</span>)</span><br><span class="line">				ret = -EPERM;</span><br><span class="line">			<span class="keyword">return</span> ret;</span><br><span class="line">		<span class="keyword">case</span> NF_QUEUE:</span><br><span class="line">			ret = nf_queue(skb, state, s, verdict);</span><br><span class="line">			<span class="keyword">if</span> (ret == <span class="number">1</span>)</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">return</span> ret;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="comment">/* Implicit handling for NF_STOLEN, as well as any other</span></span><br><span class="line"><span class="comment">			 * non conventional verdicts.</span></span><br><span class="line"><span class="comment">			 */</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL(nf_hook_slow);</span><br></pre></td></tr></table></figure>
+
+<p>上面注释对该函数的返回值做了说明。该函数在进入循环就会调用<code>nf_hook_entry_hookfn</code>函数来调用hook。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">int</span></span></span><br><span class="line"><span class="function"><span class="title">nf_hook_entry_hookfn</span><span class="params">(<span class="keyword">const</span> struct nf_hook_entry *entry, struct sk_buff *skb,</span></span></span><br><span class="line"><span class="params"><span class="function">		     struct nf_hook_state *state)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> entry-&gt;hook(entry-&gt;priv, skb, state);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结合前面的来看，这里hook的其实就是<code>basechain-&gt;ops-&gt;hook-&gt;type-&gt;hooks[ops-&gt;hooknum];</code>即<code>nft_do_chain_ipv4</code>函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">nft_do_chain_ipv4</span><span class="params">(<span class="keyword">void</span> *priv,</span></span></span><br><span class="line"><span class="params"><span class="function">				      struct sk_buff *skb,</span></span></span><br><span class="line"><span class="params"><span class="function">				      <span class="keyword">const</span> struct nf_hook_state *state)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">nft_pktinfo</span> <span class="title">pkt</span>;</span></span><br><span class="line"></span><br><span class="line">	nft_set_pktinfo(&amp;pkt, skb, state);</span><br><span class="line">	nft_set_pktinfo_ipv4(&amp;pkt);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> nft_do_chain(&amp;pkt, priv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而该函数中前面主要是对pkt的初始化，最后进入到我们熟悉的<code>nft_do_chain</code>函数。</p>
+<h2 id="conntrack实现"><a href="#conntrack实现" class="headerlink" title="conntrack实现"></a>conntrack实现</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在<code>nf_ct_set</code>函数中如何处理skb-&gt;_nfct成员的。</p>
+<p>buckets在内核中的结构，以及如何工作（看起来像是一个容纳<code>nf_conn</code>的哈希表）</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/netfilter/">netfilter</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2025/12/19/CVE-2025-38678/"
+                                   title="CVE-2025-38678"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">CVE-2025-38678</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/09/07/nftables-CVEs2/"
+                                   title="nftables CVE复现系列【二】"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">nftables CVE复现系列【二】</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论（留下邮箱有通知哦～）',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netfilter%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%86%E6%9E%90"><span class="nav-text">netfilter初始化分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HOOK%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">HOOK初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOOK%E6%B3%A8%E5%86%8C%E8%BF%87%E7%A8%8B"><span class="nav-text">HOOK注册过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOOK%E8%A7%A6%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-text">HOOK触发过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conntrack%E5%AE%9E%E7%8E%B0"><span class="nav-text">conntrack实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
+            
+        </div>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">341.8k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netfilter%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%86%E6%9E%90"><span class="nav-text">netfilter初始化分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HOOK%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">HOOK初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOOK%E6%B3%A8%E5%86%8C%E8%BF%87%E7%A8%8B"><span class="nav-text">HOOK注册过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOOK%E8%A7%A6%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-text">HOOK触发过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conntrack%E5%AE%9E%E7%8E%B0"><span class="nav-text">conntrack实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
