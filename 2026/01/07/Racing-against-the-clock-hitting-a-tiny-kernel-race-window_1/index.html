@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            Racing_against_the_clock--hitting_a_tiny_kernel_race_window前序 |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/rocket-lunch.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/rocket-lunch.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","categories":"/categories || fa-solid fa-folder","tags":"/tags || fa-solid fa-tags"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"评论邮件通知的功能已开启，欢迎大家留言评论，有问题我会及时回复的哦～","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论（留下邮箱有通知哦～）"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-folder"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                标签
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-folder"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Racing_against_the_clock--hitting_a_tiny_kernel_race_window前序
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-01-07 18:46:04</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Jan 07 2026 18:48:53 GMT+0800">2026-01-07 18:48:53</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux-Kernel/">Linux Kernel</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/race/">race</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.1k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>19 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>该技术的核心在于展示了如何利用一个理论上几乎不可能利用的、时间窗口极短的条件竞争漏洞。该方法是一种利用硬件特性（系统管理中断，SMI）来人为“拉长”这个时间窗口的创新技术。</p>
+<h1 id="前景提要：CVE-2021-0920"><a href="#前景提要：CVE-2021-0920" class="headerlink" title="前景提要：CVE-2021-0920"></a>前景提要：CVE-2021-0920</h1><p>因为该技术是基于该漏洞发现了另外一个漏洞而出现的，所以为了便于理解就将该漏洞分析一次。</p>
+<p><strong>后续分析的内核版本为：Linux v4.14.201</strong></p>
+<h1 id="SCM-RIGHTS-消息"><a href="#SCM-RIGHTS-消息" class="headerlink" title="SCM_RIGHTS 消息"></a>SCM_RIGHTS 消息</h1><p><strong><code>SCM_RIGHTS</code>控制消息</strong>：Linux 开发者可以使用 sendmsg 系统调用发送 <code>SCM_RIGHTS</code> 数据（参见<a class="link"   target="_blank" rel="noopener" href="https://man7.org/linux/man-pages/man7/unix.7.html%EF%BC%89**%E5%B0%86%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6" >https://man7.org/linux/man-pages/man7/unix.7.html）**将文件描述符<i class="fas fa-external-link-alt"></i></a> fd 从一个进程共享到另一个进程（该功能的本意是有权限打开文件的进程打开文件然后传递给没权限打开的进程使用，和<code>dup2()</code>不同的是，传递到对端的文件描述符数字和本端不一样）**。当sender进程将文件描述符传递给另一个进程receiver时，<code>SCM_RIGHTS</code> 将创建一个对 <code>file</code> 结构的引用（该 <code>file</code> 结构指针放在receiver端的 <code>sock-&gt;sk_receive_queue</code> 队列上），这样即使receiver进程尚未接收到文件描述符，sender也可以立即关闭该文件描述符。当文件描述符处于“queued” 排队状态（表示sender已发送并关闭了该 fd，但receiver尚未接收 fd 并取得所有权）时，需要进行专门的垃圾回收。为了跟踪这种“queued”状态，文章 <a class="link"   target="_blank" rel="noopener" href="https://lwn.net/Articles/779472/" >io_uring, SCM_RIGHTS, and reference-count cycles<i class="fas fa-external-link-alt"></i></a> 很好地解释了<code>SCM_RIGHTS</code> 引用计数和垃圾回收原理。</p>
+<p><strong>内存泄露问题</strong>：如果两个文件描述符 FD1 和 FD2 都把自己发送给对方，在都没有接收到文件描述符的情况下关闭 FD1 和 FD2，那么这两个 <code>file</code> 结构部将永远无法释放，造成内存泄露。所以要引入Linux垃圾回收机制，<strong>采用 <code>inflight</code> 飞行计数来统计正在被发送的文件描述符，识别内核中的不可破循环，并释放不可破循环中的 <code>file</code> 对象</strong>。</p>
+<h1 id="发送文件描述符"><a href="#发送文件描述符" class="headerlink" title="发送文件描述符"></a>发送文件描述符</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">unix_stream_sendmsg</span><span class="params">(struct socket *sock, struct msghdr *msg,</span></span></span><br><span class="line"><span class="params"><span class="function">			       <span class="keyword">size_t</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sock</span> *<span class="title">sk</span> =</span> sock-&gt;sk;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sock</span> *<span class="title">other</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> err, size;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sk_buff</span> *<span class="title">skb</span>;</span></span><br><span class="line">	<span class="keyword">int</span> sent = <span class="number">0</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_cookie</span> <span class="title">scm</span>;</span></span><br><span class="line">	<span class="keyword">bool</span> fds_sent = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">int</span> data_len;</span><br><span class="line"></span><br><span class="line">	wait_for_unix_gc();</span><br><span class="line">	err = scm_send(sock, msg, &amp;scm, <span class="literal">false</span>); <span class="comment">// 这里会处理scm消息，后续分析</span></span><br><span class="line">	<span class="comment">// ...... 如果前面函数失败则错误返回</span></span><br><span class="line"></span><br><span class="line">	err = -EOPNOTSUPP; <span class="comment">// 初始化err的只为不支持</span></span><br><span class="line">	<span class="comment">// ...... 如果消息的标识符有MSG_OOB则跳转至out_err分支</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (msg-&gt;msg_namelen) &#123; <span class="comment">// 如果消息有名字长度</span></span><br><span class="line">		err = sk-&gt;sk_state == TCP_ESTABLISHED ? -EISCONN : -EOPNOTSUPP; <span class="comment">// 这里确定错误类型</span></span><br><span class="line">		<span class="keyword">goto</span> out_err; <span class="comment">// 跳转至错误退出分支</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		err = -ENOTCONN;</span><br><span class="line">		other = unix_peer(sk); <span class="comment">// 获取到目标sock结构体</span></span><br><span class="line">		<span class="comment">// ...... 如果无法找到则跳转至out_err分支</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...... 如果目标套接字关闭则跳转至pipe_err分支</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (sent &lt; len) &#123; <span class="comment">// 如果发送大小小于数据大小则循环</span></span><br><span class="line">		size = len - sent; <span class="comment">// 拿到此次要发送的消息的大小</span></span><br><span class="line">		size = <span class="keyword">min_t</span>(<span class="keyword">int</span>, size, (sk-&gt;sk_sndbuf &gt;&gt; <span class="number">1</span>) - <span class="number">64</span>);</span><br><span class="line">		size = <span class="keyword">min_t</span>(<span class="keyword">int</span>, size, SKB_MAX_HEAD(<span class="number">0</span>) + UNIX_SKB_FRAGS_SZ); <span class="comment">// 这两步就是保证size不能超过这俩</span></span><br><span class="line"></span><br><span class="line">		data_len = <span class="keyword">max_t</span>(<span class="keyword">int</span>, <span class="number">0</span>, size - SKB_MAX_HEAD(<span class="number">0</span>));</span><br><span class="line">		data_len = <span class="keyword">min_t</span>(<span class="keyword">size_t</span>, size, PAGE_ALIGN(data_len)); <span class="comment">// 计算数据长度</span></span><br><span class="line"></span><br><span class="line">		skb = sock_alloc_send_pskb(sk, size - data_len, data_len,</span><br><span class="line">					   msg-&gt;msg_flags &amp; MSG_DONTWAIT, &amp;err, <span class="comment">// 创建skb</span></span><br><span class="line">					   get_order(UNIX_SKB_FRAGS_SZ));</span><br><span class="line">		<span class="comment">// ...... 如果分配skb失败则跳转至out_err</span></span><br><span class="line"></span><br><span class="line">		err = unix_scm_to_skb(&amp;scm, skb, !fds_sent); <span class="comment">// 将scm设置到skb中</span></span><br><span class="line">		<span class="comment">// ...... 如果设置失败则释放skb并且跳转至out_err分支</span></span><br><span class="line">		fds_sent = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">		skb_put(skb, size - data_len);</span><br><span class="line">		skb-&gt;data_len = data_len;</span><br><span class="line">		skb-&gt;len = size; <span class="comment">// 设置skb</span></span><br><span class="line">		err = skb_copy_datagram_from_iter(skb, <span class="number">0</span>, &amp;msg-&gt;msg_iter, size); <span class="comment">// 将消息拷贝至skb</span></span><br><span class="line">		<span class="comment">// ...... 如果错误则释放skb并跳转至out_err分支</span></span><br><span class="line"></span><br><span class="line">		unix_state_lock(other); <span class="comment">// 对目标套接字加锁</span></span><br><span class="line">		<span class="comment">// ...... 如果目标套接字的标志符为dead或连接关闭则跳转至pipe_err_free分支</span></span><br><span class="line"></span><br><span class="line">		maybe_add_creds(skb, sock, other);</span><br><span class="line">		skb_queue_tail(&amp;other-&gt;sk_receive_queue, skb); <span class="comment">// 将skb添加到目标套接字的receive_queue</span></span><br><span class="line">		unix_state_unlock(other);</span><br><span class="line">		other-&gt;sk_data_ready(other); <span class="comment">// 告诉目标套接字数据以及准备好了</span></span><br><span class="line">		sent += size; <span class="comment">// 增加发送的数据长度</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	scm_destroy(&amp;scm); <span class="comment">// 释放scm</span></span><br><span class="line">	<span class="keyword">return</span> sent;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...... 错误分支，与此分析无关省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述是发送函数的所有逻辑，大致就是处理scm消息，将scm消息整合到skb中最终将skb添加到目标套接字的接收队列中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">scm_fp_list</span> &#123;</span></span><br><span class="line">	<span class="keyword">short</span>			count;</span><br><span class="line">	<span class="keyword">short</span>			max;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">user_struct</span>	*<span class="title">user</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">file</span>		*<span class="title">fp</span>[<span class="title">SCM_MAX_FD</span>];</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">scm_cookie</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">pid</span>		*<span class="title">pid</span>;</span>		<span class="comment">/* Skb credentials */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_fp_list</span>	*<span class="title">fp</span>;</span>		<span class="comment">/* Passed files		*/</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_creds</span>	<span class="title">creds</span>;</span>		<span class="comment">/* Skb credentials	*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CONFIG_SECURITY_NETWORK</span></span><br><span class="line">	u32			secid;		<span class="comment">/* Passed security ID 	*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上述两个结构体在后续很需要，在<code>scm_fp_list-&gt;fp</code>中存储的是要发送的文件描述符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __scm_send(struct socket *sock, struct msghdr *msg, struct scm_cookie *p)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">cmsghdr</span> *<span class="title">cmsg</span>;</span></span><br><span class="line">	<span class="keyword">int</span> err;</span><br><span class="line"></span><br><span class="line">	for_each_cmsghdr(cmsg, msg) &#123; <span class="comment">// 遍历用户态传入的消息</span></span><br><span class="line">		err = -EINVAL;</span><br><span class="line">		<span class="comment">// ...... 如果消息不正常则跳转至error分支</span></span><br><span class="line">		<span class="comment">// ...... 如果消息的等级不是SOL_SOCKET则跳过</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">switch</span> (cmsg-&gt;cmsg_type)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> SCM_RIGHTS:</span><br><span class="line">      <span class="comment">// ...... 如果当前套接字没有ops或所属的家族不是PF_UNIX则跳转至error分支</span></span><br><span class="line">			err=scm_fp_copy(cmsg, &amp;p-&gt;fp); <span class="comment">// 这里传入的是scm_fp_list结构体，该函数的作用就是将用户态的传入的文件描述符写入fp数组</span></span><br><span class="line">			<span class="comment">// ...... 如果错误则跳转至error分支</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> SCM_CREDENTIALS:</span><br><span class="line">		<span class="comment">// ...... 与此漏洞无关</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p-&gt;fp &amp;&amp; !p-&gt;fp-&gt;count)</span><br><span class="line">	&#123;</span><br><span class="line">		kfree(p-&gt;fp);</span><br><span class="line">		p-&gt;fp = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...... 错误分支与此处无关</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过该函数会将用户态传入的文件描述符解析至<code>unix_stream_sendmsg</code>函数中的<code>struct scm_cookie scm;</code>变量中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">unix_scm_to_skb</span><span class="params">(struct scm_cookie *scm, struct sk_buff *skb, <span class="keyword">bool</span> send_fds)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> err = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	UNIXCB(skb).pid  = get_pid(scm-&gt;pid);</span><br><span class="line">	UNIXCB(skb).uid = scm-&gt;creds.uid;</span><br><span class="line">	UNIXCB(skb).gid = scm-&gt;creds.gid;</span><br><span class="line">	UNIXCB(skb).fp = <span class="literal">NULL</span>;</span><br><span class="line">	unix_get_secdata(scm, skb);</span><br><span class="line">	<span class="keyword">if</span> (scm-&gt;fp &amp;&amp; send_fds)</span><br><span class="line">		err = unix_attach_fds(scm, skb);</span><br><span class="line"></span><br><span class="line">	skb-&gt;destructor = unix_destruct_scm;</span><br><span class="line">	<span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里对skb进行初始化，会通过<code>unix_attach_fds</code>将<code>struct file</code>写到skb上。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">unix_attach_fds</span><span class="params">(struct scm_cookie *scm, struct sk_buff *skb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (too_many_unix_fds(current))</span><br><span class="line">		<span class="keyword">return</span> -ETOOMANYREFS;</span><br><span class="line"></span><br><span class="line">	UNIXCB(skb).fp = scm_fp_dup(scm-&gt;fp);</span><br><span class="line">	<span class="keyword">if</span> (!UNIXCB(skb).fp)</span><br><span class="line">		<span class="keyword">return</span> -ENOMEM;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = scm-&gt;fp-&gt;count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		unix_inflight(scm-&gt;fp-&gt;user, scm-&gt;fp-&gt;fp[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该函数中会通过<code>scm_fp_dup</code>函数增加该文件的引用计数，通过<code>unix_inflight</code>函数增加要传输文件的飞行计数。</p>
+<h1 id="接收文件描述符"><a href="#接收文件描述符" class="headerlink" title="接收文件描述符"></a>接收文件描述符</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">unix_stream_read_generic</span><span class="params">(struct unix_stream_read_state *state,</span></span></span><br><span class="line"><span class="params"><span class="function">				    <span class="keyword">bool</span> freezable)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_cookie</span> <span class="title">scm</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">socket</span> *<span class="title">sock</span> =</span> state-&gt;socket;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sock</span> *<span class="title">sk</span> =</span> sock-&gt;sk;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">unix_sock</span> *<span class="title">u</span> =</span> unix_sk(sk);</span><br><span class="line">	<span class="comment">// ......</span></span><br><span class="line">  </span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="comment">// ......</span></span><br><span class="line">		last = skb = skb_peek(&amp;sk-&gt;sk_receive_queue);</span><br><span class="line">		<span class="comment">// ...... 找不到skb的情况</span></span><br><span class="line">		<span class="comment">// ...... 跳过数据长度大于skb长度，进一步找下一个skb</span></span><br><span class="line">		<span class="comment">// ...... 凭证相关</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (!(flags &amp; MSG_PEEK)) &#123; <span class="comment">// 如果不是PEEK模式</span></span><br><span class="line">			UNIXCB(skb).consumed += chunk;</span><br><span class="line"></span><br><span class="line">			sk_peek_offset_bwd(sk, chunk);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (UNIXCB(skb).fp) <span class="comment">// 如果包含文件描述符</span></span><br><span class="line">				unix_detach_fds(&amp;scm, skb); <span class="comment">// 将文件描述符从skb中分离设置到scm</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (unix_skb_len(skb))</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">			skb_unlink(skb, &amp;sk-&gt;sk_receive_queue); <span class="comment">// 将skb从消息队列中去除</span></span><br><span class="line">			consume_skb(skb); <span class="comment">// 释放skb</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (scm.fp) <span class="comment">// 拿到fp之后退出循环</span></span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123; <span class="comment">// PEEK模式</span></span><br><span class="line">			<span class="keyword">if</span> (UNIXCB(skb).fp) <span class="comment">// 如果包含文件描述符</span></span><br><span class="line">				scm.fp = scm_fp_dup(UNIXCB(skb).fp); <span class="comment">// 又是拿到文件描述符</span></span><br><span class="line"></span><br><span class="line">			sk_peek_offset_fwd(sk, chunk);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (UNIXCB(skb).fp) <span class="comment">// 如果有文件描述符则退出</span></span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// ......</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">while</span> (size);</span><br><span class="line"></span><br><span class="line">	mutex_unlock(&amp;u-&gt;iolock);</span><br><span class="line">	<span class="keyword">if</span> (state-&gt;msg) <span class="comment">// 如果有消息结构</span></span><br><span class="line">		scm_recv(sock, state-&gt;msg, &amp;scm, flags); <span class="comment">// 处理消息</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		scm_destroy(&amp;scm);</span><br><span class="line">out:</span><br><span class="line">	<span class="keyword">return</span> copied ? : err;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接收消息的大致流程如上，主要分为PEEK模式和非PEEK模式的正常接收。</p>
+<h2 id="不带PEEK调用recvmsg"><a href="#不带PEEK调用recvmsg" class="headerlink" title="不带PEEK调用recvmsg"></a>不带PEEK调用recvmsg</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unix_detach_fds</span><span class="params">(struct scm_cookie *scm, struct sk_buff *skb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	scm-&gt;fp = UNIXCB(skb).fp;</span><br><span class="line">	UNIXCB(skb).fp = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = scm-&gt;fp-&gt;count<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		unix_notinflight(scm-&gt;fp-&gt;user, scm-&gt;fp-&gt;fp[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在分离文件描述的函数内部实现如上，首先将文件描述符赋值到scm中，然后清空skb上的fp指针，最后在下面减少飞行计数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unix_notinflight</span><span class="params">(struct user_struct *user, struct file *fp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sock</span> *<span class="title">s</span> =</span> unix_get_socket(fp);</span><br><span class="line"></span><br><span class="line">	spin_lock(&amp;unix_gc_lock);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (s) &#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">unix_sock</span> *<span class="title">u</span> =</span> unix_sk(s);</span><br><span class="line"></span><br><span class="line">		BUG_ON(!atomic_long_read(&amp;u-&gt;inflight));</span><br><span class="line">		BUG_ON(list_empty(&amp;u-&gt;link));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (atomic_long_dec_and_test(&amp;u-&gt;inflight)) <span class="comment">// [1]</span></span><br><span class="line">			list_del_init(&amp;u-&gt;link);</span><br><span class="line">		<span class="comment">/* Paired with READ_ONCE() in wait_for_unix_gc() */</span></span><br><span class="line">		WRITE_ONCE(unix_tot_inflight, unix_tot_inflight - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	user-&gt;unix_inflight--;</span><br><span class="line">	spin_unlock(&amp;unix_gc_lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在减去飞行计数的时候会加上gc锁，在[1]处会减少飞行计数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">consume_skb</span><span class="params">(struct sk_buff *skb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!skb_unref(skb))</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	trace_consume_skb(skb);</span><br><span class="line">	__kfree_skb(skb);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在进入到<code>__kfree_skb</code>之后会进入一下调用链，<code>__kfree_skb</code>&#x3D;&gt;<code>skb_realease_all</code>&#x3D;&gt;<code>skb_release_head_state</code>&#x3D;&gt;<code>skb-&gt;destructor</code>，这里调用的解构函数实际是<code>unix_destruct_scm</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unix_destruct_scm</span><span class="params">(struct sk_buff *skb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_cookie</span> <span class="title">scm</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(&amp;scm, <span class="number">0</span>, <span class="keyword">sizeof</span>(scm));</span><br><span class="line">	scm.pid  = UNIXCB(skb).pid;</span><br><span class="line">	<span class="keyword">if</span> (UNIXCB(skb).fp)</span><br><span class="line">		unix_detach_fds(&amp;scm, skb);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Alas, it calls VFS */</span></span><br><span class="line">	<span class="comment">/* So fscking what? fput() had been SMP-safe since the last Summer */</span></span><br><span class="line">	scm_destroy(&amp;scm);</span><br><span class="line">	sock_wfree(skb);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在此处如果skb如果还是有文件描述符则会再一次调用<code>unix_detach_fds</code>函数。</p>
+<h2 id="带PEEK调用recvmsg"><a href="#带PEEK调用recvmsg" class="headerlink" title="带PEEK调用recvmsg"></a>带PEEK调用recvmsg</h2><p>可以发现的是，在带PEEK模式下的recvmsg是直接通过<code>scm_fp_dup</code>拿到文件描述符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">struct scm_fp_list *<span class="title">scm_fp_dup</span><span class="params">(struct scm_fp_list *fpl)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_fp_list</span> *<span class="title">new_fpl</span>;</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!fpl)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	new_fpl = kmemdup(fpl, offsetof(struct scm_fp_list, fp[fpl-&gt;count]),</span><br><span class="line">			  GFP_KERNEL);</span><br><span class="line">	<span class="keyword">if</span> (new_fpl) &#123;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; fpl-&gt;count; i++)</span><br><span class="line">			get_file(fpl-&gt;fp[i]);</span><br><span class="line">		new_fpl-&gt;max = new_fpl-&gt;count;</span><br><span class="line">		new_fpl-&gt;user = get_uid(fpl-&gt;user);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> new_fpl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分配<code>scm_fp_list</code>，然后通过<code>get_file</code>函数增加文件的引用计数最后返回<code>scm_fp_list</code>。</p>
+<p><strong>并且从前面的recvmsg函数来看，当带PEEK模式时不会销毁skb并且会拿到一个新的文件描述符</strong></p>
+<h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><p>垃圾回收的主要目的是为了清除内存中无法主动删除掉的内存块，即以下情况：</p>
+<blockquote>
+<p>Socket A	&#x3D;&#x3D;发送A&#x3D;&#x3D;&gt;	Socket B</p>
+<p>Socket B	&#x3D;&#x3D;发送B&#x3D;&#x3D;&gt;	Socket A</p>
+<p>close(A); </p>
+<p>close(B);</p>
+<p>状态如下：</p>
+<p>Socket A			   Socket B</p>
+<p>ref &#x3D; 1				ref &#x3D; 1</p>
+<p>inflight &#x3D; 1			inflight &#x3D; 1</p>
+</blockquote>
+<p>在上述情况中，即没有Socket A的引用，同时没有Socket B的引用，导致形成了一个不可破循环，面对此类情况就应当进行gc。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unix_gc</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">unix_sock</span> *<span class="title">u</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">unix_sock</span> *<span class="title">next</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sk_buff_head</span> <span class="title">hitlist</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">cursor</span>;</span></span><br><span class="line">	LIST_HEAD(not_cycle_list);</span><br><span class="line"></span><br><span class="line">	spin_lock(&amp;unix_gc_lock); <span class="comment">// 加上gc锁</span></span><br><span class="line">	<span class="comment">// ...... 如果已经有gc在程序内则退出如果没有则设置正在程序中</span></span><br><span class="line"></span><br><span class="line">	list_for_each_entry_safe(u, next, &amp;gc_inflight_list, link) &#123; <span class="comment">// 遍历飞行中的sock</span></span><br><span class="line">		<span class="keyword">long</span> total_refs;</span><br><span class="line">		<span class="keyword">long</span> inflight_refs;</span><br><span class="line"></span><br><span class="line">		total_refs = file_count(u-&gt;sk.sk_socket-&gt;file); <span class="comment">// 取文件引用计数</span></span><br><span class="line">		inflight_refs = atomic_long_read(&amp;u-&gt;inflight); <span class="comment">// 取飞行计数</span></span><br><span class="line"></span><br><span class="line">		BUG_ON(inflight_refs &lt; <span class="number">1</span>);</span><br><span class="line">		BUG_ON(total_refs &lt; inflight_refs);</span><br><span class="line">		<span class="keyword">if</span> (total_refs == inflight_refs) &#123; <span class="comment">// 如果引用计数与飞行计数一致则将sock添加至gc的候选列表</span></span><br><span class="line">			list_move_tail(&amp;u-&gt;link, &amp;gc_candidates);</span><br><span class="line">			__set_bit(UNIX_GC_CANDIDATE, &amp;u-&gt;gc_flags);</span><br><span class="line">			__set_bit(UNIX_GC_MAYBE_CYCLE, &amp;u-&gt;gc_flags);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	list_for_each_entry(u, &amp;gc_candidates, link) <span class="comment">// 遍历所有候选列表</span></span><br><span class="line">		scan_children(&amp;u-&gt;sk, dec_inflight, <span class="literal">NULL</span>); <span class="comment">// 对候选列表中的飞行计数减一</span></span><br><span class="line"></span><br><span class="line">	list_add(&amp;cursor, &amp;gc_candidates);</span><br><span class="line">	<span class="keyword">while</span> (cursor.next != &amp;gc_candidates) &#123;</span><br><span class="line">		u = list_entry(cursor.next, struct unix_sock, link);</span><br><span class="line"></span><br><span class="line">		list_move(&amp;cursor, &amp;u-&gt;link);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (atomic_long_read(&amp;u-&gt;inflight) &gt; <span class="number">0</span>) &#123; <span class="comment">// 如果减一之后飞行计数仍大于0则代表有外部引用，那么该sock不该被gc</span></span><br><span class="line">			list_move_tail(&amp;u-&gt;link, &amp;not_cycle_list);</span><br><span class="line">			__clear_bit(UNIX_GC_MAYBE_CYCLE, &amp;u-&gt;gc_flags);</span><br><span class="line">			scan_children(&amp;u-&gt;sk, inc_inflight_move_tail, <span class="literal">NULL</span>); <span class="comment">// 恢复飞行计数</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	list_del(&amp;cursor);</span><br><span class="line"></span><br><span class="line">	skb_queue_head_init(&amp;hitlist);</span><br><span class="line">	list_for_each_entry(u, &amp;gc_candidates, link) <span class="comment">// 现在剩下的就是需要被gc的sock</span></span><br><span class="line">		scan_children(&amp;u-&gt;sk, inc_inflight, &amp;hitlist); <span class="comment">// 增加sock的飞行计数并转移到hitlist链表</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!list_empty(&amp;not_cycle_list)) &#123;</span><br><span class="line">		u = list_entry(not_cycle_list.next, struct unix_sock, link);</span><br><span class="line">		__clear_bit(UNIX_GC_CANDIDATE, &amp;u-&gt;gc_flags);</span><br><span class="line">		list_move_tail(&amp;u-&gt;link, &amp;gc_inflight_list);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	spin_unlock(&amp;unix_gc_lock);</span><br><span class="line"></span><br><span class="line">	__skb_queue_purge(&amp;hitlist); <span class="comment">// 删除该链表中的skb</span></span><br><span class="line"></span><br><span class="line">	spin_lock(&amp;unix_gc_lock);</span><br><span class="line"></span><br><span class="line">	BUG_ON(!list_empty(&amp;gc_candidates));</span><br><span class="line">	WRITE_ONCE(gc_in_progress, <span class="literal">false</span>);</span><br><span class="line">	wake_up(&amp;unix_gc_wait);</span><br><span class="line"></span><br><span class="line"> out:</span><br><span class="line">	spin_unlock(&amp;unix_gc_lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以这里的垃圾回收机制就是：</p>
+<ol>
+<li>如果引用计数与飞行计数一致则进入gc的候选列表。</li>
+<li>遍历候选列表中的sock，对其接收列表中的sock进行飞行计数减一</li>
+<li>如果飞行计数大于0则移除gc的候选列表并恢复其飞行计数</li>
+<li>恢复gc候选列表中的sock的飞行计数</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">scan_children</span><span class="params">(struct sock *x, <span class="keyword">void</span> (*func)(struct unix_sock *),</span></span></span><br><span class="line"><span class="params"><span class="function">			  struct sk_buff_head *hitlist)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x-&gt;sk_state != TCP_LISTEN) &#123;</span><br><span class="line">		scan_inflight(x, func, hitlist);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		struct sk_buff *skb;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">sk_buff</span> *<span class="title">next</span>;</span></span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">unix_sock</span> *<span class="title">u</span>;</span></span><br><span class="line">		LIST_HEAD(embryos);</span><br><span class="line"></span><br><span class="line">		spin_lock(&amp;x-&gt;sk_receive_queue.lock);</span><br><span class="line">		skb_queue_walk_safe(&amp;x-&gt;sk_receive_queue, skb, next) &#123;</span><br><span class="line">			u = unix_sk(skb-&gt;sk);</span><br><span class="line"></span><br><span class="line">			BUG_ON(!list_empty(&amp;u-&gt;link));</span><br><span class="line">			list_add_tail(&amp;u-&gt;link, &amp;embryos);</span><br><span class="line">		&#125;</span><br><span class="line">		spin_unlock(&amp;x-&gt;sk_receive_queue.lock);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (!list_empty(&amp;embryos)) &#123;</span><br><span class="line">			u = list_entry(embryos.next, struct unix_sock, link);</span><br><span class="line">			scan_inflight(&amp;u-&gt;sk, func, hitlist);</span><br><span class="line">			list_del_init(&amp;u-&gt;link);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处会先将接收队列中的skb添加到<code>embryos</code>列表中，最后调用<code>scan_inflight</code>函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">scan_inflight</span><span class="params">(struct sock *x, <span class="keyword">void</span> (*func)(struct unix_sock *),</span></span></span><br><span class="line"><span class="params"><span class="function">			  struct sk_buff_head *hitlist)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sk_buff</span> *<span class="title">skb</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sk_buff</span> *<span class="title">next</span>;</span></span><br><span class="line"></span><br><span class="line">	spin_lock(&amp;x-&gt;sk_receive_queue.lock);</span><br><span class="line">	skb_queue_walk_safe(&amp;x-&gt;sk_receive_queue, skb, next) &#123;</span><br><span class="line">		<span class="keyword">if</span> (UNIXCB(skb).fp) &#123;</span><br><span class="line">			<span class="keyword">bool</span> hit = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">int</span> nfd = UNIXCB(skb).fp-&gt;count;</span><br><span class="line">			<span class="class"><span class="keyword">struct</span> <span class="title">file</span> **<span class="title">fp</span> =</span> UNIXCB(skb).fp-&gt;fp;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">while</span> (nfd--) &#123;</span><br><span class="line">				<span class="class"><span class="keyword">struct</span> <span class="title">sock</span> *<span class="title">sk</span> =</span> unix_get_socket(*fp++);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (sk) &#123;</span><br><span class="line">					<span class="class"><span class="keyword">struct</span> <span class="title">unix_sock</span> *<span class="title">u</span> =</span> unix_sk(sk);</span><br><span class="line"></span><br><span class="line">					<span class="keyword">if</span> (test_bit(UNIX_GC_CANDIDATE, &amp;u-&gt;gc_flags)) &#123;</span><br><span class="line">						hit = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">						func(u);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (hit &amp;&amp; hitlist != <span class="literal">NULL</span>) &#123;</span><br><span class="line">				__skb_unlink(skb, &amp;x-&gt;sk_receive_queue);</span><br><span class="line">				__skb_queue_tail(hitlist, skb);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	spin_unlock(&amp;x-&gt;sk_receive_queue.lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处又一次遍历套接字的接收队列，如果skb有文件描述符则会进入内部调用外部传入的函数（减去飞行计数或增加飞行计数等）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> __skb_queue_purge(struct sk_buff_head *<span class="built_in">list</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sk_buff</span> *<span class="title">skb</span>;</span></span><br><span class="line">	<span class="keyword">while</span> ((skb = __skb_dequeue(<span class="built_in">list</span>)) != <span class="literal">NULL</span>)</span><br><span class="line">		kfree_skb(skb);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后通过该函数删除skb。</p>
+<h1 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h1><p>此处的漏洞出现在使用带PEEK的模式调用recvmsg时没有与gc进行同步，所以在gc的过程中可以通过调用带PEEK的recvmsg达到条件竞争的效果。</p>
+<p>触发UAF的流程如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Unix_gc</th>
+<th align="center">线程一：Socket A</th>
+<th align="center">线程二：Socket B</th>
+<th align="center">线程三：Socket C</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">将套接字A发送到B并关闭A<br />A：ref &#x3D;&gt; 1; inflight &#x3D;&gt; 1</td>
+<td align="center">将套接字B发送到A不关闭B<br />将套接字B发送到C并关闭B<br />B：ref &#x3D;&gt; 2; inflight &#x3D;&gt; 2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">触发GC<br />将A和B添加进GC候选列表</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">对套接字C使用带PEEK的recvmsg接收套接字B<br />B：ref &#x3D;&gt; 3; inflight &#x3D;&gt; 2</td>
+</tr>
+<tr>
+<td align="center">对候选列表中的飞行计数减一<br />A：ref &#x3D;&gt; 1; inflight &#x3D;&gt; 0<br />B：ref &#x3D;&gt; 3; inflight &#x3D;&gt; 1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">对套接字B使用不带PEEK的recvmsg<br />A：ref &#x3D;&gt; 1; inflight &#x3D;&gt; 1<br />UNIXCB(skb).fp &#x3D; NULL;<br />此处会因为unix_notinflight阻塞</td>
+</tr>
+<tr>
+<td align="center">因为B的飞行计数大于0<br />所以会恢复该消息<br />且恢复其接收列表的飞行计数<br />但因为UNIXCB(skb).fp &#x3D; NULL;会导致A的飞行计数依旧为0</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">对套接字B使用带PEEK的recvmsg<br />skb &#x3D; skb_peek(&amp;sk-&gt;sk_receive_queue);拿到skb</td>
+</tr>
+<tr>
+<td align="center">gc释放skb</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">state-&gt;recv_actor(skb, skip, chunk, state);达到UAF</td>
+</tr>
+</tbody></table>
+<p>总的来说，这里的触发漏洞还是比较复杂的，然后在此处增加时间窗口只需要创建多个类似于A &lt;&#x3D;&#x3D;&gt; B &#x3D;&#x3D;&gt; C这样的形式即可。</p>
+<h1 id="patch分析"><a href="#patch分析" class="headerlink" title="patch分析"></a>patch分析</h1><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">---</span></span><br><span class="line"> net/unix/af_unix.c |   51 +++++++++++++++++++++++++++++++++++++++++++++++++--</span><br><span class="line"> 1 file changed, 49 insertions(+), 2 deletions(-)</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/net/unix/af_unix.c</span></span><br><span class="line"><span class="comment">+++ b/net/unix/af_unix.c</span></span><br><span class="line"><span class="meta">@@ -1507,6 +1507,53 @@</span> out:</span><br><span class="line"> 	return err;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="addition">+static void unix_peek_fds(struct scm_cookie *scm, struct sk_buff *skb)</span></span><br><span class="line"><span class="addition">+&#123;</span></span><br><span class="line"><span class="addition">+	scm-&gt;fp = scm_fp_dup(UNIXCB(skb).fp);</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+	/*</span></span><br><span class="line"><span class="addition">+	 * Garbage collection of unix sockets starts by selecting a set of</span></span><br><span class="line"><span class="addition">+	 * candidate sockets which have reference only from being in flight</span></span><br><span class="line"><span class="addition">+	 * (total_refs == inflight_refs).  This condition is checked once during</span></span><br><span class="line"><span class="addition">+	 * the candidate collection phase, and candidates are marked as such, so</span></span><br><span class="line"><span class="addition">+	 * that non-candidates can later be ignored.  While inflight_refs is</span></span><br><span class="line"><span class="addition">+	 * protected by unix_gc_lock, total_refs (file count) is not, hence this</span></span><br><span class="line"><span class="addition">+	 * is an instantaneous decision.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * Once a candidate, however, the socket must not be reinstalled into a</span></span><br><span class="line"><span class="addition">+	 * file descriptor while the garbage collection is in progress.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * If the above conditions are met, then the directed graph of</span></span><br><span class="line"><span class="addition">+	 * candidates (*) does not change while unix_gc_lock is held.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * Any operations that changes the file count through file descriptors</span></span><br><span class="line"><span class="addition">+	 * (dup, close, sendmsg) does not change the graph since candidates are</span></span><br><span class="line"><span class="addition">+	 * not installed in fds.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * Dequeing a candidate via recvmsg would install it into an fd, but</span></span><br><span class="line"><span class="addition">+	 * that takes unix_gc_lock to decrement the inflight count, so it&#x27;s</span></span><br><span class="line"><span class="addition">+	 * serialized with garbage collection.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * MSG_PEEK is special in that it does not change the inflight count,</span></span><br><span class="line"><span class="addition">+	 * yet does install the socket into an fd.  The following lock/unlock</span></span><br><span class="line"><span class="addition">+	 * pair is to ensure serialization with garbage collection.  It must be</span></span><br><span class="line"><span class="addition">+	 * done between incrementing the file count and installing the file into</span></span><br><span class="line"><span class="addition">+	 * an fd.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * If garbage collection starts after the barrier provided by the</span></span><br><span class="line"><span class="addition">+	 * lock/unlock, then it will see the elevated refcount and not mark this</span></span><br><span class="line"><span class="addition">+	 * as a candidate.  If a garbage collection is already in progress</span></span><br><span class="line"><span class="addition">+	 * before the file count was incremented, then the lock/unlock pair will</span></span><br><span class="line"><span class="addition">+	 * ensure that garbage collection is finished before progressing to</span></span><br><span class="line"><span class="addition">+	 * installing the fd.</span></span><br><span class="line"><span class="addition">+	 *</span></span><br><span class="line"><span class="addition">+	 * (*) A -&gt; B where B is on the queue of A or B is on the queue of C</span></span><br><span class="line"><span class="addition">+	 * which is on the queue of listening socket A.</span></span><br><span class="line"><span class="addition">+	 */</span></span><br><span class="line"><span class="addition">+	spin_lock(&amp;unix_gc_lock);</span></span><br><span class="line"><span class="addition">+	spin_unlock(&amp;unix_gc_lock);</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"> static int unix_scm_to_skb(struct scm_cookie *scm, struct sk_buff *skb, bool send_fds)</span><br><span class="line"> &#123;</span><br><span class="line"> 	int err = 0;</span><br><span class="line"><span class="meta">@@ -2140,7 +2187,7 @@</span> static int unix_dgram_recvmsg(struct soc</span><br><span class="line"> 		sk_peek_offset_fwd(sk, size);</span><br><span class="line"></span><br><span class="line"> 		if (UNIXCB(skb).fp)</span><br><span class="line"><span class="deletion">-			scm.fp = scm_fp_dup(UNIXCB(skb).fp);</span></span><br><span class="line"><span class="addition">+			unix_peek_fds(&amp;scm, skb);</span></span><br><span class="line"> 	&#125;</span><br><span class="line"> 	err = (flags &amp; MSG_TRUNC) ? skb-&gt;len - skip : size;</span><br><span class="line"></span><br><span class="line"><span class="meta">@@ -2385,7 +2432,7 @@</span> unlock:</span><br><span class="line"> 			/* It is questionable, see note in unix_dgram_recvmsg.</span><br><span class="line"> 			 */</span><br><span class="line"> 			if (UNIXCB(skb).fp)</span><br><span class="line"><span class="deletion">-				scm.fp = scm_fp_dup(UNIXCB(skb).fp);</span></span><br><span class="line"><span class="addition">+				unix_peek_fds(&amp;scm, skb);</span></span><br><span class="line"></span><br><span class="line"> 			sk_peek_offset_fwd(sk, chunk);</span><br></pre></td></tr></table></figure>
+
+<p>针对该漏洞的修复是在将文件描述符设置到scm时在末尾加上gc锁。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/race/">race</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/12/19/CVE-2025-38678/"
+                                   title="CVE-2025-38678"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">CVE-2025-38678</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论（留下邮箱有通知哦～）',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%99%AF%E6%8F%90%E8%A6%81%EF%BC%9ACVE-2021-0920"><span class="nav-text">前景提要：CVE-2021-0920</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SCM-RIGHTS-%E6%B6%88%E6%81%AF"><span class="nav-text">SCM_RIGHTS 消息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">发送文件描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">接收文件描述符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%B8%A6PEEK%E8%B0%83%E7%94%A8recvmsg"><span class="nav-text">不带PEEK调用recvmsg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6PEEK%E8%B0%83%E7%94%A8recvmsg"><span class="nav-text">带PEEK调用recvmsg</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#patch%E5%88%86%E6%9E%90"><span class="nav-text">patch分析</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
+            
+        </div>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">345.9k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%99%AF%E6%8F%90%E8%A6%81%EF%BC%9ACVE-2021-0920"><span class="nav-text">前景提要：CVE-2021-0920</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SCM-RIGHTS-%E6%B6%88%E6%81%AF"><span class="nav-text">SCM_RIGHTS 消息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">发送文件描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">接收文件描述符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%B8%A6PEEK%E8%B0%83%E7%94%A8recvmsg"><span class="nav-text">不带PEEK调用recvmsg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6PEEK%E8%B0%83%E7%94%A8recvmsg"><span class="nav-text">带PEEK调用recvmsg</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-text">漏洞分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#patch%E5%88%86%E6%9E%90"><span class="nav-text">patch分析</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
