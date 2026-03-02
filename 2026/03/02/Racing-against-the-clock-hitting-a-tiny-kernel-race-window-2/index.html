@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="196082">
+    
+    <title>
+        
+            Racing_against_the_clock--hitting_a_tiny_kernel_race_window |
+        
+        196082&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/rocket-lunch.svg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"196082.github.io","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"196082's blog","author":196082,"avatar":"/images/ling.JPG","logo":"/images/ling.JPG","favicon":"/images/rocket-lunch.svg"},"menu":{"home":"/ || fa-solid fa-home","archives":"/archives || fa-solid fa-box-archive","categories":"/categories || fa-solid fa-folder","tags":"/tags || fa-solid fa-tags"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":"评论邮件通知的功能已开启，欢迎大家留言评论，有问题我会及时回复的哦～","category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":"慢慢好起来"},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz","appkey":"C672AAYGXMkHxztf8ntdLShs","server_urls":null,"placeholder":"😜若有问题请各位大师傅留言评论（留下邮箱有通知哦～）"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"site_deploy":{"enable":true,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="196082's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/ling.JPG">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               196082&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-folder"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                标签
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-folder"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Racing_against_the_clock--hitting_a_tiny_kernel_race_window
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/ling.JPG">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">196082</span>
+                                
+                                    <span class="author-badge">慢慢好起来</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-03-02 11:43:04</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Mar 02 2026 11:43:59 GMT+0800">2026-03-02 11:43:59</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Linux-Kernel/">Linux Kernel</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/race/">race</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>7 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>说好的月更，晚了两天，这个月连发两篇等于二月发了😋</p>
+<h1 id="CVE-2021-4083"><a href="#CVE-2021-4083" class="headerlink" title="CVE-2021-4083"></a>CVE-2021-4083</h1><p>该漏洞的利用方式主要是向大家展示了在没有开启CONFIG_PREEMPT的内核上如何扩大条件竞争窗口的技术，这里使用的方式主要是以下三种：</p>
+<ol>
+<li>使用缓存未命中来稍微扩大竞争窗口</li>
+<li>在竞争窗口期使一个timerfd过期触发硬件中断用于打断当前执行上下文</li>
+<li>timerfd触发的唤醒必须遍历epoll创建的50000个等待队列项</li>
+</ol>
+<h1 id="unix-gc中-skb-queue-purge函数"><a href="#unix-gc中-skb-queue-purge函数" class="headerlink" title="unix_gc中__skb_queue_purge函数"></a>unix_gc中__skb_queue_purge函数</h1><p>在unix_gc中最后一步会调用<code>__skb_queue_purge</code>函数来删除skb，而在其函数内部存在以下调用链：</p>
+<p><code>__skb_queue_purge</code>&#x3D;&gt;<code>kfree_skb</code>&#x3D;&gt;<code>__kfree_skb</code>&#x3D;&gt;<code>skb_release_all</code>&#x3D;&gt;<code>skb_release_head_state</code>&#x3D;&gt;<code>skb-&gt;destructor(skb)</code></p>
+<p>在af_unix中，这里的<code>skb-&gt;destructor</code>所指的函数为<code>unix_destruct_scm</code>函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unix_destruct_scm</span><span class="params">(struct sk_buff *skb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_cookie</span> <span class="title">scm</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(&amp;scm, <span class="number">0</span>, <span class="keyword">sizeof</span>(scm));</span><br><span class="line">	scm.pid  = UNIXCB(skb).pid;</span><br><span class="line">	<span class="keyword">if</span> (UNIXCB(skb).fp)</span><br><span class="line">		unix_detach_fds(&amp;scm, skb);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Alas, it calls VFS */</span></span><br><span class="line">	<span class="comment">/* So fscking what? fput() had been SMP-safe since the last Summer */</span></span><br><span class="line">	scm_destroy(&amp;scm);</span><br><span class="line">	sock_wfree(skb);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在函数内部会通过<code>unix_detach_fds</code>函数将skb中的文件描述符设置到scm中，然后在最后销毁scm。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> __scm_destroy(struct scm_cookie *scm)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">scm_fp_list</span> *<span class="title">fpl</span> =</span> scm-&gt;fp;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (fpl) &#123;</span><br><span class="line">		scm-&gt;fp = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">for</span> (i=fpl-&gt;count<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--)</span><br><span class="line">			fput(fpl-&gt;fp[i]);</span><br><span class="line">		free_uid(fpl-&gt;user);</span><br><span class="line">		kfree(fpl);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>销毁scm的函数最终会进入如上函数中，会释放文件描述符的引用计数。</p>
+<h1 id="dup系统调用"><a href="#dup系统调用" class="headerlink" title="dup系统调用"></a>dup系统调用</h1><p>对于dup系统调用来说，其内部实现主要分为两步：</p>
+<ol>
+<li>通过<code>__fget</code>函数拿到所传入文件描述符对应的<code>struct file</code>结构体。</li>
+<li>通过<code>fd_install</code>将其安装到新的文件描述符。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">file</span> *__<span class="title">fget</span>(<span class="title">unsigned</span> <span class="title">int</span> <span class="title">fd</span>, <span class="title">fmode_t</span> <span class="title">mask</span>)</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span> *<span class="title">files</span> =</span> current-&gt;files;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">file</span> *<span class="title">file</span>;</span></span><br><span class="line"></span><br><span class="line">	rcu_read_lock();</span><br><span class="line">loop:</span><br><span class="line">	file = fcheck_files(files, fd);</span><br><span class="line">	<span class="keyword">if</span> (file) &#123;</span><br><span class="line">		<span class="comment">/* File object ref couldn&#x27;t be taken.</span></span><br><span class="line"><span class="comment">		 * dup2() atomicity guarantee is the reason</span></span><br><span class="line"><span class="comment">		 * we loop to catch the new file (or NULL pointer)</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">if</span> (file-&gt;f_mode &amp; mask)</span><br><span class="line">			file = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (!get_file_rcu(file))</span><br><span class="line">			<span class="keyword">goto</span> loop;</span><br><span class="line">	&#125;</span><br><span class="line">	rcu_read_unlock();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> file;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>仔细查看<code>__fget</code>函数，这里首先是通过<code>fcheck_files</code>来找到对应的<code>struct file</code>结构体，经过一步验证才会调用<code>get_file_rcu</code>这个宏来增加该文件的引用计数，而中间这段窗口期就是我们竞争的窗口。</p>
+<h1 id="漏洞触发思路"><a href="#漏洞触发思路" class="headerlink" title="漏洞触发思路"></a>漏洞触发思路</h1><table>
+<thead>
+<tr>
+<th align="center">用户态线程1</th>
+<th align="center">用户态线程2</th>
+<th align="center">__fget线程</th>
+<th align="center">unix_gc线程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">创建socket A，创建socket B</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">使用socket B发送socket A到socket A</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">close掉socket A</td>
+<td align="center">通过dup获取新的socket A</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">通过check_files拿到file</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">因为此时还未增加引用计数<br />所以Socket A放入gc候选列表</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">检验是否是不可破循环</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">恢复飞行计数</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">最终进行gc</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">socket A引用计数减一并释放</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">增加拿到file的引用计数</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">返回指向socket A的新的文件描述符</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">获得struct file的UAF</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>总的来说触发思路还是比较简单，不过较为恼火的是，在拿到file和增加引用计数之间其实从汇编层面来看只存在十几条汇编指令，但是需要<code>unix_gc</code>线程执行很多操作，所以正常来看这貌似无法完成条件竞争。</p>
+<h1 id="缓存未命中"><a href="#缓存未命中" class="headerlink" title="缓存未命中"></a>缓存未命中</h1><p>在<code>__fget</code>的竞争窗口中还是存在对文件的内存访问，在另外一个核心上频繁调用<code>close(dup(fd))</code>会频繁修改文件的引用计数导致缓存的数据会被标记为脏数据从而不会直接从CPU缓存中取出地址。<br>（此处的实际操作还不知道怎么操作的，没找到该CVE的exp）</p>
+<p>通过该方法可以将窗口时间提升至几十到一两百纳秒，这远远不够<code>unix_gc</code>中执行的代码。</p>
+<h1 id="时钟中断延长窗口"><a href="#时钟中断延长窗口" class="headerlink" title="时钟中断延长窗口"></a>时钟中断延长窗口</h1><p>高分辨率计时器（HRT）是系统时钟提供的时间粒度比传统操作系统计时器（毫秒级）精细得多（纳秒级或更高精度）。在通过使用高分辨率定时器（hrtimer），通过<code>timerfd_settime()</code>设置一个绝对时间戳，让硬件在预定的那一刻产生中断。在非抢占式（CONFIG_PREEMPT未开启）的内核中，虽然无法直接抢占线程，但是硬件中断依然可以打断正在执行的内核代码。</p>
+<p>仅仅是中断无法实现扩大竞争窗口到前文所需的大小，在中断后我们仍需要CPU在中断的上下文中停留足够久的时间。这里使用的方法是，通过创建许多的epoll实例，在每一个epoll实例中监视定时器的文件描述符，从而实现在内核中挂载了足够多的等待项。当定时器到期产生硬件中断时，内核会遍历通过<code>wake_up()</code>唤醒这足够多的等待项，这一效果会导致内核不得不花费大量时间来处理，从而达到大大延长竞争窗口的效果。</p>
+<p>具体的使用流程如下：</p>
+<blockquote>
+<ol>
+<li>创建timbered</li>
+<li>通过多次dup产生大量指向该定时器的文件描述符</li>
+<li>利用500个epoll实例，在每一个实例中监视100个重复的FD</li>
+<li>最终效果是内核的等待队列中挂载着50000个等待队列</li>
+</ol>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/epoll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/timerfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_EPOLLS 500      <span class="comment">// 使用 500 个 epoll 实例</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DUPS_PER_EPOLL 100  <span class="comment">// 每个 epoll 监听 100 个重复的 FD</span></span></span><br><span class="line"><span class="comment">// 总计产生 50,000 个等待队列项</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> epoll_fds[NUM_EPOLLS];</span><br><span class="line"><span class="keyword">int</span> tfd;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一步：准备“等待队列风暴”</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">prepare_waitqueue_storm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    tfd = timerfd_create(CLOCK_MONOTONIC, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (tfd &lt; <span class="number">0</span>) &#123; perror(<span class="string">&quot;timerfd_create&quot;</span>); <span class="built_in">exit</span>(<span class="number">1</span>); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; NUM_EPOLLS; i++) &#123;</span><br><span class="line">        epoll_fds[i] = epoll_create1(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; DUPS_PER_EPOLL; j++) &#123;</span><br><span class="line">            <span class="comment">// 通过 dup() 复制 timerfd，增加在同一个文件上的等待者数量</span></span><br><span class="line">            <span class="keyword">int</span> dup_fd = dup(tfd);</span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> <span class="title">ev</span> =</span> &#123; .events = EPOLLIN &#125;;</span><br><span class="line">            <span class="comment">// 将重复的 FD 加入不同的 epoll 实例</span></span><br><span class="line">            epoll_ctl(epoll_fds[i], EPOLL_CTL_ADD, dup_fd, &amp;ev);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 此时，内核中 tfd 的等待队列(wait_queue)已经挂载了 50,000 个项目</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二步：设置高分辨率定时器触发中断</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">trigger_interrupt</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> nanoseconds_from_now)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">itimerspec</span> <span class="title">its</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timespec</span> <span class="title">now</span>;</span></span><br><span class="line">    </span><br><span class="line">    clock_gettime(CLOCK_MONOTONIC, &amp;now);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置绝对时间戳，精确到纳秒</span></span><br><span class="line">    its.it_value.tv_sec = now.tv_sec;</span><br><span class="line">    its.it_value.tv_nsec = now.tv_nsec + nanoseconds_from_now;</span><br><span class="line">    <span class="keyword">if</span> (its.it_value.tv_nsec &gt;= <span class="number">1000000000L</span>) &#123;</span><br><span class="line">        its.it_value.tv_sec++;</span><br><span class="line">        its.it_value.tv_nsec -= <span class="number">1000000000L</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    its.it_interval.tv_sec = <span class="number">0</span>;</span><br><span class="line">    its.it_interval.tv_nsec = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定时器到期时，硬件会引发中断，内核开始遍历庞大的 epoll 列表</span></span><br><span class="line">    timerfd_settime(tfd, TFD_TIMER_ABSTIME, &amp;its, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 攻击模拟线程</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">race_thread</span><span class="params">(<span class="keyword">void</span> *arg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 这里执行受害系统调用，例如 dup()</span></span><br><span class="line">    <span class="comment">// 目标是在执行到 _fget_files 关键指令时，被上述定时器中断打断</span></span><br><span class="line">    <span class="comment">// 导致原本 12 条指令的窗口被拉长到毫秒级</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[+] Preparing 50,000 waitqueue items...\n&quot;</span>);</span><br><span class="line">    prepare_waitqueue_storm();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[+] Launching race with hardware timer interrupt...\n&quot;</span>);</span><br><span class="line">    <span class="comment">// 实际利用时需要精确微调此延迟，通常在几百纳秒到几微秒之间</span></span><br><span class="line">    trigger_interrupt(<span class="number">1000</span>); </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行竞争操作...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="patch分析"><a href="#patch分析" class="headerlink" title="patch分析"></a>patch分析</h1><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/fs/file.c b/fs/file.c</span></span><br><span class="line"><span class="comment">index 8627dacfc4246f..ad4a8bf3cf109f 100644</span></span><br><span class="line"><span class="comment">--- a/fs/file.c</span></span><br><span class="line"><span class="comment">+++ b/fs/file.c</span></span><br><span class="line"><span class="meta">@@ -858,6 +858,10 @@</span> loop:</span><br><span class="line"> 			file = NULL;</span><br><span class="line"> 		else if (!get_file_rcu_many(file, refs))</span><br><span class="line"> 			goto loop;</span><br><span class="line"><span class="addition">+		else if (files_lookup_fd_raw(files, fd) != file) &#123;</span></span><br><span class="line"><span class="addition">+			fput_many(file, refs);</span></span><br><span class="line"><span class="addition">+			goto loop;</span></span><br><span class="line"><span class="addition">+		&#125;</span></span><br><span class="line"> 	&#125;</span><br><span class="line"> 	rcu_read_unlock();</span><br></pre></td></tr></table></figure>
+
+<p>该<code>patch</code>最终修改的是在<code>__fget</code>增加文件的引用计数之后再一次尝试取出文件，如果文件不一致则跳转至loop尝试重新获取该文件。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/race/">race</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2026/01/07/Racing-against-the-clock-hitting-a-tiny-kernel-race-window_1/"
+                                   title="Racing_against_the_clock--hitting_a_tiny_kernel_race_window前序"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Racing_against_the_clock--hitting_a_tiny_kernel_race_window前序</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'OcvtJuJHDrSFIyDGdp3rLMtA-gzGzoHsz',
+              appKey: 'C672AAYGXMkHxztf8ntdLShs',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '😜若有问题请各位大师傅留言评论（留下邮箱有通知哦～）',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CVE-2021-4083"><span class="nav-text">CVE-2021-4083</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unix-gc%E4%B8%AD-skb-queue-purge%E5%87%BD%E6%95%B0"><span class="nav-text">unix_gc中__skb_queue_purge函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dup%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-text">dup系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E8%A7%A6%E5%8F%91%E6%80%9D%E8%B7%AF"><span class="nav-text">漏洞触发思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%9C%AA%E5%91%BD%E4%B8%AD"><span class="nav-text">缓存未命中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E4%B8%AD%E6%96%AD%E5%BB%B6%E9%95%BF%E7%AA%97%E5%8F%A3"><span class="nav-text">时钟中断延长窗口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#patch%E5%88%86%E6%9E%90"><span class="nav-text">patch分析</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">196082</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+            本站由 <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/brands/github.png"></span> 提供部署服务
+            
+        </div>
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">总字数</span>
+                    <span class="item-value border-box word">347.8k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CVE-2021-4083"><span class="nav-text">CVE-2021-4083</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unix-gc%E4%B8%AD-skb-queue-purge%E5%87%BD%E6%95%B0"><span class="nav-text">unix_gc中__skb_queue_purge函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dup%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-text">dup系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E8%A7%A6%E5%8F%91%E6%80%9D%E8%B7%AF"><span class="nav-text">漏洞触发思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E6%9C%AA%E5%91%BD%E4%B8%AD"><span class="nav-text">缓存未命中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E4%B8%AD%E6%96%AD%E5%BB%B6%E9%95%BF%E7%AA%97%E5%8F%A3"><span class="nav-text">时钟中断延长窗口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#patch%E5%88%86%E6%9E%90"><span class="nav-text">patch分析</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/lazyload.min.js"></script>
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.2/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
